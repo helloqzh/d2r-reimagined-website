@@ -1,7 +1,7 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-BePQ-y0p.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-Fs0eH6wK.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "sets";
-const template = '<template>\n    <h3 class="text-center my-4">\n        ${sets.length} Sets Found\n    </h3>\n    <div class="container">\n        <div class="row align-content-center justify-content-center text-center mb-5">\n            <div class="col-12 col-sm-6">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="Select Class"\n                            options.bind="classes"\n                            class="standard-betsy-select"\n                            value.bind="class"\n                    ></moo-select>\n                </div>\n            </div>\n            <div class="col-12 col-sm-6">\n                <moo-text-field\n                        class="w-100"\n                        label="Search Sets"\n                        type="text"\n                        value.bind="search"\n                ></moo-text-field>\n            </div>\n        </div>\n    </div>\n\n    <div class="row gy-5 px-5 text-center">\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="set of sets">\n            <div class="card bg-dark p-2">\n                <div class="set-text fs-5 mb-1">\n                    ${set.Name}\n                </div>\n\n                <div class="partial-sets set-text" repeat.for="partial of set.PartialProperties">\n                    ${partial.PropertyString} (${$index + 2} Items)\n                </div>\n\n                <div class="partial-sets set-text" repeat.for="full of set.FullProperties">\n                    ${full.PropertyString} (Full Set)\n                </div>\n\n                <div class="my-3" repeat.for="setItem of set.SetItems">\n                    <div class="set-text mb-1">\n                        ${setItem.Name}\n                    </div>\n\n                    <div class="armor mb-1" if.bind="setItem.Equipment.Name">\n                        ${setItem.Equipment.Name}\n                    </div>\n\n                    <div class="armor mt-1" if.bind="setItem.Equipment.ArmorString">\n                        Armor: ${setItem.Equipment.ArmorString}\n                    </div>\n\n                    <div class="damage" if.bind="setItem.Equipment.DamageTypes"\n                         repeat.for="damage of setItem.Equipment.DamageTypes">\n                        ${getDamageTypeString(damage.Type)} ${damage.DamageString}\n                    </div>\n\n                    <div class="requirement" if.bind="setItem.RequiredLevel > 0">\n                        Level ${setItem.RequiredLevel} Required\n                    </div>\n\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredStrength > 0">\n                        ${setItem.Equipment.RequiredStrength} Strength Required\n                    </div>\n\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredDexterity > 0">\n                        ${setItem.Equipment.RequiredDexterity} Dexterity Required\n                    </div>\n\n                    <div class="durability mt-1" if.bind="setItem.Equipment.Durability > 0">\n                        ${setItem.Equipment.Durability} Durability\n                    </div>\n\n                    <div class="enhanced" repeat.for="property of setItem.Properties">\n                        ${property.PropertyString}\n                    </div>\n\n                    <div class="set-text" repeat.for="setProperty of setItem.SetPropertiesString">\n                        ${setProperty}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</template>\n';
+const template = '<template>\n    <h3 class="text-center my-4">\n        共 ${sets.length} 套裝\n    </h3>\n    <div class="container">\n        <div class="row align-content-center justify-content-center text-center mb-5">\n            <div class="col-12 col-sm-6">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="職業選擇"\n                            options.bind="classes"\n                            class="standard-betsy-select"\n                            value.bind="class"\n                    ></moo-select>\n                </div>\n            </div>\n            <div class="col-12 col-sm-6">\n                <moo-text-field\n                        class="w-100"\n                        label="Search Sets"\n                        type="text"\n                        value.bind="search"\n                ></moo-text-field>\n            </div>\n        </div>\n    </div>\n\n    <div class="row gy-5 px-5 text-center">\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="set of sets">\n            <div class="card bg-dark p-2">\n                <div class="set-text fs-5 mb-1">\n                    ${set.Name}\n                </div>\n\n                <div class="partial-sets set-text" repeat.for="partial of set.PartialProperties">\n                    ${partial.PropertyString} (${$index + 2} 件)\n                </div>\n\n                <div class="partial-sets set-text" repeat.for="full of set.FullProperties">\n                    ${full.PropertyString} (完整套裝)\n                </div>\n\n                <div class="my-3" repeat.for="setItem of set.SetItems">\n                    <div class="set-text mb-1">\n                        ${setItem.Name}\n                    </div>\n\n                    <div class="armor mb-1" if.bind="setItem.Equipment.Name">\n                        ${setItem.Equipment.Name}\n                    </div>\n\n                    <div class="armor mt-1" if.bind="setItem.Equipment.ArmorString">\n                        防禦: ${setItem.Equipment.ArmorString}\n                    </div>\n\n                    <div class="damage" if.bind="setItem.Equipment.DamageTypes"\n                         repeat.for="damage of setItem.Equipment.DamageTypes">\n                        ${getDamageTypeString(damage.Type)} ${damage.DamageString}\n                    </div>\n\n                    <div class="requirement" if.bind="setItem.RequiredLevel > 0">\n                        等級需求：${setItem.RequiredLevel}\n                    </div>\n\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredStrength > 0">\n                        力量需求：${setItem.Equipment.RequiredStrength}\n                    </div>\n\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredDexterity > 0">\n                        敏捷需求：${setItem.Equipment.RequiredDexterity}\n                    </div>\n\n                    <div class="durability mt-1" if.bind="setItem.Equipment.Durability > 0">\n                        耐久度：${setItem.Equipment.Durability}\n                    </div>\n\n                    <div class="enhanced" repeat.for="property of setItem.Properties">\n                        ${property.PropertyString}\n                    </div>\n\n                    <div class="set-text" repeat.for="setProperty of setItem.SetPropertiesString">\n                        ${setProperty}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</template>\n';
 const dependencies = [];
 const bindables = {};
 let _e;
@@ -23,16 +23,16 @@ const __au2ViewDef = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.define
 const json = [
   {
     Index: "Civerb's Vestments",
-    Name: "Civerb's Vestments",
+    Name: "克維雷布的法衣 (Civerb's Vestments)",
     SetItems: [
       {
         Type: "Shield",
         "Set": "Civerb's Vestments",
         SetPropertiesString: [
-          "+21-22 to Mana (Civerb's Icon)",
-          "Poison Resist +25-26% (Civerb's Cudgel)"
+          "+21-22 法力 (Civerb's Icon)",
+          "毒素抗性 +25-26% (Civerb's Cudgel)"
         ],
-        Name: "Civerb's Ward",
+        Name: "克維雷布的防護 (Civerb's Ward)",
         Index: "Civerb's Ward",
         Enabled: true,
         Rarity: 7,
@@ -41,11 +41,11 @@ const json = [
         Code: "lrg",
         Properties: [
           {
-            PropertyString: "+15% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +15%",
             Index: 1
           },
           {
-            PropertyString: "+15 Defense",
+            PropertyString: "+15 防禦",
             Index: 0
           }
         ],
@@ -55,7 +55,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "32-42",
           EquipmentType: 0,
-          Name: "Large Shield",
+          Name: "大型盾 (Large Shield)",
           RequiredStrength: 34,
           RequiredDexterity: 0,
           Durability: 24,
@@ -72,10 +72,10 @@ const json = [
         Type: "Amulet",
         "Set": "Civerb's Vestments",
         SetPropertiesString: [
-          "+25 Defense (3 Items)",
-          "Cold Resist +25% (2 Items)"
+          "+25 防禦 （3 件）",
+          "冰寒抗性 +25% （2 件）"
         ],
-        Name: "Civerb's Icon",
+        Name: "克維雷布的聖像 (Civerb's Icon)",
         Index: "Civerb's Icon",
         Enabled: true,
         Rarity: 7,
@@ -84,18 +84,18 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+4 Replenish Life",
+            PropertyString: "生命回復 +4",
             Index: 1
           },
           {
-            PropertyString: "Regenerate Mana +40%",
+            PropertyString: "法力恢復 40%",
             Index: 0
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -112,7 +112,7 @@ const json = [
         Type: "Scepter",
         "Set": "Civerb's Vestments",
         SetPropertiesString: [],
-        Name: "Civerb's Cudgel",
+        Name: "克維雷布的短棍 (Civerb's Cudgel)",
         Index: "Civerb's Cudgel",
         Enabled: true,
         Rarity: 7,
@@ -121,15 +121,15 @@ const json = [
         Code: "gsc",
         Properties: [
           {
-            PropertyString: "+17-23 to Maximum Damage",
+            PropertyString: "+17-23 最大傷害",
             Index: 1
           },
           {
-            PropertyString: "+75 to Attack Rating",
+            PropertyString: "+75 準確率",
             Index: 0
           },
           {
-            PropertyString: "+1 to Maximum Damage (Per Character Level)",
+            PropertyString: "+1 最大傷害 （依角色等級而定）",
             Index: 0
           }
         ],
@@ -142,7 +142,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Grand Scepter",
+          Name: "莊嚴權杖 (Grand Scepter)",
           RequiredStrength: 37,
           RequiredDexterity: 0,
           Durability: 250,
@@ -158,29 +158,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "Fire Resist +25%",
+        PropertyString: "火焰抗性 +25%",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+25% bonus to Attack Rating",
+        PropertyString: "+25% 準確率加成",
         Index: 3
       },
       {
-        PropertyString: "+200% Damage to Undead",
+        PropertyString: "+200% 對不死怪物的傷害",
         Index: 1
       },
       {
-        PropertyString: "+50 Defense",
+        PropertyString: "+50 防禦",
         Index: 4
       },
       {
-        PropertyString: "+15 to Strength",
+        PropertyString: "+15 力量",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +25%",
+        PropertyString: "電擊抗性 +25%",
         Index: 2
       }
     ],
@@ -188,15 +188,15 @@ const json = [
   },
   {
     Index: "Hsarus' Defense",
-    Name: "Hsarus' Defense",
+    Name: "海沙魯的鐵禦 (Hsarus' Defense)",
     SetItems: [
       {
         Type: "Boots",
         "Set": "Hsarus' Defense",
         SetPropertiesString: [
-          "+2.5 to Attack Rating (Per Character Level) (2 Items)"
+          "+2.5 to Attack Rating （依角色等級而定） （2 件）"
         ],
-        Name: "Hsarus' Iron Heel",
+        Name: "海沙魯的鐵跟 (Hsarus' Iron Heel)",
         Index: "Hsarus' Iron Heel",
         Enabled: true,
         Rarity: 7,
@@ -205,11 +205,11 @@ const json = [
         Code: "mbt",
         Properties: [
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "Fire Resist +25%",
+            PropertyString: "火焰抗性 +25%",
             Index: 0
           }
         ],
@@ -219,7 +219,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "108",
           EquipmentType: 0,
-          Name: "Chain Boots",
+          Name: "鎖鍊靴 (Chain Boots)",
           RequiredStrength: 30,
           RequiredDexterity: 0,
           Durability: 16,
@@ -236,9 +236,9 @@ const json = [
         Type: "Shield",
         "Set": "Hsarus' Defense",
         SetPropertiesString: [
-          "+2.5 Defense (Per Character Level) (2 Items)"
+          "+2.5 防禦 （依角色等級而定） （2 件）"
         ],
-        Name: "Hsarus' Iron Fist",
+        Name: "海沙魯的鐵拳 (Hsarus' Iron Fist)",
         Index: "Hsarus' Iron Fist",
         Enabled: true,
         Rarity: 7,
@@ -247,11 +247,11 @@ const json = [
         Code: "buc",
         Properties: [
           {
-            PropertyString: "+10 to Strength",
+            PropertyString: "+10 力量",
             Index: 1
           },
           {
-            PropertyString: "Damage Reduced by 2",
+            PropertyString: "物理傷害降低 2",
             Index: 0
           }
         ],
@@ -261,7 +261,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "4",
           EquipmentType: 0,
-          Name: "Buckler",
+          Name: "小圓盾 (Buckler)",
           RequiredStrength: 12,
           RequiredDexterity: 0,
           Durability: 12,
@@ -278,9 +278,9 @@ const json = [
         Type: "Belt",
         "Set": "Hsarus' Defense",
         SetPropertiesString: [
-          "+2.5 Defense (Per Character Level) (2 Items)"
+          "+2.5 防禦 （依角色等級而定） （2 件）"
         ],
-        Name: "Hsarus' Iron Stay",
+        Name: "海沙魯的鐵扣 (Hsarus' Iron Stay)",
         Index: "Hsarus' Iron Stay",
         Enabled: true,
         Rarity: 7,
@@ -289,11 +289,11 @@ const json = [
         Code: "mbl",
         Properties: [
           {
-            PropertyString: "+20 to Life",
+            PropertyString: "+20 生命",
             Index: 1
           },
           {
-            PropertyString: "Cold Resist +20%",
+            PropertyString: "冰寒抗性 +20%",
             Index: 0
           }
         ],
@@ -303,7 +303,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "5",
           EquipmentType: 0,
-          Name: "Belt",
+          Name: "腰帶 (Belt)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 16,
@@ -319,21 +319,21 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "Attacker Takes Damage of +5",
+        PropertyString: "攻擊者反傷 +5",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+5 to Maximum Damage",
+        PropertyString: "+5 最大傷害",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +25%",
+        PropertyString: "電擊抗性 +25%",
         Index: 2
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 1
       }
     ],
@@ -341,15 +341,15 @@ const json = [
   },
   {
     Index: "Cleglaw's Brace",
-    Name: "Cleglaw's Brace",
+    Name: "克雷德勞的防備 (Cleglaw's Brace)",
     SetItems: [
       {
         Type: "Sword",
         "Set": "Cleglaw's Brace",
         SetPropertiesString: [
-          "+1.25 to Maximum Damage (Per Character Level) (2 Items)"
+          "+1.25 最大傷害 （依角色等級而定） （2 件）"
         ],
-        Name: "Cleglaw's Tooth",
+        Name: "克雷德勞之牙 (Cleglaw's Tooth)",
         Index: "Cleglaw's Tooth",
         Enabled: true,
         Rarity: 7,
@@ -358,11 +358,11 @@ const json = [
         Code: "lsd",
         Properties: [
           {
-            PropertyString: "+30% bonus to Attack Rating",
+            PropertyString: "+30% 準確率加成",
             Index: 0
           },
           {
-            PropertyString: "+50% Deadly Strike",
+            PropertyString: "+50% 致命打擊",
             Index: 1
           }
         ],
@@ -375,7 +375,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Long Sword",
+          Name: "長劍 (Long Sword)",
           RequiredStrength: 55,
           RequiredDexterity: 39,
           Durability: 250,
@@ -392,9 +392,9 @@ const json = [
         Type: "Shield",
         "Set": "Cleglaw's Brace",
         SetPropertiesString: [
-          "All Resistances +15% (2 Items)"
+          "所有抗性 +15% （2 件）"
         ],
-        Name: "Cleglaw's Claw",
+        Name: "克雷德勞之爪 (Cleglaw's Claw)",
         Index: "Cleglaw's Claw",
         Enabled: true,
         Rarity: 7,
@@ -403,11 +403,11 @@ const json = [
         Code: "sml",
         Properties: [
           {
-            PropertyString: "+17 Defense",
+            PropertyString: "+17 防禦",
             Index: 0
           },
           {
-            PropertyString: "Poison Length Reduced by 75%",
+            PropertyString: "中毒的時效縮短 75%",
             Index: 1
           }
         ],
@@ -417,7 +417,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "25",
           EquipmentType: 0,
-          Name: "Small Shield",
+          Name: "小型盾 (Small Shield)",
           RequiredStrength: 22,
           RequiredDexterity: 0,
           Durability: 16,
@@ -434,9 +434,9 @@ const json = [
         Type: "Gloves",
         "Set": "Cleglaw's Brace",
         SetPropertiesString: [
-          "+2.5 to Attack Rating (Per Character Level) (2 Items)"
+          "+2.5 to Attack Rating （依角色等級而定） （2 件）"
         ],
-        Name: "Cleglaw's Pincers",
+        Name: "克雷德勞之鉗 (Cleglaw's Pincers)",
         Index: "Cleglaw's Pincers",
         Enabled: true,
         Rarity: 7,
@@ -445,11 +445,11 @@ const json = [
         Code: "mgl",
         Properties: [
           {
-            PropertyString: "Slows target by 25%",
+            PropertyString: "使目標減慢 25%",
             Index: 1
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 0
           }
         ],
@@ -459,7 +459,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "15",
           EquipmentType: 0,
-          Name: "Chain Gloves",
+          Name: "鍊甲手套 (Chain Gloves)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 16,
@@ -475,25 +475,25 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50 Defense",
+        PropertyString: "+50 防禦",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 3
       },
       {
-        PropertyString: "+6% Mana stolen per hit",
+        PropertyString: "擊中竊取 +6% 法力",
         Index: 1
       },
       {
-        PropertyString: "+35% Chance of Crushing Blow",
+        PropertyString: "+35% 概率造成粉碎打擊",
         Index: 2
       },
       {
-        PropertyString: "+50 Defense",
+        PropertyString: "+50 防禦",
         Index: 0
       }
     ],
@@ -501,15 +501,15 @@ const json = [
   },
   {
     Index: "Iratha's Finery",
-    Name: "Iratha's Finery",
+    Name: "依雷撒的華服 (Iratha's Finery)",
     SetItems: [
       {
         Type: "Amulet",
         "Set": "Iratha's Finery",
         SetPropertiesString: [
-          "All Resistances +15% (2 Items)"
+          "所有抗性 +15% （2 件）"
         ],
-        Name: "Iratha's Collar",
+        Name: "依雷撒的項圈 (Iratha's Collar)",
         Index: "Iratha's Collar",
         Enabled: true,
         Rarity: 7,
@@ -518,18 +518,18 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "Poison Resist +30%",
+            PropertyString: "毒素抗性 +30%",
             Index: 0
           },
           {
-            PropertyString: "Poison Length Reduced by 75%",
+            PropertyString: "中毒的時效縮短 75%",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -546,9 +546,9 @@ const json = [
         Type: "Gloves",
         "Set": "Iratha's Finery",
         SetPropertiesString: [
-          "+20% Increased Attack Speed (2 Items)"
+          "攻擊速度 +20% （2 件）"
         ],
-        Name: "Iratha's Cuff",
+        Name: "依雷撒的袖銬 (Iratha's Cuff)",
         Index: "Iratha's Cuff",
         Enabled: true,
         Rarity: 7,
@@ -557,11 +557,11 @@ const json = [
         Code: "tgl",
         Properties: [
           {
-            PropertyString: "Cold Resist +30%",
+            PropertyString: "冰寒抗性 +30%",
             Index: 0
           },
           {
-            PropertyString: "Half Freeze Duration",
+            PropertyString: "冰凍時間減半",
             Index: 1
           }
         ],
@@ -571,7 +571,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "9",
           EquipmentType: 0,
-          Name: "Light Gauntlets",
+          Name: "輕型護手 (Light Gauntlets)",
           RequiredStrength: 45,
           RequiredDexterity: 0,
           Durability: 18,
@@ -588,9 +588,9 @@ const json = [
         Type: "Helm",
         "Set": "Iratha's Finery",
         SetPropertiesString: [
-          "+2 Defense (Per Character Level) (2 Items)"
+          "+2 防禦 （依角色等級而定） （2 件）"
         ],
-        Name: "Iratha's Coil",
+        Name: "依雷撒的盤頂 (Iratha's Coil)",
         Index: "Iratha's Coil",
         Enabled: true,
         Rarity: 7,
@@ -599,11 +599,11 @@ const json = [
         Code: "crn",
         Properties: [
           {
-            PropertyString: "Lightning Resist +30%",
+            PropertyString: "電擊抗性 +30%",
             Index: 1
           },
           {
-            PropertyString: "Fire Resist +30%",
+            PropertyString: "火焰抗性 +30%",
             Index: 0
           }
         ],
@@ -613,7 +613,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "25",
           EquipmentType: 0,
-          Name: "Crown",
+          Name: "王冠 (Crown)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 50,
@@ -630,9 +630,9 @@ const json = [
         Type: "Belt",
         "Set": "Iratha's Finery",
         SetPropertiesString: [
-          "+10 to Dexterity (2 Items)"
+          "+10 敏捷 （2 件）"
         ],
-        Name: "Iratha's Cord",
+        Name: "依雷撒的腰繩 (Iratha's Cord)",
         Index: "Iratha's Cord",
         Enabled: true,
         Rarity: 7,
@@ -641,11 +641,11 @@ const json = [
         Code: "tbl",
         Properties: [
           {
-            PropertyString: "+5 to Minimum Damage",
+            PropertyString: "+5 最小傷害",
             Index: 1
           },
           {
-            PropertyString: "+25 Defense",
+            PropertyString: "+25 防禦",
             Index: 0
           }
         ],
@@ -655,7 +655,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "26-36",
           EquipmentType: 0,
-          Name: "Heavy Belt",
+          Name: "厚腰帶 (Heavy Belt)",
           RequiredStrength: 45,
           RequiredDexterity: 0,
           Durability: 18,
@@ -671,41 +671,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50 Defense",
+        PropertyString: "+50 防禦",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Run/Walk",
+        PropertyString: "+20% 跑步 / 行走速度",
         Index: 2
       },
       {
-        PropertyString: "+24% Piercing Attack",
+        PropertyString: "+24% 穿透攻擊",
         Index: 3
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+15 to Dexterity",
+        PropertyString: "+15 敏捷",
         Index: 5
       },
       {
-        PropertyString: "+10 to Maximum Poison Resist",
+        PropertyString: "毒素抗性上限 ++10",
         Index: 4
       },
       {
-        PropertyString: "+10 to Maximum Cold Resist",
+        PropertyString: "冰寒抗性上限 +10",
         Index: 2
       },
       {
-        PropertyString: "+10 to Maximum Lightning Resist",
+        PropertyString: "電擊抗性上限 +10",
         Index: 3
       },
       {
-        PropertyString: "+10 to Maximum Fire Resist",
+        PropertyString: "火焰抗性上限 +10",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +20%",
+        PropertyString: "所有抗性 +20%",
         Index: 0
       }
     ],
@@ -713,15 +713,15 @@ const json = [
   },
   {
     Index: "Isenhart's Armory",
-    Name: "Isenhart's Armory",
+    Name: "依森哈特的軍械 (Isenhart's Armory)",
     SetItems: [
       {
         Type: "Sword",
         "Set": "Isenhart's Armory",
         SetPropertiesString: [
-          "+1.25 to Attack Rating (Per Character Level) (2 Items)"
+          "+1.25 to Attack Rating （依角色等級而定） （2 件）"
         ],
-        Name: "Isenhart's Lightbrand",
+        Name: "依森哈特的光之烙鐵 (Isenhart's Lightbrand)",
         Index: "Isenhart's Lightbrand",
         Enabled: true,
         Rarity: 7,
@@ -730,11 +730,11 @@ const json = [
         Code: "bsd",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+10 to Minimum Damage",
+            PropertyString: "+10 最小傷害",
             Index: 0
           }
         ],
@@ -747,7 +747,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Broad Sword",
+          Name: "闊劍 (Broad Sword)",
           RequiredStrength: 48,
           RequiredDexterity: 0,
           Durability: 250,
@@ -764,9 +764,9 @@ const json = [
         Type: "Shield",
         "Set": "Isenhart's Armory",
         SetPropertiesString: [
-          "All Resistances +8% (2 Items)"
+          "所有抗性 +8% （2 件）"
         ],
-        Name: "Isenhart's Parry",
+        Name: "依森哈特的招架 (Isenhart's Parry)",
         Index: "Isenhart's Parry",
         Enabled: true,
         Rarity: 7,
@@ -775,11 +775,11 @@ const json = [
         Code: "gts",
         Properties: [
           {
-            PropertyString: "+40 Defense",
+            PropertyString: "+40 防禦",
             Index: 0
           },
           {
-            PropertyString: "Attacker Takes Lightning Damage of +4",
+            PropertyString: "攻擊者受到 +4 點電擊傷害",
             Index: 1
           }
         ],
@@ -789,7 +789,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "70",
           EquipmentType: 0,
-          Name: "Gothic Shield",
+          Name: "哥德盾 (Gothic Shield)",
           RequiredStrength: 60,
           RequiredDexterity: 0,
           Durability: 40,
@@ -806,9 +806,9 @@ const json = [
         Type: "Armor",
         "Set": "Isenhart's Armory",
         SetPropertiesString: [
-          "+2 Defense (Per Character Level) (2 Items)"
+          "+2 防禦 （依角色等級而定） （2 件）"
         ],
-        Name: "Isenhart's Case",
+        Name: "依森哈特的外殼 (Isenhart's Case)",
         Index: "Isenhart's Case",
         Enabled: true,
         Rarity: 7,
@@ -817,11 +817,11 @@ const json = [
         Code: "brs",
         Properties: [
           {
-            PropertyString: "+40 Defense",
+            PropertyString: "+40 防禦",
             Index: 0
           },
           {
-            PropertyString: "Magic Damage Reduced by 2",
+            PropertyString: "魔法傷害降低 2",
             Index: 1
           }
         ],
@@ -831,7 +831,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "115-145",
           EquipmentType: 0,
-          Name: "Breast Plate",
+          Name: "胸鎧 (Breast Plate)",
           RequiredStrength: 30,
           RequiredDexterity: 0,
           Durability: 50,
@@ -848,9 +848,9 @@ const json = [
         Type: "Helm",
         "Set": "Isenhart's Armory",
         SetPropertiesString: [
-          "All Resistances +8% (2 Items)"
+          "所有抗性 +8% （2 件）"
         ],
-        Name: "Isenhart's Horns",
+        Name: "依森哈特的角盔 (Isenhart's Horns)",
         Index: "Isenhart's Horns",
         Enabled: true,
         Rarity: 7,
@@ -859,11 +859,11 @@ const json = [
         Code: "fhl",
         Properties: [
           {
-            PropertyString: "+6 to Dexterity",
+            PropertyString: "+6 敏捷",
             Index: 0
           },
           {
-            PropertyString: "Damage Reduced by 2",
+            PropertyString: "物理傷害降低 2",
             Index: 1
           }
         ],
@@ -873,7 +873,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "43-53",
           EquipmentType: 0,
-          Name: "Full Helm",
+          Name: "全罩盔 (Full Helm)",
           RequiredStrength: 41,
           RequiredDexterity: 0,
           Durability: 30,
@@ -889,33 +889,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+20% Faster Run/Walk",
+        PropertyString: "+20% 跑步 / 行走速度",
         Index: 4
       },
       {
-        PropertyString: "+30% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +30%",
         Index: 3
       },
       {
-        PropertyString: "+35% bonus to Attack Rating",
+        PropertyString: "+35% 準確率加成",
         Index: 2
       },
       {
-        PropertyString: "+5% Life stolen per hit",
+        PropertyString: "擊中竊取 5% 生命",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +10%",
+        PropertyString: "所有抗性 +10%",
         Index: 1
       }
     ],
@@ -923,15 +923,15 @@ const json = [
   },
   {
     Index: "Vidala's Rig",
-    Name: "Vidala's Rig",
+    Name: "維達拉的配備 (Vidala's Rig)",
     SetItems: [
       {
         Type: "Bow",
         "Set": "Vidala's Rig",
         SetPropertiesString: [
-          "+2 to Attack Rating (Per Character Level) (2 Items)"
+          "+2 準確率 （依角色等級而定） （2 件）"
         ],
-        Name: "Vidala's Barb",
+        Name: "維達拉的倒刺 (Vidala's Barb)",
         Index: "Vidala's Barb",
         Enabled: true,
         Rarity: 7,
@@ -940,7 +940,7 @@ const json = [
         Code: "lbb",
         Properties: [
           {
-            PropertyString: "Adds 1-20 Lightning damage",
+            PropertyString: "增加 1-20 電擊傷害",
             Index: 0
           }
         ],
@@ -953,7 +953,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Long Battle Bow",
+          Name: "戰鬥長弓 (Long Battle Bow)",
           RequiredStrength: 40,
           RequiredDexterity: 50,
           Durability: 0,
@@ -970,9 +970,9 @@ const json = [
         Type: "Boots",
         "Set": "Vidala's Rig",
         SetPropertiesString: [
-          "All Resistances +8% (2 Items)"
+          "所有抗性 +8% （2 件）"
         ],
-        Name: "Vidala's Fetlock",
+        Name: "維達拉的足距 (Vidala's Fetlock)",
         Index: "Vidala's Fetlock",
         Enabled: true,
         Rarity: 7,
@@ -981,7 +981,7 @@ const json = [
         Code: "tbt",
         Properties: [
           {
-            PropertyString: "+30% Faster Run/Walk",
+            PropertyString: "+30% 跑步 / 行走速度",
             Index: 1
           }
         ],
@@ -991,7 +991,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "18-21",
           EquipmentType: 0,
-          Name: "Light Plated Boots",
+          Name: "輕鎧靴 (Light Plated Boots)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 18,
@@ -1008,10 +1008,10 @@ const json = [
         Type: "Armor",
         "Set": "Vidala's Rig",
         SetPropertiesString: [
-          "+2.5 Defense (Per Character Level) (3 Items)",
-          "Fire Resist +24% (2 Items)"
+          "+2.5 防禦 （依角色等級而定） （3 件）",
+          "火焰抗性 +24% （2 件）"
         ],
-        Name: "Vidala's Ambush",
+        Name: "維達拉的突襲 (Vidala's Ambush)",
         Index: "Vidala's Ambush",
         Enabled: true,
         Rarity: 7,
@@ -1020,11 +1020,11 @@ const json = [
         Code: "lea",
         Properties: [
           {
-            PropertyString: "+50 Defense",
+            PropertyString: "+50 防禦",
             Index: 0
           },
           {
-            PropertyString: "+11 to Dexterity",
+            PropertyString: "+11 敏捷",
             Index: 1
           }
         ],
@@ -1034,7 +1034,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "64",
           EquipmentType: 0,
-          Name: "Leather Armor",
+          Name: "皮革甲 (Leather Armor)",
           RequiredStrength: 15,
           RequiredDexterity: 0,
           Durability: 24,
@@ -1051,9 +1051,9 @@ const json = [
         Type: "Amulet",
         "Set": "Vidala's Rig",
         SetPropertiesString: [
-          "+50% better chance of getting magic item (2 Items)"
+          "尋獲魔法物品機率提高 +50% （2 件）"
         ],
-        Name: "Vidala's Snare",
+        Name: "維達拉的圈套 (Vidala's Snare)",
         Index: "Vidala's Snare",
         Enabled: true,
         Rarity: 7,
@@ -1062,18 +1062,18 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+15 to Life",
+            PropertyString: "+15 生命",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +20%",
+            PropertyString: "冰寒抗性 +20%",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -1089,33 +1089,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+75 to Attack Rating",
+        PropertyString: "+75 準確率",
         Index: 0
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 1
       },
       {
-        PropertyString: "+15 to Dexterity",
+        PropertyString: "+15 敏捷",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+50% Piercing Attack",
+        PropertyString: "+50% 穿透攻擊",
         Index: 2
       },
       {
-        PropertyString: "+1.5 to Maximum Cold Damage (Per Character Level)",
+        PropertyString: "+1.增加 5 寒冰傷害 （依角色等級而定）",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +1",
+        PropertyString: "凍結目標 +1",
         Index: 1
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 3
       }
     ],
@@ -1123,16 +1123,16 @@ const json = [
   },
   {
     Index: "Milabrega's Regalia",
-    Name: "Milabrega's Regalia",
+    Name: "米拉伯佳戰裝 (Milabrega's Regalia)",
     SetItems: [
       {
         Type: "Shield",
         "Set": "Milabrega's Regalia",
         SetPropertiesString: [
-          "+50% Enhanced Defense (3 Items)",
-          "+50 to Life (2 Items)"
+          "+50% 防禦強化 （3 件）",
+          "+50 生命 （2 件）"
         ],
-        Name: "Milabrega's Orb",
+        Name: "米拉伯佳之球 (Milabrega's Orb)",
         Index: "Milabrega's Orb",
         Enabled: true,
         Rarity: 7,
@@ -1141,11 +1141,11 @@ const json = [
         Code: "kit",
         Properties: [
           {
-            PropertyString: "+25 Defense",
+            PropertyString: "+25 防禦",
             Index: 1
           },
           {
-            PropertyString: "+20% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +20%",
             Index: 0
           }
         ],
@@ -1155,7 +1155,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "41",
           EquipmentType: 0,
-          Name: "Kite Shield",
+          Name: "鳶盾 (Kite Shield)",
           RequiredStrength: 47,
           RequiredDexterity: 0,
           Durability: 30,
@@ -1172,7 +1172,7 @@ const json = [
         Type: "Scepter",
         "Set": "Milabrega's Regalia",
         SetPropertiesString: [],
-        Name: "Milabrega's Rod",
+        Name: "米拉伯佳節杖 (Milabrega's Rod)",
         Index: "Milabrega's Rod",
         Enabled: true,
         Rarity: 7,
@@ -1181,15 +1181,15 @@ const json = [
         Code: "wsp",
         Properties: [
           {
-            PropertyString: "+1 to Paladin Skill Levels",
+            PropertyString: "+1 聖騎士技能等級",
             Index: 0
           },
           {
-            PropertyString: "+50% Enhanced Damage",
+            PropertyString: "+50% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "+2 to Light Radius",
+            PropertyString: "照亮範圍 +2",
             Index: 2
           }
         ],
@@ -1202,7 +1202,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "War Scepter",
+          Name: "征戰權杖 (War Scepter)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 250,
@@ -1219,9 +1219,9 @@ const json = [
         Type: "Helm",
         "Set": "Milabrega's Regalia",
         SetPropertiesString: [
-          "Cold Resist +40% (2 Items)"
+          "冰寒抗性 +40% （2 件）"
         ],
-        Name: "Milabrega's Diadem",
+        Name: "米拉伯佳權冠 (Milabrega's Diadem)",
         Index: "Milabrega's Diadem",
         Enabled: true,
         Rarity: 7,
@@ -1230,11 +1230,11 @@ const json = [
         Code: "crn",
         Properties: [
           {
-            PropertyString: "+15 to Life",
+            PropertyString: "+15 生命",
             Index: 0
           },
           {
-            PropertyString: "+15 to Mana",
+            PropertyString: "+15 法力",
             Index: 1
           }
         ],
@@ -1244,7 +1244,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "25",
           EquipmentType: 0,
-          Name: "Crown",
+          Name: "王冠 (Crown)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 50,
@@ -1261,9 +1261,9 @@ const json = [
         Type: "Armor",
         "Set": "Milabrega's Regalia",
         SetPropertiesString: [
-          "+100% Enhanced Defense (2 Items)"
+          "+100% 防禦強化 （2 件）"
         ],
-        Name: "Milabrega's Robe",
+        Name: "米拉伯佳外袍 (Milabrega's Robe)",
         Index: "Milabrega's Robe",
         Enabled: true,
         Rarity: 7,
@@ -1272,11 +1272,11 @@ const json = [
         Code: "aar",
         Properties: [
           {
-            PropertyString: "Damage Reduced by 2",
+            PropertyString: "物理傷害降低 2",
             Index: 1
           },
           {
-            PropertyString: "Attacker Takes Damage of +3",
+            PropertyString: "攻擊者反傷 +3",
             Index: 0
           }
         ],
@@ -1286,7 +1286,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "218",
           EquipmentType: 0,
-          Name: "Ancient Armor",
+          Name: "上古鎧甲 (Ancient Armor)",
           RequiredStrength: 100,
           RequiredDexterity: 0,
           Durability: 60,
@@ -1302,37 +1302,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+75 to Attack Rating",
+        PropertyString: "+75 準確率",
         Index: 0
       },
       {
-        PropertyString: "+2 to Maximum Lightning Damage (Per Character Level)",
+        PropertyString: "增加 2 電擊傷害 （依角色等級而定）",
         Index: 1
       },
       {
-        PropertyString: "+125 to Attack Rating",
+        PropertyString: "+125 準確率",
         Index: 2
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 3
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to Paladin Skill Levels",
+        PropertyString: "+2 聖騎士技能等級",
         Index: 1
       },
       {
-        PropertyString: "+10% Mana stolen per hit",
+        PropertyString: "擊中竊取 +10% 法力",
         Index: 2
       },
       {
-        PropertyString: "+8% Life stolen per hit",
+        PropertyString: "擊中竊取 8% 生命",
         Index: 0
       },
       {
-        PropertyString: "Poison Resist +15%",
+        PropertyString: "毒素抗性 +15%",
         Index: 3
       }
     ],
@@ -1340,16 +1340,16 @@ const json = [
   },
   {
     Index: "Cathan's Traps",
-    Name: "Cathan's Traps",
+    Name: "卡珊的衣著 (Cathan's Traps)",
     SetItems: [
       {
         Type: "Staff",
         "Set": "Cathan's Traps",
         SetPropertiesString: [
-          "+50 to Mana (2 Items)",
-          "All Resistances +10% (3 Items)"
+          "+50 法力 （2 件）",
+          "所有抗性 +10% （3 件）"
         ],
-        Name: "Cathan's Rule",
+        Name: "卡珊的尺杖 (Cathan's Rule)",
         Index: "Cathan's Rule",
         Enabled: true,
         Rarity: 7,
@@ -1358,11 +1358,11 @@ const json = [
         Code: "bst",
         Properties: [
           {
-            PropertyString: "+1 to Fire Skills",
+            PropertyString: "+1 火焰技能",
             Index: 0
           },
           {
-            PropertyString: "+10 to Maximum Fire Damage",
+            PropertyString: "增加 10 火焰傷害",
             Index: 1
           }
         ],
@@ -1375,7 +1375,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Battle Staff",
+          Name: "戰鬥法杖 (Battle Staff)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 250,
@@ -1392,10 +1392,10 @@ const json = [
         Type: "Armor",
         "Set": "Cathan's Traps",
         SetPropertiesString: [
-          "Fire Resist +30% (3 Items)",
-          "Attacker Takes Damage of +5 (2 Items)"
+          "火焰抗性 +30% （3 件）",
+          "攻擊者反傷 +5 （2 件）"
         ],
-        Name: "Cathan's Mesh",
+        Name: "卡珊的網衣 (Cathan's Mesh)",
         Index: "Cathan's Mesh",
         Enabled: true,
         Rarity: 7,
@@ -1404,11 +1404,11 @@ const json = [
         Code: "chn",
         Properties: [
           {
-            PropertyString: "+15 Defense",
+            PropertyString: "+15 防禦",
             Index: 0
           },
           {
-            PropertyString: "Requirements -50%",
+            PropertyString: "需求 -50%",
             Index: 1
           }
         ],
@@ -1418,7 +1418,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "87",
           EquipmentType: 0,
-          Name: "Chain Mail",
+          Name: "鎖鍊甲 (Chain Mail)",
           RequiredStrength: 48,
           RequiredDexterity: 0,
           Durability: 45,
@@ -1435,9 +1435,9 @@ const json = [
         Type: "Helm",
         "Set": "Cathan's Traps",
         SetPropertiesString: [
-          "+2 Defense (Per Character Level) (2 Items)"
+          "+2 防禦 （依角色等級而定） （2 件）"
         ],
-        Name: "Cathan's Visage",
+        Name: "卡珊的容貌 (Cathan's Visage)",
         Index: "Cathan's Visage",
         Enabled: true,
         Rarity: 7,
@@ -1446,11 +1446,11 @@ const json = [
         Code: "msk",
         Properties: [
           {
-            PropertyString: "+20 to Mana",
+            PropertyString: "+20 法力",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +25%",
+            PropertyString: "冰寒抗性 +25%",
             Index: 1
           }
         ],
@@ -1460,7 +1460,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "16-20",
           EquipmentType: 0,
-          Name: "Mask",
+          Name: "面具",
           RequiredStrength: 23,
           RequiredDexterity: 0,
           Durability: 20,
@@ -1477,10 +1477,10 @@ const json = [
         Type: "Amulet",
         "Set": "Cathan's Traps",
         SetPropertiesString: [
-          "+50 to Attack Rating (2 Items)",
-          "+25% better chance of getting magic item (3 Items)"
+          "+50 準確率 （2 件）",
+          "尋獲魔法物品機率提高 +25% （3 件）"
         ],
-        Name: "Cathan's Sigil",
+        Name: "卡珊的魔咒 (Cathan's Sigil)",
         Index: "Cathan's Sigil",
         Enabled: true,
         Rarity: 7,
@@ -1489,18 +1489,18 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+10% Faster Hit Recovery",
+            PropertyString: "+10% 打擊恢復",
             Index: 0
           },
           {
-            PropertyString: "Attacker Takes Lightning Damage of +5",
+            PropertyString: "攻擊者受到 +5 點電擊傷害",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -1517,9 +1517,9 @@ const json = [
         Type: "Ring",
         "Set": "Cathan's Traps",
         SetPropertiesString: [
-          "+10 to Strength (2 Items)"
+          "+10 力量 （2 件）"
         ],
-        Name: "Cathan's Seal",
+        Name: "卡珊的封印 (Cathan's Seal)",
         Index: "Cathan's Seal",
         Enabled: true,
         Rarity: 7,
@@ -1528,18 +1528,18 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+6% Life stolen per hit",
+            PropertyString: "擊中竊取 6% 生命",
             Index: 0
           },
           {
-            PropertyString: "Damage Reduced by 2",
+            PropertyString: "物理傷害降低 2",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -1555,37 +1555,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "Adds 15-20 to Fire Damage",
+        PropertyString: "增加 15-20 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +16%",
+        PropertyString: "法力恢復 16%",
         Index: 1
       },
       {
-        PropertyString: "Lightning Resist +25%",
+        PropertyString: "電擊抗性 +25%",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+10% Faster Cast Rate",
+        PropertyString: "+10% 施法速度",
         Index: 3
       },
       {
-        PropertyString: "+60 to Attack Rating",
+        PropertyString: "+60 準確率",
         Index: 0
       },
       {
-        PropertyString: "+20 to Mana",
+        PropertyString: "+20 法力",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 2
       },
       {
-        PropertyString: "Magic Damage Reduced by 3",
+        PropertyString: "魔法傷害降低 3",
         Index: 1
       }
     ],
@@ -1593,16 +1593,16 @@ const json = [
   },
   {
     Index: "Tancred's Battlegear",
-    Name: "Tancred's Battlegear",
+    Name: "坦克雷的戰裝 (Tancred's Battlegear)",
     SetItems: [
       {
         Type: "Axe",
         "Set": "Tancred's Battlegear",
         SetPropertiesString: [
-          "+20% Increased Attack Speed (3 Items)",
-          "+20 to Mana (2 Items)"
+          "攻擊速度 +20% （3 件）",
+          "+20 法力 （2 件）"
         ],
-        Name: "Tancred's Crowbill",
+        Name: "坦克雷的鴉嘴鎬 (Tancred's Crowbill)",
         Index: "Tancred's Crowbill",
         Enabled: true,
         Rarity: 7,
@@ -1611,11 +1611,11 @@ const json = [
         Code: "mpi",
         Properties: [
           {
-            PropertyString: "+80% Enhanced Damage",
+            PropertyString: "+80% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "+75 to Attack Rating",
+            PropertyString: "+75 準確率",
             Index: 0
           }
         ],
@@ -1628,7 +1628,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Military Pick",
+          Name: "軍用鎬 (Military Pick)",
           RequiredStrength: 49,
           RequiredDexterity: 33,
           Durability: 250,
@@ -1645,9 +1645,9 @@ const json = [
         Type: "Armor",
         "Set": "Tancred's Battlegear",
         SetPropertiesString: [
-          "+2 Defense (Per Character Level) (2 Items)"
+          "+2 防禦 （依角色等級而定） （2 件）"
         ],
-        Name: "Tancred's Spine",
+        Name: "坦克雷的脊柱 (Tancred's Spine)",
         Index: "Tancred's Spine",
         Enabled: true,
         Rarity: 7,
@@ -1656,11 +1656,11 @@ const json = [
         Code: "ful",
         Properties: [
           {
-            PropertyString: "+15 to Strength",
+            PropertyString: "+15 力量",
             Index: 1
           },
           {
-            PropertyString: "+40 to Life",
+            PropertyString: "+40 生命",
             Index: 0
           }
         ],
@@ -1670,7 +1670,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "286-347",
           EquipmentType: 0,
-          Name: "Full Plate Mail",
+          Name: "全身鎧甲 (Full Plate Mail)",
           RequiredStrength: 80,
           RequiredDexterity: 0,
           Durability: 70,
@@ -1687,10 +1687,10 @@ const json = [
         Type: "Boots",
         "Set": "Tancred's Battlegear",
         SetPropertiesString: [
-          "+30% Faster Run/Walk (2 Items)",
-          "+10 to Strength (3 Items)"
+          "+30% 跑步 / 行走速度 （2 件）",
+          "+10 力量 （3 件）"
         ],
-        Name: "Tancred's Hobnails",
+        Name: "坦克雷的釘靴 (Tancred's Hobnails)",
         Index: "Tancred's Hobnails",
         Enabled: true,
         Rarity: 7,
@@ -1699,7 +1699,7 @@ const json = [
         Code: "lbt",
         Properties: [
           {
-            PropertyString: "+10 to Dexterity",
+            PropertyString: "+10 敏捷",
             Index: 1
           },
           {
@@ -1713,7 +1713,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "2",
           EquipmentType: 0,
-          Name: "Boots",
+          Name: "皮靴 (Boots)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 12,
@@ -1730,10 +1730,10 @@ const json = [
         Type: "Amulet",
         "Set": "Tancred's Battlegear",
         SetPropertiesString: [
-          "+60 to Attack Rating (3 Items)",
-          "+78% better chance of getting magic item (2 Items)"
+          "+60 準確率 （3 件）",
+          "尋獲魔法物品機率提高 +78% （2 件）"
         ],
-        Name: "Tancred's Weird",
+        Name: "坦克雷的怪誕 (Tancred's Weird)",
         Index: "Tancred's Weird",
         Enabled: true,
         Rarity: 7,
@@ -1742,18 +1742,18 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "Damage Reduced by 2",
+            PropertyString: "物理傷害降低 2",
             Index: 0
           },
           {
-            PropertyString: "Magic Damage Reduced by 1",
+            PropertyString: "魔法傷害降低 1",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -1770,9 +1770,9 @@ const json = [
         Type: "Helm",
         "Set": "Tancred's Battlegear",
         SetPropertiesString: [
-          "All Resistances +10% (2 Items)"
+          "所有抗性 +10% （2 件）"
         ],
-        Name: "Tancred's Skull",
+        Name: "坦克雷的顱骨 (Tancred's Skull)",
         Index: "Tancred's Skull",
         Enabled: true,
         Rarity: 7,
@@ -1781,11 +1781,11 @@ const json = [
         Code: "bhm",
         Properties: [
           {
-            PropertyString: "+10% Enhanced Damage",
+            PropertyString: "+10% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+40 to Attack Rating",
+            PropertyString: "+40 準確率",
             Index: 1
           }
         ],
@@ -1795,7 +1795,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "33",
           EquipmentType: 0,
-          Name: "Bone Helm",
+          Name: "骸骨頭盔 (Bone Helm)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 40,
@@ -1811,29 +1811,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+15 to Minimum Lightning Damage",
+        PropertyString: "增加 15 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "+5% Life stolen per hit",
+        PropertyString: "擊中竊取 5% 生命",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+5% Mana stolen per hit",
+        PropertyString: "擊中竊取 +5% 法力",
         Index: 3
       },
       {
-        PropertyString: "Slows target by 35%",
+        PropertyString: "使目標減慢 35%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +10%",
+        PropertyString: "所有抗性 +10%",
         Index: 1
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 0
       }
     ],
@@ -1841,15 +1841,15 @@ const json = [
   },
   {
     Index: "Sigon's Complete Steel",
-    Name: "Sigon's Complete Steel",
+    Name: "西剛的全套鋼甲 (Sigon's Complete Steel)",
     SetItems: [
       {
         Type: "Gloves",
         "Set": "Sigon's Complete Steel",
         SetPropertiesString: [
-          "+30% Increased Attack Speed (2 Items)"
+          "攻擊速度 +30% （2 件）"
         ],
-        Name: "Sigon's Gage",
+        Name: "西剛的挑戰 (Sigon's Gage)",
         Index: "Sigon's Gage",
         Enabled: true,
         Rarity: 7,
@@ -1858,11 +1858,11 @@ const json = [
         Code: "hgl",
         Properties: [
           {
-            PropertyString: "+20 to Attack Rating",
+            PropertyString: "+20 準確率",
             Index: 1
           },
           {
-            PropertyString: "+10 to Strength",
+            PropertyString: "+10 力量",
             Index: 0
           }
         ],
@@ -1872,7 +1872,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "12",
           EquipmentType: 0,
-          Name: "Gauntlets",
+          Name: "鋼鐵護手 (Gauntlets)",
           RequiredStrength: 60,
           RequiredDexterity: 0,
           Durability: 24,
@@ -1889,9 +1889,9 @@ const json = [
         Type: "Helm",
         "Set": "Sigon's Complete Steel",
         SetPropertiesString: [
-          "+2 to Attack Rating (Per Character Level) (2 Items)"
+          "+2 準確率 （依角色等級而定） （2 件）"
         ],
-        Name: "Sigon's Visor",
+        Name: "西剛的護面 (Sigon's Visor)",
         Index: "Sigon's Visor",
         Enabled: true,
         Rarity: 7,
@@ -1900,11 +1900,11 @@ const json = [
         Code: "ghm",
         Properties: [
           {
-            PropertyString: "+25 Defense",
+            PropertyString: "+25 防禦",
             Index: 1
           },
           {
-            PropertyString: "+30 to Mana",
+            PropertyString: "+30 法力",
             Index: 0
           }
         ],
@@ -1914,7 +1914,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "30",
           EquipmentType: 0,
-          Name: "Great Helm",
+          Name: "重盔 (Great Helm)",
           RequiredStrength: 63,
           RequiredDexterity: 0,
           Durability: 40,
@@ -1931,9 +1931,9 @@ const json = [
         Type: "Armor",
         "Set": "Sigon's Complete Steel",
         SetPropertiesString: [
-          "Attacker Takes Damage of +20 (2 Items)"
+          "攻擊者反傷 +20 （2 件）"
         ],
-        Name: "Sigon's Shelter",
+        Name: "西剛的庇護 (Sigon's Shelter)",
         Index: "Sigon's Shelter",
         Enabled: true,
         Rarity: 7,
@@ -1942,11 +1942,11 @@ const json = [
         Code: "gth",
         Properties: [
           {
-            PropertyString: "+25% Enhanced Defense",
+            PropertyString: "+25% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Lightning Resist +30%",
+            PropertyString: "電擊抗性 +30%",
             Index: 1
           }
         ],
@@ -1956,7 +1956,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "161",
           EquipmentType: 0,
-          Name: "Gothic Plate",
+          Name: "哥德鎧甲 (Gothic Plate)",
           RequiredStrength: 70,
           RequiredDexterity: 0,
           Durability: 55,
@@ -1973,10 +1973,10 @@ const json = [
         Type: "Boots",
         "Set": "Sigon's Complete Steel",
         SetPropertiesString: [
-          "+50 to Attack Rating (2 Items)",
-          "+50% better chance of getting magic item (3 Items)"
+          "+50 準確率 （2 件）",
+          "尋獲魔法物品機率提高 +50% （3 件）"
         ],
-        Name: "Sigon's Sabot",
+        Name: "西剛的硬靴 (Sigon's Sabot)",
         Index: "Sigon's Sabot",
         Enabled: true,
         Rarity: 7,
@@ -1985,11 +1985,11 @@ const json = [
         Code: "hbt",
         Properties: [
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +40%",
+            PropertyString: "冰寒抗性 +40%",
             Index: 1
           }
         ],
@@ -1999,7 +1999,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "12",
           EquipmentType: 0,
-          Name: "Greaves",
+          Name: "護脛",
           RequiredStrength: 70,
           RequiredDexterity: 0,
           Durability: 24,
@@ -2016,9 +2016,9 @@ const json = [
         Type: "Belt",
         "Set": "Sigon's Complete Steel",
         SetPropertiesString: [
-          "+2 Defense (Per Character Level) (2 Items)"
+          "+2 防禦 （依角色等級而定） （2 件）"
         ],
-        Name: "Sigon's Wrap",
+        Name: "西剛的裹腰 (Sigon's Wrap)",
         Index: "Sigon's Wrap",
         Enabled: true,
         Rarity: 7,
@@ -2027,11 +2027,11 @@ const json = [
         Code: "hbl",
         Properties: [
           {
-            PropertyString: "+20 to Life",
+            PropertyString: "+20 生命",
             Index: 1
           },
           {
-            PropertyString: "Fire Resist +20%",
+            PropertyString: "火焰抗性 +20%",
             Index: 0
           }
         ],
@@ -2041,7 +2041,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "18-19",
           EquipmentType: 0,
-          Name: "Plated Belt",
+          Name: "鎧甲腰帶 (Plated Belt)",
           RequiredStrength: 60,
           RequiredDexterity: 0,
           Durability: 24,
@@ -2058,7 +2058,7 @@ const json = [
         Type: "Shield",
         "Set": "Sigon's Complete Steel",
         SetPropertiesString: [],
-        Name: "Sigon's Guard",
+        Name: "西剛的守護 (Sigon's Guard)",
         Index: "Sigon's Guard",
         Enabled: true,
         Rarity: 7,
@@ -2067,11 +2067,11 @@ const json = [
         Code: "tow",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+20% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20%",
             Index: 1
           }
         ],
@@ -2081,7 +2081,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "22",
           EquipmentType: 0,
-          Name: "Tower Shield",
+          Name: "塔盾 (Tower Shield)",
           RequiredStrength: 75,
           RequiredDexterity: 0,
           Durability: 60,
@@ -2097,33 +2097,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10% Life stolen per hit",
+        PropertyString: "擊中竊取 10% 生命",
         Index: 0
       },
       {
-        PropertyString: "+100 Defense",
+        PropertyString: "+100 防禦",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+24 to Maximum Fire Damage",
+        PropertyString: "增加 24 火焰傷害",
         Index: 3
       },
       {
-        PropertyString: "+20 to Mana",
+        PropertyString: "+20 法力",
         Index: 4
       },
       {
-        PropertyString: "Fire Resist +12%",
+        PropertyString: "火焰抗性 +12%",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 2
       },
       {
-        PropertyString: "Attacker Takes Damage of +12",
+        PropertyString: "攻擊者反傷 +12",
         Index: 1
       }
     ],
@@ -2131,15 +2131,15 @@ const json = [
   },
   {
     Index: "Infernal Tools",
-    Name: "Infernal Tools",
+    Name: "煉獄器具 (Infernal Tools)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Infernal Tools",
         SetPropertiesString: [
-          "+2 Defense (Per Character Level) (2 Items)"
+          "+2 防禦 （依角色等級而定） （2 件）"
         ],
-        Name: "Infernal Cranium",
+        Name: "煉獄頭骨 (Infernal Cranium)",
         Index: "Infernal Cranium",
         Enabled: true,
         Rarity: 7,
@@ -2148,11 +2148,11 @@ const json = [
         Code: "cap",
         Properties: [
           {
-            PropertyString: "All Resistances +10%",
+            PropertyString: "所有抗性 +10%",
             Index: 0
           },
           {
-            PropertyString: "+20% Damage Taken Goes To Mana",
+            PropertyString: "+20% 受到的傷害轉為法力",
             Index: 1
           }
         ],
@@ -2162,7 +2162,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "18-28",
           EquipmentType: 0,
-          Name: "Cap",
+          Name: "便帽 (Cap)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 12,
@@ -2179,9 +2179,9 @@ const json = [
         Type: "Wand",
         "Set": "Infernal Tools",
         SetPropertiesString: [
-          "+2.5 to Attack Rating (Per Character Level) (2 Items)"
+          "+2.5 to Attack Rating （依角色等級而定） （2 件）"
         ],
-        Name: "Infernal Torch",
+        Name: "煉獄火炬 (Infernal Torch)",
         Index: "Infernal Torch",
         Enabled: true,
         Rarity: 7,
@@ -2190,11 +2190,11 @@ const json = [
         Code: "gwn",
         Properties: [
           {
-            PropertyString: "+1 to Necromancer Skill Levels",
+            PropertyString: "+1 死靈法師技能等級",
             Index: 1
           },
           {
-            PropertyString: "+8 to Minimum Damage",
+            PropertyString: "+8 最小傷害",
             Index: 0
           }
         ],
@@ -2207,7 +2207,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Grim Wand",
+          Name: "陰森魔杖 (Grim Wand)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 250,
@@ -2224,10 +2224,10 @@ const json = [
         Type: "Belt",
         "Set": "Infernal Tools",
         SetPropertiesString: [
-          "Poison Resist +25% (2 Items)",
-          "Half Freeze Duration (3 Items)"
+          "毒素抗性 +25% （2 件）",
+          "冰凍時間減半 （3 件）"
         ],
-        Name: "Infernal Sign",
+        Name: "煉獄符印 (Infernal Sign)",
         Index: "Infernal Sign",
         Enabled: true,
         Rarity: 7,
@@ -2236,11 +2236,11 @@ const json = [
         Code: "tbl",
         Properties: [
           {
-            PropertyString: "+25 Defense",
+            PropertyString: "+25 防禦",
             Index: 0
           },
           {
-            PropertyString: "+20 to Life",
+            PropertyString: "+20 生命",
             Index: 1
           }
         ],
@@ -2250,7 +2250,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "26-36",
           EquipmentType: 0,
-          Name: "Heavy Belt",
+          Name: "厚腰帶 (Heavy Belt)",
           RequiredStrength: 45,
           RequiredDexterity: 0,
           Durability: 18,
@@ -2266,37 +2266,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+8 Poison Damage Over 3 Seconds",
+        PropertyString: "+8 毒素傷害，時效 3 秒",
         Index: 0
       },
       {
-        PropertyString: "+10 to Mana",
+        PropertyString: "+10 法力",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to Necromancer Skill Levels",
+        PropertyString: "+1 死靈法師技能等級",
         Index: 1
       },
       {
-        PropertyString: "+20% bonus to Attack Rating",
+        PropertyString: "+20% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "+6% Mana stolen per hit",
+        PropertyString: "擊中竊取 +6% 法力",
         Index: 3
       },
       {
-        PropertyString: "+20% Chance of Open Wounds",
+        PropertyString: "+20% 機率造成開放傷口",
         Index: 2
       },
       {
-        PropertyString: "+20% Increased Maximum Mana",
+        PropertyString: "法力上限 +20%",
         Index: 4
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 5
       }
     ],
@@ -2304,15 +2304,15 @@ const json = [
   },
   {
     Index: "Berserker's Arsenal",
-    Name: "Berserker's Arsenal",
+    Name: "狂戰士的武裝 (Berserker's Arsenal)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Berserker's Arsenal",
         SetPropertiesString: [
-          "+2 to Attack Rating (Per Character Level) (2 Items)"
+          "+2 準確率 （依角色等級而定） （2 件）"
         ],
-        Name: "Berserker's Headgear",
+        Name: "狂戰士頭盔 (Berserker's Headgear)",
         Index: "Berserker's Headgear",
         Enabled: true,
         Rarity: 7,
@@ -2321,11 +2321,11 @@ const json = [
         Code: "hlm",
         Properties: [
           {
-            PropertyString: "+15 Defense",
+            PropertyString: "+15 防禦",
             Index: 0
           },
           {
-            PropertyString: "Fire Resist +25%",
+            PropertyString: "火焰抗性 +25%",
             Index: 1
           }
         ],
@@ -2335,7 +2335,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "30",
           EquipmentType: 0,
-          Name: "Helm",
+          Name: "頭盔 (Helm)",
           RequiredStrength: 26,
           RequiredDexterity: 0,
           Durability: 24,
@@ -2352,9 +2352,9 @@ const json = [
         Type: "Armor",
         "Set": "Berserker's Arsenal",
         SetPropertiesString: [
-          "+3 Defense (Per Character Level) (2 Items)"
+          "+3 防禦 （依角色等級而定） （2 件）"
         ],
-        Name: "Berserker's Hauberk",
+        Name: "狂戰士鎖子甲 (Berserker's Hauberk)",
         Index: "Berserker's Hauberk",
         Enabled: true,
         Rarity: 7,
@@ -2363,11 +2363,11 @@ const json = [
         Code: "spl",
         Properties: [
           {
-            PropertyString: "+1 to Barbarian Skill Levels",
+            PropertyString: "+1 野蠻人技能等級",
             Index: 1
           },
           {
-            PropertyString: "Magic Damage Reduced by 2",
+            PropertyString: "魔法傷害降低 2",
             Index: 0
           }
         ],
@@ -2377,7 +2377,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "90",
           EquipmentType: 0,
-          Name: "Splint Mail",
+          Name: "板甲 (Splint Mail)",
           RequiredStrength: 51,
           RequiredDexterity: 0,
           Durability: 30,
@@ -2394,9 +2394,9 @@ const json = [
         Type: "Axe",
         "Set": "Berserker's Arsenal",
         SetPropertiesString: [
-          "+50% Enhanced Damage (2 Items)"
+          "+50% 傷害強化 （2 件）"
         ],
-        Name: "Berserker's Hatchet",
+        Name: "狂戰士手斧 (Berserker's Hatchet)",
         Index: "Berserker's Hatchet",
         Enabled: true,
         Rarity: 7,
@@ -2405,11 +2405,11 @@ const json = [
         Code: "2ax",
         Properties: [
           {
-            PropertyString: "+30% bonus to Attack Rating",
+            PropertyString: "+30% 準確率加成",
             Index: 0
           },
           {
-            PropertyString: "+5% Mana stolen per hit",
+            PropertyString: "擊中竊取 +5% 法力",
             Index: 1
           }
         ],
@@ -2422,7 +2422,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Double Axe",
+          Name: "雙刃斧 (Double Axe)",
           RequiredStrength: 43,
           RequiredDexterity: 0,
           Durability: 250,
@@ -2438,21 +2438,21 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50 to Life",
+        PropertyString: "+50 生命",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "Adds 16-32 Poison damage",
+        PropertyString: "增加 16-32 毒素傷害",
         Index: 1
       },
       {
-        PropertyString: "+75 Defense",
+        PropertyString: "+75 防禦",
         Index: 4
       },
       {
-        PropertyString: "Poison Length Reduced by 75%",
+        PropertyString: "中毒的時效縮短 75%",
         Index: 0
       }
     ],
@@ -2460,15 +2460,15 @@ const json = [
   },
   {
     Index: "Death's Disguise",
-    Name: "Death's Disguise",
+    Name: "死亡的偽裝 (Death's Disguise)",
     SetItems: [
       {
         Type: "Gloves",
         "Set": "Death's Disguise",
         SetPropertiesString: [
-          "+30% Increased Attack Speed (2 Items)"
+          "攻擊速度 +30% （2 件）"
         ],
-        Name: "Death's Hand",
+        Name: "死亡之手 (Death's Hand)",
         Index: "Death's Hand",
         Enabled: true,
         Rarity: 7,
@@ -2477,11 +2477,11 @@ const json = [
         Code: "lgl",
         Properties: [
           {
-            PropertyString: "Poison Resist +50%",
+            PropertyString: "毒素抗性 +50%",
             Index: 0
           },
           {
-            PropertyString: "Poison Length Reduced by 75%",
+            PropertyString: "中毒的時效縮短 75%",
             Index: 1
           }
         ],
@@ -2491,7 +2491,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "2",
           EquipmentType: 0,
-          Name: "Leather Gloves",
+          Name: "皮革手套 (Leather Gloves)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 12,
@@ -2508,9 +2508,9 @@ const json = [
         Type: "Belt",
         "Set": "Death's Disguise",
         SetPropertiesString: [
-          "All Resistances +15% (2 Items)"
+          "所有抗性 +15% （2 件）"
         ],
-        Name: "Death's Guard",
+        Name: "死亡之護 (Death's Guard)",
         Index: "Death's Guard",
         Enabled: true,
         Rarity: 7,
@@ -2519,11 +2519,11 @@ const json = [
         Code: "lbl",
         Properties: [
           {
-            PropertyString: "+20 Defense",
+            PropertyString: "+20 防禦",
             Index: 0
           },
           {
-            PropertyString: "Cannot Be Frozen",
+            PropertyString: "無法冰凍",
             Index: 1
           }
         ],
@@ -2533,7 +2533,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "2",
           EquipmentType: 0,
-          Name: "Sash",
+          Name: "束帶 (Sash)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 12,
@@ -2550,9 +2550,9 @@ const json = [
         Type: "Sword",
         "Set": "Death's Disguise",
         SetPropertiesString: [
-          "Adds 25-75 to Cold Damage (2 Items)"
+          "增加 25-75 寒冰傷害 （2 件）"
         ],
-        Name: "Death's Touch",
+        Name: "死亡之觸 (Death's Touch)",
         Index: "Death's Touch",
         Enabled: true,
         Rarity: 7,
@@ -2561,11 +2561,11 @@ const json = [
         Code: "wsd",
         Properties: [
           {
-            PropertyString: "+25% Enhanced Damage",
+            PropertyString: "+25% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+4% Life stolen per hit",
+            PropertyString: "擊中竊取 4% 生命",
             Index: 1
           }
         ],
@@ -2578,7 +2578,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "War Sword",
+          Name: "征戰劍 (War Sword)",
           RequiredStrength: 71,
           RequiredDexterity: 45,
           Durability: 250,
@@ -2594,21 +2594,21 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+8% Life stolen per hit",
+        PropertyString: "擊中竊取 8% 生命",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+10 to Minimum Damage",
+        PropertyString: "+10 最小傷害",
         Index: 1
       },
       {
-        PropertyString: "+40% bonus to Attack Rating",
+        PropertyString: "+40% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 2
       }
     ],
@@ -2616,16 +2616,16 @@ const json = [
   },
   {
     Index: "Angelic Raiment",
-    Name: "Angelic Raiment",
+    Name: "天使的衣裝 (Angelic Raiment)",
     SetItems: [
       {
         Type: "Sword",
         "Set": "Angelic Raiment",
         SetPropertiesString: [
-          "+30% Increased Attack Speed (3 Items)",
-          "+75% Enhanced Damage (2 Items)"
+          "攻擊速度 +30% （3 件）",
+          "+75% 傷害強化 （2 件）"
         ],
-        Name: "Angelic Sickle",
+        Name: "天使的鐮刀 (Angelic Sickle)",
         Index: "Angelic Sickle",
         Enabled: true,
         Rarity: 7,
@@ -2634,11 +2634,11 @@ const json = [
         Code: "sbr",
         Properties: [
           {
-            PropertyString: "+75 to Attack Rating",
+            PropertyString: "+75 準確率",
             Index: 0
           },
           {
-            PropertyString: "+250% Damage to Undead",
+            PropertyString: "+250% 對不死怪物的傷害",
             Index: 1
           }
         ],
@@ -2651,7 +2651,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Sabre",
+          Name: "軍刀 (Sabre)",
           RequiredStrength: 25,
           RequiredDexterity: 25,
           Durability: 250,
@@ -2668,10 +2668,10 @@ const json = [
         Type: "Armor",
         "Set": "Angelic Raiment",
         SetPropertiesString: [
-          "+150 Defense (2 Items)",
-          "Fire Resist +50% (3 Items)"
+          "+150 防禦 （2 件）",
+          "火焰抗性 +50% （3 件）"
         ],
-        Name: "Angelic Mantle",
+        Name: "天使的披風 (Angelic Mantle)",
         Index: "Angelic Mantle",
         Enabled: true,
         Rarity: 7,
@@ -2680,11 +2680,11 @@ const json = [
         Code: "rng",
         Properties: [
           {
-            PropertyString: "+40% Enhanced Defense",
+            PropertyString: "+40% 防禦強化",
             Index: 1
           },
           {
-            PropertyString: "Damage Reduced by 3",
+            PropertyString: "物理傷害降低 3",
             Index: 0
           }
         ],
@@ -2694,7 +2694,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "64",
           EquipmentType: 0,
-          Name: "Ring Mail",
+          Name: "環甲 (Ring Mail)",
           RequiredStrength: 36,
           RequiredDexterity: 0,
           Durability: 26,
@@ -2711,10 +2711,10 @@ const json = [
         Type: "Ring",
         "Set": "Angelic Raiment",
         SetPropertiesString: [
-          "+3 to Attack Rating (Per Character Level) (2 Items)",
-          "+50% better chance of getting magic item (3 Items)"
+          "+3 準確率 （依角色等級而定） （2 件）",
+          "尋獲魔法物品機率提高 +50% （3 件）"
         ],
-        Name: "Angelic Halo",
+        Name: "天使的光暈 (Angelic Halo)",
         Index: "Angelic Halo",
         Enabled: true,
         Rarity: 3,
@@ -2723,18 +2723,18 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+20 to Life",
+            PropertyString: "+20 生命",
             Index: 1
           },
           {
-            PropertyString: "+6 Replenish Life",
+            PropertyString: "生命回復 +6",
             Index: 0
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -2751,10 +2751,10 @@ const json = [
         Type: "Amulet",
         "Set": "Angelic Raiment",
         SetPropertiesString: [
-          "+1 to All Skills (3 Items)",
-          "+75 to Life (2 Items)"
+          "+1 所有技能 （3 件）",
+          "+75 生命 （2 件）"
         ],
-        Name: "Angelic Wings",
+        Name: "天使的翅膀 (Angelic Wings)",
         Index: "Angelic Wings",
         Enabled: true,
         Rarity: 7,
@@ -2763,18 +2763,18 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+20% Damage Taken Goes To Mana",
+            PropertyString: "+20% 受到的傷害轉為法力",
             Index: 1
           },
           {
-            PropertyString: "+3 to Light Radius",
+            PropertyString: "照亮範圍 +3",
             Index: 0
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -2790,29 +2790,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+50 to Mana",
+        PropertyString: "+50 法力",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "Regenerate Mana +8%",
+        PropertyString: "法力恢復 8%",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 0
       },
       {
-        PropertyString: "Half Freeze Duration",
+        PropertyString: "冰凍時間減半",
         Index: 1
       },
       {
-        PropertyString: "+40% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +40%",
         Index: 2
       }
     ],
@@ -2820,16 +2820,16 @@ const json = [
   },
   {
     Index: "Arctic Gear",
-    Name: "Arctic Gear",
+    Name: "北極裝備 (Arctic Gear)",
     SetItems: [
       {
         Type: "Bow",
         "Set": "Arctic Gear",
         SetPropertiesString: [
-          "+2 to Attack Rating (Per Character Level) (2 Items)",
-          "Adds 20-30 to Cold Damage (3 Items)"
+          "+2 準確率 （依角色等級而定） （2 件）",
+          "增加 20-30 寒冰傷害 （3 件）"
         ],
-        Name: "Arctic Horn",
+        Name: "北極號角 (Arctic Horn)",
         Index: "Arctic Horn",
         Enabled: true,
         Rarity: 7,
@@ -2838,11 +2838,11 @@ const json = [
         Code: "swb",
         Properties: [
           {
-            PropertyString: "+50% Enhanced Damage",
+            PropertyString: "+50% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "+20% bonus to Attack Rating",
+            PropertyString: "+20% 準確率加成",
             Index: 0
           }
         ],
@@ -2855,7 +2855,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Short War Bow",
+          Name: "征戰短弓 (Short War Bow)",
           RequiredStrength: 35,
           RequiredDexterity: 55,
           Durability: 0,
@@ -2872,10 +2872,10 @@ const json = [
         Type: "Armor",
         "Set": "Arctic Gear",
         SetPropertiesString: [
-          "+3 Defense (Per Character Level) (2 Items)",
-          "Cold Resist +15% (3 Items)"
+          "+3 防禦 （依角色等級而定） （2 件）",
+          "冰寒抗性 +15% （3 件）"
         ],
-        Name: "Arctic Furs",
+        Name: "北極毛皮 (Arctic Furs)",
         Index: "Arctic Furs",
         Enabled: true,
         Rarity: 7,
@@ -2884,11 +2884,11 @@ const json = [
         Code: "qui",
         Properties: [
           {
-            PropertyString: "+275-325% Enhanced Defense",
+            PropertyString: "+275-325% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +10%",
+            PropertyString: "所有抗性 +10%",
             Index: 1
           }
         ],
@@ -2898,7 +2898,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "8",
           EquipmentType: 0,
-          Name: "Quilted Armor",
+          Name: "棉布甲 (Quilted Armor)",
           RequiredStrength: 12,
           RequiredDexterity: 0,
           Durability: 20,
@@ -2915,10 +2915,10 @@ const json = [
         Type: "Belt",
         "Set": "Arctic Gear",
         SetPropertiesString: [
-          "Cold Resist +10% (3 Items)",
-          "+40% better chance of getting magic item (2 Items)"
+          "冰寒抗性 +10% （3 件）",
+          "尋獲魔法物品機率提高 +40% （2 件）"
         ],
-        Name: "Arctic Binding",
+        Name: "北極捆索 (Arctic Binding)",
         Index: "Arctic Binding",
         Enabled: true,
         Rarity: 7,
@@ -2927,11 +2927,11 @@ const json = [
         Code: "vbl",
         Properties: [
           {
-            PropertyString: "+30 Defense",
+            PropertyString: "+30 防禦",
             Index: 1
           },
           {
-            PropertyString: "Cold Resist +40%",
+            PropertyString: "冰寒抗性 +40%",
             Index: 0
           }
         ],
@@ -2941,7 +2941,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "3",
           EquipmentType: 0,
-          Name: "Light Belt",
+          Name: "輕腰帶 (Light Belt)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 14,
@@ -2958,10 +2958,10 @@ const json = [
         Type: "Gloves",
         "Set": "Arctic Gear",
         SetPropertiesString: [
-          "+50 to Attack Rating (2 Items)",
-          "+10 to Dexterity (3 Items)"
+          "+50 準確率 （2 件）",
+          "+10 敏捷 （3 件）"
         ],
-        Name: "Arctic Mitts",
+        Name: "北極手套 (Arctic Mitts)",
         Index: "Arctic Mitts",
         Enabled: true,
         Rarity: 7,
@@ -2970,11 +2970,11 @@ const json = [
         Code: "tgl",
         Properties: [
           {
-            PropertyString: "+10% Increased Attack Speed",
+            PropertyString: "攻擊速度 +10%",
             Index: 1
           },
           {
-            PropertyString: "+20 to Life",
+            PropertyString: "+20 生命",
             Index: 0
           }
         ],
@@ -2984,7 +2984,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "9",
           EquipmentType: 0,
-          Name: "Light Gauntlets",
+          Name: "輕型護手 (Light Gauntlets)",
           RequiredStrength: 45,
           RequiredDexterity: 0,
           Durability: 18,
@@ -3000,21 +3000,21 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+5 to Strength",
+        PropertyString: "+5 力量",
         Index: 0
       },
       {
-        PropertyString: "+50 to Life",
+        PropertyString: "+50 生命",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to Maximum Cold Damage (Per Character Level)",
+        PropertyString: "增加 2 寒冰傷害 （依角色等級而定）",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 2
       }
     ],
@@ -3022,16 +3022,16 @@ const json = [
   },
   {
     Index: "Arcanna's Tricks",
-    Name: "Arcanna's Tricks",
+    Name: "阿卡娜的詭計 (Arcanna's Tricks)",
     SetItems: [
       {
         Type: "Amulet",
         "Set": "Arcanna's Tricks",
         SetPropertiesString: [
-          "Fire Resist +20% (3 Items)",
-          "+50% better chance of getting magic item (2 Items)"
+          "火焰抗性 +20% （3 件）",
+          "尋獲魔法物品機率提高 +50% （2 件）"
         ],
-        Name: "Arcanna's Sign",
+        Name: "阿卡娜的符印 (Arcanna's Sign)",
         Index: "Arcanna's Sign",
         Enabled: true,
         Rarity: 1,
@@ -3040,18 +3040,18 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+15 to Mana",
+            PropertyString: "+15 法力",
             Index: 0
           },
           {
-            PropertyString: "Regenerate Mana +20%",
+            PropertyString: "法力恢復 20%",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -3068,10 +3068,10 @@ const json = [
         Type: "Staff",
         "Set": "Arcanna's Tricks",
         SetPropertiesString: [
-          "+50 to Mana (2 Items)",
-          "Regenerate Mana +5% (3 Items)"
+          "+50 法力 （2 件）",
+          "法力恢復 5% （3 件）"
         ],
-        Name: "Arcanna's Deathwand",
+        Name: "阿卡娜的死亡之杖 (Arcanna's Deathwand)",
         Index: "Arcanna's Deathwand",
         Enabled: true,
         Rarity: 7,
@@ -3080,11 +3080,11 @@ const json = [
         Code: "wst",
         Properties: [
           {
-            PropertyString: "+1 to Sorceress Skill Levels",
+            PropertyString: "+1 魔法使技能等級",
             Index: 0
           },
           {
-            PropertyString: "+25% Deadly Strike",
+            PropertyString: "+25% 致命打擊",
             Index: 1
           }
         ],
@@ -3097,7 +3097,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "War Staff",
+          Name: "征戰法杖 (War Staff)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 250,
@@ -3114,10 +3114,10 @@ const json = [
         Type: "Helm",
         "Set": "Arcanna's Tricks",
         SetPropertiesString: [
-          "+3 Defense (Per Character Level) (2 Items)",
-          "Lightning Resist +15% (3 Items)"
+          "+3 防禦 （依角色等級而定） （2 件）",
+          "電擊抗性 +15% （3 件）"
         ],
-        Name: "Arcanna's Head",
+        Name: "阿卡娜的頭 (Arcanna's Head)",
         Index: "Arcanna's Head",
         Enabled: true,
         Rarity: 7,
@@ -3126,11 +3126,11 @@ const json = [
         Code: "skp",
         Properties: [
           {
-            PropertyString: "+4 Replenish Life",
+            PropertyString: "生命回復 +4",
             Index: 0
           },
           {
-            PropertyString: "Attacker Takes Damage of +2",
+            PropertyString: "攻擊者反傷 +2",
             Index: 1
           }
         ],
@@ -3140,7 +3140,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "8",
           EquipmentType: 0,
-          Name: "Skull Cap",
+          Name: "顱帽 (Skull Cap)",
           RequiredStrength: 15,
           RequiredDexterity: 0,
           Durability: 18,
@@ -3157,10 +3157,10 @@ const json = [
         Type: "Armor",
         "Set": "Arcanna's Tricks",
         SetPropertiesString: [
-          "+100 Defense (2 Items)",
-          "+10 to Energy (3 Items)"
+          "+100 防禦 （2 件）",
+          "+10 能量 （3 件）"
         ],
-        Name: "Arcanna's Flesh",
+        Name: "阿卡娜的血肉 (Arcanna's Flesh)",
         Index: "Arcanna's Flesh",
         Enabled: true,
         Rarity: 7,
@@ -3169,11 +3169,11 @@ const json = [
         Code: "ltp",
         Properties: [
           {
-            PropertyString: "Damage Reduced by 3",
+            PropertyString: "物理傷害降低 3",
             Index: 1
           },
           {
-            PropertyString: "+2 to Light Radius",
+            PropertyString: "照亮範圍 +2",
             Index: 0
           }
         ],
@@ -3183,7 +3183,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "159-186",
           EquipmentType: 0,
-          Name: "Light Plate",
+          Name: "輕型鎧甲 (Light Plate)",
           RequiredStrength: 41,
           RequiredDexterity: 0,
           Durability: 60,
@@ -3199,33 +3199,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50 to Mana",
+        PropertyString: "+50 法力",
         Index: 0
       },
       {
-        PropertyString: "+50 to Life",
+        PropertyString: "+50 生命",
         Index: 2
       },
       {
-        PropertyString: "Regenerate Mana +12%",
+        PropertyString: "法力恢復 12%",
         Index: 3
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 3
       },
       {
-        PropertyString: "+20% Faster Cast Rate",
+        PropertyString: "+20% 施法速度",
         Index: 0
       },
       {
-        PropertyString: "+5% Mana stolen per hit",
+        PropertyString: "擊中竊取 +5% 法力",
         Index: 1
       },
       {
-        PropertyString: "+25 to Mana",
+        PropertyString: "+25 法力",
         Index: 2
       }
     ],
@@ -3233,13 +3233,13 @@ const json = [
   },
   {
     Index: "Natalya's Odium",
-    Name: "Natalya's Odium",
+    Name: "娜塔亞的非難 (Natalya's Odium)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Natalya's Odium",
         SetPropertiesString: [],
-        Name: "Natalya's Totem",
+        Name: "娜塔亞的圖騰 (Natalya's Totem)",
         Index: "Natalya's Totem",
         Enabled: true,
         Rarity: 7,
@@ -3248,23 +3248,23 @@ const json = [
         Code: "xh9",
         Properties: [
           {
-            PropertyString: "+135-175 Defense",
+            PropertyString: "+135-175 防禦",
             Index: 0
           },
           {
-            PropertyString: "+10-20 to Strength",
+            PropertyString: "+10-20 力量",
             Index: 2
           },
           {
-            PropertyString: "+20-30 to Dexterity",
+            PropertyString: "+20-30 敏捷",
             Index: 1
           },
           {
-            PropertyString: "All Resistances +10-20%",
+            PropertyString: "所有抗性 +10-20%",
             Index: 3
           },
           {
-            PropertyString: "Magic Damage Reduced by 3",
+            PropertyString: "魔法傷害降低 3",
             Index: 4
           }
         ],
@@ -3274,7 +3274,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "129",
           EquipmentType: 0,
-          Name: "Grim Helm",
+          Name: "陰森頭盔 (Grim Helm)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 40,
@@ -3291,7 +3291,7 @@ const json = [
         Type: "Hand to Hand 2",
         "Set": "Natalya's Odium",
         SetPropertiesString: [],
-        Name: "Natalya's Mark",
+        Name: "娜塔亞的印記 (Natalya's Mark)",
         Index: "Natalya's Mark",
         Enabled: true,
         Rarity: 7,
@@ -3300,31 +3300,31 @@ const json = [
         Code: "7qr",
         Properties: [
           {
-            PropertyString: "+40% Increased Attack Speed",
+            PropertyString: "攻擊速度 +40%",
             Index: 0
           },
           {
-            PropertyString: "+200% Enhanced Damage",
+            PropertyString: "+200% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "Ignore Target's Defense",
+            PropertyString: "無視目標防禦",
             Index: 2
           },
           {
-            PropertyString: "+200% Damage to Demons",
+            PropertyString: "+200% 對惡魔的傷害",
             Index: 6
           },
           {
-            PropertyString: "+200% Damage to Undead",
+            PropertyString: "+200% 對不死怪物的傷害",
             Index: 5
           },
           {
-            PropertyString: "Adds 12-17 to Fire Damage",
+            PropertyString: "增加 12-17 火焰傷害",
             Index: 4
           },
           {
-            PropertyString: "+50 to Minimum Cold Damage",
+            PropertyString: "增加 50 寒冰傷害",
             Index: 3
           }
         ],
@@ -3337,7 +3337,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Scissors Suwayyah",
+          Name: "穿擊剪刃 (Scissors Suwayyah)",
           RequiredStrength: 118,
           RequiredDexterity: 118,
           Durability: 250,
@@ -3354,7 +3354,7 @@ const json = [
         Type: "Armor",
         "Set": "Natalya's Odium",
         SetPropertiesString: [],
-        Name: "Natalya's Shadow",
+        Name: "娜塔亞的影子 (Natalya's Shadow)",
         Index: "Natalya's Shadow",
         Enabled: true,
         Rarity: 7,
@@ -3363,27 +3363,27 @@ const json = [
         Code: "ucl",
         Properties: [
           {
-            PropertyString: "+2 to Shadow Disciplines (Assassin only)",
+            PropertyString: "+2 暗影修行 （只限刺客）",
             Index: 2
           },
           {
-            PropertyString: "+150-225 Defense",
+            PropertyString: "+150-225 防禦",
             Index: 0
           },
           {
-            PropertyString: "+1 to Life (Per Character Level)",
+            PropertyString: "+1 生命 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "Poison Resist +25%",
+            PropertyString: "毒素抗性 +25%",
             Index: 4
           },
           {
-            PropertyString: "Poison Length Reduced by 75%",
+            PropertyString: "中毒的時效縮短 75%",
             Index: 3
           },
           {
-            PropertyString: "Socketed (1-3)",
+            PropertyString: "鑲孔 (1-3)",
             Index: 5
           }
         ],
@@ -3393,7 +3393,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1075-1173",
           EquipmentType: 0,
-          Name: "Loricated Mail",
+          Name: "綴鱗戰甲 (Loricated Mail)",
           RequiredStrength: 149,
           RequiredDexterity: 0,
           Durability: 36,
@@ -3410,7 +3410,7 @@ const json = [
         Type: "Boots",
         "Set": "Natalya's Odium",
         SetPropertiesString: [],
-        Name: "Natalya's Soul",
+        Name: "娜塔亞的靈魂 (Natalya's Soul)",
         Index: "Natalya's Soul",
         Enabled: true,
         Rarity: 7,
@@ -3419,23 +3419,23 @@ const json = [
         Code: "xmb",
         Properties: [
           {
-            PropertyString: "+40% Faster Run/Walk",
+            PropertyString: "+40% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+75-125 Defense",
+            PropertyString: "+75-125 防禦",
             Index: 0
           },
           {
-            PropertyString: "+0.25 Heal Stamina Plus (Per Character Level)",
+            PropertyString: "+0.25 Heal Stamina Plus （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "Cold Resist +15-25%",
+            PropertyString: "冰寒抗性 +15-25%",
             Index: 4
           },
           {
-            PropertyString: "Lightning Resist +15-25%",
+            PropertyString: "電擊抗性 +15-25%",
             Index: 5
           }
         ],
@@ -3445,7 +3445,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "37",
           EquipmentType: 0,
-          Name: "Mesh Boots",
+          Name: "鐵網靴 (Mesh Boots)",
           RequiredStrength: 65,
           RequiredDexterity: 0,
           Durability: 66,
@@ -3461,41 +3461,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "Magic Damage Reduced by 15",
+        PropertyString: "魔法傷害降低 15",
         Index: 0
       },
       {
-        PropertyString: "+200 Defense",
+        PropertyString: "+200 防禦",
         Index: 2
       },
       {
-        PropertyString: "Poison Resist +20%",
+        PropertyString: "毒素抗性 +20%",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to Assassin Skill Levels",
+        PropertyString: "+3 刺客技能等級",
         Index: 1
       },
       {
-        PropertyString: "+14% Mana stolen per hit",
+        PropertyString: "擊中竊取 +14% 法力",
         Index: 4
       },
       {
-        PropertyString: "+14% Life stolen per hit",
+        PropertyString: "擊中竊取 14% 生命",
         Index: 3
       },
       {
-        PropertyString: "+150 Defense",
+        PropertyString: "+150 防禦",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       },
       {
-        PropertyString: "+30% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +30%",
         Index: 5
       },
       {
@@ -3507,17 +3507,17 @@ const json = [
   },
   {
     Index: "Aldur's Watchtower",
-    Name: "Aldur's Watchtower",
+    Name: "艾爾多的守衛 (Aldur's Watchtower)",
     SetItems: [
       {
         Type: "Pelt",
         "Set": "Aldur's Watchtower",
         SetPropertiesString: [
-          "+15 to Energy (2 Items)",
-          "+15 to Energy (3 Items)",
-          "+15 to Energy (4 Items)"
+          "+15 能量 （2 件）",
+          "+15 能量 （3 件）",
+          "+15 能量 （4 件）"
         ],
-        Name: "Aldur's Stony Gaze",
+        Name: "艾爾多的冷酷凝視 (Aldur's Stony Gaze)",
         Index: "Aldur's Stony Gaze",
         Enabled: true,
         Rarity: 7,
@@ -3526,27 +3526,27 @@ const json = [
         Code: "dr8",
         Properties: [
           {
-            PropertyString: "+25% Faster Hit Recovery",
+            PropertyString: "+25% 打擊恢復",
             Index: 3
           },
           {
-            PropertyString: "+90 Defense",
+            PropertyString: "+90 防禦",
             Index: 0
           },
           {
-            PropertyString: "Regenerate Mana +17%",
+            PropertyString: "法力恢復 17%",
             Index: 1
           },
           {
-            PropertyString: "Cold Resist +40-50%",
+            PropertyString: "冰寒抗性 +40-50%",
             Index: 4
           },
           {
-            PropertyString: "+5 to Light Radius",
+            PropertyString: "照亮範圍 +5",
             Index: 2
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 5
           }
         ],
@@ -3556,7 +3556,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "157",
           EquipmentType: 0,
-          Name: "Hunter's Guise",
+          Name: "獵人面罩 (Hunter's Guise)",
           RequiredStrength: 56,
           RequiredDexterity: 0,
           Durability: 20,
@@ -3573,11 +3573,11 @@ const json = [
         Type: "Armor",
         "Set": "Aldur's Watchtower",
         SetPropertiesString: [
-          "+15 to Vitality (2 Items)",
-          "+15 to Vitality (3 Items)",
-          "+15 to Vitality (4 Items)"
+          "+15 體能 （2 件）",
+          "+15 體能 （3 件）",
+          "+15 體能 （4 件）"
         ],
-        Name: "Aldur's Deception",
+        Name: "艾爾多的欺暪 (Aldur's Deception)",
         Index: "Aldur's Deception",
         Enabled: true,
         Rarity: 7,
@@ -3586,31 +3586,31 @@ const json = [
         Code: "uul",
         Properties: [
           {
-            PropertyString: "+1 to Shape Shifting Skills (Druid only)",
+            PropertyString: "+1 變形技能 （只限德魯伊）",
             Index: 1
           },
           {
-            PropertyString: "+1 to Elemental Skills (Druid only)",
+            PropertyString: "+1 元素技能 （只限德魯伊）",
             Index: 6
           },
           {
-            PropertyString: "+300 Defense",
+            PropertyString: "+300 防禦",
             Index: 0
           },
           {
-            PropertyString: "+20 to Strength",
+            PropertyString: "+20 力量",
             Index: 2
           },
           {
-            PropertyString: "+15 to Dexterity",
+            PropertyString: "+15 敏捷",
             Index: 3
           },
           {
-            PropertyString: "Lightning Resist +40-50%",
+            PropertyString: "電擊抗性 +40-50%",
             Index: 4
           },
           {
-            PropertyString: "Requirements -50%",
+            PropertyString: "需求 -50%",
             Index: 5
           }
         ],
@@ -3620,7 +3620,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1072-1162",
           EquipmentType: 0,
-          Name: "Shadow Plate",
+          Name: "暗影鎧甲 (Shadow Plate)",
           RequiredStrength: 230,
           RequiredDexterity: 0,
           Durability: 70,
@@ -3637,11 +3637,11 @@ const json = [
         Type: "Mace",
         "Set": "Aldur's Watchtower",
         SetPropertiesString: [
-          "+15 to Strength (2 Items)",
-          "+15 to Strength (3 Items)",
-          "+15 to Strength (4 Items)"
+          "+15 力量 （2 件）",
+          "+15 力量 （3 件）",
+          "+15 力量 （4 件）"
         ],
-        Name: "Aldur's Rhythm",
+        Name: "艾爾多的律動 (Aldur's Rhythm)",
         Index: "Aldur's Rhythm",
         Enabled: true,
         Rarity: 7,
@@ -3650,31 +3650,31 @@ const json = [
         Code: "9mt",
         Properties: [
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 3
           },
           {
-            PropertyString: "Adds 40-62 to Damage",
+            PropertyString: "增加 40-62 傷害",
             Index: 0
           },
           {
-            PropertyString: "+200% Damage to Demons",
+            PropertyString: "+200% 對惡魔的傷害",
             Index: 4
           },
           {
-            PropertyString: "Adds 50-75 to Lightning Damage",
+            PropertyString: "增加 50-75 電擊傷害",
             Index: 1
           },
           {
-            PropertyString: "+5% Mana stolen per hit",
+            PropertyString: "擊中竊取 +5% 法力",
             Index: 5
           },
           {
-            PropertyString: "+10% Life stolen per hit",
+            PropertyString: "擊中竊取 10% 生命",
             Index: 2
           },
           {
-            PropertyString: "Socketed (2-5)",
+            PropertyString: "鑲孔 (2-5)",
             Index: 6
           }
         ],
@@ -3687,7 +3687,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Jagged Star",
+          Name: "鋸齒釘頭鎚 (Jagged Star)",
           RequiredStrength: 74,
           RequiredDexterity: 0,
           Durability: 250,
@@ -3704,11 +3704,11 @@ const json = [
         Type: "Boots",
         "Set": "Aldur's Watchtower",
         SetPropertiesString: [
-          "+15 to Dexterity (2 Items)",
-          "+15 to Dexterity (3 Items)",
-          "+15 to Dexterity (4 Items)"
+          "+15 敏捷 （2 件）",
+          "+15 敏捷 （3 件）",
+          "+15 敏捷 （4 件）"
         ],
-        Name: "Aldur's Advance",
+        Name: "艾爾多的進擊 (Aldur's Advance)",
         Index: "Aldur's Advance",
         Enabled: true,
         Rarity: 7,
@@ -3717,15 +3717,15 @@ const json = [
         Code: "xtb",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 0
           },
           {
-            PropertyString: "+40% Faster Run/Walk",
+            PropertyString: "+40% 跑步 / 行走速度",
             Index: 4
           },
           {
-            PropertyString: "+50 to Life",
+            PropertyString: "+50 生命",
             Index: 2
           },
           {
@@ -3733,11 +3733,11 @@ const json = [
             Index: 1
           },
           {
-            PropertyString: "Fire Resist +40-50%",
+            PropertyString: "火焰抗性 +40-50%",
             Index: 6
           },
           {
-            PropertyString: "+10% Damage Taken Goes To Mana",
+            PropertyString: "+10% 受到的傷害轉為法力",
             Index: 3
           }
         ],
@@ -3747,7 +3747,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "90-100",
           EquipmentType: 0,
-          Name: "Battle Boots",
+          Name: "戰鬥靴 (Battle Boots)",
           RequiredStrength: 95,
           RequiredDexterity: 0,
           Durability: 30,
@@ -3763,41 +3763,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+150% bonus to Attack Rating",
+        PropertyString: "+150% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 2
       },
       {
-        PropertyString: "+10% Life stolen per hit",
+        PropertyString: "擊中竊取 10% 生命",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to Druid Skill Levels",
+        PropertyString: "+3 德魯伊技能等級",
         Index: 1
       },
       {
-        PropertyString: "+350% Enhanced Damage",
+        PropertyString: "+350% 傷害強化",
         Index: 5
       },
       {
-        PropertyString: "+10% Mana stolen per hit",
+        PropertyString: "擊中竊取 +10% 法力",
         Index: 3
       },
       {
-        PropertyString: "+150 Defense",
+        PropertyString: "+150 防禦",
         Index: 2
       },
       {
-        PropertyString: "+150 to Mana",
+        PropertyString: "+150 法力",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       }
     ],
@@ -3805,13 +3805,13 @@ const json = [
   },
   {
     Index: "Immortal King",
-    Name: "Immortal King",
+    Name: "不朽之王 (Immortal King)",
     SetItems: [
       {
         Type: "Primal Helm",
         "Set": "Immortal King",
         SetPropertiesString: [],
-        Name: "Immortal King's Will",
+        Name: "不朽之王的意志 (Immortal King's Will)",
         Index: "Immortal King's Will",
         Enabled: true,
         Rarity: 7,
@@ -3820,27 +3820,27 @@ const json = [
         Code: "ba5",
         Properties: [
           {
-            PropertyString: "+2 to Warcries (Barbarian only)",
+            PropertyString: "+2 戰吼 （只限野蠻人）",
             Index: 2
           },
           {
-            PropertyString: "+125 Defense",
+            PropertyString: "+125 防禦",
             Index: 0
           },
           {
-            PropertyString: "+37% extra gold from monsters",
+            PropertyString: "怪物金幣掉落量提高 +37%",
             Index: 1
           },
           {
-            PropertyString: "+25-40% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +25-40%",
             Index: 4
           },
           {
-            PropertyString: "+4 to Light Radius",
+            PropertyString: "照亮範圍 +4",
             Index: 3
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 5
           }
         ],
@@ -3850,7 +3850,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "160",
           EquipmentType: 0,
-          Name: "Avenger Guard",
+          Name: "復仇者護盔 (Avenger Guard)",
           RequiredStrength: 65,
           RequiredDexterity: 0,
           Durability: 55,
@@ -3867,13 +3867,13 @@ const json = [
         Type: "Armor",
         "Set": "Immortal King",
         SetPropertiesString: [
-          "+25% Faster Hit Recovery (2 Items)",
-          "+50% Enhanced Defense (6 Items)",
-          "Cold Resist +40% (3 Items)",
-          "Lightning Resist +40% (5 Items)",
-          "Fire Resist +40% (4 Items)"
+          "+25% 打擊恢復 （2 件）",
+          "+50% 防禦強化 （6 件）",
+          "冰寒抗性 +40% （3 件）",
+          "電擊抗性 +40% （5 件）",
+          "火焰抗性 +40% （4 件）"
         ],
-        Name: "Immortal King's Soul Cage",
+        Name: "不朽之王的靈魂牢籠 (Immortal King's Soul Cage)",
         Index: "Immortal King's Soul Cage",
         Enabled: true,
         Rarity: 7,
@@ -3882,19 +3882,19 @@ const json = [
         Code: "uar",
         Properties: [
           {
-            PropertyString: "5% Chance to cast level 5 Enchant when struck",
+            PropertyString: "被擊中時有 5% 機率施展等級 5 附魔",
             Index: 1
           },
           {
-            PropertyString: "+2 to Combat Skills (Barbarian only)",
+            PropertyString: "+2 戰鬥技能 （只限野蠻人）",
             Index: 2
           },
           {
-            PropertyString: "+400 Defense",
+            PropertyString: "+400 防禦",
             Index: 0
           },
           {
-            PropertyString: "Poison Resist +50%",
+            PropertyString: "毒素抗性 +50%",
             Index: 3
           }
         ],
@@ -3904,7 +3904,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1171-1415",
           EquipmentType: 0,
-          Name: "Sacred Armor",
+          Name: "神聖戰甲 (Sacred Armor)",
           RequiredStrength: 232,
           RequiredDexterity: 0,
           Durability: 60,
@@ -3921,13 +3921,13 @@ const json = [
         Type: "Belt",
         "Set": "Immortal King",
         SetPropertiesString: [
-          "+2 to Masteries and Throwing Skills (Barbarian only) (6 Items)",
-          "+25% Faster Hit Recovery (3 Items)",
-          "+100% Enhanced Defense (4 Items)",
-          "+105 Defense (2 Items)",
-          "+20% Physical Damage Reduction (5 Items)"
+          "+2 精通與投擲技能 （只限野蠻人） （6 件）",
+          "+25% 打擊恢復 （3 件）",
+          "+100% 防禦強化 （4 件）",
+          "+105 防禦 （2 件）",
+          "物理傷害降低 +20% （5 件）"
         ],
-        Name: "Immortal King's Detail",
+        Name: "不朽之王的扈從 (Immortal King's Detail)",
         Index: "Immortal King's Detail",
         Enabled: true,
         Rarity: 7,
@@ -3936,19 +3936,19 @@ const json = [
         Code: "zhb",
         Properties: [
           {
-            PropertyString: "+36 Defense",
+            PropertyString: "+36 防禦",
             Index: 0
           },
           {
-            PropertyString: "+25 to Strength",
+            PropertyString: "+25 力量",
             Index: 3
           },
           {
-            PropertyString: "Lightning Resist +31%",
+            PropertyString: "電擊抗性 +31%",
             Index: 2
           },
           {
-            PropertyString: "Fire Resist +28%",
+            PropertyString: "火焰抗性 +28%",
             Index: 1
           }
         ],
@@ -3958,7 +3958,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "41",
           EquipmentType: 0,
-          Name: "War Belt",
+          Name: "征戰腰帶 (War Belt)",
           RequiredStrength: 110,
           RequiredDexterity: 0,
           Durability: 24,
@@ -3975,13 +3975,13 @@ const json = [
         Type: "Gloves",
         "Set": "Immortal King",
         SetPropertiesString: [
-          "+25% Increased Attack Speed (2 Items)",
-          "+10% Mana stolen per hit (5 Items)",
-          "+10% Life stolen per hit (4 Items)",
-          "Freezes target +2 (6 Items)",
-          "+120 Defense (3 Items)"
+          "攻擊速度 +25% （2 件）",
+          "擊中竊取 +10% 法力 （5 件）",
+          "擊中竊取 10% 生命 （4 件）",
+          "凍結目標 +2 （6 件）",
+          "+120 防禦 （3 件）"
         ],
-        Name: "Immortal King's Forge",
+        Name: "不朽之王的熔爐 (Immortal King's Forge)",
         Index: "Immortal King's Forge",
         Enabled: true,
         Rarity: 7,
@@ -3990,19 +3990,19 @@ const json = [
         Code: "xhg",
         Properties: [
           {
-            PropertyString: "12% Chance to cast level 4 Charged Bolt when struck",
+            PropertyString: "被擊中時有 12% 機率施展等級 4 電能彈",
             Index: 3
           },
           {
-            PropertyString: "+65 Defense",
+            PropertyString: "+65 防禦",
             Index: 0
           },
           {
-            PropertyString: "+20 to Strength",
+            PropertyString: "+20 力量",
             Index: 1
           },
           {
-            PropertyString: "+20 to Dexterity",
+            PropertyString: "+20 敏捷",
             Index: 2
           }
         ],
@@ -4012,7 +4012,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "121-132",
           EquipmentType: 0,
-          Name: "War Gauntlets",
+          Name: "征戰護手 (War Gauntlets)",
           RequiredStrength: 110,
           RequiredDexterity: 0,
           Durability: 24,
@@ -4029,12 +4029,12 @@ const json = [
         Type: "Boots",
         "Set": "Immortal King",
         SetPropertiesString: [
-          "+2 to Combat Skills (Barbarian only) (3 Items)",
-          "+160 Defense (4 Items)",
-          "Half Freeze Duration (5 Items)",
-          "+25% better chance of getting magic item (2 Items)"
+          "+2 戰鬥技能 （只限野蠻人） （3 件）",
+          "+160 防禦 （4 件）",
+          "冰凍時間減半 （5 件）",
+          "尋獲魔法物品機率提高 +25% （2 件）"
         ],
-        Name: "Immortal King's Pillar",
+        Name: "不朽之王之柱 (Immortal King's Pillar)",
         Index: "Immortal King's Pillar",
         Enabled: true,
         Rarity: 7,
@@ -4043,19 +4043,19 @@ const json = [
         Code: "xhb",
         Properties: [
           {
-            PropertyString: "+40% Faster Run/Walk",
+            PropertyString: "+40% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+110 to Attack Rating",
+            PropertyString: "+110 準確率",
             Index: 2
           },
           {
-            PropertyString: "+75 Defense",
+            PropertyString: "+75 防禦",
             Index: 0
           },
           {
-            PropertyString: "+44 to Life",
+            PropertyString: "+44 生命",
             Index: 3
           }
         ],
@@ -4065,7 +4065,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "88-99",
           EquipmentType: 0,
-          Name: "War Boots",
+          Name: "征戰靴 (War Boots)",
           RequiredStrength: 125,
           RequiredDexterity: 0,
           Durability: 24,
@@ -4082,13 +4082,13 @@ const json = [
         Type: "Hammer",
         "Set": "Immortal King",
         SetPropertiesString: [
-          "Adds 250-361 to Magic Damage (6 Items)",
-          "Adds 211-397 to Fire Damage (2 Items)",
-          "Adds 7-477 to Lightning Damage (3 Items)",
-          "Adds 127-364 to Cold Damage (4 Items)",
-          "+205 Poison Damage Over 6 Seconds (5 Items)"
+          "增加 250-361 魔法傷害 （6 件）",
+          "增加 211-397 火焰傷害 （2 件）",
+          "增加 7-477 電擊傷害 （3 件）",
+          "增加 127-364 寒冰傷害 （4 件）",
+          "+205 毒素傷害，時效 6 秒 （5 件）"
         ],
-        Name: "Immortal King's Stone Crusher",
+        Name: "不朽之王的碎魂者 (Immortal King's Stone Crusher)",
         Index: "Immortal King's Stone Crusher",
         Enabled: true,
         Rarity: 7,
@@ -4097,31 +4097,31 @@ const json = [
         Code: "7m7",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 0
           },
           {
-            PropertyString: "+40% Increased Attack Speed",
+            PropertyString: "攻擊速度 +40%",
             Index: 1
           },
           {
-            PropertyString: "+200% Enhanced Damage",
+            PropertyString: "+200% 傷害強化",
             Index: 5
           },
           {
-            PropertyString: "+200% Damage to Demons",
+            PropertyString: "+200% 對惡魔的傷害",
             Index: 2
           },
           {
-            PropertyString: "+200% Damage to Undead",
+            PropertyString: "+200% 對不死怪物的傷害",
             Index: 3
           },
           {
-            PropertyString: "+35-40% Chance of Crushing Blow",
+            PropertyString: "+35-40% 概率造成粉碎打擊",
             Index: 4
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 6
           }
         ],
@@ -4134,7 +4134,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Ogre Maul",
+          Name: "巨魔重鎚 (Ogre Maul)",
           RequiredStrength: 225,
           RequiredDexterity: 0,
           Durability: 0,
@@ -4150,37 +4150,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 0
       },
       {
-        PropertyString: "+75 to Attack Rating",
+        PropertyString: "+75 準確率",
         Index: 2
       },
       {
-        PropertyString: "+125 to Attack Rating",
+        PropertyString: "+125 準確率",
         Index: 4
       },
       {
-        PropertyString: "+200 to Attack Rating",
+        PropertyString: "+200 準確率",
         Index: 6
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to Barbarian Skill Levels",
+        PropertyString: "+3 野蠻人技能等級",
         Index: 1
       },
       {
-        PropertyString: "+150 to Life",
+        PropertyString: "+150 生命",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 10",
+        PropertyString: "魔法傷害降低 10",
         Index: 3
       }
     ],
@@ -4188,16 +4188,16 @@ const json = [
   },
   {
     Index: "Tal Rasha's Wrappings",
-    Name: "Tal Rasha's Wrappings",
+    Name: "塔拉夏的外袍 (Tal Rasha's Wrappings)",
     SetItems: [
       {
         Type: "Belt",
         "Set": "Tal Rasha's Wrappings",
         SetPropertiesString: [
-          "+10% Faster Cast Rate (3 Items)",
-          "+60 Defense (2 Items)"
+          "+10% 施法速度 （3 件）",
+          "+60 防禦 （2 件）"
         ],
-        Name: "Tal Rasha's Fine-Spun Cloth",
+        Name: "塔拉夏的精織腰布 (Tal Rasha's Fine-Spun Cloth)",
         Index: "Tal Rasha's Fine-Spun Cloth",
         Enabled: true,
         Rarity: 7,
@@ -4206,23 +4206,23 @@ const json = [
         Code: "zmb",
         Properties: [
           {
-            PropertyString: "+20 to Dexterity",
+            PropertyString: "+20 敏捷",
             Index: 2
           },
           {
-            PropertyString: "+30 to Mana",
+            PropertyString: "+30 法力",
             Index: 1
           },
           {
-            PropertyString: "+37% Damage Taken Goes To Mana",
+            PropertyString: "+37% 受到的傷害轉為法力",
             Index: 3
           },
           {
-            PropertyString: "+10-15% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +10-15%",
             Index: 4
           },
           {
-            PropertyString: "Requirements -20%",
+            PropertyString: "需求 -20%",
             Index: 0
           }
         ],
@@ -4232,7 +4232,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "35",
           EquipmentType: 0,
-          Name: "Mesh Belt",
+          Name: "鐵網腰帶 (Mesh Belt)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 16,
@@ -4249,9 +4249,9 @@ const json = [
         Type: "Amulet",
         "Set": "Tal Rasha's Wrappings",
         SetPropertiesString: [
-          "+10% Faster Cast Rate (4 Items)"
+          "+10% 施法速度 （4 件）"
         ],
-        Name: "Tal Rasha's Adjudication",
+        Name: "塔拉夏的判決 (Tal Rasha's Adjudication)",
         Index: "Tal Rasha's Adjudication",
         Enabled: true,
         Rarity: 1,
@@ -4260,30 +4260,30 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+2 to Sorceress Skill Levels",
+            PropertyString: "+2 魔法使技能等級",
             Index: 1
           },
           {
-            PropertyString: "Adds 3-32 to Lightning Damage",
+            PropertyString: "增加 3-32 電擊傷害",
             Index: 3
           },
           {
-            PropertyString: "+50 to Life",
+            PropertyString: "+50 生命",
             Index: 2
           },
           {
-            PropertyString: "+42 to Mana",
+            PropertyString: "+42 法力",
             Index: 4
           },
           {
-            PropertyString: "Lightning Resist +33%",
+            PropertyString: "電擊抗性 +33%",
             Index: 0
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -4300,12 +4300,12 @@ const json = [
         Type: "Orb",
         "Set": "Tal Rasha's Wrappings",
         SetPropertiesString: [
-          "+1 to Sorceress Skill Levels (2 Items)",
-          "-15% to Enemy Fire Resistance (3 Items)",
-          "-15% to Enemy Lightning Resistance (4 Items)",
-          "+15% to Cold Skill Damage (5 Items)"
+          "+1 魔法使技能等級 （2 件）",
+          "敵人火焰抗性 -15% （3 件）",
+          "敵人電擊抗性 -15% （4 件）",
+          "+15% 寒冰技能傷害 （5 件）"
         ],
-        Name: "Tal Rasha's Lidless Eye",
+        Name: "塔拉夏的警惕之眼 (Tal Rasha's Lidless Eye)",
         Index: "Tal Rasha's Lidless Eye",
         Enabled: true,
         Rarity: 7,
@@ -4314,31 +4314,31 @@ const json = [
         Code: "oba",
         Properties: [
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 3
           },
           {
-            PropertyString: "+1-2 to Fire Mastery (Sorceress Only)",
+            PropertyString: "+1-2 火焰專精（只限魔法使）",
             Index: 4
           },
           {
-            PropertyString: "+1-2 to Lightning Mastery (Sorceress Only)",
+            PropertyString: "+1-2 閃電專精（只限魔法使）",
             Index: 5
           },
           {
-            PropertyString: "+1-2 to Cold Mastery (Sorceress Only)",
+            PropertyString: "+1-2 冰寒專精（只限魔法使）",
             Index: 6
           },
           {
-            PropertyString: "+10 to Energy",
+            PropertyString: "+10 能量",
             Index: 2
           },
           {
-            PropertyString: "+57 to Life",
+            PropertyString: "+57 生命",
             Index: 0
           },
           {
-            PropertyString: "+77 to Mana",
+            PropertyString: "+77 法力",
             Index: 1
           }
         ],
@@ -4351,7 +4351,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Swirling Crystal",
+          Name: "渦流水晶 (Swirling Crystal)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 250,
@@ -4368,9 +4368,9 @@ const json = [
         Type: "Armor",
         "Set": "Tal Rasha's Wrappings",
         SetPropertiesString: [
-          "+10% Faster Cast Rate (2 Items)"
+          "+10% 施法速度 （2 件）"
         ],
-        Name: "Tal Rasha's Guardianship",
+        Name: "塔拉夏的守護 (Tal Rasha's Guardianship)",
         Index: "Tal Rasha's Guardianship",
         Enabled: true,
         Rarity: 7,
@@ -4379,31 +4379,31 @@ const json = [
         Code: "uth",
         Properties: [
           {
-            PropertyString: "+400 Defense",
+            PropertyString: "+400 防禦",
             Index: 6
           },
           {
-            PropertyString: "Cold Resist +40%",
+            PropertyString: "冰寒抗性 +40%",
             Index: 3
           },
           {
-            PropertyString: "Lightning Resist +40%",
+            PropertyString: "電擊抗性 +40%",
             Index: 5
           },
           {
-            PropertyString: "Fire Resist +40%",
+            PropertyString: "火焰抗性 +40%",
             Index: 4
           },
           {
-            PropertyString: "Magic Damage Reduced by 15",
+            PropertyString: "魔法傷害降低 15",
             Index: 1
           },
           {
-            PropertyString: "+88% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +88%",
             Index: 2
           },
           {
-            PropertyString: "Requirements -60%",
+            PropertyString: "需求 -60%",
             Index: 0
           }
         ],
@@ -4413,7 +4413,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "433",
           EquipmentType: 0,
-          Name: "Lacquered Plate",
+          Name: "漆護鎧甲 (Lacquered Plate)",
           RequiredStrength: 208,
           RequiredDexterity: 0,
           Durability: 55,
@@ -4430,7 +4430,7 @@ const json = [
         Type: "Helm",
         "Set": "Tal Rasha's Wrappings",
         SetPropertiesString: [],
-        Name: "Tal Rasha's Horadric Crest",
+        Name: "塔拉夏的赫拉迪姆之冠 (Tal Rasha's Horadric Crest)",
         Index: "Tal Rasha's Horadric Crest",
         Enabled: true,
         Rarity: 7,
@@ -4439,27 +4439,27 @@ const json = [
         Code: "xsk",
         Properties: [
           {
-            PropertyString: "+10% Mana stolen per hit",
+            PropertyString: "擊中竊取 +10% 法力",
             Index: 5
           },
           {
-            PropertyString: "+10% Life stolen per hit",
+            PropertyString: "擊中竊取 10% 生命",
             Index: 4
           },
           {
-            PropertyString: "+45 Defense",
+            PropertyString: "+45 防禦",
             Index: 2
           },
           {
-            PropertyString: "+60 to Life",
+            PropertyString: "+60 生命",
             Index: 1
           },
           {
-            PropertyString: "+30 to Mana",
+            PropertyString: "+30 法力",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +15%",
+            PropertyString: "所有抗性 +15%",
             Index: 3
           }
         ],
@@ -4469,7 +4469,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "129-154",
           EquipmentType: 0,
-          Name: "Death Mask",
+          Name: "死亡面具 (Death Mask)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 20,
@@ -4485,37 +4485,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10 Replenish Life",
+        PropertyString: "生命回復 +10",
         Index: 0
       },
       {
-        PropertyString: "+65% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +65%",
         Index: 2
       },
       {
-        PropertyString: "+25% Faster Hit Recovery",
+        PropertyString: "+25% 打擊恢復",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to Sorceress Skill Levels",
+        PropertyString: "+3 魔法使技能等級",
         Index: 1
       },
       {
-        PropertyString: "+150 Defense",
+        PropertyString: "+150 防禦",
         Index: 2
       },
       {
-        PropertyString: "+50 Defense vs. Missile",
+        PropertyString: "+50 對遠程防禦",
         Index: 4
       },
       {
-        PropertyString: "+150 to Life",
+        PropertyString: "+150 生命",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       }
     ],
@@ -4523,15 +4523,15 @@ const json = [
   },
   {
     Index: "Griswold's Legacy",
-    Name: "Griswold's Legacy",
+    Name: "格里斯瓦德的傳奇 (Griswold's Legacy)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Griswold's Legacy",
         SetPropertiesString: [
-          "+2 to Offensive Auras (Paladin only) (2 Items)"
+          "+2 防禦靈氣 （只限聖騎士） （2 件）"
         ],
-        Name: "Griswold's Valor",
+        Name: "格里斯瓦德的勇氣 (Griswold's Valor)",
         Index: "Griswold's Valor",
         Enabled: true,
         Rarity: 7,
@@ -4540,27 +4540,27 @@ const json = [
         Code: "urn",
         Properties: [
           {
-            PropertyString: "+50-75% Enhanced Defense",
+            PropertyString: "+50-75% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +5%",
+            PropertyString: "所有抗性 +5%",
             Index: 5
           },
           {
-            PropertyString: "+0.25 Absorbs Cold Damage (Per Character Level)",
+            PropertyString: "寒冰傷害吸引 +0.25 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "+20-30% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +20-30%",
             Index: 4
           },
           {
-            PropertyString: "Requirements -40%",
+            PropertyString: "需求 -40%",
             Index: 3
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 2
           }
         ],
@@ -4570,7 +4570,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "263-308",
           EquipmentType: 0,
-          Name: "Corona",
+          Name: "日冕之冠 (Corona)",
           RequiredStrength: 174,
           RequiredDexterity: 0,
           Durability: 50,
@@ -4587,7 +4587,7 @@ const json = [
         Type: "Armor",
         "Set": "Griswold's Legacy",
         SetPropertiesString: [],
-        Name: "Griswold's Heart",
+        Name: "格里斯瓦德之心 (Griswold's Heart)",
         Index: "Griswold's Heart",
         Enabled: true,
         Rarity: 7,
@@ -4596,23 +4596,23 @@ const json = [
         Code: "xar",
         Properties: [
           {
-            PropertyString: "+2 to Defensive Auras (Paladin only)",
+            PropertyString: "+2 攻擊靈氣 （只限聖騎士）",
             Index: 1
           },
           {
-            PropertyString: "+500 Defense",
+            PropertyString: "+500 防禦",
             Index: 0
           },
           {
-            PropertyString: "+20 to Strength",
+            PropertyString: "+20 力量",
             Index: 3
           },
           {
-            PropertyString: "Requirements -40%",
+            PropertyString: "需求 -40%",
             Index: 4
           },
           {
-            PropertyString: "Socketed (3)",
+            PropertyString: "鑲孔 (3)",
             Index: 2
           }
         ],
@@ -4622,7 +4622,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1045-1170",
           EquipmentType: 0,
-          Name: "Ornate Plate",
+          Name: "華麗戰甲 (Ornate Plate)",
           RequiredStrength: 170,
           RequiredDexterity: 0,
           Durability: 60,
@@ -4639,11 +4639,11 @@ const json = [
         Type: "Scepter",
         "Set": "Griswold's Legacy",
         SetPropertiesString: [
-          "+2 to Combat Skills (Paladin only) (2 Items)",
-          "Adds 10-20 to Damage (3 Items)",
-          "Adds 10-20 to Damage (4 Items)"
+          "+2 戰鬥技能 （只限聖騎士） （2 件）",
+          "增加 10-20 傷害 （3 件）",
+          "增加 10-20 傷害 （4 件）"
         ],
-        Name: "Griswold's Redemption",
+        Name: "格里斯瓦德的救贖 (Griswold's Redemption)",
         Index: "Griswold's Redemption",
         Enabled: true,
         Rarity: 7,
@@ -4652,23 +4652,23 @@ const json = [
         Code: "7ws",
         Properties: [
           {
-            PropertyString: "+40% Increased Attack Speed",
+            PropertyString: "攻擊速度 +40%",
             Index: 1
           },
           {
-            PropertyString: "+200-240% Enhanced Damage",
+            PropertyString: "+200-240% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+200% Damage to Undead",
+            PropertyString: "+200% 對不死怪物的傷害",
             Index: 2
           },
           {
-            PropertyString: "Requirements -20%",
+            PropertyString: "需求 -20%",
             Index: 3
           },
           {
-            PropertyString: "Socketed (3-4)",
+            PropertyString: "鑲孔 (3-4)",
             Index: 4
           }
         ],
@@ -4681,7 +4681,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Caduceus",
+          Name: "神使權杖 (Caduceus)",
           RequiredStrength: 97,
           RequiredDexterity: 70,
           Durability: 250,
@@ -4698,7 +4698,7 @@ const json = [
         Type: "Auric Shields",
         "Set": "Griswold's Legacy",
         SetPropertiesString: [],
-        Name: "Griswold's Honor",
+        Name: "格里斯瓦德的榮耀 (Griswold's Honor)",
         Index: "Griswold's Honor",
         Enabled: true,
         Rarity: 7,
@@ -4707,23 +4707,23 @@ const json = [
         Code: "paf",
         Properties: [
           {
-            PropertyString: "+65% Faster Block Rate",
+            PropertyString: "+65% 格擋速度",
             Index: 2
           },
           {
-            PropertyString: "+20% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20%",
             Index: 3
           },
           {
-            PropertyString: "+108 Defense",
+            PropertyString: "+108 防禦",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +45%",
+            PropertyString: "所有抗性 +45%",
             Index: 4
           },
           {
-            PropertyString: "Socketed (3)",
+            PropertyString: "鑲孔 (3)",
             Index: 1
           }
         ],
@@ -4733,7 +4733,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "290",
           EquipmentType: 0,
-          Name: "Vortex Shield",
+          Name: "渦旋盾 (Vortex Shield)",
           RequiredStrength: 148,
           RequiredDexterity: 0,
           Durability: 90,
@@ -4749,33 +4749,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 0
       },
       {
-        PropertyString: "+30 to Dexterity",
+        PropertyString: "+30 敏捷",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to Paladin Skill Levels",
+        PropertyString: "+3 聖騎士技能等級",
         Index: 1
       },
       {
-        PropertyString: "+30% Faster Hit Recovery",
+        PropertyString: "+30% 打擊恢復",
         Index: 5
       },
       {
-        PropertyString: "+200 to Attack Rating",
+        PropertyString: "+200 準確率",
         Index: 2
       },
       {
-        PropertyString: "+150 to Life",
+        PropertyString: "+150 生命",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       }
     ],
@@ -4783,13 +4783,13 @@ const json = [
   },
   {
     Index: "Trang-Oul's Avatar",
-    Name: "Trang-Oul's Avatar",
+    Name: "塔格奧的化身 (Trang-Oul's Avatar)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Trang-Oul's Avatar",
         SetPropertiesString: [],
-        Name: "Trang-Oul's Guise",
+        Name: "塔格奧之容 (Trang-Oul's Guise)",
         Index: "Trang-Oul's Guise",
         Enabled: true,
         Rarity: 7,
@@ -4798,23 +4798,23 @@ const json = [
         Code: "uh9",
         Properties: [
           {
-            PropertyString: "+25% Faster Hit Recovery",
+            PropertyString: "+25% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+80-100 Defense",
+            PropertyString: "+80-100 防禦",
             Index: 0
           },
           {
-            PropertyString: "+5 Replenish Life",
+            PropertyString: "生命回復 +5",
             Index: 4
           },
           {
-            PropertyString: "+150 to Mana",
+            PropertyString: "+150 法力",
             Index: 3
           },
           {
-            PropertyString: "Attacker Takes Damage of +20",
+            PropertyString: "攻擊者反傷 +20",
             Index: 2
           }
         ],
@@ -4824,7 +4824,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "252-303",
           EquipmentType: 0,
-          Name: "Bone Visage",
+          Name: "骸骨面罩 (Bone Visage)",
           RequiredStrength: 106,
           RequiredDexterity: 0,
           Durability: 40,
@@ -4841,10 +4841,10 @@ const json = [
         Type: "Armor",
         "Set": "Trang-Oul's Avatar",
         SetPropertiesString: [
-          "Lightning Resist +50% (3 Items)",
-          "+25% Physical Damage Reduction (5 Items)"
+          "電擊抗性 +50% （3 件）",
+          "物理傷害降低 +25% （5 件）"
         ],
-        Name: "Trang-Oul's Scales",
+        Name: "塔格奧之鱗 (Trang-Oul's Scales)",
         Index: "Trang-Oul's Scales",
         Enabled: true,
         Rarity: 7,
@@ -4853,27 +4853,27 @@ const json = [
         Code: "xul",
         Properties: [
           {
-            PropertyString: "+2 to Summoning Skills (Necromancer only)",
+            PropertyString: "+2 召喚技能 （只限死靈法師）",
             Index: 3
           },
           {
-            PropertyString: "+40% Faster Run/Walk",
+            PropertyString: "+40% 跑步 / 行走速度",
             Index: 4
           },
           {
-            PropertyString: "+150% Enhanced Defense",
+            PropertyString: "+150% 防禦強化",
             Index: 5
           },
           {
-            PropertyString: "+100 Defense vs. Missile",
+            PropertyString: "+100 對遠程防禦",
             Index: 1
           },
           {
-            PropertyString: "Poison Resist +40%",
+            PropertyString: "毒素抗性 +40%",
             Index: 2
           },
           {
-            PropertyString: "Requirements -40%",
+            PropertyString: "需求 -40%",
             Index: 0
           }
         ],
@@ -4883,7 +4883,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "615-715",
           EquipmentType: 0,
-          Name: "Chaos Armor",
+          Name: "混沌戰甲 (Chaos Armor)",
           RequiredStrength: 140,
           RequiredDexterity: 0,
           Durability: 70,
@@ -4900,10 +4900,10 @@ const json = [
         Type: "Voodoo Heads",
         "Set": "Trang-Oul's Avatar",
         SetPropertiesString: [
-          "-25% to Enemy Poison Resistance (3 Items)",
-          "+15 Replenish Life (4 Items)"
+          "敵人毒素抗性 -25% （3 件）",
+          "生命回復 +15 （4 件）"
         ],
-        Name: "Trang-Oul's Wing",
+        Name: "塔格奧之翼 (Trang-Oul's Wing)",
         Index: "Trang-Oul's Wing",
         Enabled: true,
         Rarity: 7,
@@ -4912,31 +4912,31 @@ const json = [
         Code: "ne9",
         Properties: [
           {
-            PropertyString: "+2 to Poison and Bone Skills (Necromancer only)",
+            PropertyString: "+2 毒素與骸骨技能 （只限死靈法師）",
             Index: 6
           },
           {
-            PropertyString: "+30% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +30%",
             Index: 4
           },
           {
-            PropertyString: "+125 Defense",
+            PropertyString: "+125 防禦",
             Index: 0
           },
           {
-            PropertyString: "+25 to Strength",
+            PropertyString: "+25 力量",
             Index: 1
           },
           {
-            PropertyString: "+15 to Dexterity",
+            PropertyString: "+15 敏捷",
             Index: 2
           },
           {
-            PropertyString: "Fire Resist +38-45%",
+            PropertyString: "火焰抗性 +38-45%",
             Index: 3
           },
           {
-            PropertyString: "Poison Resist +40%",
+            PropertyString: "毒素抗性 +40%",
             Index: 5
           }
         ],
@@ -4946,7 +4946,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "175",
           EquipmentType: 0,
-          Name: "Cantor Trophy",
+          Name: "領唱者首級 (Cantor Trophy)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 20,
@@ -4963,7 +4963,7 @@ const json = [
         Type: "Gloves",
         "Set": "Trang-Oul's Avatar",
         SetPropertiesString: [],
-        Name: "Trang-Oul's Claws",
+        Name: "塔格奧之爪 (Trang-Oul's Claws)",
         Index: "Trang-Oul's Claws",
         Enabled: true,
         Rarity: 7,
@@ -4972,23 +4972,23 @@ const json = [
         Code: "xmg",
         Properties: [
           {
-            PropertyString: "+2 to Curses (Necromancer only)",
+            PropertyString: "+2 詛咒 （只限死靈法師）",
             Index: 3
           },
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+30 Defense",
+            PropertyString: "+30 防禦",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +30%",
+            PropertyString: "冰寒抗性 +30%",
             Index: 2
           },
           {
-            PropertyString: "+25% to Poison Skill Damage",
+            PropertyString: "+25% 毒素技能傷害",
             Index: 4
           }
         ],
@@ -4998,7 +4998,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "37",
           EquipmentType: 0,
-          Name: "Heavy Bracers",
+          Name: "重型護腕 (Heavy Bracers)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 16,
@@ -5015,9 +5015,9 @@ const json = [
         Type: "Belt",
         "Set": "Trang-Oul's Avatar",
         SetPropertiesString: [
-          "Cold Resist +40% (3 Items)"
+          "冰寒抗性 +40% （3 件）"
         ],
-        Name: "Trang-Oul's Girth",
+        Name: "塔格奧之腹 (Trang-Oul's Girth)",
         Index: "Trang-Oul's Girth",
         Enabled: true,
         Rarity: 7,
@@ -5026,27 +5026,27 @@ const json = [
         Code: "utc",
         Properties: [
           {
-            PropertyString: "+75-100 Defense",
+            PropertyString: "+75-100 防禦",
             Index: 0
           },
           {
-            PropertyString: "+66 to Life",
+            PropertyString: "+66 生命",
             Index: 3
           },
           {
-            PropertyString: "+5 Replenish Life",
+            PropertyString: "生命回復 +5",
             Index: 2
           },
           {
-            PropertyString: "+25-50 to Mana",
+            PropertyString: "+25-50 法力",
             Index: 6
           },
           {
-            PropertyString: "Cannot Be Frozen",
+            PropertyString: "無法冰凍",
             Index: 4
           },
           {
-            PropertyString: "Requirements -40%",
+            PropertyString: "需求 -40%",
             Index: 5
           }
         ],
@@ -5056,7 +5056,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "126-138",
           EquipmentType: 0,
-          Name: "Troll Belt",
+          Name: "食人妖腰帶 (Troll Belt)",
           RequiredStrength: 151,
           RequiredDexterity: 0,
           Durability: 18,
@@ -5072,57 +5072,57 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "+18 to Fire Ball",
+        PropertyString: "+18 火球術",
         Index: 1
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 2
       },
       {
-        PropertyString: "+13 to Fire Wall",
+        PropertyString: "+13 火牆術",
         Index: 3
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 4
       },
       {
-        PropertyString: "+10 to Meteor",
+        PropertyString: "+10 隕石術",
         Index: 5
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to Necromancer Skill Levels",
+        PropertyString: "+3 死靈法師技能等級",
         Index: 1
       },
       {
-        PropertyString: "+3 to Fire Mastery",
+        PropertyString: "+3 火焰專精",
         Index: 6
       },
       {
-        PropertyString: "+20% Life stolen per hit",
+        PropertyString: "擊中竊取 20% 生命",
         Index: 7
       },
       {
-        PropertyString: "+200 Defense",
+        PropertyString: "+200 防禦",
         Index: 3
       },
       {
-        PropertyString: "+100 to Mana",
+        PropertyString: "+100 法力",
         Index: 2
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 5
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       }
     ],
@@ -5130,17 +5130,17 @@ const json = [
   },
   {
     Index: "M'avina's Battle Hymn",
-    Name: "M'avina's Battle Hymn",
+    Name: "馬維娜之戰鬥詩歌 (M'avina's Battle Hymn)",
     SetItems: [
       {
         Type: "Circlet",
         "Set": "M'avina's Battle Hymn",
         SetPropertiesString: [
-          "+1 to All Skills (2 Items)",
-          "+50% bonus to Attack Rating (3 Items)",
-          "All Resistances +25% (4 Items)"
+          "+1 所有技能 （2 件）",
+          "+50% 準確率加成 （3 件）",
+          "所有抗性 +25% （4 件）"
         ],
-        Name: "M'avina's True Sight",
+        Name: "馬維娜的真實之眼 (M'avina's True Sight)",
         Index: "M'avina's True Sight",
         Enabled: true,
         Rarity: 7,
@@ -5149,19 +5149,19 @@ const json = [
         Code: "ci3",
         Properties: [
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 2
           },
           {
-            PropertyString: "+150 Defense",
+            PropertyString: "+150 防禦",
             Index: 0
           },
           {
-            PropertyString: "+10 Replenish Life",
+            PropertyString: "生命回復 +10",
             Index: 1
           },
           {
-            PropertyString: "+25 to Mana",
+            PropertyString: "+25 法力",
             Index: 3
           }
         ],
@@ -5171,7 +5171,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "200",
           EquipmentType: 0,
-          Name: "Diadem",
+          Name: "權冠 (Diadem)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 20,
@@ -5188,9 +5188,9 @@ const json = [
         Type: "Armor",
         "Set": "M'avina's Battle Hymn",
         SetPropertiesString: [
-          "+30% Faster Hit Recovery (3 Items)"
+          "+30% 打擊恢復 （3 件）"
         ],
-        Name: "M'avina's Embrace",
+        Name: "馬維娜的擁抱 (M'avina's Embrace)",
         Index: "M'avina's Embrace",
         Enabled: true,
         Rarity: 7,
@@ -5199,27 +5199,27 @@ const json = [
         Code: "uld",
         Properties: [
           {
-            PropertyString: "10% Chance to cast level 3 Glacial Spike when struck",
+            PropertyString: "被擊中時有 10% 機率施展等級 3 冰川之槍",
             Index: 0
           },
           {
-            PropertyString: "+2 to Passive and Magic Skills (Amazon only)",
+            PropertyString: "+2 被動與魔法技能 （只限亞馬遜）",
             Index: 3
           },
           {
-            PropertyString: "+4 Defense (Per Character Level)",
+            PropertyString: "+4 防禦 （依角色等級而定）",
             Index: 4
           },
           {
-            PropertyString: "+350 Defense",
+            PropertyString: "+350 防禦",
             Index: 5
           },
           {
-            PropertyString: "Magic Damage Reduced by 5",
+            PropertyString: "魔法傷害降低 5",
             Index: 2
           },
           {
-            PropertyString: "Requirements -30%",
+            PropertyString: "需求 -30%",
             Index: 1
           }
         ],
@@ -5229,7 +5229,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "417",
           EquipmentType: 0,
-          Name: "Kraken Shell",
+          Name: "海怪之殼 (Kraken Shell)",
           RequiredStrength: 174,
           RequiredDexterity: 0,
           Durability: 48,
@@ -5246,10 +5246,10 @@ const json = [
         Type: "Gloves",
         "Set": "M'avina's Battle Hymn",
         SetPropertiesString: [
-          "Adds 131-252 to Cold Damage (4 Items)",
-          "+20% to Cold Skill Damage (5 Items)"
+          "增加 131-252 寒冰傷害 （4 件）",
+          "+20% 寒冰技能傷害 （5 件）"
         ],
-        Name: "M'avina's Icy Clutch",
+        Name: "馬維娜的冰握 (M'avina's Icy Clutch)",
         Index: "M'avina's Icy Clutch",
         Enabled: true,
         Rarity: 7,
@@ -5258,27 +5258,27 @@ const json = [
         Code: "xtg",
         Properties: [
           {
-            PropertyString: "Adds 6-18 to Cold Damage",
+            PropertyString: "增加 6-18 寒冰傷害",
             Index: 1
           },
           {
-            PropertyString: "+45-50 Defense",
+            PropertyString: "+45-50 防禦",
             Index: 0
           },
           {
-            PropertyString: "+10 to Strength",
+            PropertyString: "+10 力量",
             Index: 4
           },
           {
-            PropertyString: "+15 to Dexterity",
+            PropertyString: "+15 敏捷",
             Index: 5
           },
           {
-            PropertyString: "Half Freeze Duration",
+            PropertyString: "冰凍時間減半",
             Index: 2
           },
           {
-            PropertyString: "+56% extra gold from monsters",
+            PropertyString: "怪物金幣掉落量提高 +56%",
             Index: 3
           }
         ],
@@ -5288,7 +5288,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "140",
           EquipmentType: 0,
-          Name: "Battle Gauntlets",
+          Name: "戰鬥護手 (Battle Gauntlets)",
           RequiredStrength: 88,
           RequiredDexterity: 0,
           Durability: 18,
@@ -5305,9 +5305,9 @@ const json = [
         Type: "Belt",
         "Set": "M'avina's Battle Hymn",
         SetPropertiesString: [
-          "All Resistances +25% (4 Items)"
+          "所有抗性 +25% （4 件）"
         ],
-        Name: "M'avina's Tenet",
+        Name: "馬維娜的教義 (M'avina's Tenet)",
         Index: "M'avina's Tenet",
         Enabled: true,
         Rarity: 7,
@@ -5316,19 +5316,19 @@ const json = [
         Code: "zvb",
         Properties: [
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+5% Mana stolen per hit",
+            PropertyString: "擊中竊取 +5% 法力",
             Index: 2
           },
           {
-            PropertyString: "+50 Defense",
+            PropertyString: "+50 防禦",
             Index: 0
           },
           {
-            PropertyString: "+5 to Light Radius",
+            PropertyString: "照亮範圍 +5",
             Index: 3
           }
         ],
@@ -5338,7 +5338,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "73-83",
           EquipmentType: 0,
-          Name: "Sharkskin Belt",
+          Name: "鯊皮腰帶 (Sharkskin Belt)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 14,
@@ -5355,11 +5355,11 @@ const json = [
         Type: "Amazon Bow",
         "Set": "M'avina's Battle Hymn",
         SetPropertiesString: [
-          "10% Chance to cast level 15 Nova on striking (3 Items)",
-          "+2 to Bow and Crossbow Skills (Amazon only) (4 Items)",
-          "Adds 114-377 to Magic Damage (2 Items)"
+          "擊中時有 10% 機率施展等級 15 閃電新星 （3 件）",
+          "+2 弓與弩技能 （只限亞馬遜） （4 件）",
+          "增加 114-377 魔法傷害 （2 件）"
         ],
-        Name: "M'avina's Caster",
+        Name: "馬維娜的強弓 (M'avina's Caster)",
         Index: "M'avina's Caster",
         Enabled: true,
         Rarity: 7,
@@ -5368,19 +5368,19 @@ const json = [
         Code: "amc",
         Properties: [
           {
-            PropertyString: "+40% Increased Attack Speed",
+            PropertyString: "攻擊速度 +40%",
             Index: 1
           },
           {
-            PropertyString: "+188% Enhanced Damage",
+            PropertyString: "+188% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+1 Fires Magic Arrows",
+            PropertyString: "射出魔法箭矢 +1",
             Index: 2
           },
           {
-            PropertyString: "+50 to Attack Rating",
+            PropertyString: "+50 準確率",
             Index: 3
           }
         ],
@@ -5393,7 +5393,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Grand Matron Bow",
+          Name: "主母之弓 (Grand Matron Bow)",
           RequiredStrength: 108,
           RequiredDexterity: 152,
           Durability: 0,
@@ -5409,33 +5409,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 0
       },
       {
-        PropertyString: "+30 to Dexterity",
+        PropertyString: "+30 敏捷",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to Amazon Skill Levels",
+        PropertyString: "+3 亞馬遜技能等級",
         Index: 1
       },
       {
-        PropertyString: "+100 to Attack Rating",
+        PropertyString: "+100 準確率",
         Index: 3
       },
       {
-        PropertyString: "+100 Defense",
+        PropertyString: "+100 防禦",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 4
       }
     ],
@@ -5443,13 +5443,13 @@ const json = [
   },
   {
     Index: "The Disciple",
-    Name: "The Disciple",
+    Name: "門徒 (The Disciple)",
     SetItems: [
       {
         Type: "Amulet",
         "Set": "The Disciple",
         SetPropertiesString: [],
-        Name: "Telling of Beads",
+        Name: "誦唸珠 (Telling of Beads)",
         Index: "Telling of Beads",
         Enabled: true,
         Rarity: 1,
@@ -5458,26 +5458,26 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 1
           },
           {
-            PropertyString: "Cold Resist +18%",
+            PropertyString: "冰寒抗性 +18%",
             Index: 2
           },
           {
-            PropertyString: "Poison Resist +35-50%",
+            PropertyString: "毒素抗性 +35-50%",
             Index: 0
           },
           {
-            PropertyString: "Attacker Takes Damage of +8-10",
+            PropertyString: "攻擊者反傷 +8-10",
             Index: 3
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -5494,7 +5494,7 @@ const json = [
         Type: "Gloves",
         "Set": "The Disciple",
         SetPropertiesString: [],
-        Name: "Laying of Hands",
+        Name: "按手禮 (Laying of Hands)",
         Index: "Laying of Hands",
         Enabled: true,
         Rarity: 7,
@@ -5503,23 +5503,23 @@ const json = [
         Code: "ulg",
         Properties: [
           {
-            PropertyString: "10% Chance to cast level 3 Holy Bolt on striking",
+            PropertyString: "擊中時有 10% 機率施展等級 3 聖光彈",
             Index: 4
           },
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+350% Damage to Demons",
+            PropertyString: "+350% 對惡魔的傷害",
             Index: 3
           },
           {
-            PropertyString: "+25 Defense",
+            PropertyString: "+25 防禦",
             Index: 0
           },
           {
-            PropertyString: "Fire Resist +50%",
+            PropertyString: "火焰抗性 +50%",
             Index: 2
           }
         ],
@@ -5529,7 +5529,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "54",
           EquipmentType: 0,
-          Name: "Bramble Mitts",
+          Name: "荊棘手套 (Bramble Mitts)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 12,
@@ -5546,7 +5546,7 @@ const json = [
         Type: "Boots",
         "Set": "The Disciple",
         SetPropertiesString: [],
-        Name: "Rite of Passage",
+        Name: "入門式 (Rite of Passage)",
         Index: "Rite of Passage",
         Enabled: true,
         Rarity: 7,
@@ -5555,15 +5555,15 @@ const json = [
         Code: "xlb",
         Properties: [
           {
-            PropertyString: "+30% Faster Run/Walk",
+            PropertyString: "+30% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+25 Defense",
+            PropertyString: "+25 防禦",
             Index: 0
           },
           {
-            PropertyString: "Half Freeze Duration",
+            PropertyString: "冰凍時間減半",
             Index: 2
           }
         ],
@@ -5573,7 +5573,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "28",
           EquipmentType: 0,
-          Name: "Demonhide Boots",
+          Name: "魔皮長靴 (Demonhide Boots)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -5590,7 +5590,7 @@ const json = [
         Type: "Armor",
         "Set": "The Disciple",
         SetPropertiesString: [],
-        Name: "Dark Adherent",
+        Name: "隱門徒 (Dark Adherent)",
         Index: "Dark Adherent",
         Enabled: true,
         Rarity: 7,
@@ -5599,19 +5599,19 @@ const json = [
         Code: "uui",
         Properties: [
           {
-            PropertyString: "25% Chance to cast level 3 Nova when struck",
+            PropertyString: "被擊中時有 25% 機率施展等級 3 閃電新星",
             Index: 2
           },
           {
-            PropertyString: "Adds 25-35 Poison Damage Over 2 Seconds",
+            PropertyString: "增加 25-35 毒素傷害 Over 2 Seconds",
             Index: 3
           },
           {
-            PropertyString: "+305-415 Defense",
+            PropertyString: "+305-415 防禦",
             Index: 0
           },
           {
-            PropertyString: "Fire Resist +24%",
+            PropertyString: "火焰抗性 +24%",
             Index: 1
           }
         ],
@@ -5621,7 +5621,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "361",
           EquipmentType: 0,
-          Name: "Dusk Shroud",
+          Name: "灰暮罩衣 (Dusk Shroud)",
           RequiredStrength: 77,
           RequiredDexterity: 0,
           Durability: 20,
@@ -5638,7 +5638,7 @@ const json = [
         Type: "Belt",
         "Set": "The Disciple",
         SetPropertiesString: [],
-        Name: "Credendum",
+        Name: "守信條 (Credendum)",
         Index: "Credendum",
         Enabled: true,
         Rarity: 7,
@@ -5647,19 +5647,19 @@ const json = [
         Code: "umc",
         Properties: [
           {
-            PropertyString: "+50 Defense",
+            PropertyString: "+50 防禦",
             Index: 0
           },
           {
-            PropertyString: "+10 to Strength",
+            PropertyString: "+10 力量",
             Index: 1
           },
           {
-            PropertyString: "+10 to Dexterity",
+            PropertyString: "+10 敏捷",
             Index: 2
           },
           {
-            PropertyString: "All Resistances +15%",
+            PropertyString: "所有抗性 +15%",
             Index: 3
           }
         ],
@@ -5669,7 +5669,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "58",
           EquipmentType: 0,
-          Name: "Mithril Coil",
+          Name: "秘銀腰帶 (Mithril Coil)",
           RequiredStrength: 106,
           RequiredDexterity: 0,
           Durability: 16,
@@ -5685,33 +5685,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+150 Defense",
+        PropertyString: "+150 防禦",
         Index: 0
       },
       {
-        PropertyString: "+22 Poison Damage Over 3 Seconds",
+        PropertyString: "+22 毒素傷害，時效 3 秒",
         Index: 2
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 4
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 6
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 1
       },
       {
-        PropertyString: "+100 to Mana",
+        PropertyString: "+100 法力",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       }
     ],
@@ -5719,13 +5719,13 @@ const json = [
   },
   {
     Index: "Heaven's Brethren",
-    Name: "Heaven's Brethren",
+    Name: "天堂的同胞 (Heaven's Brethren)",
     SetItems: [
       {
         Type: "Mace",
         "Set": "Heaven's Brethren",
         SetPropertiesString: [],
-        Name: "Dangoon's Teaching",
+        Name: "檀君的教導 (Dangoon's Teaching)",
         Index: "Dangoon's Teaching",
         Enabled: true,
         Rarity: 7,
@@ -5734,19 +5734,19 @@ const json = [
         Code: "7ma",
         Properties: [
           {
-            PropertyString: "10% Chance to cast level 3 Frost Nova on striking",
+            PropertyString: "擊中時有 10% 機率施展等級 3 冰霜新星",
             Index: 2
           },
           {
-            PropertyString: "+40% Increased Attack Speed",
+            PropertyString: "攻擊速度 +40%",
             Index: 1
           },
           {
-            PropertyString: "+1.5 to Maximum Damage (Per Character Level)",
+            PropertyString: "+1.5 最大傷害 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "+20-30 to Minimum Fire Damage",
+            PropertyString: "增加 20-30 火焰傷害",
             Index: 3
           }
         ],
@@ -5759,7 +5759,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Reinforced Mace",
+          Name: "強化釘鎚 (Reinforced Mace)",
           RequiredStrength: 145,
           RequiredDexterity: 46,
           Durability: 250,
@@ -5776,7 +5776,7 @@ const json = [
         Type: "Shield",
         "Set": "Heaven's Brethren",
         SetPropertiesString: [],
-        Name: "Taebaek's Glory",
+        Name: "太白山的榮光 (Taebaek's Glory)",
         Index: "Taebaek's Glory",
         Enabled: true,
         Rarity: 7,
@@ -5785,31 +5785,31 @@ const json = [
         Code: "uts",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 4
           },
           {
-            PropertyString: "+30% Faster Block Rate",
+            PropertyString: "+30% 格擋速度",
             Index: 6
           },
           {
-            PropertyString: "+25% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +25%",
             Index: 5
           },
           {
-            PropertyString: "+50 Defense",
+            PropertyString: "+50 防禦",
             Index: 0
           },
           {
-            PropertyString: "+100 to Mana",
+            PropertyString: "+100 法力",
             Index: 1
           },
           {
-            PropertyString: "Lightning Resist +30%",
+            PropertyString: "電擊抗性 +30%",
             Index: 2
           },
           {
-            PropertyString: "Attacker Takes Damage of +30",
+            PropertyString: "攻擊者反傷 +30",
             Index: 3
           }
         ],
@@ -5819,7 +5819,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "203",
           EquipmentType: 0,
-          Name: "Ward",
+          Name: "庇護盾 (Ward)",
           RequiredStrength: 185,
           RequiredDexterity: 0,
           Durability: 0,
@@ -5836,7 +5836,7 @@ const json = [
         Type: "Armor",
         "Set": "Heaven's Brethren",
         SetPropertiesString: [],
-        Name: "Haemosu's Adamant",
+        Name: "解慕漱的堅決 (Haemosu's Adamant)",
         Index: "Haemosu's Adamant",
         Enabled: true,
         Rarity: 7,
@@ -5845,23 +5845,23 @@ const json = [
         Code: "xrs",
         Properties: [
           {
-            PropertyString: "+500 Defense",
+            PropertyString: "+500 防禦",
             Index: 0
           },
           {
-            PropertyString: "+40 Defense vs. Melee",
+            PropertyString: "+40 對近戰防禦",
             Index: 3
           },
           {
-            PropertyString: "+35 Defense vs. Missile",
+            PropertyString: "+35 對遠程防禦",
             Index: 1
           },
           {
-            PropertyString: "+75 to Life",
+            PropertyString: "+75 生命",
             Index: 2
           },
           {
-            PropertyString: "Requirements -20%",
+            PropertyString: "需求 -20%",
             Index: 4
           }
         ],
@@ -5871,7 +5871,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "688",
           EquipmentType: 0,
-          Name: "Cuirass",
+          Name: "護胸甲 (Cuirass)",
           RequiredStrength: 65,
           RequiredDexterity: 0,
           Durability: 50,
@@ -5888,7 +5888,7 @@ const json = [
         Type: "Helm",
         "Set": "Heaven's Brethren",
         SetPropertiesString: [],
-        Name: "Ondal's Almighty",
+        Name: "溫達的全靈 (Ondal's Almighty)",
         Index: "Ondal's Almighty",
         Enabled: true,
         Rarity: 7,
@@ -5897,27 +5897,27 @@ const json = [
         Code: "uhm",
         Properties: [
           {
-            PropertyString: "10% Chance to cast level 3 Weaken on striking",
+            PropertyString: "擊中時有 10% 機率施展等級 3 削弱",
             Index: 2
           },
           {
-            PropertyString: "+24% Faster Hit Recovery",
+            PropertyString: "+24% 打擊恢復",
             Index: 5
           },
           {
-            PropertyString: "+50 Defense",
+            PropertyString: "+50 防禦",
             Index: 0
           },
           {
-            PropertyString: "+10 to Strength",
+            PropertyString: "+10 力量",
             Index: 3
           },
           {
-            PropertyString: "+15 to Dexterity",
+            PropertyString: "+15 敏捷",
             Index: 4
           },
           {
-            PropertyString: "Requirements -40%",
+            PropertyString: "需求 -40%",
             Index: 1
           }
         ],
@@ -5927,7 +5927,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "293-327",
           EquipmentType: 0,
-          Name: "Spired Helm",
+          Name: "巨角頭盔 (Spired Helm)",
           RequiredStrength: 192,
           RequiredDexterity: 0,
           Durability: 40,
@@ -5943,37 +5943,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10% Life stolen per hit",
+        PropertyString: "擊中竊取 10% 生命",
         Index: 0
       },
       {
-        PropertyString: "+30 Replenish Life",
+        PropertyString: "生命回復 +30",
         Index: 2
       },
       {
-        PropertyString: "+3 to Maximum Fire Damage (Per Character Level)",
+        PropertyString: "增加 3 火焰傷害 （依角色等級而定）",
         Index: 3
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       },
       {
-        PropertyString: "+24% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +24%",
         Index: 4
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 2
       },
       {
-        PropertyString: "+5 to Light Radius",
+        PropertyString: "照亮範圍 +5",
         Index: 3
       }
     ],
@@ -5981,13 +5981,13 @@ const json = [
   },
   {
     Index: "Orphan's Call",
-    Name: "Orphan's Call",
+    Name: "孤兒的呼喚 (Orphan's Call)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Orphan's Call",
         SetPropertiesString: [],
-        Name: "Guillaume's Face",
+        Name: "吉永之臉 (Guillaume's Face)",
         Index: "Guillaume's Face",
         Enabled: true,
         Rarity: 7,
@@ -5996,23 +5996,23 @@ const json = [
         Code: "xhm",
         Properties: [
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+35% Chance of Crushing Blow",
+            PropertyString: "+35% 概率造成粉碎打擊",
             Index: 2
           },
           {
-            PropertyString: "+15% Deadly Strike",
+            PropertyString: "+15% 致命打擊",
             Index: 3
           },
           {
-            PropertyString: "+120% Enhanced Defense",
+            PropertyString: "+120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15 to Strength",
+            PropertyString: "+15 力量",
             Index: 4
           }
         ],
@@ -6022,7 +6022,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "189-232",
           EquipmentType: 0,
-          Name: "Winged Helm",
+          Name: "翼盔 (Winged Helm)",
           RequiredStrength: 115,
           RequiredDexterity: 0,
           Durability: 40,
@@ -6039,7 +6039,7 @@ const json = [
         Type: "Belt",
         "Set": "Orphan's Call",
         SetPropertiesString: [],
-        Name: "Wilhelm's Pride",
+        Name: "威廉的自尊 (Wilhelm's Pride)",
         Index: "Wilhelm's Pride",
         Enabled: true,
         Rarity: 7,
@@ -6048,19 +6048,19 @@ const json = [
         Code: "ztb",
         Properties: [
           {
-            PropertyString: "+5% Mana stolen per hit",
+            PropertyString: "擊中竊取 +5% 法力",
             Index: 1
           },
           {
-            PropertyString: "+5% Life stolen per hit",
+            PropertyString: "擊中竊取 5% 生命",
             Index: 3
           },
           {
-            PropertyString: "+75% Enhanced Defense",
+            PropertyString: "+75% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +10%",
+            PropertyString: "冰寒抗性 +10%",
             Index: 2
           }
         ],
@@ -6070,7 +6070,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "66-83",
           EquipmentType: 0,
-          Name: "Battle Belt",
+          Name: "戰鬥腰帶 (Battle Belt)",
           RequiredStrength: 88,
           RequiredDexterity: 0,
           Durability: 18,
@@ -6087,7 +6087,7 @@ const json = [
         Type: "Gloves",
         "Set": "Orphan's Call",
         SetPropertiesString: [],
-        Name: "Magnus' Skin",
+        Name: "馬格納斯之皮 (Magnus' Skin)",
         Index: "Magnus' Skin",
         Enabled: true,
         Rarity: 7,
@@ -6096,23 +6096,23 @@ const json = [
         Code: "xvg",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 2
           },
           {
-            PropertyString: "+100 to Attack Rating",
+            PropertyString: "+100 準確率",
             Index: 4
           },
           {
-            PropertyString: "+50% Enhanced Defense",
+            PropertyString: "+50% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Fire Resist +15%",
+            PropertyString: "火焰抗性 +15%",
             Index: 1
           },
           {
-            PropertyString: "+3 to Light Radius",
+            PropertyString: "照亮範圍 +3",
             Index: 3
           }
         ],
@@ -6122,7 +6122,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "51",
           EquipmentType: 0,
-          Name: "Sharkskin Gloves",
+          Name: "鯊皮手套 (Sharkskin Gloves)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 14,
@@ -6139,7 +6139,7 @@ const json = [
         Type: "Shield",
         "Set": "Orphan's Call",
         SetPropertiesString: [],
-        Name: "Whitstan's Guard",
+        Name: "惠斯坦的守護 (Whitstan's Guard)",
         Index: "Whitstan's Guard",
         Enabled: true,
         Rarity: 7,
@@ -6148,23 +6148,23 @@ const json = [
         Code: "xml",
         Properties: [
           {
-            PropertyString: "+40% Faster Block Rate",
+            PropertyString: "+40% 格擋速度",
             Index: 1
           },
           {
-            PropertyString: "+55% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +55%",
             Index: 2
           },
           {
-            PropertyString: "+175% Enhanced Defense",
+            PropertyString: "+175% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Half Freeze Duration",
+            PropertyString: "冰凍時間減半",
             Index: 3
           },
           {
-            PropertyString: "+5 to Light Radius",
+            PropertyString: "照亮範圍 +5",
             Index: 4
           }
         ],
@@ -6174,7 +6174,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "132",
           EquipmentType: 0,
-          Name: "Round Shield",
+          Name: "圓型盾 (Round Shield)",
           RequiredStrength: 53,
           RequiredDexterity: 0,
           Durability: 64,
@@ -6190,41 +6190,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+35 to Life",
+        PropertyString: "+35 生命",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +5",
+        PropertyString: "攻擊者反傷 +5",
         Index: 2
       },
       {
-        PropertyString: "+100 Defense",
+        PropertyString: "+100 防禦",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+100 Defense",
+        PropertyString: "+100 防禦",
         Index: 3
       },
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 2
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 1
       },
       {
-        PropertyString: "+50 to Life",
+        PropertyString: "+50 生命",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 4
       },
       {
-        PropertyString: "+80% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +80%",
         Index: 5
       }
     ],
@@ -6232,13 +6232,13 @@ const json = [
   },
   {
     Index: "Hwanin's Majesty",
-    Name: "Hwanin's Majesty",
+    Name: "桓因的威嚴 (Hwanin's Majesty)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Hwanin's Majesty",
         SetPropertiesString: [],
-        Name: "Hwanin's Splendor",
+        Name: "桓因的光輝 (Hwanin's Splendor)",
         Index: "Hwanin's Splendor",
         Enabled: true,
         Rarity: 7,
@@ -6247,19 +6247,19 @@ const json = [
         Code: "xrn",
         Properties: [
           {
-            PropertyString: "+100% Enhanced Defense",
+            PropertyString: "+100% 防禦強化",
             Index: 3
           },
           {
-            PropertyString: "+20 Replenish Life",
+            PropertyString: "生命回復 +20",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +37%",
+            PropertyString: "冰寒抗性 +37%",
             Index: 2
           },
           {
-            PropertyString: "Magic Damage Reduced by 10",
+            PropertyString: "魔法傷害降低 10",
             Index: 1
           }
         ],
@@ -6269,7 +6269,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "158",
           EquipmentType: 0,
-          Name: "Grand Crown",
+          Name: "莊嚴王冠 (Grand Crown)",
           RequiredStrength: 103,
           RequiredDexterity: 0,
           Durability: 50,
@@ -6286,7 +6286,7 @@ const json = [
         Type: "Armor",
         "Set": "Hwanin's Majesty",
         SetPropertiesString: [],
-        Name: "Hwanin's Refuge",
+        Name: "桓因的庇佑 (Hwanin's Refuge)",
         Index: "Hwanin's Refuge",
         Enabled: true,
         Rarity: 7,
@@ -6295,19 +6295,19 @@ const json = [
         Code: "xcl",
         Properties: [
           {
-            PropertyString: "10% Chance to cast level 3 Static Field when struck",
+            PropertyString: "被擊中時有 10% 機率施展等級 3 靜電力場",
             Index: 3
           },
           {
-            PropertyString: "+200 Defense",
+            PropertyString: "+200 防禦",
             Index: 0
           },
           {
-            PropertyString: "+100 to Life",
+            PropertyString: "+100 生命",
             Index: 2
           },
           {
-            PropertyString: "Poison Resist +27%",
+            PropertyString: "毒素抗性 +27%",
             Index: 1
           }
         ],
@@ -6317,7 +6317,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "477-548",
           EquipmentType: 0,
-          Name: "Tigulated Mail",
+          Name: "鎖鱗戰甲 (Tigulated Mail)",
           RequiredStrength: 86,
           RequiredDexterity: 0,
           Durability: 36,
@@ -6334,7 +6334,7 @@ const json = [
         Type: "Belt",
         "Set": "Hwanin's Majesty",
         SetPropertiesString: [],
-        Name: "Hwanin's Blessing",
+        Name: "桓因的祝福 (Hwanin's Blessing)",
         Index: "Hwanin's Blessing",
         Enabled: true,
         Rarity: 7,
@@ -6343,19 +6343,19 @@ const json = [
         Code: "mbl",
         Properties: [
           {
-            PropertyString: "Adds 3-33 to Lightning Damage",
+            PropertyString: "增加 3-33 電擊傷害",
             Index: 0
           },
           {
-            PropertyString: "Prevent Monster Heal",
+            PropertyString: "防止怪物自療",
             Index: 1
           },
           {
-            PropertyString: "+1.5 Defense (Per Character Level)",
+            PropertyString: "+1.5 防禦 （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "+12% Damage Taken Goes To Mana",
+            PropertyString: "+12% 受到的傷害轉為法力",
             Index: 3
           }
         ],
@@ -6365,7 +6365,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "5",
           EquipmentType: 0,
-          Name: "Belt",
+          Name: "腰帶 (Belt)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 16,
@@ -6382,7 +6382,7 @@ const json = [
         Type: "Polearm",
         "Set": "Hwanin's Majesty",
         SetPropertiesString: [],
-        Name: "Hwanin's Justice",
+        Name: "桓因的制裁 (Hwanin's Justice)",
         Index: "Hwanin's Justice",
         Enabled: true,
         Rarity: 7,
@@ -6391,27 +6391,27 @@ const json = [
         Code: "9vo",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 1
           },
           {
-            PropertyString: "10% Chance to cast level 3 Ice Blast on striking",
+            PropertyString: "擊中時有 10% 機率施展等級 3 寒冰球",
             Index: 2
           },
           {
-            PropertyString: "+40% Increased Attack Speed",
+            PropertyString: "攻擊速度 +40%",
             Index: 3
           },
           {
-            PropertyString: "+200% Enhanced Damage",
+            PropertyString: "+200% 傷害強化",
             Index: 4
           },
           {
-            PropertyString: "+330 to Attack Rating",
+            PropertyString: "+330 準確率",
             Index: 0
           },
           {
-            PropertyString: "Adds 5-25 to Lightning Damage",
+            PropertyString: "增加 5-25 電擊傷害",
             Index: 5
           }
         ],
@@ -6424,7 +6424,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Bill",
+          Name: "長柄鍥 (Bill)",
           RequiredStrength: 95,
           RequiredDexterity: 0,
           Durability: 0,
@@ -6440,29 +6440,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+100 Defense",
+        PropertyString: "+100 防禦",
         Index: 0
       },
       {
-        PropertyString: "+200 Defense",
+        PropertyString: "+200 防禦",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+30% Faster Run/Walk",
+        PropertyString: "+30% 跑步 / 行走速度",
         Index: 2
       },
       {
-        PropertyString: "+20% Life stolen per hit",
+        PropertyString: "擊中竊取 20% 生命",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 3
       }
     ],
@@ -6470,13 +6470,13 @@ const json = [
   },
   {
     Index: "Sazabi's Grand Tribute",
-    Name: "Sazabi's Grand Tribute",
+    Name: "沙薩比的崇高禮讚 (Sazabi's Grand Tribute)",
     SetItems: [
       {
         Type: "Sword",
         "Set": "Sazabi's Grand Tribute",
         SetPropertiesString: [],
-        Name: "Sazabi's Cobalt Redeemer",
+        Name: "沙薩比的救贖鈷劍 (Sazabi's Cobalt Redeemer)",
         Index: "Sazabi's Cobalt Redeemer",
         Enabled: true,
         Rarity: 7,
@@ -6485,31 +6485,31 @@ const json = [
         Code: "7ls",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 4
           },
           {
-            PropertyString: "+40% Increased Attack Speed",
+            PropertyString: "攻擊速度 +40%",
             Index: 2
           },
           {
-            PropertyString: "+150% Enhanced Damage",
+            PropertyString: "+150% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+318% Damage to Demons",
+            PropertyString: "+318% 對惡魔的傷害",
             Index: 3
           },
           {
-            PropertyString: "Adds 25-35 to Cold Damage",
+            PropertyString: "增加 25-35 寒冰傷害",
             Index: 1
           },
           {
-            PropertyString: "+5 to Strength",
+            PropertyString: "+5 力量",
             Index: 6
           },
           {
-            PropertyString: "+15 to Dexterity",
+            PropertyString: "+15 敏捷",
             Index: 5
           }
         ],
@@ -6522,7 +6522,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Cryptic Sword",
+          Name: "絕秘劍 (Cryptic Sword)",
           RequiredStrength: 99,
           RequiredDexterity: 109,
           Durability: 0,
@@ -6539,7 +6539,7 @@ const json = [
         Type: "Armor",
         "Set": "Sazabi's Grand Tribute",
         SetPropertiesString: [],
-        Name: "Sazabi's Ghost Liberator",
+        Name: "沙薩比的解靈框體 (Sazabi's Ghost Liberator)",
         Index: "Sazabi's Ghost Liberator",
         Enabled: true,
         Rarity: 7,
@@ -6548,23 +6548,23 @@ const json = [
         Code: "upl",
         Properties: [
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+300 to Attack Rating against Demons",
+            PropertyString: "+300 對惡魔的准确率",
             Index: 3
           },
           {
-            PropertyString: "+400 Defense",
+            PropertyString: "+400 防禦",
             Index: 0
           },
           {
-            PropertyString: "+25 to Strength",
+            PropertyString: "+25 力量",
             Index: 2
           },
           {
-            PropertyString: "+50-75 to Life",
+            PropertyString: "+50-75 生命",
             Index: 4
           }
         ],
@@ -6574,7 +6574,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1068-1233",
           EquipmentType: 0,
-          Name: "Balrog Skin",
+          Name: "炎魔皮板甲 (Balrog Skin)",
           RequiredStrength: 165,
           RequiredDexterity: 0,
           Durability: 30,
@@ -6591,7 +6591,7 @@ const json = [
         Type: "Helm",
         "Set": "Sazabi's Grand Tribute",
         SetPropertiesString: [],
-        Name: "Sazabi's Mental Sheath",
+        Name: "沙薩比的精神護罩 (Sazabi's Mental Sheath)",
         Index: "Sazabi's Mental Sheath",
         Enabled: true,
         Rarity: 7,
@@ -6600,19 +6600,19 @@ const json = [
         Code: "xhl",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 1
           },
           {
-            PropertyString: "+100 Defense",
+            PropertyString: "+100 防禦",
             Index: 0
           },
           {
-            PropertyString: "Lightning Resist +15-20%",
+            PropertyString: "電擊抗性 +15-20%",
             Index: 3
           },
           {
-            PropertyString: "Fire Resist +15-20%",
+            PropertyString: "火焰抗性 +15-20%",
             Index: 2
           }
         ],
@@ -6622,7 +6622,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "205-228",
           EquipmentType: 0,
-          Name: "Basinet",
+          Name: "輕盔 (Basinet)",
           RequiredStrength: 82,
           RequiredDexterity: 0,
           Durability: 30,
@@ -6638,33 +6638,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+40% Faster Run/Walk",
+        PropertyString: "+40% 跑步 / 行走速度",
         Index: 0
       },
       {
-        PropertyString: "Poison Length Reduced by 75%",
+        PropertyString: "中毒的時效縮短 75%",
         Index: 1
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 3
       },
       {
-        PropertyString: "+15% Life stolen per hit",
+        PropertyString: "擊中竊取 15% 生命",
         Index: 1
       },
       {
-        PropertyString: "+27% Increased Maximum Life",
+        PropertyString: "生命上限 +27%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "+16% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +16%",
         Index: 4
       }
     ],
@@ -6672,13 +6672,13 @@ const json = [
   },
   {
     Index: "Bul-Kathos' Children",
-    Name: "Bul-Kathos' Children",
+    Name: "布爾凱索的子嗣 (Bul-Kathos' Children)",
     SetItems: [
       {
         Type: "Sword",
         "Set": "Bul-Kathos' Children",
         SetPropertiesString: [],
-        Name: "Bul-Kathos' Sacred Charge",
+        Name: "布爾凱索的神聖職責 (Bul-Kathos' Sacred Charge)",
         Index: "Bul-Kathos' Sacred Charge",
         Enabled: true,
         Rarity: 7,
@@ -6687,19 +6687,19 @@ const json = [
         Code: "7gd",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 2
           },
           {
-            PropertyString: "+200% Enhanced Damage",
+            PropertyString: "+200% 傷害強化",
             Index: 3
           },
           {
-            PropertyString: "+35% Chance of Crushing Blow",
+            PropertyString: "+35% 概率造成粉碎打擊",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +20%",
+            PropertyString: "所有抗性 +20%",
             Index: 1
           }
         ],
@@ -6716,7 +6716,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Colossus Blade",
+          Name: "巨神刃 (Colossus Blade)",
           RequiredStrength: 189,
           RequiredDexterity: 110,
           Durability: 250,
@@ -6733,7 +6733,7 @@ const json = [
         Type: "Sword",
         "Set": "Bul-Kathos' Children",
         SetPropertiesString: [],
-        Name: "Bul-Kathos' Tribal Guardian",
+        Name: "布爾凱索的部族守護 (Bul-Kathos' Tribal Guardian)",
         Index: "Bul-Kathos' Tribal Guardian",
         Enabled: true,
         Rarity: 7,
@@ -6742,23 +6742,23 @@ const json = [
         Code: "7wd",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 2
           },
           {
-            PropertyString: "+200% Enhanced Damage",
+            PropertyString: "+200% 傷害強化",
             Index: 4
           },
           {
-            PropertyString: "+50 Poison Damage Over 2 Seconds",
+            PropertyString: "+50 毒素傷害，時效 2 秒",
             Index: 1
           },
           {
-            PropertyString: "+20 to Strength",
+            PropertyString: "+20 力量",
             Index: 3
           },
           {
-            PropertyString: "Fire Resist +50%",
+            PropertyString: "火焰抗性 +50%",
             Index: 0
           }
         ],
@@ -6771,7 +6771,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Mythical Sword",
+          Name: "秘儀劍 (Mythical Sword)",
           RequiredStrength: 147,
           RequiredDexterity: 124,
           Durability: 250,
@@ -6788,35 +6788,35 @@ const json = [
     PartialProperties: [],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 1
       },
       {
-        PropertyString: "+200 to Attack Rating",
+        PropertyString: "+200 準確率",
         Index: 2
       },
       {
-        PropertyString: "+200% Damage to Demons",
+        PropertyString: "+200% 對惡魔的傷害",
         Index: 5
       },
       {
-        PropertyString: "+200% Damage to Undead",
+        PropertyString: "+200% 對不死怪物的傷害",
         Index: 4
       },
       {
-        PropertyString: "+200 to Minimum Fire Damage",
+        PropertyString: "增加 200 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "+10% Life stolen per hit",
+        PropertyString: "擊中竊取 10% 生命",
         Index: 6
       },
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 7
       },
       {
-        PropertyString: "+200 Defense",
+        PropertyString: "+200 防禦",
         Index: 3
       }
     ],
@@ -6824,13 +6824,13 @@ const json = [
   },
   {
     Index: "Cow King's Leathers",
-    Name: "Cow King's Leathers",
+    Name: "牛王皮甲 (Cow King's Leathers)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Cow King's Leathers",
         SetPropertiesString: [],
-        Name: "Cow King's Horns",
+        Name: "牛王之角 (Cow King's Horns)",
         Index: "Cow King's Horns",
         Enabled: true,
         Rarity: 7,
@@ -6839,19 +6839,19 @@ const json = [
         Code: "xap",
         Properties: [
           {
-            PropertyString: "+75 Defense",
+            PropertyString: "+75 防禦",
             Index: 0
           },
           {
-            PropertyString: "Half Freeze Duration",
+            PropertyString: "冰凍時間減半",
             Index: 1
           },
           {
-            PropertyString: "Attacker Takes Damage of +10",
+            PropertyString: "攻擊者反傷 +10",
             Index: 3
           },
           {
-            PropertyString: "+35% Damage Taken Goes To Mana",
+            PropertyString: "+35% 受到的傷害轉為法力",
             Index: 2
           }
         ],
@@ -6861,7 +6861,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "80-92",
           EquipmentType: 0,
-          Name: "War Hat",
+          Name: "戰帽 (War Hat)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -6878,7 +6878,7 @@ const json = [
         Type: "Armor",
         "Set": "Cow King's Leathers",
         SetPropertiesString: [],
-        Name: "Cow King's Hide",
+        Name: "牛王之皮 (Cow King's Hide)",
         Index: "Cow King's Hide",
         Enabled: true,
         Rarity: 7,
@@ -6887,19 +6887,19 @@ const json = [
         Code: "stu",
         Properties: [
           {
-            PropertyString: "18% Chance to cast level 5 Chain Lightning when struck",
+            PropertyString: "被擊中時有 18% 機率施展等級 5 連鎖閃電",
             Index: 3
           },
           {
-            PropertyString: "+60% Enhanced Defense",
+            PropertyString: "+60% 防禦強化",
             Index: 1
           },
           {
-            PropertyString: "+30 to Life",
+            PropertyString: "+30 生命",
             Index: 2
           },
           {
-            PropertyString: "All Resistances +18%",
+            PropertyString: "所有抗性 +18%",
             Index: 0
           }
         ],
@@ -6909,7 +6909,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "67-82",
           EquipmentType: 0,
-          Name: "Studded Leather",
+          Name: "鑲釘皮甲 (Studded Leather)",
           RequiredStrength: 27,
           RequiredDexterity: 0,
           Durability: 32,
@@ -6926,7 +6926,7 @@ const json = [
         Type: "Boots",
         "Set": "Cow King's Leathers",
         SetPropertiesString: [],
-        Name: "Cow King's Hooves",
+        Name: "牛王之蹄 (Cow King's Hooves)",
         Index: "Cow King's Hooves",
         Enabled: true,
         Rarity: 7,
@@ -6935,23 +6935,23 @@ const json = [
         Code: "vbt",
         Properties: [
           {
-            PropertyString: "+30% Faster Run/Walk",
+            PropertyString: "+30% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "Adds 25-35 to Fire Damage",
+            PropertyString: "增加 25-35 火焰傷害",
             Index: 4
           },
           {
-            PropertyString: "+25-35 Defense",
+            PropertyString: "+25-35 防禦",
             Index: 0
           },
           {
-            PropertyString: "+20 to Dexterity",
+            PropertyString: "+20 敏捷",
             Index: 3
           },
           {
-            PropertyString: "+25% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +25%",
             Index: 2
           }
         ],
@@ -6961,7 +6961,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "30-40",
           EquipmentType: 0,
-          Name: "Heavy Boots",
+          Name: "重靴 (Heavy Boots)",
           RequiredStrength: 18,
           RequiredDexterity: 0,
           Durability: 14,
@@ -6977,41 +6977,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10 to Tectonic Slam",
+        PropertyString: "+10 地震猛擊",
         Index: 0
       },
       {
-        PropertyString: "+100 Defense",
+        PropertyString: "+100 防禦",
         Index: 1
       }
     ],
     FullProperties: [
       {
-        PropertyString: "25% Chance to cast level 5 Static Field when struck",
+        PropertyString: "被擊中時有 25% 機率施展等級 5 靜電力場",
         Index: 4
       },
       {
-        PropertyString: "+2-3 to All Skills",
+        PropertyString: "+2-3 所有技能",
         Index: 7
       },
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 5
       },
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 1
       },
       {
-        PropertyString: "+100 to Life",
+        PropertyString: "+100 生命",
         Index: 6
       },
       {
-        PropertyString: "+100% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +100%",
         Index: 2
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 3
       }
     ],
@@ -7019,13 +7019,13 @@ const json = [
   },
   {
     Index: "Naj's Ancient Vestige",
-    Name: "Naj's Ancient Vestige",
+    Name: "娜吉的上古遺物 (Naj's Ancient Vestige)",
     SetItems: [
       {
         Type: "Staff",
         "Set": "Naj's Ancient Vestige",
         SetPropertiesString: [],
-        Name: "Naj's Puzzler",
+        Name: "娜吉的解謎杖 (Naj's Puzzler)",
         Index: "Naj's Puzzler",
         Enabled: true,
         Rarity: 7,
@@ -7034,31 +7034,31 @@ const json = [
         Code: "6cs",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 6
           },
           {
-            PropertyString: "+150% Enhanced Damage",
+            PropertyString: "+150% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "+30% Faster Cast Rate",
+            PropertyString: "+30% 施法速度",
             Index: 3
           },
           {
-            PropertyString: "Adds 6-45 to Lightning Damage",
+            PropertyString: "增加 6-45 電擊傷害",
             Index: 4
           },
           {
-            PropertyString: "+35 to Energy",
+            PropertyString: "+35 能量",
             Index: 0
           },
           {
-            PropertyString: "+70 to Mana",
+            PropertyString: "+70 法力",
             Index: 5
           },
           {
-            PropertyString: "Level 11 Teleport (69 Charges)",
+            PropertyString: "等級 11 傳送術（69 次）",
             Index: 2
           }
         ],
@@ -7071,7 +7071,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Elder Staff",
+          Name: "長者法杖 (Elder Staff)",
           RequiredStrength: 44,
           RequiredDexterity: 37,
           Durability: 250,
@@ -7088,7 +7088,7 @@ const json = [
         Type: "Armor",
         "Set": "Naj's Ancient Vestige",
         SetPropertiesString: [],
-        Name: "Naj's Light Plate",
+        Name: "娜吉的輕鎧 (Naj's Light Plate)",
         Index: "Naj's Light Plate",
         Enabled: true,
         Rarity: 7,
@@ -7097,27 +7097,27 @@ const json = [
         Code: "ult",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 4
           },
           {
-            PropertyString: "+300 Defense",
+            PropertyString: "+300 防禦",
             Index: 5
           },
           {
-            PropertyString: "+65 to Life",
+            PropertyString: "+65 生命",
             Index: 1
           },
           {
-            PropertyString: "All Resistances +25%",
+            PropertyString: "所有抗性 +25%",
             Index: 2
           },
           {
-            PropertyString: "+45% Damage Taken Goes To Mana",
+            PropertyString: "+45% 受到的傷害轉為法力",
             Index: 3
           },
           {
-            PropertyString: "Requirements -60%",
+            PropertyString: "需求 -60%",
             Index: 0
           }
         ],
@@ -7127,7 +7127,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "844-949",
           EquipmentType: 0,
-          Name: "Hellforge Plate",
+          Name: "地獄鍛甲 (Hellforge Plate)",
           RequiredStrength: 196,
           RequiredDexterity: 0,
           Durability: 60,
@@ -7144,7 +7144,7 @@ const json = [
         Type: "Circlet",
         "Set": "Naj's Ancient Vestige",
         SetPropertiesString: [],
-        Name: "Naj's Circlet",
+        Name: "娜吉的頭環 (Naj's Circlet)",
         Index: "Naj's Circlet",
         Enabled: true,
         Rarity: 7,
@@ -7153,23 +7153,23 @@ const json = [
         Code: "ci0",
         Properties: [
           {
-            PropertyString: "12% Chance to cast level 5 Chain Lightning when struck",
+            PropertyString: "被擊中時有 12% 機率施展等級 5 連鎖閃電",
             Index: 4
           },
           {
-            PropertyString: "Adds 25-35 to Fire Damage",
+            PropertyString: "增加 25-35 火焰傷害",
             Index: 1
           },
           {
-            PropertyString: "+75 Defense",
+            PropertyString: "+75 防禦",
             Index: 0
           },
           {
-            PropertyString: "+15 to Strength",
+            PropertyString: "+15 力量",
             Index: 3
           },
           {
-            PropertyString: "+5 to Light Radius",
+            PropertyString: "照亮範圍 +5",
             Index: 2
           }
         ],
@@ -7179,7 +7179,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "20",
           EquipmentType: 0,
-          Name: "Circlet",
+          Name: "頭環 (Circlet)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 35,
@@ -7195,45 +7195,45 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+175 Defense",
+        PropertyString: "+175 防禦",
         Index: 0
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item (Per Character Level)",
+        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
         Index: 1
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+2 to Fire Skills",
+        PropertyString: "+2 火焰技能",
         Index: 6
       },
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 4
       },
       {
-        PropertyString: "+15 to Dexterity",
+        PropertyString: "+15 敏捷",
         Index: 2
       },
       {
-        PropertyString: "+12% Increased Maximum Life",
+        PropertyString: "生命上限 +12%",
         Index: 7
       },
       {
-        PropertyString: "+20 Replenish Life",
+        PropertyString: "生命回復 +20",
         Index: 1
       },
       {
-        PropertyString: "+100 to Mana",
+        PropertyString: "+100 法力",
         Index: 5
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 3
       }
     ],
@@ -7241,13 +7241,13 @@ const json = [
   },
   {
     Index: "Sander's Folly",
-    Name: "Sander's Folly",
+    Name: "山德的愚行 (Sander's Folly)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Sander's Folly",
         SetPropertiesString: [],
-        Name: "Sander's Paragon",
+        Name: "山德的模範 (Sander's Paragon)",
         Index: "Sander's Paragon",
         Enabled: true,
         Rarity: 3,
@@ -7256,15 +7256,15 @@ const json = [
         Code: "cap",
         Properties: [
           {
-            PropertyString: "+1 Defense (Per Character Level)",
+            PropertyString: "+1 防禦 （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "Attacker Takes Damage of +8",
+            PropertyString: "攻擊者反傷 +8",
             Index: 1
           },
           {
-            PropertyString: "+35% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +35%",
             Index: 0
           }
         ],
@@ -7274,7 +7274,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "18-28",
           EquipmentType: 0,
-          Name: "Cap",
+          Name: "便帽 (Cap)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 12,
@@ -7291,7 +7291,7 @@ const json = [
         Type: "Boots",
         "Set": "Sander's Folly",
         SetPropertiesString: [],
-        Name: "Sander's Riprap",
+        Name: "山德的碎石 (Sander's Riprap)",
         Index: "Sander's Riprap",
         Enabled: true,
         Rarity: 7,
@@ -7300,19 +7300,19 @@ const json = [
         Code: "vbt",
         Properties: [
           {
-            PropertyString: "+40% Faster Run/Walk",
+            PropertyString: "+40% 跑步 / 行走速度",
             Index: 0
           },
           {
-            PropertyString: "+100 to Attack Rating",
+            PropertyString: "+100 準確率",
             Index: 1
           },
           {
-            PropertyString: "+5 to Strength",
+            PropertyString: "+5 力量",
             Index: 2
           },
           {
-            PropertyString: "+10 to Dexterity",
+            PropertyString: "+10 敏捷",
             Index: 3
           }
         ],
@@ -7322,7 +7322,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "30-40",
           EquipmentType: 0,
-          Name: "Heavy Boots",
+          Name: "重靴 (Heavy Boots)",
           RequiredStrength: 18,
           RequiredDexterity: 0,
           Durability: 14,
@@ -7339,7 +7339,7 @@ const json = [
         Type: "Gloves",
         "Set": "Sander's Folly",
         SetPropertiesString: [],
-        Name: "Sander's Taboo",
+        Name: "山德的禁忌 (Sander's Taboo)",
         Index: "Sander's Taboo",
         Enabled: true,
         Rarity: 7,
@@ -7348,19 +7348,19 @@ const json = [
         Code: "vgl",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "Adds 9-11 Poison Damage Over 3 Seconds",
+            PropertyString: "增加 9-11 毒素傷害 Over 3 Seconds",
             Index: 3
           },
           {
-            PropertyString: "+20-25 Defense",
+            PropertyString: "+20-25 防禦",
             Index: 0
           },
           {
-            PropertyString: "+40 to Life",
+            PropertyString: "+40 生命",
             Index: 2
           }
         ],
@@ -7370,7 +7370,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "25-35",
           EquipmentType: 0,
-          Name: "Heavy Gloves",
+          Name: "厚皮手套 (Heavy Gloves)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 14,
@@ -7387,7 +7387,7 @@ const json = [
         Type: "Wand",
         "Set": "Sander's Folly",
         SetPropertiesString: [],
-        Name: "Sander's Superstition",
+        Name: "山德的迷信 (Sander's Superstition)",
         Index: "Sander's Superstition",
         Enabled: true,
         Rarity: 7,
@@ -7396,23 +7396,23 @@ const json = [
         Code: "bwn",
         Properties: [
           {
-            PropertyString: "+75% Enhanced Damage",
+            PropertyString: "+75% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 3
           },
           {
-            PropertyString: "Adds 25-75 to Cold Damage",
+            PropertyString: "增加 25-75 寒冰傷害",
             Index: 4
           },
           {
-            PropertyString: "+8% Mana stolen per hit",
+            PropertyString: "擊中竊取 +8% 法力",
             Index: 2
           },
           {
-            PropertyString: "+25 to Mana",
+            PropertyString: "+25 法力",
             Index: 1
           }
         ],
@@ -7425,7 +7425,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Bone Wand",
+          Name: "骸骨魔杖 (Bone Wand)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 250,
@@ -7441,29 +7441,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50 Defense",
+        PropertyString: "+50 防禦",
         Index: 0
       },
       {
-        PropertyString: "+75 to Attack Rating",
+        PropertyString: "+75 準確率",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+4% Life stolen per hit",
+        PropertyString: "擊中竊取 4% 生命",
         Index: 3
       },
       {
-        PropertyString: "+50 to Mana",
+        PropertyString: "+50 法力",
         Index: 2
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -7471,15 +7471,15 @@ const json = [
   },
   {
     Index: "Midnight Calling",
-    Name: "Midnight Calling",
+    Name: "午夜召喚 (Midnight Calling)",
     SetItems: [
       {
         Type: "Hand to Hand",
         "Set": "Midnight Calling",
         SetPropertiesString: [
-          "+15 to Minimum Damage (2 Items)"
+          "+15 最小傷害 （2 件）"
         ],
-        Name: "Jakira's Strike",
+        Name: "雅基拉的襲擊 (Jakira's Strike)",
         Index: "Jakira's Strike",
         Enabled: true,
         Rarity: 7,
@@ -7488,11 +7488,11 @@ const json = [
         Code: "axf",
         Properties: [
           {
-            PropertyString: "+120% Enhanced Damage",
+            PropertyString: "+120% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+5% Life stolen per hit",
+            PropertyString: "擊中竊取 5% 生命",
             Index: 1
           }
         ],
@@ -7505,7 +7505,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Hatchet Hands",
+          Name: "斧手 (Hatchet Hands)",
           RequiredStrength: 37,
           RequiredDexterity: 37,
           Durability: 250,
@@ -7522,9 +7522,9 @@ const json = [
         Type: "Gloves",
         "Set": "Midnight Calling",
         SetPropertiesString: [
-          "+2 to Traps (Assassin only) (3 Items)"
+          "+2 陷阱 （只限刺客） （3 件）"
         ],
-        Name: "Jakira's Braces",
+        Name: "雅基拉的手套 (Jakira's Braces)",
         Index: "Jakira's Braces",
         Enabled: true,
         Rarity: 7,
@@ -7533,15 +7533,15 @@ const json = [
         Code: "mgl",
         Properties: [
           {
-            PropertyString: "+10% Increased Attack Speed",
+            PropertyString: "攻擊速度 +10%",
             Index: 0
           },
           {
-            PropertyString: "+75% Enhanced Defense",
+            PropertyString: "+75% 防禦強化",
             Index: 1
           },
           {
-            PropertyString: "+25-35 to Life",
+            PropertyString: "+25-35 生命",
             Index: 2
           }
         ],
@@ -7551,7 +7551,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "15",
           EquipmentType: 0,
-          Name: "Chain Gloves",
+          Name: "鍊甲手套 (Chain Gloves)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 16,
@@ -7568,9 +7568,9 @@ const json = [
         Type: "Helm",
         "Set": "Midnight Calling",
         SetPropertiesString: [
-          "Magic Damage Reduced by 6 (2 Items)"
+          "魔法傷害降低 6 （2 件）"
         ],
-        Name: "Jakira's Hood",
+        Name: "雅基拉的頭巾 (Jakira's Hood)",
         Index: "Jakira's Hood",
         Enabled: true,
         Rarity: 7,
@@ -7579,15 +7579,15 @@ const json = [
         Code: "cap",
         Properties: [
           {
-            PropertyString: "+1 to Assassin Skill Levels",
+            PropertyString: "+1 刺客技能等級",
             Index: 0
           },
           {
-            PropertyString: "+15-25 Defense",
+            PropertyString: "+15-25 防禦",
             Index: 1
           },
           {
-            PropertyString: "+20-30 to Mana",
+            PropertyString: "+20-30 法力",
             Index: 2
           }
         ],
@@ -7597,7 +7597,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "18-28",
           EquipmentType: 0,
-          Name: "Cap",
+          Name: "便帽 (Cap)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 12,
@@ -7614,9 +7614,9 @@ const json = [
         Type: "Armor",
         "Set": "Midnight Calling",
         SetPropertiesString: [
-          "Damage Reduced by 8 (3 Items)"
+          "物理傷害降低 8 （3 件）"
         ],
-        Name: "Jakira's Leather Jerkin",
+        Name: "雅基拉的皮甲 (Jakira's Leather Jerkin)",
         Index: "Jakira's Leather Jerkin",
         Enabled: true,
         Rarity: 7,
@@ -7625,15 +7625,15 @@ const json = [
         Code: "stu",
         Properties: [
           {
-            PropertyString: "+35-50 Defense",
+            PropertyString: "+35-50 防禦",
             Index: 0
           },
           {
-            PropertyString: "+15 to Strength",
+            PropertyString: "+15 力量",
             Index: 2
           },
           {
-            PropertyString: "+15 to Dexterity",
+            PropertyString: "+15 敏捷",
             Index: 1
           }
         ],
@@ -7643,7 +7643,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "67-82",
           EquipmentType: 0,
-          Name: "Studded Leather",
+          Name: "鑲釘皮甲 (Studded Leather)",
           RequiredStrength: 27,
           RequiredDexterity: 0,
           Durability: 32,
@@ -7659,29 +7659,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to Assassin Skill Levels",
+        PropertyString: "+1 刺客技能等級",
         Index: 0
       },
       {
-        PropertyString: "+15% Increased Attack Speed",
+        PropertyString: "攻擊速度 +15%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +20%",
+        PropertyString: "所有抗性 +20%",
         Index: 3
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -7689,13 +7689,13 @@ const json = [
   },
   {
     Index: "Nature's Grove",
-    Name: "Nature's Grove",
+    Name: "自然叢林 (Nature's Grove)",
     SetItems: [
       {
         Type: "Ring",
         "Set": "Nature's Grove",
         SetPropertiesString: [],
-        Name: "Peace Ring",
+        Name: "平和之戒指 (Peace Ring)",
         Index: "Peace Ring",
         Enabled: true,
         Rarity: 5,
@@ -7704,18 +7704,18 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+40-50 to Life",
+            PropertyString: "+40-50 生命",
             Index: 1
           },
           {
-            PropertyString: "+40-50 to Mana",
+            PropertyString: "+40-50 法力",
             Index: 0
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -7732,9 +7732,9 @@ const json = [
         Type: "Hammer",
         "Set": "Nature's Grove",
         SetPropertiesString: [
-          "Adds 10-30 to Cold Damage (2 Items)"
+          "增加 10-30 寒冰傷害 （2 件）"
         ],
-        Name: "Balance of Power",
+        Name: "力量的平衡 (Balance of Power)",
         Index: "Balance of Power",
         Enabled: true,
         Rarity: 7,
@@ -7743,11 +7743,11 @@ const json = [
         Code: "mau",
         Properties: [
           {
-            PropertyString: "+15% Increased Attack Speed",
+            PropertyString: "攻擊速度 +15%",
             Index: 1
           },
           {
-            PropertyString: "+140-200% Enhanced Damage",
+            PropertyString: "+140-200% 傷害強化",
             Index: 0
           }
         ],
@@ -7760,7 +7760,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Maul",
+          Name: "重鎚 (Maul)",
           RequiredStrength: 69,
           RequiredDexterity: 0,
           Durability: 250,
@@ -7777,10 +7777,10 @@ const json = [
         Type: "Armor",
         "Set": "Nature's Grove",
         SetPropertiesString: [
-          "+3 Replenish Life (3 Items)",
-          "Regenerate Mana +75% (4 Items)"
+          "生命回復 +3 （3 件）",
+          "法力恢復 75% （4 件）"
         ],
-        Name: "Calming Embrace",
+        Name: "平静的擁抱 (Calming Embrace)",
         Index: "Calming Embrace",
         Enabled: true,
         Rarity: 7,
@@ -7789,11 +7789,11 @@ const json = [
         Code: "hla",
         Properties: [
           {
-            PropertyString: "+1-3 to Summoning Skills (Druid only)",
+            PropertyString: "+1-3 召喚技能 （只限德魯伊）",
             Index: 1
           },
           {
-            PropertyString: "+80-120% Enhanced Defense",
+            PropertyString: "+80-120% 防禦強化",
             Index: 0
           }
         ],
@@ -7803,7 +7803,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "39-48",
           EquipmentType: 0,
-          Name: "Hard Leather Armor",
+          Name: "硬皮甲 (Hard Leather Armor)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 28,
@@ -7820,9 +7820,9 @@ const json = [
         Type: "Pelt",
         "Set": "Nature's Grove",
         SetPropertiesString: [
-          "+4 to Lycanthropy (Druid Only) (4 Items)"
+          "+4 變形術（只限德魯伊） （4 件）"
         ],
-        Name: "Animal Kinship",
+        Name: "動物的親和 (Animal Kinship)",
         Index: "Animal Kinship",
         Enabled: true,
         Rarity: 7,
@@ -7831,11 +7831,11 @@ const json = [
         Code: "dr3",
         Properties: [
           {
-            PropertyString: "+1 to Druid Skill Levels",
+            PropertyString: "+1 德魯伊技能等級",
             Index: 1
           },
           {
-            PropertyString: "+30-40 Defense",
+            PropertyString: "+30-40 防禦",
             Index: 0
           }
         ],
@@ -7845,7 +7845,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "48-58",
           EquipmentType: 0,
-          Name: "Antlers        ",
+          Name: "巨角獸帽 (Antlers)",
           RequiredStrength: 24,
           RequiredDexterity: 0,
           Durability: 20,
@@ -7861,29 +7861,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to Elemental Skills (Druid only)",
+        PropertyString: "+1 元素技能 （只限德魯伊）",
         Index: 2
       },
       {
-        PropertyString: "+1 to Druid Skill Levels",
+        PropertyString: "+1 德魯伊技能等級",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 3
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -7891,15 +7891,15 @@ const json = [
   },
   {
     Index: "Grimlock's Grave",
-    Name: "Grimlock's Grave",
+    Name: "格里姆洛克的坟墓 (Grimlock's Grave)",
     SetItems: [
       {
         Type: "Voodoo Heads",
         "Set": "Grimlock's Grave",
         SetPropertiesString: [
-          "+100% Enhanced Defense (2 Items)"
+          "+100% 防禦強化 （2 件）"
         ],
-        Name: "Grimlock's Skull",
+        Name: "格里姆洛克的頭骨 (Grimlock's Skull)",
         Index: "Grimlock's Skull",
         Enabled: true,
         Rarity: 7,
@@ -7908,11 +7908,11 @@ const json = [
         Code: "ne2",
         Properties: [
           {
-            PropertyString: "+20% Faster Block Rate",
+            PropertyString: "+20% 格擋速度",
             Index: 1
           },
           {
-            PropertyString: "+25-30% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +25-30%",
             Index: 0
           }
         ],
@@ -7922,7 +7922,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "4",
           EquipmentType: 0,
-          Name: "Zombie Head",
+          Name: "殭屍頭顱 (Zombie Head)",
           RequiredStrength: 14,
           RequiredDexterity: 0,
           Durability: 20,
@@ -7939,9 +7939,9 @@ const json = [
         Type: "Wand",
         "Set": "Grimlock's Grave",
         SetPropertiesString: [
-          "Adds 8-20 to Damage (3 Items)"
+          "增加 8-20 傷害 （3 件）"
         ],
-        Name: "Grimlock's Wand",
+        Name: "格里姆洛克的魔杖 (Grimlock's Wand)",
         Index: "Grimlock's Wand",
         Enabled: true,
         Rarity: 7,
@@ -7950,11 +7950,11 @@ const json = [
         Code: "bwn",
         Properties: [
           {
-            PropertyString: "+1 to Necromancer Skill Levels",
+            PropertyString: "+1 死靈法師技能等級",
             Index: 0
           },
           {
-            PropertyString: "+33 to Mana",
+            PropertyString: "+33 法力",
             Index: 1
           }
         ],
@@ -7967,7 +7967,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Bone Wand",
+          Name: "骸骨魔杖 (Bone Wand)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 250,
@@ -7984,10 +7984,10 @@ const json = [
         Type: "Armor",
         "Set": "Grimlock's Grave",
         SetPropertiesString: [
-          "+77 Defense (2 Items)",
-          "Regenerate Mana +40% (3 Items)"
+          "+77 防禦 （2 件）",
+          "法力恢復 40% （3 件）"
         ],
-        Name: "Grimlock's Shroud",
+        Name: "格里姆洛克的裹尸布 (Grimlock's Shroud)",
         Index: "Grimlock's Shroud",
         Enabled: true,
         Rarity: 7,
@@ -7996,11 +7996,11 @@ const json = [
         Code: "qui",
         Properties: [
           {
-            PropertyString: "15% Chance to cast level 2 Frost Nova when struck",
+            PropertyString: "被擊中時有 15% 機率施展等級 2 冰霜新星",
             Index: 1
           },
           {
-            PropertyString: "+10% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10%",
             Index: 0
           }
         ],
@@ -8010,7 +8010,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "8",
           EquipmentType: 0,
-          Name: "Quilted Armor",
+          Name: "棉布甲 (Quilted Armor)",
           RequiredStrength: 12,
           RequiredDexterity: 0,
           Durability: 20,
@@ -8027,9 +8027,9 @@ const json = [
         Type: "Belt",
         "Set": "Grimlock's Grave",
         SetPropertiesString: [
-          "+20 Defense (2 Items)"
+          "+20 防禦 （2 件）"
         ],
-        Name: "Grimlock's Belt",
+        Name: "格里姆洛克的腰带 (Grimlock's Belt)",
         Index: "Grimlock's Belt",
         Enabled: true,
         Rarity: 7,
@@ -8038,11 +8038,11 @@ const json = [
         Code: "mbl",
         Properties: [
           {
-            PropertyString: "+15% Faster Hit Recovery",
+            PropertyString: "+15% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+20-25 to Life",
+            PropertyString: "+20-25 生命",
             Index: 0
           }
         ],
@@ -8052,7 +8052,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "5",
           EquipmentType: 0,
-          Name: "Belt",
+          Name: "腰帶 (Belt)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 16,
@@ -8068,29 +8068,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to Necromancer Skill Levels",
+        PropertyString: "+1 死靈法師技能等級",
         Index: 0
       },
       {
-        PropertyString: "-10% to Enemy Poison Resistance",
+        PropertyString: "敵人毒素抗性 -10%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 3
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -8098,17 +8098,17 @@ const json = [
   },
   {
     Index: "Corgina's Element",
-    Name: "Corgina's Element",
+    Name: "科爾吉娜的元素 (Corgina's Element)",
     SetItems: [
       {
         Type: "Orb",
         "Set": "Corgina's Element",
         SetPropertiesString: [
-          "+1 to Cold Skills (Sorceress only) (2 Items)",
-          "+1 to Lightning Skills (Sorceress only) (3 Items)",
-          "+1 to Fire Skills (Sorceress only) (4 Items)"
+          "+1 冰寒技能 （只限魔法使） （2 件）",
+          "+1 閃電技能 （只限魔法使） （3 件）",
+          "+1 火焰技能 （只限魔法使） （4 件）"
         ],
-        Name: "Corgina's Orb",
+        Name: "科爾吉娜的法球 (Corgina's Orb)",
         Index: "Corgina's Orb",
         Enabled: true,
         Rarity: 7,
@@ -8117,11 +8117,11 @@ const json = [
         Code: "ob2",
         Properties: [
           {
-            PropertyString: "+1 to Sorceress Skill Levels",
+            PropertyString: "+1 魔法使技能等級",
             Index: 0
           },
           {
-            PropertyString: "+2-4 to Mana after each Kill",
+            PropertyString: "+2-4 擊殺法力恢復",
             Index: 1
           }
         ],
@@ -8134,7 +8134,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Sacred Globe",
+          Name: "神聖天球 (Sacred Globe)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 250,
@@ -8151,10 +8151,10 @@ const json = [
         Type: "Armor",
         "Set": "Corgina's Element",
         SetPropertiesString: [
-          "+1 to Mana (Per Character Level) (3 Items)",
-          "+10% Damage Taken Goes To Mana (2 Items)"
+          "+1 法力 （依角色等級而定） （3 件）",
+          "+10% 受到的傷害轉為法力 （2 件）"
         ],
-        Name: "Corgina's Plate",
+        Name: "科爾吉娜的板甲 (Corgina's Plate)",
         Index: "Corgina's Plate",
         Enabled: true,
         Rarity: 7,
@@ -8163,11 +8163,11 @@ const json = [
         Code: "ltp",
         Properties: [
           {
-            PropertyString: "+75-105% Enhanced Defense",
+            PropertyString: "+75-105% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +20%",
+            PropertyString: "所有抗性 +20%",
             Index: 1
           }
         ],
@@ -8177,7 +8177,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "159-186",
           EquipmentType: 0,
-          Name: "Light Plate",
+          Name: "輕型鎧甲 (Light Plate)",
           RequiredStrength: 41,
           RequiredDexterity: 0,
           Durability: 60,
@@ -8194,11 +8194,11 @@ const json = [
         Type: "Shield",
         "Set": "Corgina's Element",
         SetPropertiesString: [
-          "+15% Faster Block Rate (2 Items)",
-          "Cold Resist +20% (3 Items)",
-          "Lightning Resist +20% (4 Items)"
+          "+15% 格擋速度 （2 件）",
+          "冰寒抗性 +20% （3 件）",
+          "電擊抗性 +20% （4 件）"
         ],
-        Name: "Corgina's Ward",
+        Name: "科爾吉娜的防衛 (Corgina's Ward)",
         Index: "Corgina's Ward",
         Enabled: true,
         Rarity: 7,
@@ -8207,11 +8207,11 @@ const json = [
         Code: "lrg",
         Properties: [
           {
-            PropertyString: "+15-25% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +15-25%",
             Index: 1
           },
           {
-            PropertyString: "+20-30 Defense",
+            PropertyString: "+20-30 防禦",
             Index: 0
           }
         ],
@@ -8221,7 +8221,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "32-42",
           EquipmentType: 0,
-          Name: "Large Shield",
+          Name: "大型盾 (Large Shield)",
           RequiredStrength: 34,
           RequiredDexterity: 0,
           Durability: 24,
@@ -8238,10 +8238,10 @@ const json = [
         Type: "Boots",
         "Set": "Corgina's Element",
         SetPropertiesString: [
-          "Fire Resist +20% (2 Items)",
-          "Poison Resist +20% (3 Items)"
+          "火焰抗性 +20% （2 件）",
+          "毒素抗性 +20% （3 件）"
         ],
-        Name: "Corgina's Slippers",
+        Name: "科爾吉娜的拖鞋 (Corgina's Slippers)",
         Index: "Corgina's Slippers",
         Enabled: true,
         Rarity: 7,
@@ -8250,11 +8250,11 @@ const json = [
         Code: "lbt",
         Properties: [
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 0
           },
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 1
           }
         ],
@@ -8264,7 +8264,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "2",
           EquipmentType: 0,
-          Name: "Boots",
+          Name: "皮靴 (Boots)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 12,
@@ -8280,33 +8280,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+60 to Mana",
+        PropertyString: "+60 法力",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Cast Rate",
+        PropertyString: "+20% 施法速度",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to Sorceress Skill Levels",
+        PropertyString: "+1 魔法使技能等級",
         Index: 0
       },
       {
-        PropertyString: "+10% to Fire Skill Damage",
+        PropertyString: "+10% 火焰技能傷害",
         Index: 2
       },
       {
-        PropertyString: "+10% to Cold Skill Damage",
+        PropertyString: "+10% 寒冰技能傷害",
         Index: 3
       },
       {
-        PropertyString: "+10% to Lightning Skill Damage",
+        PropertyString: "+10% 閃電技能傷害",
         Index: 4
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -8314,15 +8314,15 @@ const json = [
   },
   {
     Index: "Sheena's Grace",
-    Name: "Sheena's Grace",
+    Name: "希娜的優雅 (Sheena's Grace)",
     SetItems: [
       {
         Type: "Amazon Bow",
         "Set": "Sheena's Grace",
         SetPropertiesString: [
-          "+25% Increased Attack Speed (4 Items)"
+          "攻擊速度 +25% （4 件）"
         ],
-        Name: "Sheena's Heartwood",
+        Name: "希娜的心木 (Sheena's Heartwood)",
         Index: "Sheena's Heartwood",
         Enabled: true,
         Rarity: 7,
@@ -8331,11 +8331,11 @@ const json = [
         Code: "am1",
         Properties: [
           {
-            PropertyString: "Adds 15-30 to Damage",
+            PropertyString: "增加 15-30 傷害",
             Index: 0
           },
           {
-            PropertyString: "+35-55% Chance of Open Wounds",
+            PropertyString: "+35-55% 機率造成開放傷口",
             Index: 1
           }
         ],
@@ -8348,7 +8348,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Stag Bow",
+          Name: "獵鹿弓 (Stag Bow)",
           RequiredStrength: 30,
           RequiredDexterity: 45,
           Durability: 0,
@@ -8365,9 +8365,9 @@ const json = [
         Type: "Amulet",
         "Set": "Sheena's Grace",
         SetPropertiesString: [
-          "All Resistances +12% (3 Items)"
+          "所有抗性 +12% （3 件）"
         ],
-        Name: "Sheena's Choker",
+        Name: "希娜的項鏈 (Sheena's Choker)",
         Index: "Sheena's Choker",
         Enabled: true,
         Rarity: 5,
@@ -8376,14 +8376,14 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -8400,11 +8400,11 @@ const json = [
         Type: "Armor",
         "Set": "Sheena's Grace",
         SetPropertiesString: [
-          "+5% Life stolen per hit (4 Items)",
-          "Damage Reduced by 12 (2 Items)",
-          "Magic Damage Reduced by 8 (3 Items)"
+          "擊中竊取 5% 生命 （4 件）",
+          "物理傷害降低 12 （2 件）",
+          "魔法傷害降低 8 （3 件）"
         ],
-        Name: "Sheena's Elven Mail",
+        Name: "希娜的精靈甲 (Sheena's Elven Mail)",
         Index: "Sheena's Elven Mail",
         Enabled: true,
         Rarity: 7,
@@ -8413,11 +8413,11 @@ const json = [
         Code: "scl",
         Properties: [
           {
-            PropertyString: "+100-150 Defense",
+            PropertyString: "+100-150 防禦",
             Index: 0
           },
           {
-            PropertyString: "+15 to Dexterity",
+            PropertyString: "+15 敏捷",
             Index: 1
           }
         ],
@@ -8427,7 +8427,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "157-207",
           EquipmentType: 0,
-          Name: "Scale Mail",
+          Name: "鱗甲 (Scale Mail)",
           RequiredStrength: 44,
           RequiredDexterity: 0,
           Durability: 36,
@@ -8444,9 +8444,9 @@ const json = [
         Type: "Belt",
         "Set": "Sheena's Grace",
         SetPropertiesString: [
-          "+10 to Vitality (2 Items)"
+          "+10 體能 （2 件）"
         ],
-        Name: "Sheena's Band",
+        Name: "希娜的彩帶 (Sheena's Band)",
         Index: "Sheena's Band",
         Enabled: true,
         Rarity: 7,
@@ -8455,11 +8455,11 @@ const json = [
         Code: "vbl",
         Properties: [
           {
-            PropertyString: "+5-10% Increased Maximum Life",
+            PropertyString: "生命上限 +5-10%",
             Index: 0
           },
           {
-            PropertyString: "+5-10 to Mana",
+            PropertyString: "+5-10 法力",
             Index: 1
           }
         ],
@@ -8469,7 +8469,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "3",
           EquipmentType: 0,
-          Name: "Light Belt",
+          Name: "輕腰帶 (Light Belt)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 14,
@@ -8485,29 +8485,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+15% Increased Attack Speed",
+        PropertyString: "攻擊速度 +15%",
         Index: 0
       },
       {
-        PropertyString: "+30 to Life",
+        PropertyString: "+30 生命",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to Amazon Skill Levels",
+        PropertyString: "+1 亞馬遜技能等級",
         Index: 0
       },
       {
-        PropertyString: "+20 to Maximum Damage",
+        PropertyString: "+20 最大傷害",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +35%",
+        PropertyString: "所有抗性 +35%",
         Index: 3
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -8515,15 +8515,15 @@ const json = [
   },
   {
     Index: "Talonrage's Fury",
-    Name: "Talonrage's Fury",
+    Name: "塔倫拉格之怒 (Talonrage's Fury)",
     SetItems: [
       {
         Type: "Primal Helm",
         "Set": "Talonrage's Fury",
         SetPropertiesString: [
-          "+1 to Combat Skills (Barbarian only) (3 Items)"
+          "+1 戰鬥技能 （只限野蠻人） （3 件）"
         ],
-        Name: "Berserker's Howl",
+        Name: "狂戰士的呼嘯 (Berserker's Howl)",
         Index: "Berserker's Howl",
         Enabled: true,
         Rarity: 7,
@@ -8532,11 +8532,11 @@ const json = [
         Code: "ba4",
         Properties: [
           {
-            PropertyString: "+1 to Barbarian Skill Levels",
+            PropertyString: "+1 野蠻人技能等級",
             Index: 0
           },
           {
-            PropertyString: "+1 to Terror",
+            PropertyString: "+1 恐懼",
             Index: 1
           }
         ],
@@ -8546,7 +8546,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "30",
           EquipmentType: 0,
-          Name: "Assault Helmet",
+          Name: "突擊頭盔 (Assault Helmet)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 50,
@@ -8563,10 +8563,10 @@ const json = [
         Type: "Armor",
         "Set": "Talonrage's Fury",
         SetPropertiesString: [
-          "+40 to Life (2 Items)",
-          "+10% Physical Damage Reduction (4 Items)"
+          "+40 生命 （2 件）",
+          "物理傷害降低 +10% （4 件）"
         ],
-        Name: "Chaos Heart",
+        Name: "渾沌之心 (Chaos Heart)",
         Index: "Chaos Heart",
         Enabled: true,
         Rarity: 7,
@@ -8575,11 +8575,11 @@ const json = [
         Code: "fld",
         Properties: [
           {
-            PropertyString: "+90-120% Enhanced Defense",
+            PropertyString: "+90-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 1
           }
         ],
@@ -8589,7 +8589,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "193-224",
           EquipmentType: 0,
-          Name: "Field Plate",
+          Name: "野戰鎧甲 (Field Plate)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 48,
@@ -8606,9 +8606,9 @@ const json = [
         Type: "Spear",
         "Set": "Talonrage's Fury",
         SetPropertiesString: [
-          "+30% Increased Attack Speed (2 Items)"
+          "攻擊速度 +30% （2 件）"
         ],
-        Name: "Warlord's Pike",
+        Name: "戰神長槍 (Warlord's Pike)",
         Index: "Warlord's Pike",
         Enabled: true,
         Rarity: 7,
@@ -8617,11 +8617,11 @@ const json = [
         Code: "pik",
         Properties: [
           {
-            PropertyString: "+110-140% Enhanced Damage",
+            PropertyString: "+110-140% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Repairs 0.05 durability per second",
+            PropertyString: "每 1 秒修復 0.05 點耐久度",
             Index: 1
           }
         ],
@@ -8634,7 +8634,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Pike",
+          Name: "步戰矛 (Pike)",
           RequiredStrength: 60,
           RequiredDexterity: 45,
           Durability: 250,
@@ -8651,9 +8651,9 @@ const json = [
         Type: "Gloves",
         "Set": "Talonrage's Fury",
         SetPropertiesString: [
-          "+20 to Strength (3 Items)"
+          "+20 力量 （3 件）"
         ],
-        Name: "Shattering Fist",
+        Name: "粉碎拳套 (Shattering Fist)",
         Index: "Shattering Fist",
         Enabled: true,
         Rarity: 7,
@@ -8662,11 +8662,11 @@ const json = [
         Code: "hgl",
         Properties: [
           {
-            PropertyString: "+10% Chance of Crushing Blow",
+            PropertyString: "+10% 概率造成粉碎打擊",
             Index: 1
           },
           {
-            PropertyString: "+20-30 Defense",
+            PropertyString: "+20-30 防禦",
             Index: 0
           }
         ],
@@ -8676,7 +8676,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "12",
           EquipmentType: 0,
-          Name: "Gauntlets",
+          Name: "鋼鐵護手 (Gauntlets)",
           RequiredStrength: 60,
           RequiredDexterity: 0,
           Durability: 24,
@@ -8692,29 +8692,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+5 Replenish Life",
+        PropertyString: "生命回復 +5",
         Index: 0
       },
       {
-        PropertyString: "+35% Enhanced Damage",
+        PropertyString: "+35% 傷害強化",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to Barbarian Skill Levels",
+        PropertyString: "+1 野蠻人技能等級",
         Index: 0
       },
       {
-        PropertyString: "+30% Faster Hit Recovery",
+        PropertyString: "+30% 打擊恢復",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 3
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -8722,15 +8722,15 @@ const json = [
   },
   {
     Index: "Greyhawk's Mantle",
-    Name: "Greyhawk's Mantle",
+    Name: "灰鹰的衣钵 (Greyhawk's Mantle)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Greyhawk's Mantle",
         SetPropertiesString: [
-          "+3 Replenish Life (4 Items)"
+          "生命回復 +3 （4 件）"
         ],
-        Name: "Greyhawk's Wing",
+        Name: "灰鹰之翼 (Greyhawk's Wing)",
         Index: "Greyhawk's Wing",
         Enabled: true,
         Rarity: 7,
@@ -8739,11 +8739,11 @@ const json = [
         Code: "plt",
         Properties: [
           {
-            PropertyString: "+75-100 Defense",
+            PropertyString: "+75-100 防禦",
             Index: 0
           },
           {
-            PropertyString: "Lightning Resist +15-20%",
+            PropertyString: "電擊抗性 +15-20%",
             Index: 1
           }
         ],
@@ -8753,7 +8753,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "183-208",
           EquipmentType: 0,
-          Name: "Plate Mail",
+          Name: "鎧甲 (Plate Mail)",
           RequiredStrength: 65,
           RequiredDexterity: 0,
           Durability: 60,
@@ -8770,9 +8770,9 @@ const json = [
         Type: "Scepter",
         "Set": "Greyhawk's Mantle",
         SetPropertiesString: [
-          "15% Chance to cast level 3 Frozen Armor when struck (3 Items)"
+          "被擊中時有 15% 機率施展等級 3 冰封甲 （3 件）"
         ],
-        Name: "Greyhawk's Icebrand",
+        Name: "灰鹰的冰标 (Greyhawk's Icebrand)",
         Index: "Greyhawk's Icebrand",
         Enabled: true,
         Rarity: 7,
@@ -8781,11 +8781,11 @@ const json = [
         Code: "scp",
         Properties: [
           {
-            PropertyString: "+80-120% Enhanced Damage",
+            PropertyString: "+80-120% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 10-20 to Cold Damage",
+            PropertyString: "增加 10-20 寒冰傷害",
             Index: 1
           }
         ],
@@ -8798,7 +8798,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Scepter",
+          Name: "權杖 (Scepter)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 250,
@@ -8815,9 +8815,9 @@ const json = [
         Type: "Auric Shields",
         "Set": "Greyhawk's Mantle",
         SetPropertiesString: [
-          "+25% Faster Block Rate (3 Items)"
+          "+25% 格擋速度 （3 件）"
         ],
-        Name: "Greyhawk's Deflector",
+        Name: "灰鹰的偏转器 (Greyhawk's Deflector)",
         Index: "Greyhawk's Deflector",
         Enabled: true,
         Rarity: 7,
@@ -8826,11 +8826,11 @@ const json = [
         Code: "pa3",
         Properties: [
           {
-            PropertyString: "+15% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +15%",
             Index: 1
           },
           {
-            PropertyString: "Socketed (1-4)",
+            PropertyString: "鑲孔 (1-4)",
             Index: 0
           }
         ],
@@ -8840,7 +8840,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "16",
           EquipmentType: 0,
-          Name: "Heraldic Shield",
+          Name: "紋章盾 (Heraldic Shield)",
           RequiredStrength: 40,
           RequiredDexterity: 0,
           Durability: 40,
@@ -8857,9 +8857,9 @@ const json = [
         Type: "Helm",
         "Set": "Greyhawk's Mantle",
         SetPropertiesString: [
-          "+20 to Life (3 Items)"
+          "+20 生命 （3 件）"
         ],
-        Name: "Greyhawk's Viser",
+        Name: "灰鹰的维瑟 (Greyhawk's Viser)",
         Index: "Greyhawk's Viser",
         Enabled: true,
         Rarity: 7,
@@ -8868,11 +8868,11 @@ const json = [
         Code: "fhl",
         Properties: [
           {
-            PropertyString: "Adds 3-5% Mana stolen per hit",
+            PropertyString: "擊中竊取 3-5% 法力",
             Index: 1
           },
           {
-            PropertyString: "+20-30 Defense",
+            PropertyString: "+20-30 防禦",
             Index: 0
           }
         ],
@@ -8882,7 +8882,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "43-53",
           EquipmentType: 0,
-          Name: "Full Helm",
+          Name: "全罩盔 (Full Helm)",
           RequiredStrength: 41,
           RequiredDexterity: 0,
           Durability: 30,
@@ -8898,29 +8898,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+8 Life after each Kill",
+        PropertyString: "+8 擊殺生命恢復",
         Index: 0
       },
       {
-        PropertyString: "+4 to Mana after each Kill",
+        PropertyString: "+4 擊殺法力恢復",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to Paladin Skill Levels",
+        PropertyString: "+1 聖騎士技能等級",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 3
       },
       {
-        PropertyString: "Poison Length Reduced by 60%",
+        PropertyString: "中毒的時效縮短 60%",
         Index: 2
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -8928,15 +8928,15 @@ const json = [
   },
   {
     Index: "Silent Runnings",
-    Name: "Silent Runnings",
+    Name: "无声的奔跑 (Silent Runnings)",
     SetItems: [
       {
         Type: "Shield",
         "Set": "Silent Runnings",
         SetPropertiesString: [
-          "+20% Increased Chance of Blocking (2 Items)"
+          "格擋機率提高 +20% （2 件）"
         ],
-        Name: "Dragon's Flank",
+        Name: "龙之侧翼 (Dragon's Flank)",
         Index: "Dragon's Flank",
         Enabled: true,
         Rarity: 7,
@@ -8945,11 +8945,11 @@ const json = [
         Code: "bsh",
         Properties: [
           {
-            PropertyString: "+65-90% Enhanced Defense",
+            PropertyString: "+65-90% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+5-10% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +5-10%",
             Index: 1
           }
         ],
@@ -8959,7 +8959,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "10",
           EquipmentType: 0,
-          Name: "Bone Shield",
+          Name: "骨盾 (Bone Shield)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 40,
@@ -8976,9 +8976,9 @@ const json = [
         Type: "Gloves",
         "Set": "Silent Runnings",
         SetPropertiesString: [
-          "+25% better chance of getting magic item (3 Items)"
+          "尋獲魔法物品機率提高 +25% （3 件）"
         ],
-        Name: "Ferrit's Paw",
+        Name: "费里特的爪子 (Ferrit's Paw)",
         Index: "Ferrit's Paw",
         Enabled: true,
         Rarity: 7,
@@ -8987,11 +8987,11 @@ const json = [
         Code: "vgl",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 0
           },
           {
-            PropertyString: "Adds 4-6% Life stolen per hit",
+            PropertyString: "擊中竊取 4-6% 生命",
             Index: 1
           }
         ],
@@ -9001,7 +9001,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "25-35",
           EquipmentType: 0,
-          Name: "Heavy Gloves",
+          Name: "厚皮手套 (Heavy Gloves)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 14,
@@ -9018,9 +9018,9 @@ const json = [
         Type: "Armor",
         "Set": "Silent Runnings",
         SetPropertiesString: [
-          "+8% Physical Damage Reduction (3 Items)"
+          "物理傷害降低 +8% （3 件）"
         ],
-        Name: "Turtle's Shell",
+        Name: "龟壳 (Turtle's Shell)",
         Index: "Turtle's Shell",
         Enabled: true,
         Rarity: 7,
@@ -9029,11 +9029,11 @@ const json = [
         Code: "ful",
         Properties: [
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+90-130% Enhanced Defense",
+            PropertyString: "+90-130% 防禦強化",
             Index: 0
           }
         ],
@@ -9043,7 +9043,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "286-347",
           EquipmentType: 0,
-          Name: "Full Plate Mail",
+          Name: "全身鎧甲 (Full Plate Mail)",
           RequiredStrength: 80,
           RequiredDexterity: 0,
           Durability: 70,
@@ -9060,9 +9060,9 @@ const json = [
         Type: "Belt",
         "Set": "Silent Runnings",
         SetPropertiesString: [
-          "+20 Defense (3 Items)"
+          "+20 防禦 （3 件）"
         ],
-        Name: "Wolf Pelt",
+        Name: "狼皮 (Wolf Pelt)",
         Index: "Wolf Pelt",
         Enabled: true,
         Rarity: 7,
@@ -9071,11 +9071,11 @@ const json = [
         Code: "tbl",
         Properties: [
           {
-            PropertyString: "+35-50 to Life",
+            PropertyString: "+35-50 生命",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +10-15%",
+            PropertyString: "所有抗性 +10-15%",
             Index: 1
           }
         ],
@@ -9085,7 +9085,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "26-36",
           EquipmentType: 0,
-          Name: "Heavy Belt",
+          Name: "厚腰帶 (Heavy Belt)",
           RequiredStrength: 45,
           RequiredDexterity: 0,
           Durability: 18,
@@ -9102,7 +9102,7 @@ const json = [
         Type: "Helm",
         "Set": "Silent Runnings",
         SetPropertiesString: [],
-        Name: "Beast Collar",
+        Name: "野兽项圈 (Beast Collar)",
         Index: "Beast Collar",
         Enabled: true,
         Rarity: 7,
@@ -9111,11 +9111,11 @@ const json = [
         Code: "bhm",
         Properties: [
           {
-            PropertyString: "+20-30% Enhanced Damage",
+            PropertyString: "+20-30% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 20-30 to Magic Damage",
+            PropertyString: "增加 20-30 魔法傷害",
             Index: 1
           }
         ],
@@ -9125,7 +9125,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "33",
           EquipmentType: 0,
-          Name: "Bone Helm",
+          Name: "骸骨頭盔 (Bone Helm)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 40,
@@ -9141,37 +9141,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20% Faster Run/Walk",
+        PropertyString: "+20% 跑步 / 行走速度",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 2
       },
       {
-        PropertyString: "+20% Faster Block Rate",
+        PropertyString: "+20% 格擋速度",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 1
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 3
       },
       {
-        PropertyString: "+150% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +150%",
         Index: 4
       },
       {
-        PropertyString: "+75% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +75%",
         Index: 2
       }
     ],
@@ -9179,16 +9179,16 @@ const json = [
   },
   {
     Index: "Snowmane's Jewelry",
-    Name: "Snowmane's Jewelry",
+    Name: "雪人珠宝 (Snowmane's Jewelry)",
     SetItems: [
       {
         Type: "Circlet",
         "Set": "Snowmane's Jewelry",
         SetPropertiesString: [
-          "+15% Faster Hit Recovery (3 Items)",
-          "+20 to Life (2 Items)"
+          "+15% 打擊恢復 （3 件）",
+          "+20 生命 （2 件）"
         ],
-        Name: "Jeweled Circlet",
+        Name: "宝石圆环 (Jeweled Circlet)",
         Index: "Jeweled Circlet",
         Enabled: true,
         Rarity: 7,
@@ -9197,11 +9197,11 @@ const json = [
         Code: "ci0",
         Properties: [
           {
-            PropertyString: "+15 to Strength",
+            PropertyString: "+15 力量",
             Index: 0
           },
           {
-            PropertyString: "+15 to Vitality",
+            PropertyString: "+15 體能",
             Index: 1
           }
         ],
@@ -9211,7 +9211,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "20",
           EquipmentType: 0,
-          Name: "Circlet",
+          Name: "頭環 (Circlet)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 35,
@@ -9228,9 +9228,9 @@ const json = [
         Type: "Belt",
         "Set": "Snowmane's Jewelry",
         SetPropertiesString: [
-          "+10% Physical Damage Reduction (4 Items)"
+          "物理傷害降低 +10% （4 件）"
         ],
-        Name: "Jeweled Belt",
+        Name: "珠宝腰带 (Jeweled Belt)",
         Index: "Jeweled Belt",
         Enabled: true,
         Rarity: 7,
@@ -9239,11 +9239,11 @@ const json = [
         Code: "hbl",
         Properties: [
           {
-            PropertyString: "+100-125% Enhanced Defense",
+            PropertyString: "+100-125% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +10-15%",
+            PropertyString: "所有抗性 +10-15%",
             Index: 1
           }
         ],
@@ -9253,7 +9253,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "18-19",
           EquipmentType: 0,
-          Name: "Plated Belt",
+          Name: "鎧甲腰帶 (Plated Belt)",
           RequiredStrength: 60,
           RequiredDexterity: 0,
           Durability: 24,
@@ -9270,10 +9270,10 @@ const json = [
         Type: "Ring",
         "Set": "Snowmane's Jewelry",
         SetPropertiesString: [
-          "+30 to Life (3 Items)",
-          "+15% better chance of getting magic item (4 Items)"
+          "+30 生命 （3 件）",
+          "尋獲魔法物品機率提高 +15% （4 件）"
         ],
-        Name: "Ruby Ring",
+        Name: "红宝石戒指 (Ruby Ring)",
         Index: "Ruby Ring",
         Enabled: true,
         Rarity: 4,
@@ -9282,18 +9282,18 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "All Resistances +10-15%",
+            PropertyString: "所有抗性 +10-15%",
             Index: 0
           },
           {
-            PropertyString: "Magic Damage Reduced by 6",
+            PropertyString: "魔法傷害降低 6",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -9310,9 +9310,9 @@ const json = [
         Type: "Amulet",
         "Set": "Snowmane's Jewelry",
         SetPropertiesString: [
-          "+1 to All Skills (3 Items)"
+          "+1 所有技能 （3 件）"
         ],
-        Name: "Diamond Necklace",
+        Name: "钻石项链 (Diamond Necklace)",
         Index: "Diamond Necklace",
         Enabled: true,
         Rarity: 4,
@@ -9321,18 +9321,18 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "All Resistances +15-20%",
+            PropertyString: "所有抗性 +15-20%",
             Index: 0
           },
           {
-            PropertyString: "+20-30% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +20-30%",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -9348,29 +9348,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Run/Walk",
+        PropertyString: "+20% 跑步 / 行走速度",
         Index: 3
       },
       {
-        PropertyString: "+5% Mana stolen per hit",
+        PropertyString: "擊中竊取 +5% 法力",
         Index: 1
       },
       {
-        PropertyString: "+5% Life stolen per hit",
+        PropertyString: "擊中竊取 5% 生命",
         Index: 2
       }
     ],
@@ -9378,17 +9378,17 @@ const json = [
   },
   {
     Index: "Four Seasons",
-    Name: "Four Seasons",
+    Name: "四季酒店 (Four Seasons)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Four Seasons",
         SetPropertiesString: [
-          "+10 to Maximum Cold Resist (3 Items)",
-          "+10% Cold Absorb (2 Items)",
-          "Cannot Be Frozen (4 Items)"
+          "冰寒抗性上限 +10 （3 件）",
+          "寒冰吸引 +10% （2 件）",
+          "無法冰凍 （4 件）"
         ],
-        Name: "Winter's Heart",
+        Name: "冬日之心 (Winter's Heart)",
         Index: "Winter's Heart",
         Enabled: true,
         Rarity: 7,
@@ -9397,11 +9397,11 @@ const json = [
         Code: "aar",
         Properties: [
           {
-            PropertyString: "-10-15% to Enemy Cold Resistance",
+            PropertyString: "敵人冰寒抗性 -10-15%",
             Index: 0
           },
           {
-            PropertyString: "+10-15% to Cold Skill Damage",
+            PropertyString: "+10-15% 寒冰技能傷害",
             Index: 1
           }
         ],
@@ -9411,7 +9411,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "218",
           EquipmentType: 0,
-          Name: "Ancient Armor",
+          Name: "上古鎧甲 (Ancient Armor)",
           RequiredStrength: 100,
           RequiredDexterity: 0,
           Durability: 60,
@@ -9428,10 +9428,10 @@ const json = [
         Type: "Helm",
         "Set": "Four Seasons",
         SetPropertiesString: [
-          "+10 to Maximum Lightning Resist (3 Items)",
-          "+10% Lightning Absorb (2 Items)"
+          "電擊抗性上限 +10 （3 件）",
+          "電擊吸引 +10% （2 件）"
         ],
-        Name: "Spring Dawning",
+        Name: "春晓 (Spring Dawning)",
         Index: "Spring Dawning",
         Enabled: true,
         Rarity: 7,
@@ -9440,11 +9440,11 @@ const json = [
         Code: "ghm",
         Properties: [
           {
-            PropertyString: "-10-15% to Enemy Lightning Resistance",
+            PropertyString: "敵人電擊抗性 -10-15%",
             Index: 0
           },
           {
-            PropertyString: "+10-15% to Lightning Skill Damage",
+            PropertyString: "+10-15% 閃電技能傷害",
             Index: 1
           }
         ],
@@ -9454,7 +9454,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "30",
           EquipmentType: 0,
-          Name: "Great Helm",
+          Name: "重盔 (Great Helm)",
           RequiredStrength: 63,
           RequiredDexterity: 0,
           Durability: 40,
@@ -9471,10 +9471,10 @@ const json = [
         Type: "Boots",
         "Set": "Four Seasons",
         SetPropertiesString: [
-          "+10 to Maximum Fire Resist (3 Items)",
-          "+10% Fire Absorb (2 Items)"
+          "火焰抗性上限 +10 （3 件）",
+          "火焰吸引 +10% （2 件）"
         ],
-        Name: "Summer Flame",
+        Name: "夏日火焰 (Summer Flame)",
         Index: "Summer Flame",
         Enabled: true,
         Rarity: 7,
@@ -9483,11 +9483,11 @@ const json = [
         Code: "hbt",
         Properties: [
           {
-            PropertyString: "-10-15% to Enemy Fire Resistance",
+            PropertyString: "敵人火焰抗性 -10-15%",
             Index: 0
           },
           {
-            PropertyString: "+10-15% to Fire Skill Damage",
+            PropertyString: "+10-15% 火焰技能傷害",
             Index: 1
           }
         ],
@@ -9497,7 +9497,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "12",
           EquipmentType: 0,
-          Name: "Greaves",
+          Name: "護脛",
           RequiredStrength: 70,
           RequiredDexterity: 0,
           Durability: 24,
@@ -9514,11 +9514,11 @@ const json = [
         Type: "Gloves",
         "Set": "Four Seasons",
         SetPropertiesString: [
-          "+10 to Maximum Poison Resist (3 Items)",
-          "Magic Resist +10% (2 Items)",
-          "Poison Length Reduced by 75% (4 Items)"
+          "毒素抗性上限 ++10 （3 件）",
+          "魔法抗性 +10% （2 件）",
+          "中毒的時效縮短 75% （4 件）"
         ],
-        Name: "Autumn's Decay",
+        Name: "秋天的衰败 (Autumn's Decay)",
         Index: "Autumn's Decay",
         Enabled: true,
         Rarity: 7,
@@ -9527,11 +9527,11 @@ const json = [
         Code: "tgl",
         Properties: [
           {
-            PropertyString: "-10-15% to Enemy Poison Resistance",
+            PropertyString: "敵人毒素抗性 -10-15%",
             Index: 0
           },
           {
-            PropertyString: "+10-15% to Poison Skill Damage",
+            PropertyString: "+10-15% 毒素技能傷害",
             Index: 1
           }
         ],
@@ -9541,7 +9541,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "9",
           EquipmentType: 0,
-          Name: "Light Gauntlets",
+          Name: "輕型護手 (Light Gauntlets)",
           RequiredStrength: 45,
           RequiredDexterity: 0,
           Durability: 18,
@@ -9557,33 +9557,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10 to All Attributes",
+        PropertyString: "+10 所有屬性",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "15% Chance to cast level 6 Charged Bolt when struck",
+        PropertyString: "被擊中時有 15% 機率施展等級 6 電能彈",
         Index: 2
       },
       {
-        PropertyString: "15% Chance to cast level 6 Frost Nova when struck",
+        PropertyString: "被擊中時有 15% 機率施展等級 6 冰霜新星",
         Index: 3
       },
       {
-        PropertyString: "10% Chance to cast level 1 Meteor when struck",
+        PropertyString: "被擊中時有 10% 機率施展等級 1 隕石術",
         Index: 4
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 1
       }
     ],
@@ -9591,16 +9591,16 @@ const json = [
   },
   {
     Index: "Forgotten Treasures",
-    Name: "Forgotten Treasures",
+    Name: "被遗忘的宝藏 (Forgotten Treasures)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Forgotten Treasures",
         SetPropertiesString: [
-          "Magic Resist +10% (4 Items)",
-          "+15% Physical Damage Reduction (6 Items)"
+          "魔法抗性 +10% （4 件）",
+          "物理傷害降低 +15% （6 件）"
         ],
-        Name: "Fernandez' Plate",
+        Name: "費爾南德斯的板甲 (Fernandez' Plate)",
         Index: "Fernandez' Plate",
         Enabled: true,
         Rarity: 7,
@@ -9609,11 +9609,11 @@ const json = [
         Code: "brs",
         Properties: [
           {
-            PropertyString: "+75-120% Enhanced Defense",
+            PropertyString: "+75-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (3)",
+            PropertyString: "鑲孔 (3)",
             Index: 1
           }
         ],
@@ -9623,7 +9623,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "115-145",
           EquipmentType: 0,
-          Name: "Breast Plate",
+          Name: "胸鎧 (Breast Plate)",
           RequiredStrength: 30,
           RequiredDexterity: 0,
           Durability: 50,
@@ -9640,10 +9640,10 @@ const json = [
         Type: "Helm",
         "Set": "Forgotten Treasures",
         SetPropertiesString: [
-          "+30 to Mana (2 Items)",
-          "Regenerate Mana +50% (5 Items)"
+          "+30 法力 （2 件）",
+          "法力恢復 50% （5 件）"
         ],
-        Name: "Katriana's Mask",
+        Name: "卡特里娜的面具 (Katriana's Mask)",
         Index: "Katriana's Mask",
         Enabled: true,
         Rarity: 7,
@@ -9652,11 +9652,11 @@ const json = [
         Code: "msk",
         Properties: [
           {
-            PropertyString: "+60-100% Enhanced Defense",
+            PropertyString: "+60-100% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (3)",
+            PropertyString: "鑲孔 (3)",
             Index: 1
           }
         ],
@@ -9666,7 +9666,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "16-20",
           EquipmentType: 0,
-          Name: "Mask",
+          Name: "面具",
           RequiredStrength: 23,
           RequiredDexterity: 0,
           Durability: 20,
@@ -9683,10 +9683,10 @@ const json = [
         Type: "Belt",
         "Set": "Forgotten Treasures",
         SetPropertiesString: [
-          "+5% Mana stolen per hit (4 Items)",
-          "+50 to Life (3 Items)"
+          "擊中竊取 +5% 法力 （4 件）",
+          "+50 生命 （3 件）"
         ],
-        Name: "Luther's Cord",
+        Name: "路德的绳索 (Luther's Cord)",
         Index: "Luther's Cord",
         Enabled: true,
         Rarity: 7,
@@ -9695,11 +9695,11 @@ const json = [
         Code: "tbl",
         Properties: [
           {
-            PropertyString: "+20-30 Defense",
+            PropertyString: "+20-30 防禦",
             Index: 0
           },
           {
-            PropertyString: "+2-5 Replenish Life",
+            PropertyString: "生命回復 +2-5",
             Index: 1
           }
         ],
@@ -9709,7 +9709,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "26-36",
           EquipmentType: 0,
-          Name: "Heavy Belt",
+          Name: "厚腰帶 (Heavy Belt)",
           RequiredStrength: 45,
           RequiredDexterity: 0,
           Durability: 18,
@@ -9726,10 +9726,10 @@ const json = [
         Type: "Gloves",
         "Set": "Forgotten Treasures",
         SetPropertiesString: [
-          "+5% Life stolen per hit (4 Items)",
-          "+10 to Strength (6 Items)"
+          "擊中竊取 5% 生命 （4 件）",
+          "+10 力量 （6 件）"
         ],
-        Name: "Janis' Gloves",
+        Name: "杰尼斯的手套 (Janis' Gloves)",
         Index: "Janis' Gloves",
         Enabled: true,
         Rarity: 7,
@@ -9738,11 +9738,11 @@ const json = [
         Code: "vgl",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+20-30 Defense",
+            PropertyString: "+20-30 防禦",
             Index: 0
           }
         ],
@@ -9752,7 +9752,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "25-35",
           EquipmentType: 0,
-          Name: "Heavy Gloves",
+          Name: "厚皮手套 (Heavy Gloves)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 14,
@@ -9769,10 +9769,10 @@ const json = [
         Type: "Boots",
         "Set": "Forgotten Treasures",
         SetPropertiesString: [
-          "+20% Faster Hit Recovery (3 Items)",
-          "+10 to Dexterity (5 Items)"
+          "+20% 打擊恢復 （3 件）",
+          "+10 敏捷 （5 件）"
         ],
-        Name: "Xavier's Greaves",
+        Name: "澤維爾的護脛 (Xavier's Greaves)",
         Index: "Xavier's Greaves",
         Enabled: true,
         Rarity: 7,
@@ -9781,11 +9781,11 @@ const json = [
         Code: "tbt",
         Properties: [
           {
-            PropertyString: "+30% Faster Run/Walk",
+            PropertyString: "+30% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+80-110% Enhanced Defense",
+            PropertyString: "+80-110% 防禦強化",
             Index: 0
           }
         ],
@@ -9795,7 +9795,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "18-21",
           EquipmentType: 0,
-          Name: "Light Plated Boots",
+          Name: "輕鎧靴 (Light Plated Boots)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 18,
@@ -9812,10 +9812,10 @@ const json = [
         Type: "Shield",
         "Set": "Forgotten Treasures",
         SetPropertiesString: [
-          "+25% Faster Block Rate (2 Items)",
-          "+20% Increased Chance of Blocking (4 Items)"
+          "+25% 格擋速度 （2 件）",
+          "格擋機率提高 +20% （4 件）"
         ],
-        Name: "Quincy's Shield",
+        Name: "昆西之盾 (Quincy's Shield)",
         Index: "Quincy's Shield",
         Enabled: true,
         Rarity: 7,
@@ -9824,11 +9824,11 @@ const json = [
         Code: "spk",
         Properties: [
           {
-            PropertyString: "+100-135% Enhanced Defense",
+            PropertyString: "+100-135% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (3)",
+            PropertyString: "鑲孔 (3)",
             Index: 1
           }
         ],
@@ -9838,7 +9838,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "32-37",
           EquipmentType: 0,
-          Name: "Spiked Shield",
+          Name: "尖刺盾 (Spiked Shield)",
           RequiredStrength: 30,
           RequiredDexterity: 0,
           Durability: 40,
@@ -9854,41 +9854,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+15 to Strength",
+        PropertyString: "+15 力量",
         Index: 0
       },
       {
-        PropertyString: "+15 to Dexterity",
+        PropertyString: "+15 敏捷",
         Index: 2
       },
       {
-        PropertyString: "+15 to Energy",
+        PropertyString: "+15 能量",
         Index: 4
       },
       {
-        PropertyString: "+15 to Vitality",
+        PropertyString: "+15 體能",
         Index: 6
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 1
       },
       {
-        PropertyString: "+4% to Experience Gained",
+        PropertyString: "獲得的經驗值 +4%",
         Index: 3
       },
       {
-        PropertyString: "+200% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +200%",
         Index: 4
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 2
       }
     ],
@@ -9896,15 +9896,15 @@ const json = [
   },
   {
     Index: "Insight of Brother Laz",
-    Name: "Insight of Brother Laz",
+    Name: "拉兹兄弟的洞察 (Insight of Brother Laz)",
     SetItems: [
       {
         Type: "Gloves",
         "Set": "Insight of Brother Laz",
         SetPropertiesString: [
-          "+15 to Strength (3 Items)"
+          "+15 力量 （3 件）"
         ],
-        Name: "Power of Brother Laz",
+        Name: "拉兹兄弟的力量 (Power of Brother Laz)",
         Index: "Power of Brother Laz",
         Enabled: true,
         Rarity: 7,
@@ -9913,19 +9913,19 @@ const json = [
         Code: "xtg",
         Properties: [
           {
-            PropertyString: "+10% Increased Attack Speed",
+            PropertyString: "攻擊速度 +10%",
             Index: 0
           },
           {
-            PropertyString: "Adds 4-6% Mana stolen per hit",
+            PropertyString: "擊中竊取 4-6% 法力",
             Index: 1
           },
           {
-            PropertyString: "+80-100% Enhanced Defense",
+            PropertyString: "+80-100% 防禦強化",
             Index: 3
           },
           {
-            PropertyString: "Fire Resist +15-20%",
+            PropertyString: "火焰抗性 +15-20%",
             Index: 2
           }
         ],
@@ -9935,7 +9935,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "140",
           EquipmentType: 0,
-          Name: "Battle Gauntlets",
+          Name: "戰鬥護手 (Battle Gauntlets)",
           RequiredStrength: 88,
           RequiredDexterity: 0,
           Durability: 18,
@@ -9952,9 +9952,9 @@ const json = [
         Type: "Auric Shields",
         "Set": "Insight of Brother Laz",
         SetPropertiesString: [
-          "7% Chance to cast level 1 Frozen Orb when struck (5 Items)"
+          "被擊中時有 7% 機率施展等級 1 冰封球 （5 件）"
         ],
-        Name: "Prayer of Brother Laz",
+        Name: "拉兹兄弟的禱告 (Prayer of Brother Laz)",
         Index: "Prayer of Brother Laz",
         Enabled: true,
         Rarity: 7,
@@ -9963,19 +9963,19 @@ const json = [
         Code: "pa8",
         Properties: [
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "+20% Faster Block Rate",
+            PropertyString: "+20% 格擋速度",
             Index: 1
           },
           {
-            PropertyString: "+20-30% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20-30%",
             Index: 0
           },
           {
-            PropertyString: "+1 Defense (Per Character Level)",
+            PropertyString: "+1 防禦 （依角色等級而定）",
             Index: 3
           }
         ],
@@ -9985,7 +9985,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "129",
           EquipmentType: 0,
-          Name: "Protector Shield",
+          Name: "守護之盾 (Protector Shield)",
           RequiredStrength: 69,
           RequiredDexterity: 0,
           Durability: 40,
@@ -10002,10 +10002,10 @@ const json = [
         Type: "Amulet",
         "Set": "Insight of Brother Laz",
         SetPropertiesString: [
-          "9% Chance to cast level 2 Mind Blast when struck (3 Items)",
-          "+25 to Mana (2 Items)"
+          "被擊中時有 9% 機率施展等級 2 心靈震爆 （3 件）",
+          "+25 法力 （2 件）"
         ],
-        Name: "Brother Laz' Holy Symbol",
+        Name: "拉兹兄弟的聖物 (Brother Laz' Holy Symbol)",
         Index: "Brother Laz' Holy Symbol",
         Enabled: true,
         Rarity: 5,
@@ -10014,26 +10014,26 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+1 to Paladin Skill Levels",
+            PropertyString: "+1 聖騎士技能等級",
             Index: 0
           },
           {
-            PropertyString: "+25-50 to Life",
+            PropertyString: "+25-50 生命",
             Index: 1
           },
           {
-            PropertyString: "Lightning Resist +25-50%",
+            PropertyString: "電擊抗性 +25-50%",
             Index: 2
           },
           {
-            PropertyString: "Poison Length Reduced by 60%",
+            PropertyString: "中毒的時效縮短 60%",
             Index: 3
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -10050,10 +10050,10 @@ const json = [
         Type: "Scepter",
         "Set": "Insight of Brother Laz",
         SetPropertiesString: [
-          "12% Chance to cast level 1 Fire Wall on striking (3 Items)",
-          "+1 to Maximum Damage (Per Character Level) (4 Items)"
+          "擊中時有 12% 機率施展等級 1 火牆術 （3 件）",
+          "+1 最大傷害 （依角色等級而定） （4 件）"
         ],
-        Name: "Wrath of Brother Laz",
+        Name: "拉兹兄弟的怒火 (Wrath of Brother Laz)",
         Index: "Wrath of Brother Laz",
         Enabled: true,
         Rarity: 7,
@@ -10062,19 +10062,19 @@ const json = [
         Code: "9sc",
         Properties: [
           {
-            PropertyString: "+1 to Paladin Skill Levels",
+            PropertyString: "+1 聖騎士技能等級",
             Index: 2
           },
           {
-            PropertyString: "+160-190% Enhanced Damage",
+            PropertyString: "+160-190% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 20-40 to Damage",
+            PropertyString: "增加 20-40 傷害",
             Index: 1
           },
           {
-            PropertyString: "Ignore Target's Defense",
+            PropertyString: "無視目標防禦",
             Index: 3
           }
         ],
@@ -10087,7 +10087,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Rune Scepter",
+          Name: "符文權杖 (Rune Scepter)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 250,
@@ -10104,10 +10104,10 @@ const json = [
         Type: "Armor",
         "Set": "Insight of Brother Laz",
         SetPropertiesString: [
-          "6% Chance to cast level 2 War Cry when struck (4 Items)",
-          "+3 Replenish Life (5 Items)"
+          "被擊中時有 6% 機率施展等級 2 戰爭狂嘯 （4 件）",
+          "生命回復 +3 （5 件）"
         ],
-        Name: "Brother Laz' Faith",
+        Name: "拉兹兄弟的信念 (Brother Laz' Faith)",
         Index: "Brother Laz' Faith",
         Enabled: true,
         Rarity: 7,
@@ -10116,19 +10116,19 @@ const json = [
         Code: "xld",
         Properties: [
           {
-            PropertyString: "+100-200% Enhanced Defense",
+            PropertyString: "+100-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Regenerate Mana +50%",
+            PropertyString: "法力恢復 50%",
             Index: 3
           },
           {
-            PropertyString: "Magic Resist +15-20%",
+            PropertyString: "魔法抗性 +15-20%",
             Index: 2
           },
           {
-            PropertyString: "+15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15%",
             Index: 1
           }
         ],
@@ -10138,7 +10138,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "558-631",
           EquipmentType: 0,
-          Name: "Sharktooth Armor",
+          Name: "鯊齒戰甲 (Sharktooth Armor)",
           RequiredStrength: 103,
           RequiredDexterity: 0,
           Durability: 48,
@@ -10154,41 +10154,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 0
       },
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 2
       },
       {
-        PropertyString: "+20 to Dexterity",
+        PropertyString: "+20 敏捷",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to Paladin Skill Levels",
+        PropertyString: "+2 聖騎士技能等級",
         Index: 0
       },
       {
-        PropertyString: "+100 to Life",
+        PropertyString: "+100 生命",
         Index: 3
       },
       {
-        PropertyString: "+50 to Mana",
+        PropertyString: "+50 法力",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +60%",
+        PropertyString: "所有抗性 +60%",
         Index: 1
       },
       {
-        PropertyString: "Half Freeze Duration",
+        PropertyString: "冰凍時間減半",
         Index: 5
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 2
       }
     ],
@@ -10196,15 +10196,15 @@ const json = [
   },
   {
     Index: "Hades' Underworld",
-    Name: "Hades' Underworld",
+    Name: "哈迪斯的地下世界 (Hades' Underworld)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Hades' Underworld",
         SetPropertiesString: [
-          "+50 to Mana (4 Items)"
+          "+50 法力 （4 件）"
         ],
-        Name: "Afterlife",
+        Name: "来世 (Afterlife)",
         Index: "Afterlife",
         Enabled: true,
         Rarity: 7,
@@ -10213,15 +10213,15 @@ const json = [
         Code: "xla",
         Properties: [
           {
-            PropertyString: "+1-3 to Summoning Skills (Necromancer only)",
+            PropertyString: "+1-3 召喚技能 （只限死靈法師）",
             Index: 1
           },
           {
-            PropertyString: "+4 Defense (Per Character Level)",
+            PropertyString: "+4 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "Lightning Resist +25-40%",
+            PropertyString: "電擊抗性 +25-40%",
             Index: 2
           }
         ],
@@ -10231,7 +10231,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "270-369",
           EquipmentType: 0,
-          Name: "Demonhide Armor",
+          Name: "魔皮護甲 (Demonhide Armor)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 28,
@@ -10248,9 +10248,9 @@ const json = [
         Type: "Voodoo Heads",
         "Set": "Hades' Underworld",
         SetPropertiesString: [
-          "+20% Physical Damage Reduction (4 Items)"
+          "物理傷害降低 +20% （4 件）"
         ],
-        Name: "Dracolich",
+        Name: "龍巫妖 (Dracolich)",
         Index: "Dracolich",
         Enabled: true,
         Rarity: 7,
@@ -10259,15 +10259,15 @@ const json = [
         Code: "ne8",
         Properties: [
           {
-            PropertyString: "+20-30% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20-30%",
             Index: 0
           },
           {
-            PropertyString: "+2 Defense (Per Character Level)",
+            PropertyString: "+2 防禦 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "Fire Resist +25-40%",
+            PropertyString: "火焰抗性 +25-40%",
             Index: 2
           }
         ],
@@ -10277,7 +10277,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "44",
           EquipmentType: 0,
-          Name: "Sexton Trophy",
+          Name: "司事首級 (Sexton Trophy)",
           RequiredStrength: 47,
           RequiredDexterity: 0,
           Durability: 20,
@@ -10294,7 +10294,7 @@ const json = [
         Type: "Ring",
         "Set": "Hades' Underworld",
         SetPropertiesString: [],
-        Name: "Vampire's Crusade",
+        Name: "吸血鬼的十字军东征 (Vampire's Crusade)",
         Index: "Vampire's Crusade",
         Enabled: true,
         Rarity: 5,
@@ -10303,26 +10303,26 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+10% Faster Cast Rate",
+            PropertyString: "+10% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+1 to Mana (Per Character Level)",
+            PropertyString: "+1 法力 （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "Regenerate Mana +50%",
+            PropertyString: "法力恢復 50%",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +8-15%",
+            PropertyString: "所有抗性 +8-15%",
             Index: 3
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -10339,9 +10339,9 @@ const json = [
         Type: "Boots",
         "Set": "Hades' Underworld",
         SetPropertiesString: [
-          "Cannot Be Frozen (5 Items)"
+          "無法冰凍 （5 件）"
         ],
-        Name: "The River Stix",
+        Name: "斯蒂克斯河 (The River Stix)",
         Index: "The River Stix",
         Enabled: true,
         Rarity: 7,
@@ -10350,15 +10350,15 @@ const json = [
         Code: "xlb",
         Properties: [
           {
-            PropertyString: "+30% Faster Run/Walk",
+            PropertyString: "+30% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+1 Defense (Per Character Level)",
+            PropertyString: "+1 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +25-40%",
+            PropertyString: "冰寒抗性 +25-40%",
             Index: 2
           }
         ],
@@ -10368,7 +10368,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "28",
           EquipmentType: 0,
-          Name: "Demonhide Boots",
+          Name: "魔皮長靴 (Demonhide Boots)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -10385,10 +10385,10 @@ const json = [
         Type: "Helm",
         "Set": "Hades' Underworld",
         SetPropertiesString: [
-          "+100% extra gold from monsters (3 Items)",
-          "+35% better chance of getting magic item (4 Items)"
+          "怪物金幣掉落量提高 +100% （3 件）",
+          "尋獲魔法物品機率提高 +35% （4 件）"
         ],
-        Name: "Lord Hades' Throne",
+        Name: "哈迪斯王座 (Lord Hades' Throne)",
         Index: "Lord Hades' Throne",
         Enabled: true,
         Rarity: 7,
@@ -10397,15 +10397,15 @@ const json = [
         Code: "xrn",
         Properties: [
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+100% Enhanced Defense",
+            PropertyString: "+100% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Poison Resist +25-40%",
+            PropertyString: "毒素抗性 +25-40%",
             Index: 2
           }
         ],
@@ -10415,7 +10415,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "158",
           EquipmentType: 0,
-          Name: "Grand Crown",
+          Name: "莊嚴王冠 (Grand Crown)",
           RequiredStrength: 103,
           RequiredDexterity: 0,
           Durability: 50,
@@ -10431,37 +10431,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+2 to Revive",
+        PropertyString: "+2 重生",
         Index: 0
       },
       {
-        PropertyString: "+7 to Skeleton Mastery",
+        PropertyString: "+7 骷髏專精",
         Index: 2
       },
       {
-        PropertyString: "+4 to Shout",
+        PropertyString: "+4 大吼",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to Necromancer Skill Levels",
+        PropertyString: "+2 死靈法師技能等級",
         Index: 0
       },
       {
-        PropertyString: "+20% Cold Absorb",
+        PropertyString: "寒冰吸引 +20%",
         Index: 2
       },
       {
-        PropertyString: "+20% Lightning Absorb",
+        PropertyString: "電擊吸引 +20%",
         Index: 3
       },
       {
-        PropertyString: "+20% Fire Absorb",
+        PropertyString: "火焰吸引 +20%",
         Index: 1
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 4
       }
     ],
@@ -10469,16 +10469,16 @@ const json = [
   },
   {
     Index: "Darque's Cabal",
-    Name: "Darque's Cabal",
+    Name: "达尔克阴谋集团 (Darque's Cabal)",
     SetItems: [
       {
         Type: "Primal Helm",
         "Set": "Darque's Cabal",
         SetPropertiesString: [
-          "+15% Increased Attack Speed (4 Items)",
-          "+15 to Maximum Damage (2 Items)"
+          "攻擊速度 +15% （4 件）",
+          "+15 最大傷害 （2 件）"
         ],
-        Name: "Secret Society",
+        Name: "秘社 (Secret Society)",
         Index: "Secret Society",
         Enabled: true,
         Rarity: 7,
@@ -10487,19 +10487,19 @@ const json = [
         Code: "ba9",
         Properties: [
           {
-            PropertyString: "12% Chance to cast level 6 Static Field when struck",
+            PropertyString: "被擊中時有 12% 機率施展等級 6 靜電力場",
             Index: 1
           },
           {
-            PropertyString: "+1 to Barbarian Skill Levels",
+            PropertyString: "+1 野蠻人技能等級",
             Index: 0
           },
           {
-            PropertyString: "+100% Enhanced Defense",
+            PropertyString: "+100% 防禦強化",
             Index: 3
           },
           {
-            PropertyString: "+50-70 to Life",
+            PropertyString: "+50-70 生命",
             Index: 2
           }
         ],
@@ -10509,7 +10509,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "172",
           EquipmentType: 0,
-          Name: "Savage Helmet",
+          Name: "凶蠻頭盔 (Savage Helmet)",
           RequiredStrength: 103,
           RequiredDexterity: 0,
           Durability: 50,
@@ -10526,9 +10526,9 @@ const json = [
         Type: "Armor",
         "Set": "Darque's Cabal",
         SetPropertiesString: [
-          "+100% Damage to Demons (2 Items)"
+          "+100% 對惡魔的傷害 （2 件）"
         ],
-        Name: "Fallen Angels",
+        Name: "堕落天使 (Fallen Angels)",
         Index: "Fallen Angels",
         Enabled: true,
         Rarity: 7,
@@ -10537,15 +10537,15 @@ const json = [
         Code: "xth",
         Properties: [
           {
-            PropertyString: "+180-220% Enhanced Defense",
+            PropertyString: "+180-220% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +20-30%",
+            PropertyString: "所有抗性 +20-30%",
             Index: 1
           },
           {
-            PropertyString: "Socketed (1)",
+            PropertyString: "鑲孔 (1)",
             Index: 2
           }
         ],
@@ -10555,7 +10555,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "792-905",
           EquipmentType: 0,
-          Name: "Embossed Plate",
+          Name: "雕紋戰甲 (Embossed Plate)",
           RequiredStrength: 125,
           RequiredDexterity: 0,
           Durability: 55,
@@ -10572,9 +10572,9 @@ const json = [
         Type: "Sword",
         "Set": "Darque's Cabal",
         SetPropertiesString: [
-          "+40% Increased Attack Speed (2 Items)",
-          "Adds 50-125 to Damage (3 Items)",
-          "Prevent Monster Heal (4 Items)"
+          "攻擊速度 +40% （2 件）",
+          "增加 50-125 傷害 （3 件）",
+          "防止怪物自療 （4 件）"
         ],
         Name: "Savant Fury",
         Index: "Savant Fury",
@@ -10585,11 +10585,11 @@ const json = [
         Code: "9gd",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 1
           },
           {
-            PropertyString: "+220-300% Enhanced Damage",
+            PropertyString: "+220-300% 傷害強化",
             Index: 0
           }
         ],
@@ -10606,7 +10606,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Executioner Sword",
+          Name: "處刑劍 (Executioner Sword)",
           RequiredStrength: 170,
           RequiredDexterity: 110,
           Durability: 0,
@@ -10623,9 +10623,9 @@ const json = [
         Type: "Shield",
         "Set": "Darque's Cabal",
         SetPropertiesString: [
-          "+20% Faster Block Rate (3 Items)"
+          "+20% 格擋速度 （3 件）"
         ],
-        Name: "Dawn's Blessing",
+        Name: "黎明的祝福 (Dawn's Blessing)",
         Index: "Dawn's Blessing",
         Enabled: true,
         Rarity: 7,
@@ -10634,15 +10634,15 @@ const json = [
         Code: "xts",
         Properties: [
           {
-            PropertyString: "+35-50% Enhanced Damage",
+            PropertyString: "+35-50% 傷害強化",
             Index: 2
           },
           {
-            PropertyString: "+25% Faster Hit Recovery",
+            PropertyString: "+25% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+25-35% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +25-35%",
             Index: 0
           }
         ],
@@ -10652,7 +10652,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "178-194",
           EquipmentType: 0,
-          Name: "Ancient Shield",
+          Name: "上古盾 (Ancient Shield)",
           RequiredStrength: 110,
           RequiredDexterity: 0,
           Durability: 80,
@@ -10668,33 +10668,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+200% Damage to Undead",
+        PropertyString: "+200% 對不死怪物的傷害",
         Index: 0
       },
       {
-        PropertyString: "+200% Damage to Demons",
+        PropertyString: "+200% 對惡魔的傷害",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to Barbarian Skill Levels",
+        PropertyString: "+2 野蠻人技能等級",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 1
       },
       {
-        PropertyString: "+25 to All Attributes",
+        PropertyString: "+25 所有屬性",
         Index: 2
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 3
       },
       {
-        PropertyString: "+125% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +125%",
         Index: 4
       }
     ],
@@ -10702,15 +10702,15 @@ const json = [
   },
   {
     Index: "Red Havoc's Challenge",
-    Name: "Red Havoc's Challenge",
+    Name: "红色浩劫的挑战 (Red Havoc's Challenge)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Red Havoc's Challenge",
         SetPropertiesString: [
-          "+1 to Maximum Damage (Per Character Level) (3 Items)"
+          "+1 最大傷害 （依角色等級而定） （3 件）"
         ],
-        Name: "Cry of the Wolf",
+        Name: "狼来了 (Cry of the Wolf)",
         Index: "Cry of the Wolf",
         Enabled: true,
         Rarity: 7,
@@ -10719,15 +10719,15 @@ const json = [
         Code: "xcl",
         Properties: [
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 2
           },
           {
-            PropertyString: "+2% Enhanced Defense (Per Character Level)",
+            PropertyString: "+2% 防禦強化 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "Level 35 Summon Dire Wolf (8 Charges)",
+            PropertyString: "等級 35 召喚恐狼（8 次）",
             Index: 0
           }
         ],
@@ -10737,7 +10737,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "477-548",
           EquipmentType: 0,
-          Name: "Tigulated Mail",
+          Name: "鎖鱗戰甲 (Tigulated Mail)",
           RequiredStrength: 86,
           RequiredDexterity: 0,
           Durability: 36,
@@ -10754,9 +10754,9 @@ const json = [
         Type: "Pelt",
         "Set": "Red Havoc's Challenge",
         SetPropertiesString: [
-          "+25% better chance of getting magic item (2 Items)"
+          "尋獲魔法物品機率提高 +25% （2 件）"
         ],
-        Name: "Full Moon Frenzy",
+        Name: "满月狂潮 (Full Moon Frenzy)",
         Index: "Full Moon Frenzy",
         Enabled: true,
         Rarity: 7,
@@ -10765,19 +10765,19 @@ const json = [
         Code: "dr6",
         Properties: [
           {
-            PropertyString: "+2-3 to Shape Shifting Skills (Druid only)",
+            PropertyString: "+2-3 變形技能 （只限德魯伊）",
             Index: 1
           },
           {
-            PropertyString: "+180% Enhanced Defense",
+            PropertyString: "+180% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+10% Increased Maximum Life",
+            PropertyString: "生命上限 +10%",
             Index: 3
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 2
           }
         ],
@@ -10787,7 +10787,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "52",
           EquipmentType: 0,
-          Name: "Alpha Helm",
+          Name: "猛狼頭盔 (Alpha Helm)",
           RequiredStrength: 44,
           RequiredDexterity: 0,
           Durability: 20,
@@ -10804,9 +10804,9 @@ const json = [
         Type: "Hammer",
         "Set": "Red Havoc's Challenge",
         SetPropertiesString: [
-          "All Resistances +35% (3 Items)"
+          "所有抗性 +35% （3 件）"
         ],
-        Name: "Torment of Innocence",
+        Name: "纯真的折磨 (Torment of Innocence)",
         Index: "Torment of Innocence",
         Enabled: true,
         Rarity: 7,
@@ -10815,19 +10815,19 @@ const json = [
         Code: "9m9",
         Properties: [
           {
-            PropertyString: "+50% Increased Attack Speed",
+            PropertyString: "攻擊速度 +50%",
             Index: 1
           },
           {
-            PropertyString: "+160-200% Enhanced Damage",
+            PropertyString: "+160-200% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+20% bonus to Attack Rating",
+            PropertyString: "+20% 準確率加成",
             Index: 3
           },
           {
-            PropertyString: "Requirements -40%",
+            PropertyString: "需求 -40%",
             Index: 2
           }
         ],
@@ -10840,7 +10840,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "War Club",
+          Name: "征戰重鎚 (War Club)",
           RequiredStrength: 124,
           RequiredDexterity: 0,
           Durability: 250,
@@ -10857,9 +10857,9 @@ const json = [
         Type: "Belt",
         "Set": "Red Havoc's Challenge",
         SetPropertiesString: [
-          "+50 to Mana (4 Items)"
+          "+50 法力 （4 件）"
         ],
-        Name: "Drawing Out the Beast",
+        Name: "引出野兽 (Drawing Out the Beast)",
         Index: "Drawing Out the Beast",
         Enabled: true,
         Rarity: 7,
@@ -10868,19 +10868,19 @@ const json = [
         Code: "zlb",
         Properties: [
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 3
           },
           {
-            PropertyString: "+90-110% Enhanced Defense",
+            PropertyString: "+90-110% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+30-40 to Life",
+            PropertyString: "+30-40 生命",
             Index: 1
           },
           {
-            PropertyString: "All Resistances +10-15%",
+            PropertyString: "所有抗性 +10-15%",
             Index: 2
           }
         ],
@@ -10890,7 +10890,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "54-63",
           EquipmentType: 0,
-          Name: "Demonhide Sash",
+          Name: "魔皮束帶 (Demonhide Sash)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -10906,37 +10906,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+8 to Werewolf (Druid Only)",
+        PropertyString: "+8 狼人變化（只限德魯伊）",
         Index: 0
       },
       {
-        PropertyString: "+6 to Lycanthropy (Druid Only)",
+        PropertyString: "+6 變形術（只限德魯伊）",
         Index: 1
       },
       {
-        PropertyString: "+5 to Fury (Druid Only)",
+        PropertyString: "+5 狂怒連擊（只限德魯伊）",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to Druid Skill Levels",
+        PropertyString: "+2 德魯伊技能等級",
         Index: 0
       },
       {
-        PropertyString: "+30% bonus to Attack Rating",
+        PropertyString: "+30% 準確率加成",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 3
       },
       {
-        PropertyString: "+60% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +60%",
         Index: 4
       }
     ],
@@ -10944,15 +10944,15 @@ const json = [
   },
   {
     Index: "Mishy's Avatar",
-    Name: "Mishy's Avatar",
+    Name: "米希的化身 (Mishy's Avatar)",
     SetItems: [
       {
         Type: "Boots",
         "Set": "Mishy's Avatar",
         SetPropertiesString: [
-          "+20% Faster Hit Recovery (2 Items)"
+          "+20% 打擊恢復 （2 件）"
         ],
-        Name: "Elven Grace",
+        Name: "精靈之優雅 (Elven Grace)",
         Index: "Elven Grace",
         Enabled: true,
         Rarity: 7,
@@ -10961,19 +10961,19 @@ const json = [
         Code: "xvb",
         Properties: [
           {
-            PropertyString: "+5-10 to Maximum Damage",
+            PropertyString: "+5-10 最大傷害",
             Index: 3
           },
           {
-            PropertyString: "+120-150% Enhanced Defense",
+            PropertyString: "+120-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15 to Dexterity",
+            PropertyString: "+15 敏捷",
             Index: 1
           },
           {
-            PropertyString: "Cold Resist +20-30%",
+            PropertyString: "冰寒抗性 +20-30%",
             Index: 2
           }
         ],
@@ -10983,7 +10983,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "68",
           EquipmentType: 0,
-          Name: "Sharkskin Boots",
+          Name: "鯊皮靴 (Sharkskin Boots)",
           RequiredStrength: 47,
           RequiredDexterity: 0,
           Durability: 14,
@@ -11000,10 +11000,10 @@ const json = [
         Type: "Armor",
         "Set": "Mishy's Avatar",
         SetPropertiesString: [
-          "+15% Increased Attack Speed (3 Items)",
-          "+25 to Life (4 Items)"
+          "攻擊速度 +15% （3 件）",
+          "+25 生命 （4 件）"
         ],
-        Name: "Woodland Protector",
+        Name: "林地守護者 (Woodland Protector)",
         Index: "Woodland Protector",
         Enabled: true,
         Rarity: 7,
@@ -11012,19 +11012,19 @@ const json = [
         Code: "xhn",
         Properties: [
           {
-            PropertyString: "+100-120% Enhanced Defense",
+            PropertyString: "+100-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+1 to Life (Per Character Level)",
+            PropertyString: "+1 生命 （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "Poison Length Reduced by 80%",
+            PropertyString: "中毒的時效縮短 80%",
             Index: 3
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 1
           }
         ],
@@ -11034,7 +11034,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "547-646",
           EquipmentType: 0,
-          Name: "Mesh Armor",
+          Name: "鐵網戰甲 (Mesh Armor)",
           RequiredStrength: 92,
           RequiredDexterity: 0,
           Durability: 45,
@@ -11051,7 +11051,7 @@ const json = [
         Type: "Circlet",
         "Set": "Mishy's Avatar",
         SetPropertiesString: [],
-        Name: "Silent Whisper",
+        Name: "無聲低語 (Silent Whisper)",
         Index: "Silent Whisper",
         Enabled: true,
         Rarity: 7,
@@ -11060,19 +11060,19 @@ const json = [
         Code: "ci1",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+5% Mana stolen per hit",
+            PropertyString: "擊中竊取 +5% 法力",
             Index: 3
           },
           {
-            PropertyString: "+22% Damage Taken Goes To Mana",
+            PropertyString: "+22% 受到的傷害轉為法力",
             Index: 2
           }
         ],
@@ -11082,7 +11082,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "30",
           EquipmentType: 0,
-          Name: "Coronet",
+          Name: "寶冠 (Coronet)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 30,
@@ -11099,7 +11099,7 @@ const json = [
         Type: "Ring",
         "Set": "Mishy's Avatar",
         SetPropertiesString: [],
-        Name: "Warder's Bond",
+        Name: "獄吏的鐐銬 (Warder's Bond)",
         Index: "Warder's Bond",
         Enabled: true,
         Rarity: 5,
@@ -11108,26 +11108,26 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+6% Life stolen per hit",
+            PropertyString: "擊中竊取 6% 生命",
             Index: 1
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 3
           },
           {
-            PropertyString: "+10 to Strength",
+            PropertyString: "+10 力量",
             Index: 0
           },
           {
-            PropertyString: "+40-50 to Mana",
+            PropertyString: "+40-50 法力",
             Index: 2
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -11144,9 +11144,9 @@ const json = [
         Type: "Gloves",
         "Set": "Mishy's Avatar",
         SetPropertiesString: [
-          "+20% Increased Attack Speed (5 Items)"
+          "攻擊速度 +20% （5 件）"
         ],
-        Name: "Maiden's Kiss",
+        Name: "少女之吻 (Maiden's Kiss)",
         Index: "Maiden's Kiss",
         Enabled: true,
         Rarity: 7,
@@ -11155,19 +11155,19 @@ const json = [
         Code: "xmg",
         Properties: [
           {
-            PropertyString: "Cold Resist +30-40%",
+            PropertyString: "冰寒抗性 +30-40%",
             Index: 3
           },
           {
-            PropertyString: "Lightning Resist +30-40%",
+            PropertyString: "電擊抗性 +30-40%",
             Index: 1
           },
           {
-            PropertyString: "Fire Resist +30-40%",
+            PropertyString: "火焰抗性 +30-40%",
             Index: 0
           },
           {
-            PropertyString: "Poison Resist +30-40%",
+            PropertyString: "毒素抗性 +30-40%",
             Index: 2
           }
         ],
@@ -11177,7 +11177,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "37",
           EquipmentType: 0,
-          Name: "Heavy Bracers",
+          Name: "重型護腕 (Heavy Bracers)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 16,
@@ -11194,9 +11194,9 @@ const json = [
         Type: "Amazon Bow",
         "Set": "Mishy's Avatar",
         SetPropertiesString: [
-          "Adds 25-100 to Fire Damage (6 Items)"
+          "增加 25-100 火焰傷害 （6 件）"
         ],
-        Name: "Trent's Caster",
+        Name: "特倫特的強弓 (Trent's Caster)",
         Index: "Trent's Caster",
         Enabled: true,
         Rarity: 7,
@@ -11205,15 +11205,15 @@ const json = [
         Code: "am7",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+170-210% Enhanced Damage",
+            PropertyString: "+170-210% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (3)",
+            PropertyString: "鑲孔 (3)",
             Index: 2
           }
         ],
@@ -11226,7 +11226,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Ceremonial Bow",
+          Name: "儀禮弓 (Ceremonial Bow)",
           RequiredStrength: 73,
           RequiredDexterity: 110,
           Durability: 0,
@@ -11242,41 +11242,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+150 to Attack Rating",
+        PropertyString: "+150 準確率",
         Index: 0
       },
       {
-        PropertyString: "+40% Enhanced Damage",
+        PropertyString: "+40% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 4
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 6
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to Amazon Skill Levels",
+        PropertyString: "+2 亞馬遜技能等級",
         Index: 0
       },
       {
-        PropertyString: "+75 to Life",
+        PropertyString: "+75 生命",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 2
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 4
       }
     ],
@@ -11284,13 +11284,13 @@ const json = [
   },
   {
     Index: "Joel's Sanctuary",
-    Name: "Joel's Sanctuary",
+    Name: "喬爾的聖堂 (Joel's Sanctuary)",
     SetItems: [
       {
         Type: "Orb",
         "Set": "Joel's Sanctuary",
         SetPropertiesString: [],
-        Name: "Eye of the Trent",
+        Name: "特倫特之眼 (Eye of the Trent)",
         Index: "Eye of the Trent",
         Enabled: true,
         Rarity: 7,
@@ -11299,19 +11299,19 @@ const json = [
         Code: "ob8",
         Properties: [
           {
-            PropertyString: "Level 4 Cleansing Aura When Equipped",
+            PropertyString: "裝備時賦予等級 4 淨化靈氣",
             Index: 2
           },
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+20% Increased Maximum Mana",
+            PropertyString: "法力上限 +20%",
             Index: 3
           }
         ],
@@ -11324,7 +11324,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Cloudy Sphere",
+          Name: "雲霧之球 (Cloudy Sphere)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 250,
@@ -11341,9 +11341,9 @@ const json = [
         Type: "Armor",
         "Set": "Joel's Sanctuary",
         SetPropertiesString: [
-          "+5 Replenish Life (4 Items)"
+          "生命回復 +5 （4 件）"
         ],
-        Name: "Power of Fire",
+        Name: "烈火之力 (Power of Fire)",
         Index: "Power of Fire",
         Enabled: true,
         Rarity: 7,
@@ -11352,23 +11352,23 @@ const json = [
         Code: "xui",
         Properties: [
           {
-            PropertyString: "+10-20% to Fire Skill Damage",
+            PropertyString: "+10-20% 火焰技能傷害",
             Index: 1
           },
           {
-            PropertyString: "-10-20% to Enemy Fire Resistance",
+            PropertyString: "敵人火焰抗性 -10-20%",
             Index: 2
           },
           {
-            PropertyString: "+100-120% Enhanced Defense",
+            PropertyString: "+100-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Fire Resist +35-50%",
+            PropertyString: "火焰抗性 +35-50%",
             Index: 4
           },
           {
-            PropertyString: "+10-20% Fire Absorb",
+            PropertyString: "火焰吸引 +10-20%",
             Index: 3
           }
         ],
@@ -11378,7 +11378,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "206-226",
           EquipmentType: 0,
-          Name: "Ghost Armor",
+          Name: "鬼魂戰衣 (Ghost Armor)",
           RequiredStrength: 38,
           RequiredDexterity: 0,
           Durability: 20,
@@ -11395,9 +11395,9 @@ const json = [
         Type: "Helm",
         "Set": "Joel's Sanctuary",
         SetPropertiesString: [
-          "Half Freeze Duration (3 Items)"
+          "冰凍時間減半 （3 件）"
         ],
-        Name: "Power of Ice",
+        Name: "寒冰之力 (Power of Ice)",
         Index: "Power of Ice",
         Enabled: true,
         Rarity: 7,
@@ -11406,23 +11406,23 @@ const json = [
         Code: "xap",
         Properties: [
           {
-            PropertyString: "+10-20% to Cold Skill Damage",
+            PropertyString: "+10-20% 寒冰技能傷害",
             Index: 1
           },
           {
-            PropertyString: "-10-20% to Enemy Cold Resistance",
+            PropertyString: "敵人冰寒抗性 -10-20%",
             Index: 2
           },
           {
-            PropertyString: "+100-120% Enhanced Defense",
+            PropertyString: "+100-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +35-50%",
+            PropertyString: "冰寒抗性 +35-50%",
             Index: 4
           },
           {
-            PropertyString: "+10-20% Cold Absorb",
+            PropertyString: "寒冰吸引 +10-20%",
             Index: 3
           }
         ],
@@ -11432,7 +11432,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "80-92",
           EquipmentType: 0,
-          Name: "War Hat",
+          Name: "戰帽 (War Hat)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -11449,9 +11449,9 @@ const json = [
         Type: "Shield",
         "Set": "Joel's Sanctuary",
         SetPropertiesString: [
-          "+20% Increased Chance of Blocking (2 Items)"
+          "格擋機率提高 +20% （2 件）"
         ],
-        Name: "Power of Lightning",
+        Name: "閃電之力 (Power of Lightning)",
         Index: "Power of Lightning",
         Enabled: true,
         Rarity: 7,
@@ -11460,23 +11460,23 @@ const json = [
         Code: "xuc",
         Properties: [
           {
-            PropertyString: "+10-20% to Lightning Skill Damage",
+            PropertyString: "+10-20% 閃電技能傷害",
             Index: 1
           },
           {
-            PropertyString: "-10-20% to Enemy Lightning Resistance",
+            PropertyString: "敵人電擊抗性 -10-20%",
             Index: 2
           },
           {
-            PropertyString: "+100-120% Enhanced Defense",
+            PropertyString: "+100-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Lightning Resist +35-50%",
+            PropertyString: "電擊抗性 +35-50%",
             Index: 4
           },
           {
-            PropertyString: "+10-20% Lightning Absorb",
+            PropertyString: "電擊吸引 +10-20%",
             Index: 3
           }
         ],
@@ -11486,7 +11486,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "84-92",
           EquipmentType: 0,
-          Name: "Defender",
+          Name: "防禦盾 (Defender)",
           RequiredStrength: 38,
           RequiredDexterity: 0,
           Durability: 68,
@@ -11502,33 +11502,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50 to Mana",
+        PropertyString: "+50 法力",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +50%",
+        PropertyString: "法力恢復 50%",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to Sorceress Skill Levels",
+        PropertyString: "+2 魔法使技能等級",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+7 to Mana after each Kill",
+        PropertyString: "+7 擊殺法力恢復",
         Index: 4
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 2
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 3
       }
     ],
@@ -11536,13 +11536,13 @@ const json = [
   },
   {
     Index: "JBouley's Scion",
-    Name: "JBouley's Scion",
+    Name: "傑布雷的子嗣 (JBouley's Scion)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "JBouley's Scion",
         SetPropertiesString: [],
-        Name: "Shadow Ninja",
+        Name: "暗影忍者 (Shadow Ninja)",
         Index: "Shadow Ninja",
         Enabled: true,
         Rarity: 7,
@@ -11551,19 +11551,19 @@ const json = [
         Code: "xtu",
         Properties: [
           {
-            PropertyString: "+1 to Dodge",
+            PropertyString: "+1 閃躲",
             Index: 1
           },
           {
-            PropertyString: "+1 to Evade",
+            PropertyString: "+1 閃避",
             Index: 2
           },
           {
-            PropertyString: "+1 to Avoid",
+            PropertyString: "+1 閃身",
             Index: 3
           },
           {
-            PropertyString: "+300-400 Defense",
+            PropertyString: "+300-400 防禦",
             Index: 0
           }
         ],
@@ -11573,7 +11573,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "361-417",
           EquipmentType: 0,
-          Name: "Trellised Armor",
+          Name: "格網護甲 (Trellised Armor)",
           RequiredStrength: 61,
           RequiredDexterity: 0,
           Durability: 32,
@@ -11590,9 +11590,9 @@ const json = [
         Type: "Gloves",
         "Set": "JBouley's Scion",
         SetPropertiesString: [
-          "All Resistances +15% (3 Items)"
+          "所有抗性 +15% （3 件）"
         ],
-        Name: "Night's Caress",
+        Name: "暮風酥撫 (Night's Caress)",
         Index: "Night's Caress",
         Enabled: true,
         Rarity: 7,
@@ -11601,15 +11601,15 @@ const json = [
         Code: "xlg",
         Properties: [
           {
-            PropertyString: "+2 to Martial Arts (Assassin only)",
+            PropertyString: "+2 武學技藝 （只限刺客）",
             Index: 2
           },
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+1.5 Defense (Per Character Level)",
+            PropertyString: "+1.5 防禦 （依角色等級而定）",
             Index: 0
           }
         ],
@@ -11619,7 +11619,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "28",
           EquipmentType: 0,
-          Name: "Demonhide Gloves",
+          Name: "魔皮手套 (Demonhide Gloves)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -11636,10 +11636,10 @@ const json = [
         Type: "Hand to Hand 2",
         "Set": "JBouley's Scion",
         SetPropertiesString: [
-          "+8% Mana stolen per hit (4 Items)",
-          "+8% Life stolen per hit (3 Items)"
+          "擊中竊取 +8% 法力 （4 件）",
+          "擊中竊取 8% 生命 （3 件）"
         ],
-        Name: "Mystic Blades",
+        Name: "神秘之刃 (Mystic Blades)",
         Index: "Mystic Blades",
         Enabled: true,
         Rarity: 7,
@@ -11648,15 +11648,15 @@ const json = [
         Code: "9qr",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+160-190% Enhanced Damage",
+            PropertyString: "+160-190% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (1)",
+            PropertyString: "鑲孔 (1)",
             Index: 2
           }
         ],
@@ -11669,7 +11669,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Scissors Quhab",
+          Name: "格鬥剪刃 (Scissors Quhab)",
           RequiredStrength: 82,
           RequiredDexterity: 82,
           Durability: 250,
@@ -11686,9 +11686,9 @@ const json = [
         Type: "Belt",
         "Set": "JBouley's Scion",
         SetPropertiesString: [
-          "Slows target by 15% (2 Items)"
+          "使目標減慢 15% （2 件）"
         ],
-        Name: "Fade to Black",
+        Name: "隱於墨黑 (Fade to Black)",
         Index: "Fade to Black",
         Enabled: true,
         Rarity: 7,
@@ -11697,19 +11697,19 @@ const json = [
         Code: "ztb",
         Properties: [
           {
-            PropertyString: "+80% Enhanced Defense",
+            PropertyString: "+80% 防禦強化",
             Index: 4
           },
           {
-            PropertyString: "+25 to Life",
+            PropertyString: "+25 生命",
             Index: 2
           },
           {
-            PropertyString: "+25 to Mana",
+            PropertyString: "+25 法力",
             Index: 3
           },
           {
-            PropertyString: "All Resistances +15%",
+            PropertyString: "所有抗性 +15%",
             Index: 1
           },
           {
@@ -11723,7 +11723,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "66-83",
           EquipmentType: 0,
-          Name: "Battle Belt",
+          Name: "戰鬥腰帶 (Battle Belt)",
           RequiredStrength: 88,
           RequiredDexterity: 0,
           Durability: 18,
@@ -11739,33 +11739,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+33% Deadly Strike",
+        PropertyString: "+33% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to Assassin Skill Levels",
+        PropertyString: "+2 刺客技能等級",
         Index: 0
       },
       {
-        PropertyString: "+100% Chance of Open Wounds",
+        PropertyString: "+100% 機率造成開放傷口",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 1
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 2
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 4
       }
     ],
@@ -11773,13 +11773,13 @@ const json = [
   },
   {
     Index: "Forsaken Divinity",
-    Name: "Forsaken Divinity",
+    Name: "被遺忘的神性 (Forsaken Divinity)",
     SetItems: [
       {
         Type: "Ring",
         "Set": "Forsaken Divinity",
         SetPropertiesString: [],
-        Name: "Fall From Grace",
+        Name: "失卻天恩 (Fall From Grace)",
         Index: "Fall From Grace",
         Enabled: true,
         Rarity: 3,
@@ -11788,26 +11788,26 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "Adds 4-7% Mana stolen per hit",
+            PropertyString: "擊中竊取 4-7% 法力",
             Index: 1
           },
           {
-            PropertyString: "Adds 6-9% Life stolen per hit",
+            PropertyString: "擊中竊取 6-9% 生命",
             Index: 0
           },
           {
-            PropertyString: "+35-50 to Life",
+            PropertyString: "+35-50 生命",
             Index: 2
           },
           {
-            PropertyString: "+60-80 to Mana",
+            PropertyString: "+60-80 法力",
             Index: 3
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -11824,7 +11824,7 @@ const json = [
         Type: "Ring",
         "Set": "Forsaken Divinity",
         SetPropertiesString: [],
-        Name: "Tyrial's Grief",
+        Name: "泰瑞爾的悲傷 (Tyrial's Grief)",
         Index: "Tyrial's Grief",
         Enabled: true,
         Rarity: 3,
@@ -11833,26 +11833,26 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 2
           },
           {
-            PropertyString: "+3-5 Replenish Life",
+            PropertyString: "生命回復 +3-5",
             Index: 0
           },
           {
-            PropertyString: "Regenerate Mana +45%",
+            PropertyString: "法力恢復 45%",
             Index: 1
           },
           {
-            PropertyString: "+25-35% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +25-35%",
             Index: 3
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -11869,7 +11869,7 @@ const json = [
         Type: "Amulet",
         "Set": "Forsaken Divinity",
         SetPropertiesString: [],
-        Name: "Redemption Denied",
+        Name: "天贖不允 (Redemption Denied)",
         Index: "Redemption Denied",
         Enabled: true,
         Rarity: 3,
@@ -11878,26 +11878,26 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+10 to All Attributes",
+            PropertyString: "+10 所有屬性",
             Index: 2
           },
           {
-            PropertyString: "All Resistances +15-25%",
+            PropertyString: "所有抗性 +15-25%",
             Index: 3
           },
           {
-            PropertyString: "+40-50% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +40-50%",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -11914,11 +11914,11 @@ const json = [
         Type: "Armor",
         "Set": "Forsaken Divinity",
         SetPropertiesString: [
-          "+1 to All Skills (4 Items)",
-          "+100% extra gold from monsters (2 Items)",
-          "+50% better chance of getting magic item (3 Items)"
+          "+1 所有技能 （4 件）",
+          "怪物金幣掉落量提高 +100% （2 件）",
+          "尋獲魔法物品機率提高 +50% （3 件）"
         ],
-        Name: "Hell's Embrace",
+        Name: "地獄的擁抱 (Hell's Embrace)",
         Index: "Hell's Embrace",
         Enabled: true,
         Rarity: 7,
@@ -11927,11 +11927,11 @@ const json = [
         Code: "xtp",
         Properties: [
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (4)",
+            PropertyString: "鑲孔 (4)",
             Index: 1
           }
         ],
@@ -11941,7 +11941,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "525-725",
           EquipmentType: 0,
-          Name: "Mage Plate",
+          Name: "法師鎧甲 (Mage Plate)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 60,
@@ -11967,19 +11967,19 @@ const json = [
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+50% Increased Attack Speed",
+        PropertyString: "攻擊速度 +50%",
         Index: 4
       },
       {
-        PropertyString: "+200% Enhanced Damage",
+        PropertyString: "+200% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 1
       },
       {
@@ -11991,15 +11991,15 @@ const json = [
   },
   {
     Index: "Volf's Undead Legion",
-    Name: "Volf's Undead Legion",
+    Name: "沃爾夫的亡靈軍團 (Volf's Undead Legion)",
     SetItems: [
       {
         Type: "Shield",
         "Set": "Volf's Undead Legion",
         SetPropertiesString: [
-          "+35% Increased Chance of Blocking (2 Items)"
+          "格擋機率提高 +35% （2 件）"
         ],
-        Name: "Spectral Knight's Unholy Shield",
+        Name: "幽靈騎士的邪惡之盾 (Spectral Knight's Unholy Shield)",
         Index: "Spectral Knight's Unholy Shield",
         Enabled: true,
         Rarity: 7,
@@ -12008,19 +12008,19 @@ const json = [
         Code: "xsh",
         Properties: [
           {
-            PropertyString: "+125-155% Enhanced Defense",
+            PropertyString: "+125-155% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "-10 to Life",
+            PropertyString: "-10 生命",
             Index: 3
           },
           {
-            PropertyString: "All Resistances +20-30%",
+            PropertyString: "所有抗性 +20-30%",
             Index: 2
           },
           {
-            PropertyString: "+15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15%",
             Index: 1
           }
         ],
@@ -12030,7 +12030,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "89-102",
           EquipmentType: 0,
-          Name: "Grim Shield",
+          Name: "陰森盾牌 (Grim Shield)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 70,
@@ -12047,10 +12047,10 @@ const json = [
         Type: "Sword",
         "Set": "Volf's Undead Legion",
         SetPropertiesString: [
-          "+20% Increased Attack Speed (2 Items)",
-          "+100% Damage to Demons (4 Items)"
+          "攻擊速度 +20% （2 件）",
+          "+100% 對惡魔的傷害 （4 件）"
         ],
-        Name: "Death Knight's Demon Blade",
+        Name: "死亡騎士的惡魔之刃 (Death Knight's Demon Blade)",
         Index: "Death Knight's Demon Blade",
         Enabled: true,
         Rarity: 7,
@@ -12059,15 +12059,15 @@ const json = [
         Code: "9bs",
         Properties: [
           {
-            PropertyString: "+160-220% Enhanced Damage",
+            PropertyString: "+160-220% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 20-55 to Damage",
+            PropertyString: "增加 20-55 傷害",
             Index: 1
           },
           {
-            PropertyString: "+15% Life stolen per hit",
+            PropertyString: "擊中竊取 15% 生命",
             Index: 2
           }
         ],
@@ -12080,7 +12080,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Battle Sword",
+          Name: "戰鬥長劍 (Battle Sword)",
           RequiredStrength: 92,
           RequiredDexterity: 43,
           Durability: 250,
@@ -12097,8 +12097,8 @@ const json = [
         Type: "Helm",
         "Set": "Volf's Undead Legion",
         SetPropertiesString: [
-          "+1 to Sorceress Skill Levels (4 Items)",
-          "+15 to Strength (3 Items)"
+          "+1 魔法使技能等級 （4 件）",
+          "+15 力量 （3 件）"
         ],
         Name: "Lich's Evil Grin",
         Index: "Lich's Cranium",
@@ -12109,15 +12109,15 @@ const json = [
         Code: "xh9",
         Properties: [
           {
-            PropertyString: "+25% Faster Cast Rate",
+            PropertyString: "+25% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+60-80 to Mana",
+            PropertyString: "+60-80 法力",
             Index: 0
           },
           {
-            PropertyString: "Socketed (1)",
+            PropertyString: "鑲孔 (1)",
             Index: 2
           }
         ],
@@ -12127,7 +12127,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "129",
           EquipmentType: 0,
-          Name: "Grim Helm",
+          Name: "陰森頭盔 (Grim Helm)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 40,
@@ -12144,9 +12144,9 @@ const json = [
         Type: "Armor",
         "Set": "Volf's Undead Legion",
         SetPropertiesString: [
-          "Cannot Be Frozen (4 Items)"
+          "無法冰凍 （4 件）"
         ],
-        Name: "Skeleton Warrior's Corpse Plate",
+        Name: "骷髏戰士的尸骨板甲 (Skeleton Warrior's Corpse Plate)",
         Index: "Skeleton Warrior's Corpse Plate",
         Enabled: true,
         Rarity: 7,
@@ -12155,15 +12155,15 @@ const json = [
         Code: "xlt",
         Properties: [
           {
-            PropertyString: "+25% Faster Hit Recovery",
+            PropertyString: "+25% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "+80-120% Enhanced Defense",
+            PropertyString: "+80-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+2 Defense (Per Character Level)",
+            PropertyString: "+2 防禦 （依角色等級而定）",
             Index: 1
           }
         ],
@@ -12173,7 +12173,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "632-733",
           EquipmentType: 0,
-          Name: "Templar Coat",
+          Name: "聖堂騎士戰甲 (Templar Coat)",
           RequiredStrength: 118,
           RequiredDexterity: 0,
           Durability: 60,
@@ -12189,33 +12189,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "-1 Drain Life",
+        PropertyString: "吸取生命 -1",
         Index: 0
       },
       {
-        PropertyString: "-2 Drain Life",
+        PropertyString: "吸取生命 -2",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+300% Damage to Undead",
+        PropertyString: "+300% 對不死怪物的傷害",
         Index: 3
       },
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 4
       },
       {
-        PropertyString: "-2 Drain Life",
+        PropertyString: "吸取生命 -2",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +35%",
+        PropertyString: "所有抗性 +35%",
         Index: 1
       }
     ],
@@ -12223,16 +12223,16 @@ const json = [
   },
   {
     Index: "Legacy of Vashna",
-    Name: "Legacy of Vashna",
+    Name: "瓦什納的遺產 (Legacy of Vashna)",
     SetItems: [
       {
         Type: "Knife",
         "Set": "Legacy of Vashna",
         SetPropertiesString: [
-          "+8 Life after each Kill (2 Items)",
-          "+5 to Mana after each Kill (3 Items)"
+          "+8 擊殺生命恢復 （2 件）",
+          "+5 擊殺法力恢復 （3 件）"
         ],
-        Name: "Dagger of Vashna",
+        Name: "瓦什納的匕首 (Dagger of Vashna)",
         Index: "Dagger of Vashna",
         Enabled: true,
         Rarity: 7,
@@ -12241,15 +12241,15 @@ const json = [
         Code: "9dg",
         Properties: [
           {
-            PropertyString: "+75% Increased Attack Speed",
+            PropertyString: "攻擊速度 +75%",
             Index: 1
           },
           {
-            PropertyString: "+10% Faster Cast Rate",
+            PropertyString: "+10% 施法速度",
             Index: 2
           },
           {
-            PropertyString: "Adds 35-70 to Damage",
+            PropertyString: "增加 35-70 傷害",
             Index: 0
           }
         ],
@@ -12262,7 +12262,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Poignard",
+          Name: "刺擊短劍 (Poignard)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 250,
@@ -12279,10 +12279,10 @@ const json = [
         Type: "Helm",
         "Set": "Legacy of Vashna",
         SetPropertiesString: [
-          "+5 to Raise Skeleton (2 Items)",
-          "+3 to Skeleton Mastery (3 Items)"
+          "+5 復生骷髏（2 件）",
+          "+3 骷髏專精（3 件）"
         ],
-        Name: "Mask of Vashna",
+        Name: "瓦什納的的面具 (Mask of Vashna)",
         Index: "Mask of Vashna",
         Enabled: true,
         Rarity: 7,
@@ -12291,15 +12291,15 @@ const json = [
         Code: "xsk",
         Properties: [
           {
-            PropertyString: "+15% Faster Run/Walk",
+            PropertyString: "+15% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+10% Faster Cast Rate",
+            PropertyString: "+10% 施法速度",
             Index: 2
           },
           {
-            PropertyString: "+100-115% Enhanced Defense",
+            PropertyString: "+100-115% 防禦強化",
             Index: 0
           }
         ],
@@ -12309,7 +12309,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "129-154",
           EquipmentType: 0,
-          Name: "Death Mask",
+          Name: "死亡面具 (Death Mask)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 20,
@@ -12326,9 +12326,9 @@ const json = [
         Type: "Armor",
         "Set": "Legacy of Vashna",
         SetPropertiesString: [
-          "Prevent Monster Heal (3 Items)"
+          "防止怪物自療 （3 件）"
         ],
-        Name: "Robes of Vashna",
+        Name: "瓦什納的長袍 (Robes of Vashna)",
         Index: "Robes of Vashna",
         Enabled: true,
         Rarity: 7,
@@ -12337,19 +12337,19 @@ const json = [
         Code: "xea",
         Properties: [
           {
-            PropertyString: "+1 to Necromancer Skill Levels",
+            PropertyString: "+1 死靈法師技能等級",
             Index: 2
           },
           {
-            PropertyString: "+50% Damage to Undead",
+            PropertyString: "+50% 對不死怪物的傷害",
             Index: 3
           },
           {
-            PropertyString: "+300-400 Defense",
+            PropertyString: "+300-400 防禦",
             Index: 1
           },
           {
-            PropertyString: "Half Freeze Duration",
+            PropertyString: "冰凍時間減半",
             Index: 0
           }
         ],
@@ -12359,7 +12359,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "361-461",
           EquipmentType: 0,
-          Name: "Serpentskin Armor",
+          Name: "海蛇皮甲 (Serpentskin Armor)",
           RequiredStrength: 43,
           RequiredDexterity: 0,
           Durability: 24,
@@ -12375,25 +12375,25 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+15% Mana stolen per hit",
+        PropertyString: "擊中竊取 +15% 法力",
         Index: 4
       },
       {
-        PropertyString: "+15% Life stolen per hit",
+        PropertyString: "擊中竊取 15% 生命",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
@@ -12405,15 +12405,15 @@ const json = [
   },
   {
     Index: "Salander's Tirade",
-    Name: "Salander's Tirade",
+    Name: "萨兰德的咆哮 (Salander's Tirade)",
     SetItems: [
       {
         Type: "Polearm",
         "Set": "Salander's Tirade",
         SetPropertiesString: [
-          "Adds 75-120 to Fire Damage (2 Items)"
+          "增加 75-120 火焰傷害 （2 件）"
         ],
-        Name: "Lancer's Reach",
+        Name: "蓝瑟之域 (Lancer's Reach)",
         Index: "Lancer's Reach",
         Enabled: true,
         Rarity: 7,
@@ -12422,15 +12422,15 @@ const json = [
         Code: "9pa",
         Properties: [
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 1
           },
           {
-            PropertyString: "+180-240% Enhanced Damage",
+            PropertyString: "+180-240% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 2
           }
         ],
@@ -12443,7 +12443,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Partizan",
+          Name: "闊頭槍 (Partizan)",
           RequiredStrength: 113,
           RequiredDexterity: 67,
           Durability: 250,
@@ -12460,9 +12460,9 @@ const json = [
         Type: "Armor",
         "Set": "Salander's Tirade",
         SetPropertiesString: [
-          "+35 to Life (2 Items)"
+          "+35 生命 （2 件）"
         ],
-        Name: "Salander's Mail",
+        Name: "薩蘭德之甲 (Salander's Mail)",
         Index: "Salander's Mail",
         Enabled: true,
         Rarity: 7,
@@ -12471,19 +12471,19 @@ const json = [
         Code: "xng",
         Properties: [
           {
-            PropertyString: "+25% Faster Hit Recovery",
+            PropertyString: "+25% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "+120-150% Enhanced Defense",
+            PropertyString: "+120-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +15%",
+            PropertyString: "所有抗性 +15%",
             Index: 3
           },
           {
-            PropertyString: "Socketed (1)",
+            PropertyString: "鑲孔 (1)",
             Index: 1
           }
         ],
@@ -12493,7 +12493,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "365-429",
           EquipmentType: 0,
-          Name: "Linked Mail",
+          Name: "鍊扣戰甲 (Linked Mail)",
           RequiredStrength: 74,
           RequiredDexterity: 0,
           Durability: 26,
@@ -12510,9 +12510,9 @@ const json = [
         Type: "Helm",
         "Set": "Salander's Tirade",
         SetPropertiesString: [
-          "+35 to Mana (2 Items)"
+          "+35 法力 （2 件）"
         ],
-        Name: "Salander's Visor",
+        Name: "萨兰德的面罩 (Salander's Visor)",
         Index: "Salander's Visor",
         Enabled: true,
         Rarity: 7,
@@ -12521,15 +12521,15 @@ const json = [
         Code: "xlm",
         Properties: [
           {
-            PropertyString: "+75-120% Enhanced Defense",
+            PropertyString: "+75-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+3 to Mana after each Kill",
+            PropertyString: "+3 擊殺法力恢復",
             Index: 2
           },
           {
-            PropertyString: "+10% Damage Taken Goes To Mana",
+            PropertyString: "+10% 受到的傷害轉為法力",
             Index: 1
           }
         ],
@@ -12539,7 +12539,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "140-160",
           EquipmentType: 0,
-          Name: "Casque",
+          Name: "兜盔",
           RequiredStrength: 59,
           RequiredDexterity: 0,
           Durability: 24,
@@ -12555,29 +12555,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+30% Faster Hit Recovery",
+        PropertyString: "+30% 打擊恢復",
         Index: 3
       },
       {
-        PropertyString: "Adds 25-50 to Damage",
+        PropertyString: "增加 25-50 傷害",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 2
       },
       {
-        PropertyString: "+20 Life after each Kill",
+        PropertyString: "+20 擊殺生命恢復",
         Index: 4
       }
     ],
@@ -12585,15 +12585,15 @@ const json = [
   },
   {
     Index: "Jerik's Dragon Armor",
-    Name: "Jerik's Dragon Armor",
+    Name: "杰里克的龙铠 (Jerik's Dragon Armor)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Jerik's Dragon Armor",
         SetPropertiesString: [
-          "+40% to Fire Skill Damage (2 Items)"
+          "+40% 火焰技能傷害 （2 件）"
         ],
-        Name: "Red Dragon Scale Mail",
+        Name: "红龙鳞甲 (Red Dragon Scale Mail)",
         Index: "Red Dragon Scale Mail",
         Enabled: true,
         Rarity: 7,
@@ -12602,11 +12602,11 @@ const json = [
         Code: "xcl",
         Properties: [
           {
-            PropertyString: "+4 Defense (Per Character Level)",
+            PropertyString: "+4 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "+35% Fire Absorb",
+            PropertyString: "火焰吸引 +35%",
             Index: 1
           }
         ],
@@ -12616,7 +12616,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "477-548",
           EquipmentType: 0,
-          Name: "Tigulated Mail",
+          Name: "鎖鱗戰甲 (Tigulated Mail)",
           RequiredStrength: 86,
           RequiredDexterity: 0,
           Durability: 36,
@@ -12633,10 +12633,10 @@ const json = [
         Type: "Shield",
         "Set": "Jerik's Dragon Armor",
         SetPropertiesString: [
-          "+30% Faster Block Rate (3 Items)",
-          "+20% Increased Chance of Blocking (2 Items)"
+          "+30% 格擋速度 （3 件）",
+          "格擋機率提高 +20% （2 件）"
         ],
-        Name: "Black Dragon Hide Shield",
+        Name: "黑龙皮盾 (Black Dragon Hide Shield)",
         Index: "Black Dragon Hide Shield",
         Enabled: true,
         Rarity: 7,
@@ -12645,11 +12645,11 @@ const json = [
         Code: "xit",
         Properties: [
           {
-            PropertyString: "+100% Enhanced Defense",
+            PropertyString: "+100% 防禦強化",
             Index: 1
           },
           {
-            PropertyString: "All Resistances +60%",
+            PropertyString: "所有抗性 +60%",
             Index: 0
           }
         ],
@@ -12659,7 +12659,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "135",
           EquipmentType: 0,
-          Name: "Dragon Shield",
+          Name: "龍盾 (Dragon Shield)",
           RequiredStrength: 91,
           RequiredDexterity: 0,
           Durability: 76,
@@ -12676,9 +12676,9 @@ const json = [
         Type: "Helm",
         "Set": "Jerik's Dragon Armor",
         SetPropertiesString: [
-          "Magic Damage Reduced by 20 (3 Items)"
+          "魔法傷害降低 20 （3 件）"
         ],
-        Name: "Green Dragon Mask",
+        Name: "青龙面具 (Green Dragon Mask)",
         Index: "Green Dragon Mask",
         Enabled: true,
         Rarity: 7,
@@ -12687,19 +12687,19 @@ const json = [
         Code: "xhm",
         Properties: [
           {
-            PropertyString: "+100-125% Enhanced Defense",
+            PropertyString: "+100-125% 防禦強化",
             Index: 2
           },
           {
-            PropertyString: "Poison Resist +50%",
+            PropertyString: "毒素抗性 +50%",
             Index: 0
           },
           {
-            PropertyString: "Damage Reduced by 20",
+            PropertyString: "物理傷害降低 20",
             Index: 3
           },
           {
-            PropertyString: "Poison Length Reduced by 60%",
+            PropertyString: "中毒的時效縮短 60%",
             Index: 1
           }
         ],
@@ -12709,7 +12709,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "189-232",
           EquipmentType: 0,
-          Name: "Winged Helm",
+          Name: "翼盔 (Winged Helm)",
           RequiredStrength: 115,
           RequiredDexterity: 0,
           Durability: 40,
@@ -12725,13 +12725,13 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
@@ -12739,15 +12739,15 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 1
       },
       {
-        PropertyString: "+5 to All Maximum Resistances",
+        PropertyString: "所有抗性上限 +5",
         Index: 4
       },
       {
-        PropertyString: "+2% to Experience Gained",
+        PropertyString: "獲得的經驗值 +2%",
         Index: 2
       }
     ],
@@ -12755,17 +12755,17 @@ const json = [
   },
   {
     Index: "Onyx's Primal Rage",
-    Name: "Onyx's Primal Rage",
+    Name: "玛瑙的原始狂暴 (Onyx's Primal Rage)",
     SetItems: [
       {
         Type: "Boots",
         "Set": "Onyx's Primal Rage",
         SetPropertiesString: [
-          "+30 to Strength (4 Items)",
-          "Damage Reduced by 15 (2 Items)",
-          "Magic Damage Reduced by 15 (3 Items)"
+          "+30 力量 （4 件）",
+          "物理傷害降低 15 （2 件）",
+          "魔法傷害降低 15 （3 件）"
         ],
-        Name: "Onyx's Fallen Star",
+        Name: "玛瑙陨星 (Onyx's Fallen Star)",
         Index: "Onyx's Fallen Star",
         Enabled: true,
         Rarity: 7,
@@ -12774,19 +12774,19 @@ const json = [
         Code: "uhb",
         Properties: [
           {
-            PropertyString: "+25% Faster Run/Walk",
+            PropertyString: "+25% 跑步 / 行走速度",
             Index: 2
           },
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 3
           },
           {
-            PropertyString: "+170-200% Enhanced Defense",
+            PropertyString: "+170-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Lightning Resist +25-35%",
+            PropertyString: "電擊抗性 +25-35%",
             Index: 1
           }
         ],
@@ -12796,7 +12796,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "138-151",
           EquipmentType: 0,
-          Name: "Myrmidon Greaves",
+          Name: "勇士護脛 (Myrmidon Greaves)",
           RequiredStrength: 208,
           RequiredDexterity: 0,
           Durability: 24,
@@ -12813,11 +12813,11 @@ const json = [
         Type: "Sword",
         "Set": "Onyx's Primal Rage",
         SetPropertiesString: [
-          "+40% Increased Attack Speed (4 Items)",
-          "+7% Mana stolen per hit (2 Items)",
-          "+12% Life stolen per hit (3 Items)"
+          "攻擊速度 +40% （4 件）",
+          "擊中竊取 +7% 法力 （2 件）",
+          "擊中竊取 12% 生命 （3 件）"
         ],
-        Name: "Onyx's Solar Flair",
+        Name: "玛瑙的太阳能光彩 (Onyx's Solar Flair)",
         Index: "Onyx's Solar Flair",
         Enabled: true,
         Rarity: 7,
@@ -12826,19 +12826,19 @@ const json = [
         Code: "7b7",
         Properties: [
           {
-            PropertyString: "+200-300% Enhanced Damage",
+            PropertyString: "+200-300% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 75-200 to Damage",
+            PropertyString: "增加 75-200 傷害",
             Index: 1
           },
           {
-            PropertyString: "+2 Attacker Takes Damage of (Per Character Level)",
+            PropertyString: "+2 Attacker Takes Damage of （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "+10% Damage Taken Goes To Mana",
+            PropertyString: "+10% 受到的傷害轉為法力",
             Index: 3
           }
         ],
@@ -12855,7 +12855,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Champion Sword",
+          Name: "豪傑大劍 (Champion Sword)",
           RequiredStrength: 163,
           RequiredDexterity: 103,
           Durability: 250,
@@ -12872,10 +12872,10 @@ const json = [
         Type: "Sword",
         "Set": "Onyx's Primal Rage",
         SetPropertiesString: [
-          "12% Chance to cast level 19 Nova on striking (2 Items)",
-          "+50 to Life (3 Items)"
+          "擊中時有 12% 機率施展等級 19 閃電新星 （2 件）",
+          "+50 生命 （3 件）"
         ],
-        Name: "Onyx's Super Nova",
+        Name: "黑玛瑙的超级新星 (Onyx's Super Nova)",
         Index: "Onyx's Super Nova",
         Enabled: true,
         Rarity: 7,
@@ -12884,19 +12884,19 @@ const json = [
         Code: "7gs",
         Properties: [
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 2
           },
           {
-            PropertyString: "+200-300% Enhanced Damage",
+            PropertyString: "+200-300% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+3 to Maximum Damage (Per Character Level)",
+            PropertyString: "+3 最大傷害 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 3
           }
         ],
@@ -12913,7 +12913,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Balrog Blade",
+          Name: "炎魔之刃 (Balrog Blade)",
           RequiredStrength: 185,
           RequiredDexterity: 87,
           Durability: 250,
@@ -12930,10 +12930,10 @@ const json = [
         Type: "Armor",
         "Set": "Onyx's Primal Rage",
         SetPropertiesString: [
-          "15% Chance to cast level 7 Meteor when struck (3 Items)",
-          "+1 to Barbarian Skill Levels (2 Items)"
+          "被擊中時有 15% 機率施展等級 7 隕石術 （3 件）",
+          "+1 野蠻人技能等級 （2 件）"
         ],
-        Name: "Onyx's Meteor Shower",
+        Name: "玛瑙流星雨 (Onyx's Meteor Shower)",
         Index: "Onyx's Meteor Shower",
         Enabled: true,
         Rarity: 7,
@@ -12942,19 +12942,19 @@ const json = [
         Code: "upl",
         Properties: [
           {
-            PropertyString: "+40% Faster Hit Recovery",
+            PropertyString: "+40% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+10-15% Increased Maximum Life",
+            PropertyString: "生命上限 +10-15%",
             Index: 2
           },
           {
-            PropertyString: "+10-15% Increased Maximum Mana",
+            PropertyString: "法力上限 +10-15%",
             Index: 3
           }
         ],
@@ -12964,7 +12964,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1068-1233",
           EquipmentType: 0,
-          Name: "Balrog Skin",
+          Name: "炎魔皮板甲 (Balrog Skin)",
           RequiredStrength: 165,
           RequiredDexterity: 0,
           Durability: 30,
@@ -12981,11 +12981,11 @@ const json = [
         Type: "Primal Helm",
         "Set": "Onyx's Primal Rage",
         SetPropertiesString: [
-          "+20% Increased Attack Speed (3 Items)",
-          "+4 to Attack Rating (Per Character Level) (4 Items)",
-          "+3% to Experience Gained (2 Items)"
+          "攻擊速度 +20% （3 件）",
+          "+4 準確率 （依角色等級而定） （4 件）",
+          "獲得的經驗值 +3% （2 件）"
         ],
-        Name: "Onyx's Celestial Rage",
+        Name: "玛瑙的天怒 (Onyx's Celestial Rage)",
         Index: "Onyx's Celestial Rage",
         Enabled: true,
         Rarity: 7,
@@ -12994,15 +12994,15 @@ const json = [
         Code: "baf",
         Properties: [
           {
-            PropertyString: "+2 to Barbarian Skill Levels",
+            PropertyString: "+2 野蠻人技能等級",
             Index: 0
           },
           {
-            PropertyString: "+15-25 to All Attributes",
+            PropertyString: "+15-25 所有屬性",
             Index: 2
           },
           {
-            PropertyString: "+15-20% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15-20%",
             Index: 1
           }
         ],
@@ -13012,7 +13012,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "117",
           EquipmentType: 0,
-          Name: "Guardian Crown",
+          Name: "守護者盔冠 (Guardian Crown)",
           RequiredStrength: 196,
           RequiredDexterity: 0,
           Durability: 55,
@@ -13028,33 +13028,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 0
       },
       {
-        PropertyString: "+2% to Experience Gained",
+        PropertyString: "獲得的經驗值 +2%",
         Index: 2
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 2
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 3
       }
     ],
@@ -13062,17 +13062,17 @@ const json = [
   },
   {
     Index: "Brother Laz' Calling",
-    Name: "Brother Laz' Calling",
+    Name: "拉兹兄弟的呼喚 (Brother Laz' Calling)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Brother Laz' Calling",
         SetPropertiesString: [
-          "+1 to Paladin Skill Levels (2 Items)",
-          "+20% Faster Hit Recovery (3 Items)",
-          "+3% to Experience Gained (4 Items)"
+          "+1 聖騎士技能等級 （2 件）",
+          "+20% 打擊恢復 （3 件）",
+          "獲得的經驗值 +3% （4 件）"
         ],
-        Name: "Teachings of Brother Laz",
+        Name: "拉兹兄弟的教诲 (Teachings of Brother Laz)",
         Index: "Teachings of Brother Laz",
         Enabled: true,
         Rarity: 7,
@@ -13081,15 +13081,15 @@ const json = [
         Code: "urn",
         Properties: [
           {
-            PropertyString: "+100-150% Enhanced Defense",
+            PropertyString: "+100-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +20-30%",
+            PropertyString: "所有抗性 +20-30%",
             Index: 1
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 2
           }
         ],
@@ -13099,7 +13099,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "263-308",
           EquipmentType: 0,
-          Name: "Corona",
+          Name: "日冕之冠 (Corona)",
           RequiredStrength: 174,
           RequiredDexterity: 0,
           Durability: 50,
@@ -13116,11 +13116,11 @@ const json = [
         Type: "Armor",
         "Set": "Brother Laz' Calling",
         SetPropertiesString: [
-          "+1 to All Skills (2 Items)",
-          "Slain Monsters Rest in Peace (3 Items)",
-          "+15% Physical Damage Reduction (4 Items)"
+          "+1 所有技能 （2 件）",
+          "殺死的怪物就此安息 （3 件）",
+          "物理傷害降低 +15% （4 件）"
         ],
-        Name: "Holy Aura",
+        Name: "神圣光环 (Holy Aura)",
         Index: "Holy Aura",
         Enabled: true,
         Rarity: 7,
@@ -13129,19 +13129,19 @@ const json = [
         Code: "uar",
         Properties: [
           {
-            PropertyString: "Level 3-5 Salvation Aura When Equipped",
+            PropertyString: "裝備時賦予等級 3-5 聖護靈氣",
             Index: 1
           },
           {
-            PropertyString: "+140-190% Enhanced Defense",
+            PropertyString: "+140-190% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Cannot Be Frozen",
+            PropertyString: "無法冰凍",
             Index: 2
           },
           {
-            PropertyString: "Poison Length Reduced by 60%",
+            PropertyString: "中毒的時效縮短 60%",
             Index: 3
           }
         ],
@@ -13151,7 +13151,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1171-1415",
           EquipmentType: 0,
-          Name: "Sacred Armor",
+          Name: "神聖戰甲 (Sacred Armor)",
           RequiredStrength: 232,
           RequiredDexterity: 0,
           Durability: 60,
@@ -13168,11 +13168,11 @@ const json = [
         Type: "Auric Shields",
         "Set": "Brother Laz' Calling",
         SetPropertiesString: [
-          "+15 to Minimum Damage (3 Items)",
-          "+33 to Maximum Damage (2 Items)",
-          "Magic Resist +25% (4 Items)"
+          "+15 最小傷害 （3 件）",
+          "+33 最大傷害 （2 件）",
+          "魔法抗性 +25% （4 件）"
         ],
-        Name: "Retribution",
+        Name: "报应 (Retribution)",
         Index: "Retribution",
         Enabled: true,
         Rarity: 7,
@@ -13181,23 +13181,23 @@ const json = [
         Code: "pae",
         Properties: [
           {
-            PropertyString: "+40% Faster Block Rate",
+            PropertyString: "+40% 格擋速度",
             Index: 2
           },
           {
-            PropertyString: "+33% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +33%",
             Index: 1
           },
           {
-            PropertyString: "+4 Defense (Per Character Level)",
+            PropertyString: "+4 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "+10-20 to Strength",
+            PropertyString: "+10-20 力量",
             Index: 4
           },
           {
-            PropertyString: "All Resistances +20-30%",
+            PropertyString: "所有抗性 +20-30%",
             Index: 3
           }
         ],
@@ -13207,7 +13207,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "169",
           EquipmentType: 0,
-          Name: "Zakarum Shield",
+          Name: "撒卡蘭姆盾 (Zakarum Shield)",
           RequiredStrength: 142,
           RequiredDexterity: 0,
           Durability: 65,
@@ -13224,11 +13224,11 @@ const json = [
         Type: "Gloves",
         "Set": "Brother Laz' Calling",
         SetPropertiesString: [
-          "10% Chance to cast level 3 Amplify Damage when struck (2 Items)",
-          "All Resistances +15% (3 Items)",
-          "+50% better chance of getting magic item (4 Items)"
+          "被擊中時有 10% 機率施展等級 3 傷害加深 （2 件）",
+          "所有抗性 +15% （3 件）",
+          "尋獲魔法物品機率提高 +50% （4 件）"
         ],
-        Name: "Glory of Salvation",
+        Name: "救赎的荣耀 (Glory of Salvation)",
         Index: "Glory of Salvation",
         Enabled: true,
         Rarity: 7,
@@ -13237,19 +13237,19 @@ const json = [
         Code: "utg",
         Properties: [
           {
-            PropertyString: "+3 to Salvation",
+            PropertyString: "+3 聖護",
             Index: 3
           },
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 0
           },
           {
-            PropertyString: "+75-125% Enhanced Defense",
+            PropertyString: "+75-125% 防禦強化",
             Index: 2
           },
           {
-            PropertyString: "+60 to Mana",
+            PropertyString: "+60 法力",
             Index: 1
           }
         ],
@@ -13259,7 +13259,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "168-192",
           EquipmentType: 0,
-          Name: "Crusader Gauntlets",
+          Name: "聖教軍護手 (Crusader Gauntlets)",
           RequiredStrength: 151,
           RequiredDexterity: 0,
           Durability: 18,
@@ -13276,10 +13276,10 @@ const json = [
         Type: "Scepter",
         "Set": "Brother Laz' Calling",
         SetPropertiesString: [
-          "20% Chance to cast level 8 Frost Nova on striking (3 Items)",
-          "+25 to Dexterity (2 Items)"
+          "擊中時有 20% 機率施展等級 8 冰霜新星 （3 件）",
+          "+25 敏捷 （2 件）"
         ],
-        Name: "Angel's Touch",
+        Name: "天使之触 (Angel's Touch)",
         Index: "Angel's Touch",
         Enabled: true,
         Rarity: 7,
@@ -13288,19 +13288,19 @@ const json = [
         Code: "7qs",
         Properties: [
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 3
           },
           {
-            PropertyString: "+220-300% Enhanced Damage",
+            PropertyString: "+220-300% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 40-120 to Damage",
+            PropertyString: "增加 40-120 傷害",
             Index: 2
           },
           {
-            PropertyString: "+300% Damage to Demons",
+            PropertyString: "+300% 對惡魔的傷害",
             Index: 1
           }
         ],
@@ -13313,7 +13313,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Seraph Rod",
+          Name: "熾天使節杖 (Seraph Rod)",
           RequiredStrength: 108,
           RequiredDexterity: 69,
           Durability: 250,
@@ -13329,33 +13329,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+15 to All Attributes",
+        PropertyString: "+15 所有屬性",
         Index: 0
       },
       {
-        PropertyString: "+33% Chance of Crushing Blow",
+        PropertyString: "+33% 概率造成粉碎打擊",
         Index: 2
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+4% to Experience Gained",
+        PropertyString: "獲得的經驗值 +4%",
         Index: 2
       },
       {
-        PropertyString: "+75% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +75%",
         Index: 3
       }
     ],
@@ -13363,21 +13363,21 @@ const json = [
   },
   {
     Index: "The Mysterious Spin",
-    Name: "The Mysterious Spin",
+    Name: "神秘的旋转 (The Mysterious Spin)",
     SetItems: [
       {
         Type: "Circlet",
         "Set": "The Mysterious Spin",
         SetPropertiesString: [
-          "+1.5 Defense (Per Character Level) (3 Items)",
-          "+1.25 to Life (Per Character Level) (5 Items)",
-          "+1 to Mana (Per Character Level) (5 Items)",
-          "All Resistances +15% (2 Items)",
-          "All Resistances +15% (3 Items)",
-          "+100% extra gold from monsters (4 Items)",
-          "+25% better chance of getting magic item (4 Items)"
+          "+1.5 防禦 （依角色等級而定） （3 件）",
+          "+1.25 生命 （依角色等級而定） （5 件）",
+          "+1 法力 （依角色等級而定） （5 件）",
+          "所有抗性 +15% （2 件）",
+          "所有抗性 +15% （3 件）",
+          "怪物金幣掉落量提高 +100% （4 件）",
+          "尋獲魔法物品機率提高 +25% （4 件）"
         ],
-        Name: "Spin's Enigma",
+        Name: "旋转之谜 (Spin's Enigma)",
         Index: "Spin's Enigma",
         Enabled: true,
         Rarity: 7,
@@ -13386,7 +13386,7 @@ const json = [
         Code: "ci2",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           }
         ],
@@ -13396,7 +13396,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "40",
           EquipmentType: 0,
-          Name: "Tiara",
+          Name: "頭冠 (Tiara)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 25,
@@ -13413,14 +13413,14 @@ const json = [
         Type: "Armor",
         "Set": "The Mysterious Spin",
         SetPropertiesString: [
-          "+20% Faster Cast Rate (5 Items)",
-          "+20% Faster Hit Recovery (5 Items)",
-          "+120% Enhanced Defense (3 Items)",
-          "Magic Resist +15% (4 Items)",
-          "All Resistances +15% (4 Items)",
-          "+15% Physical Damage Reduction (2 Items)"
+          "+20% 施法速度 （5 件）",
+          "+20% 打擊恢復 （5 件）",
+          "+120% 防禦強化 （3 件）",
+          "魔法抗性 +15% （4 件）",
+          "所有抗性 +15% （4 件）",
+          "物理傷害降低 +15% （2 件）"
         ],
-        Name: "Spin's Paradox",
+        Name: "自旋悖论 (Spin's Paradox)",
         Index: "Spin's Paradox",
         Enabled: true,
         Rarity: 7,
@@ -13429,7 +13429,7 @@ const json = [
         Code: "ula",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           }
         ],
@@ -13439,7 +13439,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "814-925",
           EquipmentType: 0,
-          Name: "Scarab Husk",
+          Name: "聖甲蟲殼皮甲 (Scarab Husk)",
           RequiredStrength: 95,
           RequiredDexterity: 0,
           Durability: 28,
@@ -13456,14 +13456,14 @@ const json = [
         Type: "Belt",
         "Set": "The Mysterious Spin",
         SetPropertiesString: [
-          "All Resistances +10% (5 Items)",
-          "+10% Cold Absorb (2 Items)",
-          "+10% Lightning Absorb (3 Items)",
-          "+10% Fire Absorb (4 Items)",
-          "Poison Length Reduced by 50% (5 Items)",
-          "+25% better chance of getting magic item (4 Items)"
+          "所有抗性 +10% （5 件）",
+          "寒冰吸引 +10% （2 件）",
+          "電擊吸引 +10% （3 件）",
+          "火焰吸引 +10% （4 件）",
+          "中毒的時效縮短 50% （5 件）",
+          "尋獲魔法物品機率提高 +25% （4 件）"
         ],
-        Name: "Spin's Mystery",
+        Name: "旋转之谜 (Spin's Mystery)",
         Index: "Spin's Mystery",
         Enabled: true,
         Rarity: 7,
@@ -13472,7 +13472,7 @@ const json = [
         Code: "ulc",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           }
         ],
@@ -13482,7 +13482,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "180-230",
           EquipmentType: 0,
-          Name: "Spiderweb Sash",
+          Name: "蛛網束帶 (Spiderweb Sash)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 12,
@@ -13499,14 +13499,14 @@ const json = [
         Type: "Shield",
         "Set": "The Mysterious Spin",
         SetPropertiesString: [
-          "+40% Faster Block Rate (3 Items)",
-          "+40% Increased Chance of Blocking (2 Items)",
-          "+110% Enhanced Defense (5 Items)",
-          "+15 Replenish Life (4 Items)",
-          "Regenerate Mana +75% (4 Items)",
-          "+15% Physical Damage Reduction (5 Items)"
+          "+40% 格擋速度 （3 件）",
+          "格擋機率提高 +40% （2 件）",
+          "+110% 防禦強化 （5 件）",
+          "生命回復 +15 （4 件）",
+          "法力恢復 75% （4 件）",
+          "物理傷害降低 +15% （5 件）"
         ],
-        Name: "Spin's Conundrum",
+        Name: "旋转的难题 (Spin's Conundrum)",
         Index: "Spin's Conundrum",
         Enabled: true,
         Rarity: 7,
@@ -13515,7 +13515,7 @@ const json = [
         Code: "uow",
         Properties: [
           {
-            PropertyString: "Requirements -80%",
+            PropertyString: "需求 -80%",
             Index: 0
           }
         ],
@@ -13525,7 +13525,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "145",
           EquipmentType: 0,
-          Name: "Aegis",
+          Name: "禦塔盾 (Aegis)",
           RequiredStrength: 219,
           RequiredDexterity: 0,
           Durability: 92,
@@ -13542,14 +13542,14 @@ const json = [
         Type: "Orb",
         "Set": "The Mysterious Spin",
         SetPropertiesString: [
-          "+10% to Fire Skill Damage (2 Items)",
-          "+10% to Cold Skill Damage (3 Items)",
-          "+10% to Lightning Skill Damage (4 Items)",
-          "Cold Resist +25% (3 Items)",
-          "Lightning Resist +25% (4 Items)",
-          "Fire Resist +25% (2 Items)"
+          "+10% 火焰技能傷害 （2 件）",
+          "+10% 寒冰技能傷害 （3 件）",
+          "+10% 閃電技能傷害 （4 件）",
+          "冰寒抗性 +25% （3 件）",
+          "電擊抗性 +25% （4 件）",
+          "火焰抗性 +25% （2 件）"
         ],
-        Name: "Spin's Perplexing Puzzle",
+        Name: "旋转的谜题 (Spin's Perplexing Puzzle)",
         Index: "Spin's Perplexing Puzzle",
         Enabled: true,
         Rarity: 7,
@@ -13558,7 +13558,7 @@ const json = [
         Code: "obc",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           }
         ],
@@ -13571,7 +13571,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Eldritch Orb",
+          Name: "異能法珠 (Eldritch Orb)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 250,
@@ -13587,33 +13587,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 2
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+4 to All Skills",
+        PropertyString: "+4 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+15 to Slow Missiles",
+        PropertyString: "+15 緩箭術",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+5% to Experience Gained",
+        PropertyString: "獲得的經驗值 +5%",
         Index: 2
       }
     ],
@@ -13621,16 +13621,16 @@ const json = [
   },
   {
     Index: "Darkmage's Astral Projection",
-    Name: "Darkmage's Astral Projection",
+    Name: "黑暗法师的星界投影 (Darkmage's Astral Projection)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Darkmage's Astral Projection",
         SetPropertiesString: [
-          "All Resistances +15% (4 Items)",
-          "+15% Physical Damage Reduction (2 Items)"
+          "所有抗性 +15% （4 件）",
+          "物理傷害降低 +15% （2 件）"
         ],
-        Name: "Darkmage's Falling Star",
+        Name: "黑暗法师的陨星 (Darkmage's Falling Star)",
         Index: "Darkmage's Falling Star",
         Enabled: true,
         Rarity: 7,
@@ -13639,19 +13639,19 @@ const json = [
         Code: "uhn",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 3
           },
           {
-            PropertyString: "+150-180% Enhanced Defense",
+            PropertyString: "+150-180% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (1)",
+            PropertyString: "鑲孔 (1)",
             Index: 1
           },
           {
-            PropertyString: "Ethereal (Cannot Be Repaired)",
+            PropertyString: "無形 （無法修復）",
             Index: 2
           }
         ],
@@ -13661,7 +13661,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1100-1400",
           EquipmentType: 0,
-          Name: "Boneweave",
+          Name: "骸骨網甲 (Boneweave)",
           RequiredStrength: 158,
           RequiredDexterity: 0,
           Durability: 0,
@@ -13678,11 +13678,11 @@ const json = [
         Type: "Gloves",
         "Set": "Darkmage's Astral Projection",
         SetPropertiesString: [
-          "4% Chance to cast level 20 Shock Wave when struck (4 Items)",
-          "+25 to Strength (4 Items)",
-          "+25 to Dexterity (3 Items)"
+          "被擊中時有 4% 機率施展等級 20 震波衝擊 （4 件）",
+          "+25 力量 （4 件）",
+          "+25 敏捷 （3 件）"
         ],
-        Name: "Darkmage's Solar Flair",
+        Name: "黑暗法师的太阳能天赋 (Darkmage's Solar Flair)",
         Index: "Darkmage's Solar Flair",
         Enabled: true,
         Rarity: 7,
@@ -13691,19 +13691,19 @@ const json = [
         Code: "umg",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 3
           },
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 1
           },
           {
-            PropertyString: "+125-150% Enhanced Defense",
+            PropertyString: "+125-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Ethereal (Cannot Be Repaired)",
+            PropertyString: "無形 （無法修復）",
             Index: 2
           }
         ],
@@ -13713,7 +13713,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "59",
           EquipmentType: 0,
-          Name: "Vambraces",
+          Name: "護臂 (Vambraces)",
           RequiredStrength: 106,
           RequiredDexterity: 0,
           Durability: 0,
@@ -13730,11 +13730,11 @@ const json = [
         Type: "Boots",
         "Set": "Darkmage's Astral Projection",
         SetPropertiesString: [
-          "20% Chance to cast level 14 Nova when struck (5 Items)",
-          "+6% Mana stolen per hit (4 Items)",
-          "+6% Life stolen per hit (2 Items)"
+          "被擊中時有 20% 機率施展等級 14 閃電新星 （5 件）",
+          "擊中竊取 +6% 法力 （4 件）",
+          "擊中竊取 6% 生命 （2 件）"
         ],
-        Name: "Darkmage's Super Nova",
+        Name: "黑暗法师的超级新星 (Darkmage's Super Nova)",
         Index: "Darkmage's Super Nova",
         Enabled: true,
         Rarity: 7,
@@ -13743,19 +13743,19 @@ const json = [
         Code: "umb",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 3
           },
           {
-            PropertyString: "+30% Faster Run/Walk",
+            PropertyString: "+30% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+140-170% Enhanced Defense",
+            PropertyString: "+140-170% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Ethereal (Cannot Be Repaired)",
+            PropertyString: "無形 （無法修復）",
             Index: 2
           }
         ],
@@ -13765,7 +13765,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "108-132",
           EquipmentType: 0,
-          Name: "Boneweave Boots",
+          Name: "骸骨網靴 (Boneweave Boots)",
           RequiredStrength: 118,
           RequiredDexterity: 0,
           Durability: 0,
@@ -13782,11 +13782,11 @@ const json = [
         Type: "Mace",
         "Set": "Darkmage's Astral Projection",
         SetPropertiesString: [
-          "8% Chance to cast level 12 Meteor on striking (4 Items)",
-          "+1 to All Skills (3 Items)",
-          "+25% Chance of Crushing Blow (5 Items)"
+          "擊中時有 8% 機率施展等級 12 隕石術 （4 件）",
+          "+1 所有技能 （3 件）",
+          "+25% 概率造成粉碎打擊 （5 件）"
         ],
-        Name: "Darkmage's Meteor Shower",
+        Name: "黑暗法师的流星雨 (Darkmage's Meteor Shower)",
         Index: "Darkmage's Meteor Shower",
         Enabled: true,
         Rarity: 7,
@@ -13795,19 +13795,19 @@ const json = [
         Code: "7mt",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 3
           },
           {
-            PropertyString: "+25% Increased Attack Speed",
+            PropertyString: "攻擊速度 +25%",
             Index: 1
           },
           {
-            PropertyString: "+220-280% Enhanced Damage",
+            PropertyString: "+220-280% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Ethereal (Cannot Be Repaired)",
+            PropertyString: "無形 （無法修復）",
             Index: 2
           }
         ],
@@ -13820,7 +13820,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Devil Star",
+          Name: "妖鬼釘頭鎚 (Devil Star)",
           RequiredStrength: 153,
           RequiredDexterity: 44,
           Durability: 0,
@@ -13837,11 +13837,11 @@ const json = [
         Type: "Pelt",
         "Set": "Darkmage's Astral Projection",
         SetPropertiesString: [
-          "+2 to Druid Skill Levels (3 Items)",
-          "+135 to Life (4 Items)",
-          "+75 to Mana (5 Items)"
+          "+2 德魯伊技能等級 （3 件）",
+          "+135 生命 （4 件）",
+          "+75 法力 （5 件）"
         ],
-        Name: "Darkmage's Celestial Fury",
+        Name: "黑暗法师的天怒 (Darkmage's Celestial Fury)",
         Index: "Darkmage's Celestial Fury",
         Enabled: true,
         Rarity: 7,
@@ -13850,19 +13850,19 @@ const json = [
         Code: "dre",
         Properties: [
           {
-            PropertyString: "Indestructible",
+            PropertyString: "無法破壞",
             Index: 3
           },
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+190-220% Enhanced Defense",
+            PropertyString: "+190-220% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Ethereal (Cannot Be Repaired)",
+            PropertyString: "無形 （無法修復）",
             Index: 2
           }
         ],
@@ -13872,7 +13872,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "301-332",
           EquipmentType: 0,
-          Name: "Sky Spirit",
+          Name: "天翔靈獸帽 (Sky Spirit)",
           RequiredStrength: 113,
           RequiredDexterity: 0,
           Durability: 0,
@@ -13888,33 +13888,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10 to All Attributes",
+        PropertyString: "+10 所有屬性",
         Index: 0
       },
       {
-        PropertyString: "+20 to All Attributes",
+        PropertyString: "+20 所有屬性",
         Index: 2
       },
       {
-        PropertyString: "+20 to All Attributes",
+        PropertyString: "+20 所有屬性",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+4 to All Skills",
+        PropertyString: "+4 所有技能",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+4% to Experience Gained",
+        PropertyString: "獲得的經驗值 +4%",
         Index: 2
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 3
       }
     ],
@@ -13922,17 +13922,17 @@ const json = [
   },
   {
     Index: "Phrozen Heart's Mysticism",
-    Name: "Phrozen Heart's Mysticism",
+    Name: "冰封之心的神秘主义 (Phrozen Heart's Mysticism)",
     SetItems: [
       {
         Type: "Hand to Hand 2",
         "Set": "Phrozen Heart's Mysticism",
         SetPropertiesString: [
-          "+20% Chance of Crushing Blow (3 Items)",
-          "+20% Deadly Strike (2 Items)",
-          "+2% to Experience Gained (4 Items)"
+          "+20% 概率造成粉碎打擊 （3 件）",
+          "+20% 致命打擊 （2 件）",
+          "獲得的經驗值 +2% （4 件）"
         ],
-        Name: "Cryptic Claws",
+        Name: "隐爪 (Cryptic Claws)",
         Index: "Cryptic Claws",
         Enabled: true,
         Rarity: 7,
@@ -13941,15 +13941,15 @@ const json = [
         Code: "7tw",
         Properties: [
           {
-            PropertyString: "+200-300% Enhanced Damage",
+            PropertyString: "+200-300% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+11% Life stolen per hit",
+            PropertyString: "擊中竊取 11% 生命",
             Index: 1
           },
           {
-            PropertyString: "+6 Replenish Life",
+            PropertyString: "生命回復 +6",
             Index: 2
           }
         ],
@@ -13962,7 +13962,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Runic Talons",
+          Name: "符紋爪 (Runic Talons)",
           RequiredStrength: 115,
           RequiredDexterity: 115,
           Durability: 250,
@@ -13979,11 +13979,11 @@ const json = [
         Type: "Armor",
         "Set": "Phrozen Heart's Mysticism",
         SetPropertiesString: [
-          "+20% Physical Damage Reduction (2 Items)",
-          "Cannot Be Frozen (4 Items)",
-          "Poison Length Reduced by 50% (3 Items)"
+          "物理傷害降低 +20% （2 件）",
+          "無法冰凍 （4 件）",
+          "中毒的時效縮短 50% （3 件）"
         ],
-        Name: "Way of the Shadow",
+        Name: "阴影之道 (Way of the Shadow)",
         Index: "Way of the Shadow",
         Enabled: true,
         Rarity: 7,
@@ -13992,15 +13992,15 @@ const json = [
         Code: "ung",
         Properties: [
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 0
           },
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 1
           },
           {
-            PropertyString: "+75-100 to Life",
+            PropertyString: "+75-100 生命",
             Index: 2
           }
         ],
@@ -14010,7 +14010,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1267-1536",
           EquipmentType: 0,
-          Name: "Diamond Mail",
+          Name: "鑽石鎖甲 (Diamond Mail)",
           RequiredStrength: 131,
           RequiredDexterity: 0,
           Durability: 26,
@@ -14027,12 +14027,12 @@ const json = [
         Type: "Gloves",
         "Set": "Phrozen Heart's Mysticism",
         SetPropertiesString: [
-          "+20% Increased Attack Speed (2 Items)",
-          "+50% Enhanced Damage (3 Items)",
-          "+15 to Strength (5 Items)",
-          "+15 to Dexterity (4 Items)"
+          "攻擊速度 +20% （2 件）",
+          "+50% 傷害強化 （3 件）",
+          "+15 力量 （5 件）",
+          "+15 敏捷 （4 件）"
         ],
-        Name: "Dawns Mist",
+        Name: "黎明之雾 (Dawns Mist)",
         Index: "Dawns Mist",
         Enabled: true,
         Rarity: 7,
@@ -14041,15 +14041,15 @@ const json = [
         Code: "uvg",
         Properties: [
           {
-            PropertyString: "+100-140% Enhanced Defense",
+            PropertyString: "+100-140% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+40-50 to Mana",
+            PropertyString: "+40-50 法力",
             Index: 1
           },
           {
-            PropertyString: "All Resistances +10-15%",
+            PropertyString: "所有抗性 +10-15%",
             Index: 2
           }
         ],
@@ -14059,7 +14059,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "106-156",
           EquipmentType: 0,
-          Name: "Vampirebone Gloves",
+          Name: "吸血鬼骸骨手套 (Vampirebone Gloves)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 14,
@@ -14076,12 +14076,12 @@ const json = [
         Type: "Boots",
         "Set": "Phrozen Heart's Mysticism",
         SetPropertiesString: [
-          "+3 to Dodge (2 Items)",
-          "+3 to Evade (3 Items)",
-          "+3 to Teleport (4 Items)",
-          "+15 Kick Damage (5 Items)"
+          "+3 閃躲（2 件）",
+          "+3 閃避（3 件）",
+          "+3 傳送術（4 件）",
+          "踢擊傷害 +15 （5 件）"
         ],
-        Name: "Featherfoot",
+        Name: "羽毛脚 (Featherfoot)",
         Index: "Featherfoot",
         Enabled: true,
         Rarity: 7,
@@ -14090,15 +14090,15 @@ const json = [
         Code: "ulb",
         Properties: [
           {
-            PropertyString: "+40% Faster Run/Walk",
+            PropertyString: "+40% 跑步 / 行走速度",
             Index: 2
           },
           {
-            PropertyString: "+125-150% Enhanced Defense",
+            PropertyString: "+125-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+100-200 Defense",
+            PropertyString: "+100-200 防禦",
             Index: 1
           }
         ],
@@ -14108,7 +14108,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "143-165",
           EquipmentType: 0,
-          Name: "Wyrmhide Boots",
+          Name: "龍皮靴 (Wyrmhide Boots)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 12,
@@ -14125,11 +14125,11 @@ const json = [
         Type: "Belt",
         "Set": "Phrozen Heart's Mysticism",
         SetPropertiesString: [
-          "+10 Kick Damage (3 Items)",
-          "+15% Physical Damage Reduction (4 Items)",
-          "+50% better chance of getting magic item (2 Items)"
+          "踢擊傷害 +10 （3 件）",
+          "物理傷害降低 +15% （4 件）",
+          "尋獲魔法物品機率提高 +50% （2 件）"
         ],
-        Name: "Winter's Discord",
+        Name: "冬天的不和谐 (Winter's Discord)",
         Index: "Winter's Discord",
         Enabled: true,
         Rarity: 7,
@@ -14138,15 +14138,15 @@ const json = [
         Code: "uvc",
         Properties: [
           {
-            PropertyString: "10% Chance to cast level 6 Frost Nova when struck",
+            PropertyString: "被擊中時有 10% 機率施展等級 6 冰霜新星",
             Index: 1
           },
           {
-            PropertyString: "+20% bonus to Attack Rating",
+            PropertyString: "+20% 準確率加成",
             Index: 2
           },
           {
-            PropertyString: "+100-120% Enhanced Defense",
+            PropertyString: "+100-120% 防禦強化",
             Index: 0
           }
         ],
@@ -14156,7 +14156,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "114-125",
           EquipmentType: 0,
-          Name: "Vampirefang Belt",
+          Name: "吸血鬼牙腰帶 (Vampirefang Belt)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 14,
@@ -14172,37 +14172,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "12% Chance to cast level 8 Frozen Orb when struck",
+        PropertyString: "被擊中時有 12% 機率施展等級 8 冰封球",
         Index: 5
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+5% to Experience Gained",
+        PropertyString: "獲得的經驗值 +5%",
         Index: 2
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 3
       }
     ],
@@ -14210,16 +14210,16 @@ const json = [
   },
   {
     Index: "Chaos Energy",
-    Name: "Chaos Energy",
+    Name: "混沌能源 (Chaos Energy)",
     SetItems: [
       {
         Type: "Amulet",
         "Set": "Chaos Energy",
         SetPropertiesString: [
-          "All Resistances +23% (3 Items)",
-          "+35% better chance of getting magic item (4 Items)"
+          "所有抗性 +23% （3 件）",
+          "尋獲魔法物品機率提高 +35% （4 件）"
         ],
-        Name: "Soulstone of Power",
+        Name: "力量灵魂石 (Soulstone of Power)",
         Index: "Soulstone of Power",
         Enabled: true,
         Rarity: 2,
@@ -14228,26 +14228,26 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+15% Faster Cast Rate",
+            PropertyString: "+15% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "Regenerate Mana +25%",
+            PropertyString: "法力恢復 25%",
             Index: 2
           },
           {
-            PropertyString: "+10% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10%",
             Index: 3
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -14264,10 +14264,10 @@ const json = [
         Type: "Helm",
         "Set": "Chaos Energy",
         SetPropertiesString: [
-          "+50 to Mana (2 Items)",
-          "+22% Damage Taken Goes To Mana (5 Items)"
+          "+50 法力 （2 件）",
+          "+22% 受到的傷害轉為法力 （5 件）"
         ],
-        Name: "Guiding Focus",
+        Name: "指导重点 (Guiding Focus)",
         Index: "Guiding Focus",
         Enabled: true,
         Rarity: 7,
@@ -14276,19 +14276,19 @@ const json = [
         Code: "ukp",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 2
           },
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+120-165% Enhanced Defense",
+            PropertyString: "+120-165% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+4-8 to Mana after each Kill",
+            PropertyString: "+4-8 擊殺法力恢復",
             Index: 3
           }
         ],
@@ -14298,7 +14298,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "224-244",
           EquipmentType: 0,
-          Name: "Hydraskull",
+          Name: "多頭蛇顱盔 (Hydraskull)",
           RequiredStrength: 84,
           RequiredDexterity: 0,
           Durability: 18,
@@ -14315,10 +14315,10 @@ const json = [
         Type: "Voodoo Heads",
         "Set": "Chaos Energy",
         SetPropertiesString: [
-          "+55 to Mana (5 Items)",
-          "All Resistances +22% (3 Items)"
+          "+55 法力 （5 件）",
+          "所有抗性 +22% （3 件）"
         ],
-        Name: "Chaotic Shield",
+        Name: "混沌护盾 (Chaotic Shield)",
         Index: "Chaotic Shield",
         Enabled: true,
         Rarity: 7,
@@ -14327,19 +14327,19 @@ const json = [
         Code: "nef",
         Properties: [
           {
-            PropertyString: "44% Chance to cast level 17 Charged Bolt when struck",
+            PropertyString: "被擊中時有 44% 機率施展等級 17 電能彈",
             Index: 1
           },
           {
-            PropertyString: "+3 to Necromancer Skill Levels",
+            PropertyString: "+3 死靈法師技能等級",
             Index: 0
           },
           {
-            PropertyString: "+30% Faster Block Rate",
+            PropertyString: "+30% 格擋速度",
             Index: 3
           },
           {
-            PropertyString: "+20-40% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20-40%",
             Index: 2
           }
         ],
@@ -14349,7 +14349,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "103",
           EquipmentType: 0,
-          Name: "Bloodlord Skull",
+          Name: "鮮血之王顱骨 (Bloodlord Skull)",
           RequiredStrength: 106,
           RequiredDexterity: 0,
           Durability: 20,
@@ -14366,11 +14366,11 @@ const json = [
         Type: "Boots",
         "Set": "Chaos Energy",
         SetPropertiesString: [
-          "+30% Faster Run/Walk (2 Items)",
-          "+20% Increased Attack Speed (4 Items)",
-          "+25% better chance of getting magic item (3 Items)"
+          "+30% 跑步 / 行走速度 （2 件）",
+          "攻擊速度 +20% （4 件）",
+          "尋獲魔法物品機率提高 +25% （3 件）"
         ],
-        Name: "Treads of Energy",
+        Name: "能量踏板 (Treads of Energy)",
         Index: "Treads of Energy",
         Enabled: true,
         Rarity: 7,
@@ -14383,15 +14383,15 @@ const json = [
             Index: 3
           },
           {
-            PropertyString: "Adds 3-6% Mana stolen per hit",
+            PropertyString: "擊中竊取 3-6% 法力",
             Index: 2
           },
           {
-            PropertyString: "+100% Enhanced Defense",
+            PropertyString: "+100% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+0.75 to Energy (Per Character Level)",
+            PropertyString: "+0.75 能量 （依角色等級而定）",
             Index: 1
           }
         ],
@@ -14401,7 +14401,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "131-142",
           EquipmentType: 0,
-          Name: "Scarabshell Boots",
+          Name: "聖甲蟲殼皮靴 (Scarabshell Boots)",
           RequiredStrength: 91,
           RequiredDexterity: 0,
           Durability: 14,
@@ -14418,11 +14418,11 @@ const json = [
         Type: "Armor",
         "Set": "Chaos Energy",
         SetPropertiesString: [
-          "+85 to Life (2 Items)",
-          "+77 to Mana (4 Items)",
-          "Magic Resist +20% (5 Items)"
+          "+85 生命 （2 件）",
+          "+77 法力 （4 件）",
+          "魔法抗性 +20% （5 件）"
         ],
-        Name: "Band of Mysticism",
+        Name: "神秘乐队 (Band of Mysticism)",
         Index: "Band of Mysticism",
         Enabled: true,
         Rarity: 7,
@@ -14431,19 +14431,19 @@ const json = [
         Code: "urs",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 1
           },
           {
-            PropertyString: "+40% Faster Cast Rate",
+            PropertyString: "+40% 施法速度",
             Index: 0
           },
           {
-            PropertyString: "+20% Increased Maximum Life",
+            PropertyString: "生命上限 +20%",
             Index: 3
           },
           {
-            PropertyString: "+7-9 Replenish Life",
+            PropertyString: "生命回復 +7-9",
             Index: 2
           }
         ],
@@ -14453,7 +14453,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "995-1195",
           EquipmentType: 0,
-          Name: "Great Hauberk",
+          Name: "鱗鎧胸甲 (Great Hauberk)",
           RequiredStrength: 118,
           RequiredDexterity: 0,
           Durability: 50,
@@ -14469,37 +14469,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+25 to Energy",
+        PropertyString: "+25 能量",
         Index: 0
       },
       {
-        PropertyString: "+25 to Vitality",
+        PropertyString: "+25 體能",
         Index: 2
       },
       {
-        PropertyString: "+25 to Dexterity",
+        PropertyString: "+25 敏捷",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+4 to All Skills",
+        PropertyString: "+4 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+25 to Strength",
+        PropertyString: "+25 力量",
         Index: 5
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+5% to Experience Gained",
+        PropertyString: "獲得的經驗值 +5%",
         Index: 2
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 3
       }
     ],
@@ -14507,16 +14507,16 @@ const json = [
   },
   {
     Index: "Aiel Shieldmaiden",
-    Name: "Aiel Shieldmaiden",
+    Name: "艾尔盾女 (Aiel Shieldmaiden)",
     SetItems: [
       {
         Type: "Amazon Javelin",
         "Set": "Aiel Shieldmaiden",
         SetPropertiesString: [
-          "+2 to Amazon Skill Levels (3 Items)",
-          "+20% Increased Attack Speed (2 Items)"
+          "+2 亞馬遜技能等級 （3 件）",
+          "攻擊速度 +20% （2 件）"
         ],
-        Name: "Chiad's Lances",
+        Name: "恰德长矛 (Chiad's Lances)",
         Index: "Chiad's Lances",
         Enabled: true,
         Rarity: 7,
@@ -14525,23 +14525,23 @@ const json = [
         Code: "amf",
         Properties: [
           {
-            PropertyString: "+1-3 to Javelin and Spear Skills (Amazon only)",
+            PropertyString: "+1-3 標槍與長矛技能 （只限亞馬遜）",
             Index: 2
           },
           {
-            PropertyString: "+220-250% Enhanced Damage",
+            PropertyString: "+220-250% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+33% Piercing Attack",
+            PropertyString: "+33% 穿透攻擊",
             Index: 3
           },
           {
-            PropertyString: "Adds 35-70 to Damage",
+            PropertyString: "增加 35-70 傷害",
             Index: 1
           },
           {
-            PropertyString: "Replenishes quantity",
+            PropertyString: "回復數量",
             Index: 4
           }
         ],
@@ -14558,7 +14558,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Matriarchal Javelin",
+          Name: "女傑標槍 (Matriarchal Javelin)",
           RequiredStrength: 107,
           RequiredDexterity: 151,
           Durability: 250,
@@ -14575,10 +14575,10 @@ const json = [
         Type: "Shield",
         "Set": "Aiel Shieldmaiden",
         SetPropertiesString: [
-          "All Resistances +25% (4 Items)",
-          "+20% Physical Damage Reduction (3 Items)"
+          "所有抗性 +25% （4 件）",
+          "物理傷害降低 +20% （3 件）"
         ],
-        Name: "Chiad's Wall",
+        Name: "奇亞達之墻 (Chiad's Wall)",
         Index: "Chiad's Wall",
         Enabled: true,
         Rarity: 7,
@@ -14587,19 +14587,19 @@ const json = [
         Code: "uit",
         Properties: [
           {
-            PropertyString: "+30% Faster Block Rate",
+            PropertyString: "+30% 格擋速度",
             Index: 3
           },
           {
-            PropertyString: "+33% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +33%",
             Index: 2
           },
           {
-            PropertyString: "+180-220% Enhanced Defense",
+            PropertyString: "+180-220% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Requirements -40%",
+            PropertyString: "需求 -40%",
             Index: 1
           }
         ],
@@ -14609,7 +14609,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "375-428",
           EquipmentType: 0,
-          Name: "Monarch",
+          Name: "君主盾 (Monarch)",
           RequiredStrength: 156,
           RequiredDexterity: 0,
           Durability: 86,
@@ -14626,10 +14626,10 @@ const json = [
         Type: "Armor",
         "Set": "Aiel Shieldmaiden",
         SetPropertiesString: [
-          "+75 to Life (4 Items)",
-          "+75 to Mana (5 Items)"
+          "+75 生命 （4 件）",
+          "+75 法力 （5 件）"
         ],
-        Name: "Chiad's Heartbane",
+        Name: "基亚德的心脏 (Chiad's Heartbane)",
         Index: "Chiad's Heartbane",
         Enabled: true,
         Rarity: 7,
@@ -14638,19 +14638,19 @@ const json = [
         Code: "ucl",
         Properties: [
           {
-            PropertyString: "Adds 20-50 to Damage",
+            PropertyString: "增加 20-50 傷害",
             Index: 3
           },
           {
-            PropertyString: "+175-200% Enhanced Defense",
+            PropertyString: "+175-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+35 to Dexterity",
+            PropertyString: "+35 敏捷",
             Index: 2
           },
           {
-            PropertyString: "Requirements -35%",
+            PropertyString: "需求 -35%",
             Index: 1
           }
         ],
@@ -14660,7 +14660,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1075-1173",
           EquipmentType: 0,
-          Name: "Loricated Mail",
+          Name: "綴鱗戰甲 (Loricated Mail)",
           RequiredStrength: 149,
           RequiredDexterity: 0,
           Durability: 36,
@@ -14677,10 +14677,10 @@ const json = [
         Type: "Ring",
         "Set": "Aiel Shieldmaiden",
         SetPropertiesString: [
-          "+35 to Life (3 Items)",
-          "+20% better chance of getting magic item (2 Items)"
+          "+35 生命 （3 件）",
+          "尋獲魔法物品機率提高 +20% （2 件）"
         ],
-        Name: "Chiad's Halo",
+        Name: "奇亚德的光环 (Chiad's Halo)",
         Index: "Chiad's Halo",
         Enabled: true,
         Rarity: 2,
@@ -14689,26 +14689,26 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "Level 4 Holy Freeze Aura When Equipped",
+            PropertyString: "裝備時賦予等級 4 神聖冰凍靈氣",
             Index: 3
           },
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 0
           },
           {
-            PropertyString: "Adds 6-8% Mana stolen per hit",
+            PropertyString: "擊中竊取 6-8% 法力",
             Index: 2
           },
           {
-            PropertyString: "Adds 8-12% Life stolen per hit",
+            PropertyString: "擊中竊取 8-12% 生命",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -14725,10 +14725,10 @@ const json = [
         Type: "Belt",
         "Set": "Aiel Shieldmaiden",
         SetPropertiesString: [
-          "+25% to Lightning Skill Damage (3 Items)",
-          "+15 Life after each Kill (4 Items)"
+          "+25% 閃電技能傷害 （3 件）",
+          "+15 擊殺生命恢復 （4 件）"
         ],
-        Name: "Chiad's Valor",
+        Name: "基亚德的勇气 (Chiad's Valor)",
         Index: "Chiad's Valor",
         Enabled: true,
         Rarity: 7,
@@ -14737,15 +14737,15 @@ const json = [
         Code: "ulc",
         Properties: [
           {
-            PropertyString: "-15% to Enemy Lightning Resistance",
+            PropertyString: "敵人電擊抗性 -15%",
             Index: 3
           },
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15 to All Attributes",
+            PropertyString: "+15 所有屬性",
             Index: 2
           },
           {
@@ -14759,7 +14759,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "180-230",
           EquipmentType: 0,
-          Name: "Spiderweb Sash",
+          Name: "蛛網束帶 (Spiderweb Sash)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 12,
@@ -14775,37 +14775,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50% Enhanced Damage",
+        PropertyString: "+50% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       },
       {
-        PropertyString: "+2% to Experience Gained",
+        PropertyString: "獲得的經驗值 +2%",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+100% Enhanced Damage",
+        PropertyString: "+100% 傷害強化",
         Index: 5
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+4% to Experience Gained",
+        PropertyString: "獲得的經驗值 +4%",
         Index: 2
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 3
       }
     ],
@@ -14813,13 +14813,13 @@ const json = [
   },
   {
     Index: "Myhrginoc's Warbreeder",
-    Name: "Myhrginoc's Warbreeder",
+    Name: "米尔金诺克的战争饲养员 (Myhrginoc's Warbreeder)",
     SetItems: [
       {
         Type: "Axe",
         "Set": "Myhrginoc's Warbreeder",
         SetPropertiesString: [],
-        Name: "Myhrginoc's Headhunter",
+        Name: "米尔金诺克的猎头人 (Myhrginoc's Headhunter)",
         Index: "Myhrginoc's Headhunter",
         Enabled: true,
         Rarity: 7,
@@ -14828,23 +14828,23 @@ const json = [
         Code: "7ga",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 2
           },
           {
-            PropertyString: "+280-320% Enhanced Damage",
+            PropertyString: "+280-320% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+2.25 to Maximum Damage (Per Character Level)",
+            PropertyString: "+2.25 最大傷害 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "Prevent Monster Heal",
+            PropertyString: "防止怪物自療",
             Index: 4
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 3
           }
         ],
@@ -14857,7 +14857,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Champion Axe",
+          Name: "豪傑斧 (Champion Axe)",
           RequiredStrength: 167,
           RequiredDexterity: 59,
           Durability: 250,
@@ -14874,7 +14874,7 @@ const json = [
         Type: "Armor",
         "Set": "Myhrginoc's Warbreeder",
         SetPropertiesString: [],
-        Name: "Myhrginoc's Black Rain",
+        Name: "迈尔吉诺克的黑雨 (Myhrginoc's Black Rain)",
         Index: "Myhrginoc's Black Rain",
         Enabled: true,
         Rarity: 7,
@@ -14883,23 +14883,23 @@ const json = [
         Code: "uul",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 2
           },
           {
-            PropertyString: "+170-200% Enhanced Defense",
+            PropertyString: "+170-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +20-30%",
+            PropertyString: "所有抗性 +20-30%",
             Index: 3
           },
           {
-            PropertyString: "+15-25% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15-25%",
             Index: 1
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 4
           }
         ],
@@ -14909,7 +14909,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1072-1162",
           EquipmentType: 0,
-          Name: "Shadow Plate",
+          Name: "暗影鎧甲 (Shadow Plate)",
           RequiredStrength: 230,
           RequiredDexterity: 0,
           Durability: 70,
@@ -14926,7 +14926,7 @@ const json = [
         Type: "Helm",
         "Set": "Myhrginoc's Warbreeder",
         SetPropertiesString: [],
-        Name: "Myhrginoc's Crimson Crusader",
+        Name: "米尔金诺克的深红十字军 (Myhrginoc's Crimson Crusader)",
         Index: "Myhrginoc's Crimson Crusader",
         Enabled: true,
         Rarity: 7,
@@ -14935,19 +14935,19 @@ const json = [
         Code: "ulm",
         Properties: [
           {
-            PropertyString: "12% Chance to cast level 4 War Cry when struck",
+            PropertyString: "被擊中時有 12% 機率施展等級 4 戰爭狂嘯",
             Index: 3
           },
           {
-            PropertyString: "+2 Defense (Per Character Level)",
+            PropertyString: "+2 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "+10% Increased Maximum Life",
+            PropertyString: "生命上限 +10%",
             Index: 1
           },
           {
-            PropertyString: "+10% Increased Maximum Mana",
+            PropertyString: "法力上限 +10%",
             Index: 2
           }
         ],
@@ -14957,7 +14957,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "255-305",
           EquipmentType: 0,
-          Name: "Armet",
+          Name: "覆頰盔 (Armet)",
           RequiredStrength: 109,
           RequiredDexterity: 0,
           Durability: 24,
@@ -14974,10 +14974,10 @@ const json = [
         Type: "Gloves",
         "Set": "Myhrginoc's Warbreeder",
         SetPropertiesString: [
-          "+22% Chance of Crushing Blow (2 Items)",
-          "+16% Deadly Strike (3 Items)"
+          "+22% 概率造成粉碎打擊 （2 件）",
+          "+16% 致命打擊 （3 件）"
         ],
-        Name: "Myhrginoc's Deathmonger",
+        Name: "米尔金诺克的死亡商贩 (Myhrginoc's Deathmonger)",
         Index: "Myhrginoc's Deathmonger",
         Enabled: true,
         Rarity: 7,
@@ -14986,19 +14986,19 @@ const json = [
         Code: "uhg",
         Properties: [
           {
-            PropertyString: "+10 to Melee Mastery",
+            PropertyString: "+10 近戰精通",
             Index: 2
           },
           {
-            PropertyString: "+15% Increased Attack Speed",
+            PropertyString: "攻擊速度 +15%",
             Index: 1
           },
           {
-            PropertyString: "+30-40% Enhanced Damage",
+            PropertyString: "+30-40% 傷害強化",
             Index: 3
           },
           {
-            PropertyString: "+100-130% Enhanced Defense",
+            PropertyString: "+100-130% 防禦強化",
             Index: 0
           }
         ],
@@ -15008,7 +15008,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "138-157",
           EquipmentType: 0,
-          Name: "Ogre Gauntlets",
+          Name: "巨魔護手 (Ogre Gauntlets)",
           RequiredStrength: 185,
           RequiredDexterity: 0,
           Durability: 24,
@@ -15024,33 +15024,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 0
       },
       {
-        PropertyString: "Adds 25-50 to Damage",
+        PropertyString: "增加 25-50 傷害",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+10% Mana stolen per hit",
+        PropertyString: "擊中竊取 +10% 法力",
         Index: 4
       },
       {
-        PropertyString: "+10% Life stolen per hit",
+        PropertyString: "擊中竊取 10% 生命",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       },
       {
-        PropertyString: "+15 to All Attributes",
+        PropertyString: "+15 所有屬性",
         Index: 2
       }
     ],
@@ -15058,16 +15058,16 @@ const json = [
   },
   {
     Index: "Nefarious Ways",
-    Name: "Nefarious Ways",
+    Name: "邪恶的方式 (Nefarious Ways)",
     SetItems: [
       {
         Type: "Polearm",
         "Set": "Nefarious Ways",
         SetPropertiesString: [
-          "+4% extra gold from monsters (Per Character Level) (3 Items)",
-          "+2% better chance of getting magic item (Per Character Level) (2 Items)"
+          "怪物金幣掉落量提高 +4% （依角色等級而定） （3 件）",
+          "尋獲魔法物品機率提高 +2% （依角色等級而定） （2 件）"
         ],
-        Name: "Sin and Greed",
+        Name: "罪恶与贪婪 (Sin and Greed)",
         Index: "Sin and Greed",
         Enabled: true,
         Rarity: 7,
@@ -15076,19 +15076,19 @@ const json = [
         Code: "7s8",
         Properties: [
           {
-            PropertyString: "15% Chance to cast level 15 Dim Vision on striking",
+            PropertyString: "擊中時有 15% 機率施展等級 15 昏暗視野",
             Index: 3
           },
           {
-            PropertyString: "+40% Increased Attack Speed",
+            PropertyString: "攻擊速度 +40%",
             Index: 2
           },
           {
-            PropertyString: "+400-500% Enhanced Damage",
+            PropertyString: "+400-500% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Requirements Increased By +20%",
+            PropertyString: "需求提高 20%",
             Index: 1
           }
         ],
@@ -15101,7 +15101,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Thresher",
+          Name: "斬鐮 (Thresher)",
           RequiredStrength: 152,
           RequiredDexterity: 118,
           Durability: 250,
@@ -15118,7 +15118,7 @@ const json = [
         Type: "Armor",
         "Set": "Nefarious Ways",
         SetPropertiesString: [],
-        Name: "Wicked Impulse",
+        Name: "邪恶的冲动 (Wicked Impulse)",
         Index: "wicked Impulse",
         Enabled: true,
         Rarity: 7,
@@ -15127,19 +15127,19 @@ const json = [
         Code: "ult",
         Properties: [
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 3
           },
           {
-            PropertyString: "+100-160% Enhanced Damage",
+            PropertyString: "+100-160% 傷害強化",
             Index: 2
           },
           {
-            PropertyString: "+40% Faster Hit Recovery",
+            PropertyString: "+40% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+125-175% Enhanced Defense",
+            PropertyString: "+125-175% 防禦強化",
             Index: 0
           }
         ],
@@ -15149,7 +15149,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "844-949",
           EquipmentType: 0,
-          Name: "Hellforge Plate",
+          Name: "地獄鍛甲 (Hellforge Plate)",
           RequiredStrength: 196,
           RequiredDexterity: 0,
           Durability: 60,
@@ -15166,9 +15166,9 @@ const json = [
         Type: "Boots",
         "Set": "Nefarious Ways",
         SetPropertiesString: [
-          "+30% better chance of getting magic item (3 Items)"
+          "尋獲魔法物品機率提高 +30% （3 件）"
         ],
-        Name: "Evil Reputation",
+        Name: "邪恶声誉 (Evil Reputation)",
         Index: "Evil Reputation",
         Enabled: true,
         Rarity: 7,
@@ -15177,19 +15177,19 @@ const json = [
         Code: "utb",
         Properties: [
           {
-            PropertyString: "+50% Faster Run/Walk",
+            PropertyString: "+50% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+7% Life stolen per hit",
+            PropertyString: "擊中竊取 7% 生命",
             Index: 2
           },
           {
-            PropertyString: "+200-250 Defense",
+            PropertyString: "+200-250 防禦",
             Index: 0
           },
           {
-            PropertyString: "+15-25 to Dexterity",
+            PropertyString: "+15-25 敏捷",
             Index: 3
           }
         ],
@@ -15199,7 +15199,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "168-186",
           EquipmentType: 0,
-          Name: "Mirrored Boots",
+          Name: "幻鏡戰靴 (Mirrored Boots)",
           RequiredStrength: 163,
           RequiredDexterity: 0,
           Durability: 18,
@@ -15216,9 +15216,9 @@ const json = [
         Type: "Helm",
         "Set": "Nefarious Ways",
         SetPropertiesString: [
-          "+7 to Mana after each Kill (2 Items)"
+          "+7 擊殺法力恢復 （2 件）"
         ],
-        Name: "Noxious Whispers",
+        Name: "恶毒的低语 (Noxious Whispers)",
         Index: "Noxious Whispers",
         Enabled: true,
         Rarity: 7,
@@ -15227,19 +15227,19 @@ const json = [
         Code: "usk",
         Properties: [
           {
-            PropertyString: "+1-2 to All Skills",
+            PropertyString: "+1-2 所有技能",
             Index: 2
           },
           {
-            PropertyString: "+150-200 to Life",
+            PropertyString: "+150-200 生命",
             Index: 0
           },
           {
-            PropertyString: "+75-100 to Mana",
+            PropertyString: "+75-100 法力",
             Index: 1
           },
           {
-            PropertyString: "+15-25 Life after each Kill",
+            PropertyString: "+15-25 擊殺生命恢復",
             Index: 3
           }
         ],
@@ -15249,7 +15249,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "101",
           EquipmentType: 0,
-          Name: "Demonhead",
+          Name: "惡魔頭骨 (Demonhead)",
           RequiredStrength: 102,
           RequiredDexterity: 0,
           Durability: 20,
@@ -15265,7 +15265,7 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "-3 Drain Life",
+        PropertyString: "吸取生命 -3",
         Index: 0
       },
       {
@@ -15275,23 +15275,23 @@ const json = [
     ],
     FullProperties: [
       {
-        PropertyString: "+5 to All Skills",
+        PropertyString: "+5 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+50% Chance of Crushing Blow",
+        PropertyString: "+50% 概率造成粉碎打擊",
         Index: 3
       },
       {
-        PropertyString: "+50% Deadly Strike",
+        PropertyString: "+50% 致命打擊",
         Index: 2
       },
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +100%",
+        PropertyString: "所有抗性 +100%",
         Index: 1
       }
     ],
@@ -15299,16 +15299,16 @@ const json = [
   },
   {
     Index: "Kraj's Memorial",
-    Name: "Kraj's Memorial",
+    Name: "克拉伊纪念馆 (Kraj's Memorial)",
     SetItems: [
       {
         Type: "Amulet",
         "Set": "Kraj's Memorial",
         SetPropertiesString: [
-          "All Resistances +18% (2 Items)",
-          "Half Freeze Duration (3 Items)"
+          "所有抗性 +18% （2 件）",
+          "冰凍時間減半 （3 件）"
         ],
-        Name: "Eternal Sleep",
+        Name: "永恒的睡眠 (Eternal Sleep)",
         Index: "Eternal Sleep",
         Enabled: true,
         Rarity: 2,
@@ -15317,26 +15317,26 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "Slain Monsters Rest in Peace",
+            PropertyString: "殺死的怪物就此安息",
             Index: 1
           },
           {
-            PropertyString: "+10% Increased Maximum Life",
+            PropertyString: "生命上限 +10%",
             Index: 2
           },
           {
-            PropertyString: "+10% Increased Maximum Mana",
+            PropertyString: "法力上限 +10%",
             Index: 3
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -15353,11 +15353,11 @@ const json = [
         Type: "Shield",
         "Set": "Kraj's Memorial",
         SetPropertiesString: [
-          "Level 4 Cleansing Aura When Equipped (4 Items)",
-          "+25% Faster Hit Recovery (3 Items)",
-          "+35% Increased Chance of Blocking (2 Items)"
+          "裝備時賦予等級 4 淨化靈氣 （4 件）",
+          "+25% 打擊恢復 （3 件）",
+          "格擋機率提高 +35% （2 件）"
         ],
-        Name: "Calming Peace",
+        Name: "平静安宁 (Calming Peace)",
         Index: "Calming Peace",
         Enabled: true,
         Rarity: 7,
@@ -15366,19 +15366,19 @@ const json = [
         Code: "uow",
         Properties: [
           {
-            PropertyString: "+140-160% Enhanced Defense",
+            PropertyString: "+140-160% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+2 Defense (Per Character Level)",
+            PropertyString: "+2 防禦 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "+125-150 Defense",
+            PropertyString: "+125-150 防禦",
             Index: 2
           },
           {
-            PropertyString: "+25-35% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +25-35%",
             Index: 3
           }
         ],
@@ -15388,7 +15388,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "145",
           EquipmentType: 0,
-          Name: "Aegis",
+          Name: "禦塔盾 (Aegis)",
           RequiredStrength: 219,
           RequiredDexterity: 0,
           Durability: 92,
@@ -15405,9 +15405,9 @@ const json = [
         Type: "Armor",
         "Set": "Kraj's Memorial",
         SetPropertiesString: [
-          "+70 to Life (3 Items)"
+          "+70 生命 （3 件）"
         ],
-        Name: "Silk Shroud",
+        Name: "丝绸壽衣 (Silk Shroud)",
         Index: "Silk Shroud",
         Enabled: true,
         Rarity: 7,
@@ -15416,19 +15416,19 @@ const json = [
         Code: "uld",
         Properties: [
           {
-            PropertyString: "+25% Faster Hit Recovery",
+            PropertyString: "+25% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+100-130% Enhanced Defense",
+            PropertyString: "+100-130% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Lightning Resist +25-50%",
+            PropertyString: "電擊抗性 +25-50%",
             Index: 3
           },
           {
-            PropertyString: "Fire Resist +25-50%",
+            PropertyString: "火焰抗性 +25-50%",
             Index: 2
           }
         ],
@@ -15438,7 +15438,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "417",
           EquipmentType: 0,
-          Name: "Kraken Shell",
+          Name: "海怪之殼 (Kraken Shell)",
           RequiredStrength: 174,
           RequiredDexterity: 0,
           Durability: 48,
@@ -15455,11 +15455,11 @@ const json = [
         Type: "Mace",
         "Set": "Kraj's Memorial",
         SetPropertiesString: [
-          "+25% Increased Attack Speed (2 Items)",
-          "+18 Life after each Kill (3 Items)",
-          "+3 to Mana after each Kill (4 Items)"
+          "攻擊速度 +25% （2 件）",
+          "+18 擊殺生命恢復 （3 件）",
+          "+3 擊殺法力恢復 （4 件）"
         ],
-        Name: "Temple Guardian",
+        Name: "寺庙守护者 (Temple Guardian)",
         Index: "Temple Guardian",
         Enabled: true,
         Rarity: 7,
@@ -15468,19 +15468,19 @@ const json = [
         Code: "7fl",
         Properties: [
           {
-            PropertyString: "+8 to Zeal",
+            PropertyString: "+8 熱忱打擊",
             Index: 3
           },
           {
-            PropertyString: "+220-250% Enhanced Damage",
+            PropertyString: "+220-250% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+75 to Minimum Damage",
+            PropertyString: "+75 最小傷害",
             Index: 1
           },
           {
-            PropertyString: "+75% bonus to Attack Rating",
+            PropertyString: "+75% 準確率加成",
             Index: 2
           }
         ],
@@ -15493,7 +15493,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Scourge",
+          Name: "罪罰連枷 (Scourge)",
           RequiredStrength: 125,
           RequiredDexterity: 77,
           Durability: 250,
@@ -15509,33 +15509,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+2% to Experience Gained",
+        PropertyString: "獲得的經驗值 +2%",
         Index: 0
       },
       {
-        PropertyString: "+75% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +75%",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "Adds 150-250 to Cold Damage",
+        PropertyString: "增加 150-250 寒冰傷害",
         Index: 4
       },
       {
-        PropertyString: "+100% Chance of Open Wounds",
+        PropertyString: "+100% 機率造成開放傷口",
         Index: 2
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 1
       }
     ],
@@ -15543,13 +15543,13 @@ const json = [
   },
   {
     Index: "The Darkest Weaves",
-    Name: "The Darkest Weaves",
+    Name: "最黑暗的编织 (The Darkest Weaves)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "The Darkest Weaves",
         SetPropertiesString: [
-          "+50% Faster Hit Recovery (2 Items)"
+          "+50% 打擊恢復 （2 件）"
         ],
         Name: "Sundered Heart",
         Index: "Sundered Heart",
@@ -15560,11 +15560,11 @@ const json = [
         Code: "uth",
         Properties: [
           {
-            PropertyString: "+170-200% Enhanced Defense",
+            PropertyString: "+170-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (4)",
+            PropertyString: "鑲孔 (4)",
             Index: 1
           }
         ],
@@ -15574,7 +15574,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "433",
           EquipmentType: 0,
-          Name: "Lacquered Plate",
+          Name: "漆護鎧甲 (Lacquered Plate)",
           RequiredStrength: 208,
           RequiredDexterity: 0,
           Durability: 55,
@@ -15591,7 +15591,7 @@ const json = [
         Type: "Sword",
         "Set": "The Darkest Weaves",
         SetPropertiesString: [
-          "+1 to Maximum Damage (Per Character Level) (2 Items)"
+          "+1 最大傷害 （依角色等級而定） （2 件）"
         ],
         Name: "Soulreaver",
         Index: "Soulreaver",
@@ -15602,11 +15602,11 @@ const json = [
         Code: "7cr",
         Properties: [
           {
-            PropertyString: "+220-300% Enhanced Damage",
+            PropertyString: "+220-300% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (6)",
+            PropertyString: "鑲孔 (6)",
             Index: 1
           }
         ],
@@ -15619,7 +15619,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Phase Blade",
+          Name: "幻化之刃 (Phase Blade)",
           RequiredStrength: 25,
           RequiredDexterity: 136,
           Durability: 0,
@@ -15636,9 +15636,9 @@ const json = [
         Type: "Shield",
         "Set": "The Darkest Weaves",
         SetPropertiesString: [
-          "+50% Faster Block Rate (2 Items)"
+          "+50% 格擋速度 （2 件）"
         ],
-        Name: "Throws of Hatred",
+        Name: "仇恨的投掷 (Throws of Hatred)",
         Index: "Throws of Hatred",
         Enabled: true,
         Rarity: 7,
@@ -15647,15 +15647,15 @@ const json = [
         Code: "ush",
         Properties: [
           {
-            PropertyString: "+30-50% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +30-50%",
             Index: 1
           },
           {
-            PropertyString: "+170-210% Enhanced Defense",
+            PropertyString: "+170-210% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (3)",
+            PropertyString: "鑲孔 (3)",
             Index: 2
           }
         ],
@@ -15665,7 +15665,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "429-492",
           EquipmentType: 0,
-          Name: "Troll Nest",
+          Name: "食人妖骨盾 (Troll Nest)",
           RequiredStrength: 156,
           RequiredDexterity: 0,
           Durability: 74,
@@ -15681,29 +15681,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20 to All Attributes",
+        PropertyString: "+20 所有屬性",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+50% Faster Run/Walk",
+        PropertyString: "+50% 跑步 / 行走速度",
         Index: 2
       },
       {
-        PropertyString: "Adds 300-500 to Fire Damage",
+        PropertyString: "增加 300-500 火焰傷害",
         Index: 4
       },
       {
-        PropertyString: "Regenerate Mana +75%",
+        PropertyString: "法力恢復 75%",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 1
       }
     ],
@@ -15711,15 +15711,15 @@ const json = [
   },
   {
     Index: "Blood Raven's Despair",
-    Name: "Blood Raven's Despair",
+    Name: "血鸦的绝望 (Blood Raven's Despair)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Blood Raven's Despair",
         SetPropertiesString: [
-          "+10 to All Attributes (2 Items)"
+          "+10 所有屬性 （2 件）"
         ],
-        Name: "Blood Raven's Pain",
+        Name: "血鸦之痛 (Blood Raven's Pain)",
         Index: "Blood Raven's Pain",
         Enabled: true,
         Rarity: 7,
@@ -15728,19 +15728,19 @@ const json = [
         Code: "uh9",
         Properties: [
           {
-            PropertyString: "+160-220 Defense",
+            PropertyString: "+160-220 防禦",
             Index: 0
           },
           {
-            PropertyString: "+80-100 to Life",
+            PropertyString: "+80-100 生命",
             Index: 1
           },
           {
-            PropertyString: "+75-100 to Mana",
+            PropertyString: "+75-100 法力",
             Index: 2
           },
           {
-            PropertyString: "+15% Damage Taken Goes To Mana",
+            PropertyString: "+15% 受到的傷害轉為法力",
             Index: 3
           }
         ],
@@ -15750,7 +15750,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "252-303",
           EquipmentType: 0,
-          Name: "Bone Visage",
+          Name: "骸骨面罩 (Bone Visage)",
           RequiredStrength: 106,
           RequiredDexterity: 0,
           Durability: 40,
@@ -15767,9 +15767,9 @@ const json = [
         Type: "Armor",
         "Set": "Blood Raven's Despair",
         SetPropertiesString: [
-          "+6% Mana stolen per hit (2 Items)"
+          "擊中竊取 +6% 法力 （2 件）"
         ],
-        Name: "Blood Raven's Curse",
+        Name: "血鸦的诅咒 (Blood Raven's Curse)",
         Index: "Blood Raven's Curse",
         Enabled: true,
         Rarity: 7,
@@ -15778,19 +15778,19 @@ const json = [
         Code: "utu",
         Properties: [
           {
-            PropertyString: "+25% Faster Hit Recovery",
+            PropertyString: "+25% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+9% Life stolen per hit",
+            PropertyString: "擊中竊取 9% 生命",
             Index: 3
           },
           {
-            PropertyString: "+675-900 Defense",
+            PropertyString: "+675-900 防禦",
             Index: 0
           },
           {
-            PropertyString: "+20-30 to Strength",
+            PropertyString: "+20-30 力量",
             Index: 2
           }
         ],
@@ -15800,7 +15800,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1050-1275",
           EquipmentType: 0,
-          Name: "Wire Fleece",
+          Name: "鋼線毛皮甲 (Wire Fleece)",
           RequiredStrength: 111,
           RequiredDexterity: 0,
           Durability: 32,
@@ -15817,9 +15817,9 @@ const json = [
         Type: "Bow",
         "Set": "Blood Raven's Despair",
         SetPropertiesString: [
-          "+10 to Immolation Arrow (2 Items)"
+          "+10 熾炎箭（2 件）"
         ],
-        Name: "Blood Raven's Redemption",
+        Name: "血鸦的救赎 (Blood Raven's Redemption)",
         Index: "Blood Raven's Redemption",
         Enabled: true,
         Rarity: 7,
@@ -15828,23 +15828,23 @@ const json = [
         Code: "6lb",
         Properties: [
           {
-            PropertyString: "Level 5 Concentration Aura When Equipped",
+            PropertyString: "裝備時賦予等級 5 專注靈氣",
             Index: 4
           },
           {
-            PropertyString: "+10-12 to Ice Arrow",
+            PropertyString: "+10-12 寒冰箭",
             Index: 3
           },
           {
-            PropertyString: "+200-300% Enhanced Damage",
+            PropertyString: "+200-300% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+35-70 to Minimum Damage",
+            PropertyString: "+35-70 最小傷害",
             Index: 1
           },
           {
-            PropertyString: "+100-150 to Maximum Damage",
+            PropertyString: "+100-150 最大傷害",
             Index: 2
           }
         ],
@@ -15857,7 +15857,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Shadow Bow",
+          Name: "暗影弓 (Shadow Bow)",
           RequiredStrength: 52,
           RequiredDexterity: 188,
           Durability: 0,
@@ -15873,21 +15873,21 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+100% Piercing Attack",
+        PropertyString: "+100% 穿透攻擊",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "Slows target by 25%",
+        PropertyString: "使目標減慢 25%",
         Index: 2
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 1
       },
       {
@@ -15899,16 +15899,16 @@ const json = [
   },
   {
     Index: "Narrow Path Between Light and Darkness",
-    Name: "Narrow Path Between Light and Darkness",
+    Name: "光明与黑暗之间的窄路 (Narrow Path Between Light and Darkness)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Narrow Path Between Light and Darkness",
         SetPropertiesString: [
-          "25% Chance to cast level 1 Frost Nova when struck (3 Items)",
-          "+15% Increased Attack Speed (2 Items)"
+          "被擊中時有 25% 機率施展等級 1 冰霜新星 （3 件）",
+          "攻擊速度 +15% （2 件）"
         ],
-        Name: "Char's Grimace of Death",
+        Name: "查尔的死亡表情 (Char's Grimace of Death)",
         Index: "Char's Grimace of Death",
         Enabled: true,
         Rarity: 7,
@@ -15917,19 +15917,19 @@ const json = [
         Code: "xh9",
         Properties: [
           {
-            PropertyString: "+113% Enhanced Defense",
+            PropertyString: "+113% 防禦強化",
             Index: 3
           },
           {
-            PropertyString: "+10 to Strength",
+            PropertyString: "+10 力量",
             Index: 1
           },
           {
-            PropertyString: "+10 to Dexterity",
+            PropertyString: "+10 敏捷",
             Index: 2
           },
           {
-            PropertyString: "-2 to Light Radius",
+            PropertyString: "照亮範圍 -2",
             Index: 0
           }
         ],
@@ -15939,7 +15939,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "129",
           EquipmentType: 0,
-          Name: "Grim Helm",
+          Name: "陰森頭盔 (Grim Helm)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 40,
@@ -15956,11 +15956,11 @@ const json = [
         Type: "Ring",
         "Set": "Narrow Path Between Light and Darkness",
         SetPropertiesString: [
-          "+45 to Mana (2 Items)",
-          "Regenerate Mana +10% (4 Items)",
-          "Magic Damage Reduced by 10 (3 Items)"
+          "+45 法力 （2 件）",
+          "法力恢復 10% （4 件）",
+          "魔法傷害降低 10 （3 件）"
         ],
-        Name: "Char's Annulus of Obscurity",
+        Name: "查尔的模糊环 (Char's Annulus of Obscurity)",
         Index: "Char's Annulus of Obscurity",
         Enabled: true,
         Rarity: 3,
@@ -15969,22 +15969,22 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+1 to Paladin Skill Levels",
+            PropertyString: "+1 聖騎士技能等級",
             Index: 1
           },
           {
-            PropertyString: "+12-15 to Sanctuary",
+            PropertyString: "+12-15 庇護",
             Index: 2
           },
           {
-            PropertyString: "-1 to Light Radius",
+            PropertyString: "照亮範圍 -1",
             Index: 0
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -16001,10 +16001,10 @@ const json = [
         Type: "Ring",
         "Set": "Narrow Path Between Light and Darkness",
         SetPropertiesString: [
-          "+45 to Life (2 Items)",
-          "Damage Reduced by 10 (3 Items)"
+          "+45 生命 （2 件）",
+          "物理傷害降低 10 （3 件）"
         ],
-        Name: "Char's Blessed Reflection",
+        Name: "夏尔的幸福反思 (Char's Blessed Reflection)",
         Index: "Char's Blessed Reflection",
         Enabled: true,
         Rarity: 3,
@@ -16013,22 +16013,22 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+1 to Necromancer Skill Levels",
+            PropertyString: "+1 死靈法師技能等級",
             Index: 1
           },
           {
-            PropertyString: "+8-12 to Decrepify",
+            PropertyString: "+8-12 衰老",
             Index: 2
           },
           {
-            PropertyString: "+1 to Light Radius",
+            PropertyString: "照亮範圍 +1",
             Index: 0
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -16045,11 +16045,11 @@ const json = [
         Type: "Scepter",
         "Set": "Narrow Path Between Light and Darkness",
         SetPropertiesString: [
-          "+13-16 to Merc Static Field (3 Items)",
-          "Adds 1-50 to Lightning Damage (2 Items)",
-          "Fire Resist +15% (4 Items)"
+          "+13-16 to Merc Static Field （3 件）",
+          "增加 1-50 電擊傷害 （2 件）",
+          "火焰抗性 +15% （4 件）"
         ],
-        Name: "Char's Hand of Blessed Light",
+        Name: "查尔的祝福之光之手 (Char's Hand of Blessed Light)",
         Index: "Char's Hand of Blessed Light",
         Enabled: true,
         Rarity: 7,
@@ -16058,23 +16058,23 @@ const json = [
         Code: "7sc",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 3
           },
           {
-            PropertyString: "+1 to Offensive Auras (Paladin only)",
+            PropertyString: "+1 防禦靈氣 （只限聖騎士）",
             Index: 4
           },
           {
-            PropertyString: "+75-110% Enhanced Damage",
+            PropertyString: "+75-110% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "+15% Faster Cast Rate",
+            PropertyString: "+15% 施法速度",
             Index: 2
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 0
           }
         ],
@@ -16087,7 +16087,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Mighty Scepter",
+          Name: "強威權杖 (Mighty Scepter)",
           RequiredStrength: 125,
           RequiredDexterity: 65,
           Durability: 250,
@@ -16104,9 +16104,9 @@ const json = [
         Type: "Armor",
         "Set": "Narrow Path Between Light and Darkness",
         SetPropertiesString: [
-          "+1 to All Skills (3 Items)"
+          "+1 所有技能 （3 件）"
         ],
-        Name: "Char's Carapace",
+        Name: "查尔的甲壳 (Char's Carapace)",
         Index: "Char's Carapace",
         Enabled: true,
         Rarity: 7,
@@ -16115,19 +16115,19 @@ const json = [
         Code: "uui",
         Properties: [
           {
-            PropertyString: "+65-110% Enhanced Defense",
+            PropertyString: "+65-110% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +15-25%",
+            PropertyString: "所有抗性 +15-25%",
             Index: 2
           },
           {
-            PropertyString: "+10-15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10-15%",
             Index: 3
           },
           {
-            PropertyString: "Socketed (1)",
+            PropertyString: "鑲孔 (1)",
             Index: 1
           }
         ],
@@ -16137,7 +16137,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "361",
           EquipmentType: 0,
-          Name: "Dusk Shroud",
+          Name: "灰暮罩衣 (Dusk Shroud)",
           RequiredStrength: 77,
           RequiredDexterity: 0,
           Durability: 20,
@@ -16153,25 +16153,25 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+50 to Life",
+        PropertyString: "+50 生命",
         Index: 0
       },
       {
-        PropertyString: "+50 to Mana",
+        PropertyString: "+50 法力",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       },
       {
-        PropertyString: "+10 to All Maximum Resistances",
+        PropertyString: "所有抗性上限 +10",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 1
       }
     ],
@@ -16179,13 +16179,13 @@ const json = [
   },
   {
     Index: "Treasure Hunter",
-    Name: "Treasure Hunter",
+    Name: "宝藏猎人 (Treasure Hunter)",
     SetItems: [
       {
         Type: "Belt",
         "Set": "Treasure Hunter",
         SetPropertiesString: [],
-        Name: "Kingpin's Wrap",
+        Name: "王者之肩 (Kingpin's Wrap)",
         Index: "Kingpin's Wrap",
         Enabled: true,
         Rarity: 7,
@@ -16194,27 +16194,27 @@ const json = [
         Code: "ztb",
         Properties: [
           {
-            PropertyString: "+10% Increased Attack Speed",
+            PropertyString: "攻擊速度 +10%",
             Index: 3
           },
           {
-            PropertyString: "+40-60% Enhanced Defense",
+            PropertyString: "+40-60% 防禦強化",
             Index: 4
           },
           {
-            PropertyString: "+25-35 Defense",
+            PropertyString: "+25-35 防禦",
             Index: 2
           },
           {
-            PropertyString: "+50-80% extra gold from monsters",
+            PropertyString: "怪物金幣掉落量提高 +50-80%",
             Index: 5
           },
           {
-            PropertyString: "+30% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +30%",
             Index: 0
           },
           {
-            PropertyString: "+2 to Light Radius",
+            PropertyString: "照亮範圍 +2",
             Index: 1
           }
         ],
@@ -16224,7 +16224,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "66-83",
           EquipmentType: 0,
-          Name: "Battle Belt",
+          Name: "戰鬥腰帶 (Battle Belt)",
           RequiredStrength: 88,
           RequiredDexterity: 0,
           Durability: 18,
@@ -16241,7 +16241,7 @@ const json = [
         Type: "Boots",
         "Set": "Treasure Hunter",
         SetPropertiesString: [],
-        Name: "Kingpin's Greaves",
+        Name: "王者之脛 (Kingpin's Greaves)",
         Index: "Kingpin's Greaves",
         Enabled: true,
         Rarity: 7,
@@ -16250,31 +16250,31 @@ const json = [
         Code: "xtb",
         Properties: [
           {
-            PropertyString: "+25% Faster Run/Walk",
+            PropertyString: "+25% 跑步 / 行走速度",
             Index: 4
           },
           {
-            PropertyString: "Adds 15-25 to Damage",
+            PropertyString: "增加 15-25 傷害",
             Index: 6
           },
           {
-            PropertyString: "+150-190% Enhanced Defense",
+            PropertyString: "+150-190% 防禦強化",
             Index: 5
           },
           {
-            PropertyString: "+10 to Strength",
+            PropertyString: "+10 力量",
             Index: 1
           },
           {
-            PropertyString: "+10 to Vitality",
+            PropertyString: "+10 體能",
             Index: 0
           },
           {
-            PropertyString: "Attacker Takes Damage of +5-10",
+            PropertyString: "攻擊者反傷 +5-10",
             Index: 7
           },
           {
-            PropertyString: "+30-50% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +30-50%",
             Index: 2
           }
         ],
@@ -16284,7 +16284,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "90-100",
           EquipmentType: 0,
-          Name: "Battle Boots",
+          Name: "戰鬥靴 (Battle Boots)",
           RequiredStrength: 95,
           RequiredDexterity: 0,
           Durability: 30,
@@ -16301,10 +16301,10 @@ const json = [
         Type: "Armor",
         "Set": "Treasure Hunter",
         SetPropertiesString: [
-          "+10 to Vitality (2 Items)",
-          "+10 to Energy (3 Items)"
+          "+10 體能 （2 件）",
+          "+10 能量 （3 件）"
         ],
-        Name: "Kingpin's Ire",
+        Name: "王者之怒 (Kingpin's Ire)",
         Index: "Kingpin's Ire",
         Enabled: true,
         Rarity: 7,
@@ -16313,23 +16313,23 @@ const json = [
         Code: "xpl",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 2
           },
           {
-            PropertyString: "Magic Damage Reduced by 10",
+            PropertyString: "魔法傷害降低 10",
             Index: 4
           },
           {
-            PropertyString: "+1.25% better chance of getting magic item (Per Character Level)",
+            PropertyString: "+1.25% better chance of getting magic item （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "Repairs 0.2 durability per second",
+            PropertyString: "每 1 秒修復 0.2 點耐久度",
             Index: 5
           }
         ],
@@ -16339,7 +16339,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "531-632",
           EquipmentType: 0,
-          Name: "Russet Armor",
+          Name: "赤褐戰甲 (Russet Armor)",
           RequiredStrength: 97,
           RequiredDexterity: 0,
           Durability: 90,
@@ -16356,10 +16356,10 @@ const json = [
         Type: "Ring",
         "Set": "Treasure Hunter",
         SetPropertiesString: [
-          "+44 to Life (5 Items)",
-          "+15% better chance of getting magic item (4 Items)"
+          "+44 生命 （5 件）",
+          "尋獲魔法物品機率提高 +15% （4 件）"
         ],
-        Name: "Kingpin's Signet",
+        Name: "王者之印 (Kingpin's Signet)",
         Index: "Kingpin's Signet",
         Enabled: true,
         Rarity: 4,
@@ -16368,26 +16368,26 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+50-80 to Attack Rating",
+            PropertyString: "+50-80 準確率",
             Index: 2
           },
           {
-            PropertyString: "Magic Damage Reduced by 3",
+            PropertyString: "魔法傷害降低 3",
             Index: 0
           },
           {
-            PropertyString: "Attacker Takes Damage of +3-7",
+            PropertyString: "攻擊者反傷 +3-7",
             Index: 1
           },
           {
-            PropertyString: "+10-15% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +10-15%",
             Index: 3
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -16404,7 +16404,7 @@ const json = [
         Type: "Helm",
         "Set": "Treasure Hunter",
         SetPropertiesString: [],
-        Name: "Kingpin's Crown",
+        Name: "王者之冠 (Kingpin's Crown)",
         Index: "Kingpin's Crown",
         Enabled: true,
         Rarity: 7,
@@ -16413,27 +16413,27 @@ const json = [
         Code: "uap",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 3
           },
           {
-            PropertyString: "+1.5 to Life (Per Character Level)",
+            PropertyString: "+1.5 生命 （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "+1.5 to Mana (Per Character Level)",
+            PropertyString: "+1.5 法力 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "+2 to All Attributes",
+            PropertyString: "+2 所有屬性",
             Index: 0
           },
           {
-            PropertyString: "+10% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10%",
             Index: 5
           },
           {
-            PropertyString: "+50% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +50%",
             Index: 4
           }
         ],
@@ -16443,7 +16443,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "98",
           EquipmentType: 0,
-          Name: "Shako",
+          Name: "軍帽 (Shako)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 12,
@@ -16460,9 +16460,9 @@ const json = [
         Type: "Sword",
         "Set": "Treasure Hunter",
         SetPropertiesString: [
-          "Adds 50-120 to Damage (6 Items)"
+          "增加 50-120 傷害 （6 件）"
         ],
-        Name: "Kingpin's Blade",
+        Name: "王者之刃 (Kingpin's Blade)",
         Index: "Kingpin's Blade",
         Enabled: true,
         Rarity: 7,
@@ -16471,27 +16471,27 @@ const json = [
         Code: "9fc",
         Properties: [
           {
-            PropertyString: "+60-120% Enhanced Damage",
+            PropertyString: "+60-120% 傷害強化",
             Index: 4
           },
           {
-            PropertyString: "+5-15 to Dexterity",
+            PropertyString: "+5-15 敏捷",
             Index: 5
           },
           {
-            PropertyString: "+15 to Mana",
+            PropertyString: "+15 法力",
             Index: 3
           },
           {
-            PropertyString: "+2.5% extra gold from monsters (Per Character Level)",
+            PropertyString: "+2.5% extra gold from monsters （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "+1% better chance of getting magic item (Per Character Level)",
+            PropertyString: "尋獲魔法物品機率提高 +1% （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 0
           }
         ],
@@ -16504,7 +16504,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Tulwar",
+          Name: "印度彎刀 (Tulwar)",
           RequiredStrength: 70,
           RequiredDexterity: 42,
           Durability: 250,
@@ -16520,33 +16520,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 2
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 4
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 6
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +35%",
+        PropertyString: "所有抗性 +35%",
         Index: 2
       },
       {
-        PropertyString: "+200% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +200%",
         Index: 0
       }
     ],
@@ -16554,13 +16554,13 @@ const json = [
   },
   {
     Index: "Yohann's Savant",
-    Name: "Yohann's Savant",
+    Name: "亞漢的博學 (Yohann's Savant)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Yohann's Savant",
         SetPropertiesString: [],
-        Name: "Wiseman's Cap",
+        Name: "怀斯曼帽子 (Wiseman's Cap)",
         Index: "Wiseman's Cap",
         Enabled: true,
         Rarity: 7,
@@ -16569,19 +16569,19 @@ const json = [
         Code: "crn",
         Properties: [
           {
-            PropertyString: "+1 to Sorceress Skill Levels",
+            PropertyString: "+1 魔法使技能等級",
             Index: 0
           },
           {
-            PropertyString: "-10-15% to Enemy Lightning Resistance",
+            PropertyString: "敵人電擊抗性 -10-15%",
             Index: 3
           },
           {
-            PropertyString: "Lightning Resist +15-25%",
+            PropertyString: "電擊抗性 +15-25%",
             Index: 2
           },
           {
-            PropertyString: "+2-3 to Mana after each Kill",
+            PropertyString: "+2-3 擊殺法力恢復",
             Index: 1
           }
         ],
@@ -16591,7 +16591,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "25",
           EquipmentType: 0,
-          Name: "Crown",
+          Name: "王冠 (Crown)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 50,
@@ -16608,9 +16608,9 @@ const json = [
         Type: "Armor",
         "Set": "Yohann's Savant",
         SetPropertiesString: [
-          "+5 Replenish Life (4 Items)"
+          "生命回復 +5 （4 件）"
         ],
-        Name: "Sage's Leather",
+        Name: "圣人皮革 (Sage's Leather)",
         Index: "Sage's Leather",
         Enabled: true,
         Rarity: 7,
@@ -16619,19 +16619,19 @@ const json = [
         Code: "xla",
         Properties: [
           {
-            PropertyString: "+15 to Strength",
+            PropertyString: "+15 力量",
             Index: 0
           },
           {
-            PropertyString: "+55-75 to Life",
+            PropertyString: "+55-75 生命",
             Index: 3
           },
           {
-            PropertyString: "Damage Reduced by 15",
+            PropertyString: "物理傷害降低 15",
             Index: 1
           },
           {
-            PropertyString: "Magic Damage Reduced by 15",
+            PropertyString: "魔法傷害降低 15",
             Index: 2
           }
         ],
@@ -16641,7 +16641,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "270-369",
           EquipmentType: 0,
-          Name: "Demonhide Armor",
+          Name: "魔皮護甲 (Demonhide Armor)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 28,
@@ -16658,9 +16658,9 @@ const json = [
         Type: "Gloves",
         "Set": "Yohann's Savant",
         SetPropertiesString: [
-          "+35% better chance of getting magic item (3 Items)"
+          "尋獲魔法物品機率提高 +35% （3 件）"
         ],
-        Name: "Gloves of Knowledge",
+        Name: "知识手套 (Gloves of Knowledge)",
         Index: "Gloves of Knowledge",
         Enabled: true,
         Rarity: 7,
@@ -16669,19 +16669,19 @@ const json = [
         Code: "xmg",
         Properties: [
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+35-45 to Mana",
+            PropertyString: "+35-45 法力",
             Index: 0
           },
           {
-            PropertyString: "+10-15 Life after each Kill",
+            PropertyString: "+10-15 擊殺生命恢復",
             Index: 2
           },
           {
-            PropertyString: "+1-3 to Mana after each Kill",
+            PropertyString: "+1-3 擊殺法力恢復",
             Index: 3
           }
         ],
@@ -16691,7 +16691,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "37",
           EquipmentType: 0,
-          Name: "Heavy Bracers",
+          Name: "重型護腕 (Heavy Bracers)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 16,
@@ -16708,10 +16708,10 @@ const json = [
         Type: "Staff",
         "Set": "Yohann's Savant",
         SetPropertiesString: [
-          "+1 to Whirlwind (4 Items)",
-          "+5% Mana stolen per hit (3 Items)"
+          "+1 旋風斬（4 件）",
+          "擊中竊取 +5% 法力 （3 件）"
         ],
-        Name: "Arcane Battlestaff",
+        Name: "奥术战杖 (Arcane Battlestaff)",
         Index: "Arcane Battlestaff",
         Enabled: true,
         Rarity: 7,
@@ -16720,19 +16720,19 @@ const json = [
         Code: "8bs",
         Properties: [
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 2
           },
           {
-            PropertyString: "+110-140% Enhanced Damage",
+            PropertyString: "+110-140% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "Adds 35-80 to Damage",
+            PropertyString: "增加 35-80 傷害",
             Index: 0
           },
           {
-            PropertyString: "Adds 6-8% Life stolen per hit",
+            PropertyString: "擊中竊取 6-8% 生命",
             Index: 3
           }
         ],
@@ -16745,7 +16745,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Gothic Staff",
+          Name: "哥德法杖 (Gothic Staff)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 250,
@@ -16761,33 +16761,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+125 to Mana",
+        PropertyString: "+125 法力",
         Index: 1
       },
       {
-        PropertyString: "Regenerate Mana +75%",
+        PropertyString: "法力恢復 75%",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +35%",
+        PropertyString: "所有抗性 +35%",
         Index: 2
       },
       {
-        PropertyString: "+75% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +75%",
         Index: 3
       }
     ],
@@ -16795,17 +16795,17 @@ const json = [
   },
   {
     Index: "Zhoulomcrist's Dread",
-    Name: "Zhoulomcrist's Dread",
+    Name: "周洛姆克里斯特的恐惧 (Zhoulomcrist's Dread)",
     SetItems: [
       {
         Type: "Helm",
         "Set": "Zhoulomcrist's Dread",
         SetPropertiesString: [
-          "+1 to Warmth (4 Items)",
-          "+1 to Warmth (5 Items)",
-          "Adds 25-35 to Cold Damage (3 Items)"
+          "+1 暖流（4 件）",
+          "+1 暖流（5 件）",
+          "增加 25-35 寒冰傷害 （3 件）"
         ],
-        Name: "Unholy Desires",
+        Name: "邪恶的欲望 (Unholy Desires)",
         Index: "Unholy Desires",
         Enabled: true,
         Rarity: 7,
@@ -16814,15 +16814,15 @@ const json = [
         Code: "xap",
         Properties: [
           {
-            PropertyString: "+15% Faster Cast Rate",
+            PropertyString: "+15% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+35-50 to Mana",
+            PropertyString: "+35-50 法力",
             Index: 0
           },
           {
-            PropertyString: "+12-15% Damage Taken Goes To Mana",
+            PropertyString: "+12-15% 受到的傷害轉為法力",
             Index: 2
           }
         ],
@@ -16832,7 +16832,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "80-92",
           EquipmentType: 0,
-          Name: "War Hat",
+          Name: "戰帽 (War Hat)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -16849,9 +16849,9 @@ const json = [
         Type: "Axe",
         "Set": "Zhoulomcrist's Dread",
         SetPropertiesString: [
-          "20% Chance to cast level 15 Life Tap when you Kill an Enemy (4 Items)"
+          "殺死敵人時有 20% 機率施展等級 15 偷取生命 （4 件）"
         ],
-        Name: "Darkest Wishes",
+        Name: "最黑暗的愿望 (Darkest Wishes)",
         Index: "Darkest Wishes",
         Enabled: true,
         Rarity: 7,
@@ -16860,23 +16860,23 @@ const json = [
         Code: "72a",
         Properties: [
           {
-            PropertyString: "+8 to Zeal",
+            PropertyString: "+8 熱忱打擊",
             Index: 3
           },
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+220-260% Enhanced Damage",
+            PropertyString: "+220-260% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 2
           },
           {
-            PropertyString: "Level 15 Clay Golem (65 Charges)",
+            PropertyString: "等級 15 黏土魔像（65 次）",
             Index: 4
           }
         ],
@@ -16889,7 +16889,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Ettin Axe",
+          Name: "雙頭斧 (Ettin Axe)",
           RequiredStrength: 145,
           RequiredDexterity: 45,
           Durability: 250,
@@ -16906,10 +16906,10 @@ const json = [
         Type: "Armor",
         "Set": "Zhoulomcrist's Dread",
         SetPropertiesString: [
-          "Damage Reduced by 20 (3 Items)",
-          "Magic Damage Reduced by 25 (4 Items)"
+          "物理傷害降低 20 （3 件）",
+          "魔法傷害降低 25 （4 件）"
         ],
-        Name: "Shadowed Plate",
+        Name: "阴影板 (Shadowed Plate)",
         Index: "Shadowed Plate",
         Enabled: true,
         Rarity: 7,
@@ -16918,19 +16918,19 @@ const json = [
         Code: "utp",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 2
           },
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 0
           },
           {
-            PropertyString: "+175-195% Enhanced Defense",
+            PropertyString: "+175-195% 防禦強化",
             Index: 3
           },
           {
-            PropertyString: "+1-5% to Experience Gained",
+            PropertyString: "獲得的經驗值 +1-5%",
             Index: 1
           }
         ],
@@ -16940,7 +16940,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1150-1315",
           EquipmentType: 0,
-          Name: "Archon Plate",
+          Name: "統御者鎧甲 (Archon Plate)",
           RequiredStrength: 103,
           RequiredDexterity: 0,
           Durability: 60,
@@ -16957,9 +16957,9 @@ const json = [
         Type: "Ring",
         "Set": "Zhoulomcrist's Dread",
         SetPropertiesString: [
-          "Freezes target +2 (4 Items)"
+          "凍結目標 +2 （4 件）"
         ],
-        Name: "Draven Coil",
+        Name: "德拉文线圈 (Draven Coil)",
         Index: "Draven Coil",
         Enabled: true,
         Rarity: 3,
@@ -16968,26 +16968,26 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+10% Faster Cast Rate",
+            PropertyString: "+10% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+10-20% bonus to Attack Rating",
+            PropertyString: "+10-20% 準確率加成",
             Index: 3
           },
           {
-            PropertyString: "+80-120 Defense",
+            PropertyString: "+80-120 防禦",
             Index: 2
           },
           {
-            PropertyString: "+35-50 to Life",
+            PropertyString: "+35-50 生命",
             Index: 0
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -17003,33 +17003,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+5 Replenish Life",
+        PropertyString: "生命回復 +5",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +50%",
+        PropertyString: "法力恢復 50%",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+3 to Lower Resist",
+        PropertyString: "+3 降低抗性",
         Index: 4
       },
       {
-        PropertyString: "Magic Resist +25%",
+        PropertyString: "魔法抗性 +25%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 3
       },
       {
-        PropertyString: "+30% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +30%",
         Index: 1
       }
     ],
@@ -17037,19 +17037,19 @@ const json = [
   },
   {
     Index: "The Warlord of Blood",
-    Name: "The Warlord of Blood",
+    Name: "血腥軍閥 (The Warlord of Blood)",
     SetItems: [
       {
         Type: "Gloves",
         "Set": "The Warlord of Blood",
         SetPropertiesString: [
-          "+20% bonus to Attack Rating (4 Items)",
-          "+15% Chance of Crushing Blow (3 Items)",
-          "+15% Deadly Strike (2 Items)",
-          "+250 Defense (6 Items)",
-          "+10% Physical Damage Reduction (5 Items)"
+          "+20% 準確率加成 （4 件）",
+          "+15% 概率造成粉碎打擊 （3 件）",
+          "+15% 致命打擊 （2 件）",
+          "+250 防禦 （6 件）",
+          "物理傷害降低 +10% （5 件）"
         ],
-        Name: "Tortured Soul Gauntlets",
+        Name: "苦痛的靈魂護手 (Tortured Soul Gauntlets)",
         Index: "Tortured Soul Gauntlets",
         Enabled: true,
         Rarity: 7,
@@ -17058,11 +17058,11 @@ const json = [
         Code: "hgl",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 0
           },
           {
-            PropertyString: "+30-50% Enhanced Damage",
+            PropertyString: "+30-50% 傷害強化",
             Index: 1
           }
         ],
@@ -17072,7 +17072,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "12",
           EquipmentType: 0,
-          Name: "Gauntlets",
+          Name: "鋼鐵護手 (Gauntlets)",
           RequiredStrength: 60,
           RequiredDexterity: 0,
           Durability: 24,
@@ -17089,13 +17089,13 @@ const json = [
         Type: "Boots",
         "Set": "The Warlord of Blood",
         SetPropertiesString: [
-          "Adds 10-20 to Damage (3 Items)",
-          "+313 Defense (6 Items)",
-          "Magic Resist +10% (4 Items)",
-          "All Resistances +10% (2 Items)",
-          "+1.5 Attacker Takes Damage of (Per Character Level) (5 Items)"
+          "增加 10-20 傷害 （3 件）",
+          "+313 防禦 （6 件）",
+          "魔法抗性 +10% （4 件）",
+          "所有抗性 +10% （2 件）",
+          "+1.5 Attacker Takes Damage of （依角色等級而定） （5 件）"
         ],
-        Name: "Hell's Torment Greaves",
+        Name: "地獄的折磨護脛 (Hell's Torment Greaves)",
         Index: "Hell's Torment Greaves",
         Enabled: true,
         Rarity: 7,
@@ -17104,11 +17104,11 @@ const json = [
         Code: "hbt",
         Properties: [
           {
-            PropertyString: "18% Chance to cast level 1 Life Tap on striking",
+            PropertyString: "擊中時有 18% 機率施展等級 1 偷取生命",
             Index: 1
           },
           {
-            PropertyString: "+30% Faster Run/Walk",
+            PropertyString: "+30% 跑步 / 行走速度",
             Index: 0
           }
         ],
@@ -17118,7 +17118,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "12",
           EquipmentType: 0,
-          Name: "Greaves",
+          Name: "護脛",
           RequiredStrength: 70,
           RequiredDexterity: 0,
           Durability: 24,
@@ -17135,11 +17135,11 @@ const json = [
         Type: "Helm",
         "Set": "The Warlord of Blood",
         SetPropertiesString: [
-          "Adds 25-200 to Lightning Damage (6 Items)",
-          "-15% to Enemy Lightning Resistance (4 Items)",
-          "Lightning Resist +33% (3 Items)"
+          "增加 25-200 電擊傷害 （6 件）",
+          "敵人電擊抗性 -15% （4 件）",
+          "電擊抗性 +33% （3 件）"
         ],
-        Name: "Bloody Visage Helm",
+        Name: "血腥的幻象面甲 (Bloody Visage Helm)",
         Index: "Bloody Visage Helm",
         Enabled: true,
         Rarity: 7,
@@ -17148,19 +17148,19 @@ const json = [
         Code: "xhm",
         Properties: [
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 3
           },
           {
-            PropertyString: "+120-170% Enhanced Defense",
+            PropertyString: "+120-170% 防禦強化",
             Index: 4
           },
           {
-            PropertyString: "+70-100 to Life",
+            PropertyString: "+70-100 生命",
             Index: 0
           },
           {
-            PropertyString: "+33-45 to Mana",
+            PropertyString: "+33-45 法力",
             Index: 2
           }
         ],
@@ -17170,7 +17170,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "189-232",
           EquipmentType: 0,
-          Name: "Winged Helm",
+          Name: "翼盔 (Winged Helm)",
           RequiredStrength: 115,
           RequiredDexterity: 0,
           Durability: 40,
@@ -17187,11 +17187,11 @@ const json = [
         Type: "Belt",
         "Set": "The Warlord of Blood",
         SetPropertiesString: [
-          "Adds 100-150 to Fire Damage (6 Items)",
-          "-15% to Enemy Fire Resistance (4 Items)",
-          "Fire Resist +33% (3 Items)"
+          "增加 100-150 火焰傷害 （6 件）",
+          "敵人火焰抗性 -15% （4 件）",
+          "火焰抗性 +33% （3 件）"
         ],
-        Name: "Vengeance Unleashed",
+        Name: "爆發的復仇 (Vengeance Unleashed)",
         Index: "Vengeance Unleashed",
         Enabled: true,
         Rarity: 7,
@@ -17200,23 +17200,23 @@ const json = [
         Code: "zhb",
         Properties: [
           {
-            PropertyString: "+180-200% Enhanced Defense",
+            PropertyString: "+180-200% 防禦強化",
             Index: 1
           },
           {
-            PropertyString: "+50-75 to Life",
+            PropertyString: "+50-75 生命",
             Index: 2
           },
           {
-            PropertyString: "Damage Reduced by 22",
+            PropertyString: "物理傷害降低 22",
             Index: 3
           },
           {
-            PropertyString: "Magic Damage Reduced by 20",
+            PropertyString: "魔法傷害降低 20",
             Index: 4
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 0
           }
         ],
@@ -17226,7 +17226,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "41",
           EquipmentType: 0,
-          Name: "War Belt",
+          Name: "征戰腰帶 (War Belt)",
           RequiredStrength: 110,
           RequiredDexterity: 0,
           Durability: 24,
@@ -17243,7 +17243,7 @@ const json = [
         Type: "Shield",
         "Set": "The Warlord of Blood",
         SetPropertiesString: [],
-        Name: "Elysian Fields",
+        Name: "極樂淨土 (Elysian Fields)",
         Index: "Elysian Fields",
         Enabled: true,
         Rarity: 7,
@@ -17252,31 +17252,31 @@ const json = [
         Code: "upk",
         Properties: [
           {
-            PropertyString: "+40% Faster Block Rate",
+            PropertyString: "+40% 格擋速度",
             Index: 1
           },
           {
-            PropertyString: "+20-40% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20-40%",
             Index: 0
           },
           {
-            PropertyString: "Adds 100-150 to Cold Damage",
+            PropertyString: "增加 100-150 寒冰傷害",
             Index: 6
           },
           {
-            PropertyString: "-15% to Enemy Cold Resistance",
+            PropertyString: "敵人冰寒抗性 -15%",
             Index: 5
           },
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 4
           },
           {
-            PropertyString: "All Resistances +35-50%",
+            PropertyString: "所有抗性 +35-50%",
             Index: 3
           },
           {
-            PropertyString: "+15-20% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15-20%",
             Index: 2
           }
         ],
@@ -17286,7 +17286,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "384-444",
           EquipmentType: 0,
-          Name: "Blade Barrier",
+          Name: "刀刃刺盾 (Blade Barrier)",
           RequiredStrength: 118,
           RequiredDexterity: 0,
           Durability: 83,
@@ -17303,10 +17303,10 @@ const json = [
         Type: "Armor",
         "Set": "The Warlord of Blood",
         SetPropertiesString: [
-          "+2 to All Skills (6 Items)",
-          "Prevent Monster Heal (6 Items)"
+          "+2 所有技能 （6 件）",
+          "防止怪物自療 （6 件）"
         ],
-        Name: "Death and Decay",
+        Name: "死亡與腐朽 (Death and Decay)",
         Index: "Death and Decay",
         Enabled: true,
         Rarity: 7,
@@ -17315,23 +17315,23 @@ const json = [
         Code: "utp",
         Properties: [
           {
-            PropertyString: "+180-220% Enhanced Defense",
+            PropertyString: "+180-220% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15-25 to Strength",
+            PropertyString: "+15-25 力量",
             Index: 4
           },
           {
-            PropertyString: "+15-20 to Dexterity",
+            PropertyString: "+15-20 敏捷",
             Index: 3
           },
           {
-            PropertyString: "+75-100 to Life",
+            PropertyString: "+75-100 生命",
             Index: 1
           },
           {
-            PropertyString: "+35-50 to Mana",
+            PropertyString: "+35-50 法力",
             Index: 2
           }
         ],
@@ -17341,7 +17341,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1150-1315",
           EquipmentType: 0,
-          Name: "Archon Plate",
+          Name: "統御者鎧甲 (Archon Plate)",
           RequiredStrength: 103,
           RequiredDexterity: 0,
           Durability: 60,
@@ -17357,37 +17357,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+2% to Experience Gained",
+        PropertyString: "獲得的經驗值 +2%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +20%",
+        PropertyString: "所有抗性 +20%",
         Index: 4
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 6
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 2
       },
       {
-        PropertyString: "+200% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +200%",
         Index: 3
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -17395,15 +17395,15 @@ const json = [
   },
   {
     Index: "Darque Necromancy",
-    Name: "Darque Necromancy",
+    Name: "達爾克亡靈魔法 (Darque Necromancy)",
     SetItems: [
       {
         Type: "Belt",
         "Set": "Darque Necromancy",
         SetPropertiesString: [
-          "+1 to Mana (Per Character Level) (5 Items)"
+          "+1 法力 （依角色等級而定） （5 件）"
         ],
-        Name: "Dying Curses",
+        Name: "垂死詛咒 (Dying Curses)",
         Index: "Dying Curses",
         Enabled: true,
         Rarity: 7,
@@ -17412,15 +17412,15 @@ const json = [
         Code: "zlb",
         Properties: [
           {
-            PropertyString: "100% Chance to cast level 40 Weaken when you Level-Up",
+            PropertyString: "當你升級時有 100% 機率施展等級 40 削弱",
             Index: 2
           },
           {
-            PropertyString: "+1 to Curses (Necromancer only)",
+            PropertyString: "+1 詛咒 （只限死靈法師）",
             Index: 1
           },
           {
-            PropertyString: "+100-120% Enhanced Defense",
+            PropertyString: "+100-120% 防禦強化",
             Index: 0
           }
         ],
@@ -17430,7 +17430,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "54-63",
           EquipmentType: 0,
-          Name: "Demonhide Sash",
+          Name: "魔皮束帶 (Demonhide Sash)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -17447,9 +17447,9 @@ const json = [
         Type: "Shield",
         "Set": "Darque Necromancy",
         SetPropertiesString: [
-          "+25% Increased Chance of Blocking (4 Items)"
+          "格擋機率提高 +25% （4 件）"
         ],
-        Name: "Lich's Rites",
+        Name: "巫妖儀式 (Lich's Rites)",
         Index: "Lich's Rites",
         Enabled: true,
         Rarity: 7,
@@ -17458,19 +17458,19 @@ const json = [
         Code: "uuc",
         Properties: [
           {
-            PropertyString: "100% Chance to cast level 33 Bone Armor when you Level-Up",
+            PropertyString: "當你升級時有 100% 機率施展等級 33 骸骨護甲",
             Index: 2
           },
           {
-            PropertyString: "+30% Faster Block Rate",
+            PropertyString: "+30% 格擋速度",
             Index: 1
           },
           {
-            PropertyString: "+80-140% Enhanced Defense",
+            PropertyString: "+80-140% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (1)",
+            PropertyString: "鑲孔 (1)",
             Index: 3
           }
         ],
@@ -17480,7 +17480,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "220-240",
           EquipmentType: 0,
-          Name: "Heater",
+          Name: "斗盾 (Heater)",
           RequiredStrength: 77,
           RequiredDexterity: 0,
           Durability: 88,
@@ -17497,7 +17497,7 @@ const json = [
         Type: "Wand",
         "Set": "Darque Necromancy",
         SetPropertiesString: [],
-        Name: "Twilight of Evil",
+        Name: "邪惡暮光 (Twilight of Evil)",
         Index: "Twilight of Evil",
         Enabled: true,
         Rarity: 7,
@@ -17506,19 +17506,19 @@ const json = [
         Code: "9yw",
         Properties: [
           {
-            PropertyString: "Level 1-7 Thorns Aura When Equipped",
+            PropertyString: "裝備時賦予等級 1-7 荊棘靈氣",
             Index: 3
           },
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+25% Faster Cast Rate",
+            PropertyString: "+25% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+1-5 Replenish Life",
+            PropertyString: "生命回復 +1-5",
             Index: 2
           }
         ],
@@ -17531,7 +17531,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Petrified Wand",
+          Name: "石木魔杖 (Petrified Wand)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 250,
@@ -17548,12 +17548,12 @@ const json = [
         Type: "Armor",
         "Set": "Darque Necromancy",
         SetPropertiesString: [
-          "Cold Resist +20% (3 Items)",
-          "Lightning Resist +10% (4 Items)",
-          "Fire Resist +15% (2 Items)",
-          "Poison Resist +25% (5 Items)"
+          "冰寒抗性 +20% （3 件）",
+          "電擊抗性 +10% （4 件）",
+          "火焰抗性 +15% （2 件）",
+          "毒素抗性 +25% （5 件）"
         ],
-        Name: "Dark Rituals",
+        Name: "黑暗儀軌 (Dark Rituals)",
         Index: "Dark Rituals",
         Enabled: true,
         Rarity: 7,
@@ -17562,15 +17562,15 @@ const json = [
         Code: "xtp",
         Properties: [
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "+300-400 Defense",
+            PropertyString: "+300-400 防禦",
             Index: 0
           },
           {
-            PropertyString: "+10-15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10-15%",
             Index: 1
           }
         ],
@@ -17580,7 +17580,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "525-725",
           EquipmentType: 0,
-          Name: "Mage Plate",
+          Name: "法師鎧甲 (Mage Plate)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 60,
@@ -17597,9 +17597,9 @@ const json = [
         Type: "Amulet",
         "Set": "Darque Necromancy",
         SetPropertiesString: [
-          "+100% extra gold from monsters (5 Items)"
+          "怪物金幣掉落量提高 +100% （5 件）"
         ],
-        Name: "Legacy in Blood",
+        Name: "血脈傳承 (Legacy in Blood)",
         Index: "Legacy in Blood",
         Enabled: true,
         Rarity: 4,
@@ -17608,22 +17608,22 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+10% Increased Attack Speed",
+            PropertyString: "攻擊速度 +10%",
             Index: 1
           },
           {
-            PropertyString: "+50-75% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +50-75%",
             Index: 2
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -17639,37 +17639,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to Necromancer Skill Levels",
+        PropertyString: "+1 死靈法師技能等級",
         Index: 0
       },
       {
-        PropertyString: "+1 to Necromancer Skill Levels",
+        PropertyString: "+1 死靈法師技能等級",
         Index: 2
       },
       {
-        PropertyString: "+1 to Necromancer Skill Levels",
+        PropertyString: "+1 死靈法師技能等級",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "5% Chance to cast level 10 Iron Maiden when struck",
+        PropertyString: "被擊中時有 5% 機率施展等級 10 攻擊反噬",
         Index: 1
       },
       {
-        PropertyString: "+3 to Revive",
+        PropertyString: "+3 重生",
         Index: 4
       },
       {
-        PropertyString: "+300% Damage to Undead",
+        PropertyString: "+300% 對不死怪物的傷害",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 2
       }
     ],
@@ -17677,13 +17677,13 @@ const json = [
   },
   {
     Index: "Marhawkman's Disguise",
-    Name: "Marhawkman's Disguise",
+    Name: "馬哈克曼的僞裝 (Marhawkman's Disguise)",
     SetItems: [
       {
         Type: "Gloves",
         "Set": "Marhawkman's Disguise",
         SetPropertiesString: [],
-        Name: "Andariel's Claw",
+        Name: "安達莉爾的利爪 (Andariel's Claw)",
         Index: "Andariel's Claw",
         Enabled: true,
         Rarity: 7,
@@ -17692,27 +17692,27 @@ const json = [
         Code: "uvg",
         Properties: [
           {
-            PropertyString: "+15% Increased Attack Speed",
+            PropertyString: "攻擊速度 +15%",
             Index: 1
           },
           {
-            PropertyString: "+15% Faster Cast Rate",
+            PropertyString: "+15% 施法速度",
             Index: 2
           },
           {
-            PropertyString: "+90-130% Enhanced Defense",
+            PropertyString: "+90-130% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+40-70 to Mana",
+            PropertyString: "+40-70 法力",
             Index: 5
           },
           {
-            PropertyString: "Poison Resist +60-80%",
+            PropertyString: "毒素抗性 +60-80%",
             Index: 3
           },
           {
-            PropertyString: "Poison Length Reduced by 60%",
+            PropertyString: "中毒的時效縮短 60%",
             Index: 4
           }
         ],
@@ -17722,7 +17722,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "106-156",
           EquipmentType: 0,
-          Name: "Vampirebone Gloves",
+          Name: "吸血鬼骸骨手套 (Vampirebone Gloves)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 14,
@@ -17739,7 +17739,7 @@ const json = [
         Type: "Boots",
         "Set": "Marhawkman's Disguise",
         SetPropertiesString: [],
-        Name: "Andariel's Hooves",
+        Name: "安達莉爾的蹄子 (Andariel's Hooves)",
         Index: "Andariel's Hooves",
         Enabled: true,
         Rarity: 7,
@@ -17748,23 +17748,23 @@ const json = [
         Code: "umb",
         Properties: [
           {
-            PropertyString: "+25% Faster Run/Walk",
+            PropertyString: "+25% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+1200 Poison Damage Over 12 Seconds",
+            PropertyString: "+1200 毒素傷害，時效 12 秒",
             Index: 4
           },
           {
-            PropertyString: "+80-120% Enhanced Defense",
+            PropertyString: "+80-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+20-30 to Dexterity",
+            PropertyString: "+20-30 敏捷",
             Index: 2
           },
           {
-            PropertyString: "All Resistances +10-20%",
+            PropertyString: "所有抗性 +10-20%",
             Index: 3
           }
         ],
@@ -17774,7 +17774,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "108-132",
           EquipmentType: 0,
-          Name: "Boneweave Boots",
+          Name: "骸骨網靴 (Boneweave Boots)",
           RequiredStrength: 118,
           RequiredDexterity: 0,
           Durability: 0,
@@ -17791,7 +17791,7 @@ const json = [
         Type: "Helm",
         "Set": "Marhawkman's Disguise",
         SetPropertiesString: [],
-        Name: "Andariel's Mask",
+        Name: "安達莉爾的面具 (Andariel's Mask)",
         Index: "Andariel's Mask",
         Enabled: true,
         Rarity: 7,
@@ -17800,23 +17800,23 @@ const json = [
         Code: "xsk",
         Properties: [
           {
-            PropertyString: "+75-100 Defense",
+            PropertyString: "+75-100 防禦",
             Index: 0
           },
           {
-            PropertyString: "+20-30 to Vitality",
+            PropertyString: "+20-30 體能",
             Index: 4
           },
           {
-            PropertyString: "+20-30 to Energy",
+            PropertyString: "+20-30 能量",
             Index: 3
           },
           {
-            PropertyString: "+15-20 Life after each Kill",
+            PropertyString: "+15-20 擊殺生命恢復",
             Index: 1
           },
           {
-            PropertyString: "+3-6 to Mana after each Kill",
+            PropertyString: "+3-6 擊殺法力恢復",
             Index: 2
           }
         ],
@@ -17826,7 +17826,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "129-154",
           EquipmentType: 0,
-          Name: "Death Mask",
+          Name: "死亡面具 (Death Mask)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 20,
@@ -17843,9 +17843,9 @@ const json = [
         Type: "Armor",
         "Set": "Marhawkman's Disguise",
         SetPropertiesString: [
-          "+4% to Experience Gained (4 Items)"
+          "獲得的經驗值 +4% （4 件）"
         ],
-        Name: "Andariel's Breastbone",
+        Name: "安達莉爾的胸骨 (Andariel's Breastbone)",
         Index: "Andariel's Breastbone",
         Enabled: true,
         Rarity: 7,
@@ -17854,27 +17854,27 @@ const json = [
         Code: "ula",
         Properties: [
           {
-            PropertyString: "+25% to Poison Skill Damage",
+            PropertyString: "+25% 毒素技能傷害",
             Index: 4
           },
           {
-            PropertyString: "-25% to Enemy Poison Resistance",
+            PropertyString: "敵人毒素抗性 -25%",
             Index: 5
           },
           {
-            PropertyString: "Prevent Monster Heal",
+            PropertyString: "防止怪物自療",
             Index: 1
           },
           {
-            PropertyString: "+120-150% Enhanced Defense",
+            PropertyString: "+120-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Damage Reduced by 20",
+            PropertyString: "物理傷害降低 20",
             Index: 2
           },
           {
-            PropertyString: "Magic Damage Reduced by 20",
+            PropertyString: "魔法傷害降低 20",
             Index: 3
           }
         ],
@@ -17884,7 +17884,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "814-925",
           EquipmentType: 0,
-          Name: "Scarab Husk",
+          Name: "聖甲蟲殼皮甲 (Scarab Husk)",
           RequiredStrength: 95,
           RequiredDexterity: 0,
           Durability: 28,
@@ -17900,33 +17900,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "100% Chance to cast level 2 Poison Nova when struck",
+        PropertyString: "被擊中時有 100% 機率施展等級 2 劇毒新星",
         Index: 1
       },
       {
-        PropertyString: "8% Chance to cast level 12 Poison Nova on striking",
+        PropertyString: "擊中時有 8% 機率施展等級 12 劇毒新星",
         Index: 2
       },
       {
-        PropertyString: "+8% Mana stolen per hit",
+        PropertyString: "擊中竊取 +8% 法力",
         Index: 5
       },
       {
-        PropertyString: "+8% Life stolen per hit",
+        PropertyString: "擊中竊取 8% 生命",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 3
       }
     ],
@@ -17934,13 +17934,13 @@ const json = [
   },
   {
     Index: "Aragorn's Scorn",
-    Name: "Aragorn's Scorn",
+    Name: "阿拉貢的輕蔑 (Aragorn's Scorn)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Aragorn's Scorn",
         SetPropertiesString: [],
-        Name: "Aragorn's Contempt",
+        Name: "阿拉貢的蔑視 (Aragorn's Contempt)",
         Index: "Aragorn's Contempt",
         Enabled: true,
         Rarity: 7,
@@ -17949,19 +17949,19 @@ const json = [
         Code: "xui",
         Properties: [
           {
-            PropertyString: "+100-120% Enhanced Defense",
+            PropertyString: "+100-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Magic Resist +10%",
+            PropertyString: "魔法抗性 +10%",
             Index: 3
           },
           {
-            PropertyString: "Fire Resist +25-35%",
+            PropertyString: "火焰抗性 +25-35%",
             Index: 1
           },
           {
-            PropertyString: "Damage Reduced by 15",
+            PropertyString: "物理傷害降低 15",
             Index: 2
           }
         ],
@@ -17971,7 +17971,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "206-226",
           EquipmentType: 0,
-          Name: "Ghost Armor",
+          Name: "鬼魂戰衣 (Ghost Armor)",
           RequiredStrength: 38,
           RequiredDexterity: 0,
           Durability: 20,
@@ -17988,10 +17988,10 @@ const json = [
         Type: "Axe",
         "Set": "Aragorn's Scorn",
         SetPropertiesString: [
-          "Adds 45-135 to Damage (4 Items)",
-          "+8-12 Life after each Kill (2 Items)"
+          "增加 45-135 傷害 （4 件）",
+          "+8-12 擊殺生命恢復 （2 件）"
         ],
-        Name: "Aragorn's Derision",
+        Name: "阿拉貢的嘲笑 (Aragorn's Derision)",
         Index: "Aragorn's Derision",
         Enabled: true,
         Rarity: 7,
@@ -18000,15 +18000,15 @@ const json = [
         Code: "9wa",
         Properties: [
           {
-            PropertyString: "+120-200% Enhanced Damage",
+            PropertyString: "+120-200% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 150-250 to Fire Damage",
+            PropertyString: "增加 150-250 火焰傷害",
             Index: 1
           },
           {
-            PropertyString: "-15-20% to Enemy Fire Resistance",
+            PropertyString: "敵人火焰抗性 -15-20%",
             Index: 2
           }
         ],
@@ -18021,7 +18021,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Naga",
+          Name: "那伽斧 (Naga)",
           RequiredStrength: 121,
           RequiredDexterity: 0,
           Durability: 250,
@@ -18038,7 +18038,7 @@ const json = [
         Type: "Shield",
         "Set": "Aragorn's Scorn",
         SetPropertiesString: [],
-        Name: "Aragorn's Indignation",
+        Name: "阿拉貢的憤怒 (Aragorn's Indignation)",
         Index: "Aragorn's Indignation",
         Enabled: true,
         Rarity: 7,
@@ -18047,23 +18047,23 @@ const json = [
         Code: "uml",
         Properties: [
           {
-            PropertyString: "+20% Faster Block Rate",
+            PropertyString: "+20% 格擋速度",
             Index: 2
           },
           {
-            PropertyString: "+20-30% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20-30%",
             Index: 1
           },
           {
-            PropertyString: "Prevent Monster Heal",
+            PropertyString: "防止怪物自療",
             Index: 3
           },
           {
-            PropertyString: "+2 Defense (Per Character Level)",
+            PropertyString: "+2 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +25-35%",
+            PropertyString: "冰寒抗性 +25-35%",
             Index: 4
           }
         ],
@@ -18073,7 +18073,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "239-283",
           EquipmentType: 0,
-          Name: "Luna",
+          Name: "圓月盾 (Luna)",
           RequiredStrength: 100,
           RequiredDexterity: 0,
           Durability: 84,
@@ -18090,9 +18090,9 @@ const json = [
         Type: "Boots",
         "Set": "Aragorn's Scorn",
         SetPropertiesString: [
-          "+25 to Dexterity (3 Items)"
+          "+25 敏捷 （3 件）"
         ],
-        Name: "Aragorn's Disdain",
+        Name: "阿拉貢的鄙視 (Aragorn's Disdain)",
         Index: "Aragorn's Disdain",
         Enabled: true,
         Rarity: 7,
@@ -18101,19 +18101,19 @@ const json = [
         Code: "xhb",
         Properties: [
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+8-15 Kick Damage",
+            PropertyString: "踢擊傷害 +8-15",
             Index: 2
           },
           {
-            PropertyString: "Adds 3-6% Mana stolen per hit",
+            PropertyString: "擊中竊取 3-6% 法力",
             Index: 3
           },
           {
-            PropertyString: "+100-125% Enhanced Defense",
+            PropertyString: "+100-125% 防禦強化",
             Index: 0
           }
         ],
@@ -18123,7 +18123,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "88-99",
           EquipmentType: 0,
-          Name: "War Boots",
+          Name: "征戰靴 (War Boots)",
           RequiredStrength: 125,
           RequiredDexterity: 0,
           Durability: 24,
@@ -18139,29 +18139,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "25% Chance to cast level 2 Static Field when struck",
+        PropertyString: "被擊中時有 25% 機率施展等級 2 靜電力場",
         Index: 2
       },
       {
-        PropertyString: "+1 to Howl",
+        PropertyString: "+1 狂嗥",
         Index: 3
       },
       {
-        PropertyString: "+100% Enhanced Damage",
+        PropertyString: "+100% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "Slows target by 15%",
+        PropertyString: "使目標減慢 15%",
         Index: 4
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       }
     ],
@@ -18169,13 +18169,13 @@ const json = [
   },
   {
     Index: "Bogrot's Magic",
-    Name: "Bogrot's Magic",
+    Name: "博格羅特的魔法 (Bogrot's Magic)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Bogrot's Magic",
         SetPropertiesString: [],
-        Name: "Winter's Embrace",
+        Name: "寒冬之擁 (Winter's Embrace)",
         Index: "Winter's Embrace",
         Enabled: true,
         Rarity: 7,
@@ -18184,19 +18184,19 @@ const json = [
         Code: "xea",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "-10-20% to Enemy Cold Resistance",
+            PropertyString: "敵人冰寒抗性 -10-20%",
             Index: 3
           },
           {
-            PropertyString: "+250-350 Defense",
+            PropertyString: "+250-350 防禦",
             Index: 2
           },
           {
-            PropertyString: "Cannot Be Frozen",
+            PropertyString: "無法冰凍",
             Index: 1
           }
         ],
@@ -18206,7 +18206,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "361-461",
           EquipmentType: 0,
-          Name: "Serpentskin Armor",
+          Name: "海蛇皮甲 (Serpentskin Armor)",
           RequiredStrength: 43,
           RequiredDexterity: 0,
           Durability: 24,
@@ -18223,9 +18223,9 @@ const json = [
         Type: "Mace",
         "Set": "Bogrot's Magic",
         SetPropertiesString: [
-          "Regenerate Mana +50% (3 Items)"
+          "法力恢復 50% （3 件）"
         ],
-        Name: "Baptism by Fire",
+        Name: "烈火洗禮 (Baptism by Fire)",
         Index: "Baptism by Fire",
         Enabled: true,
         Rarity: 7,
@@ -18234,19 +18234,19 @@ const json = [
         Code: "9ma",
         Properties: [
           {
-            PropertyString: "Level 3-5 Holy Fire Aura When Equipped",
+            PropertyString: "裝備時賦予等級 3-5 神聖火焰靈氣",
             Index: 3
           },
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+35-50 to Mana",
+            PropertyString: "+35-50 法力",
             Index: 2
           }
         ],
@@ -18259,7 +18259,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Flanged Mace",
+          Name: "凸緣釘鎚 (Flanged Mace)",
           RequiredStrength: 61,
           RequiredDexterity: 0,
           Durability: 250,
@@ -18276,7 +18276,7 @@ const json = [
         Type: "Shield",
         "Set": "Bogrot's Magic",
         SetPropertiesString: [],
-        Name: "Between Fire and Ice",
+        Name: "冰火交夾 (Between Fire and Ice)",
         Index: "Between Fire and Ice",
         Enabled: true,
         Rarity: 7,
@@ -18285,23 +18285,23 @@ const json = [
         Code: "urg",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 3
           },
           {
-            PropertyString: "+35% Faster Block Rate",
+            PropertyString: "+35% 格擋速度",
             Index: 2
           },
           {
-            PropertyString: "+15-25 to Strength",
+            PropertyString: "+15-25 力量",
             Index: 4
           },
           {
-            PropertyString: "+40-75% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +40-75%",
             Index: 1
           }
         ],
@@ -18311,7 +18311,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "119",
           EquipmentType: 0,
-          Name: "Hyperion",
+          Name: "亥伯龍盾 (Hyperion)",
           RequiredStrength: 156,
           RequiredDexterity: 0,
           Durability: 82,
@@ -18327,33 +18327,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20 to Dexterity",
+        PropertyString: "+20 敏捷",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+15% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +15%",
         Index: 5
       },
       {
-        PropertyString: "+350 Defense",
+        PropertyString: "+350 防禦",
         Index: 4
       },
       {
-        PropertyString: "+75 to Life",
+        PropertyString: "+75 生命",
         Index: 3
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 2
       },
       {
-        PropertyString: "+200% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +200%",
         Index: 0
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 1
       }
     ],
@@ -18361,15 +18361,15 @@ const json = [
   },
   {
     Index: "Cedric's Jinx",
-    Name: "Cedric's Jinx",
+    Name: "塞德里克的厄運 (Cedric's Jinx)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Cedric's Jinx",
         SetPropertiesString: [
-          "+5 Defense (Per Character Level) (3 Items)"
+          "+5 防禦 （依角色等級而定） （3 件）"
         ],
-        Name: "Call of Gylandra",
+        Name: "吉蘭德拉的召喚 (Call of Gylandra)",
         Index: "Call of Gylandra",
         Enabled: true,
         Rarity: 7,
@@ -18378,19 +18378,19 @@ const json = [
         Code: "xla",
         Properties: [
           {
-            PropertyString: "+120-200% Enhanced Defense",
+            PropertyString: "+120-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +15-25%",
+            PropertyString: "所有抗性 +15-25%",
             Index: 2
           },
           {
-            PropertyString: "+15-25% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15-25%",
             Index: 1
           },
           {
-            PropertyString: "+1-2% to Experience Gained",
+            PropertyString: "獲得的經驗值 +1-2%",
             Index: 3
           }
         ],
@@ -18400,7 +18400,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "270-369",
           EquipmentType: 0,
-          Name: "Demonhide Armor",
+          Name: "魔皮護甲 (Demonhide Armor)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 28,
@@ -18417,10 +18417,10 @@ const json = [
         Type: "Hammer",
         "Set": "Cedric's Jinx",
         SetPropertiesString: [
-          "+6% Mana stolen per hit (2 Items)",
-          "+6% Life stolen per hit (3 Items)"
+          "擊中竊取 +6% 法力 （2 件）",
+          "擊中竊取 6% 生命 （3 件）"
         ],
-        Name: "Return to Hydrakal",
+        Name: "海德拉卡爾的回歸 (Return to Hydrakal)",
         Index: "Return to Hydrakal",
         Enabled: true,
         Rarity: 7,
@@ -18429,15 +18429,15 @@ const json = [
         Code: "7wh",
         Properties: [
           {
-            PropertyString: "+60% Increased Attack Speed",
+            PropertyString: "攻擊速度 +60%",
             Index: 1
           },
           {
-            PropertyString: "+175-225% Enhanced Damage",
+            PropertyString: "+175-225% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 2
           }
         ],
@@ -18450,7 +18450,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Legendary Mallet",
+          Name: "傳說戰鎚 (Legendary Mallet)",
           RequiredStrength: 189,
           RequiredDexterity: 0,
           Durability: 250,
@@ -18467,7 +18467,7 @@ const json = [
         Type: "Shield",
         "Set": "Cedric's Jinx",
         SetPropertiesString: [],
-        Name: "Neprida's Kiss",
+        Name: "奈普莉達之吻 (Neprida's Kiss)",
         Index: "Neprida's Kiss",
         Enabled: true,
         Rarity: 7,
@@ -18476,19 +18476,19 @@ const json = [
         Code: "xrg",
         Properties: [
           {
-            PropertyString: "+35-50% Enhanced Damage",
+            PropertyString: "+35-50% 傷害強化",
             Index: 3
           },
           {
-            PropertyString: "+10-20% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +10-20%",
             Index: 1
           },
           {
-            PropertyString: "Ignore Target's Defense",
+            PropertyString: "無視目標防禦",
             Index: 2
           },
           {
-            PropertyString: "+1.62 Defense (Per Character Level)",
+            PropertyString: "+1.62 防禦 （依角色等級而定）",
             Index: 0
           }
         ],
@@ -18498,7 +18498,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "53",
           EquipmentType: 0,
-          Name: "Scutum",
+          Name: "大圓盾 (Scutum)",
           RequiredStrength: 71,
           RequiredDexterity: 0,
           Durability: 62,
@@ -18515,23 +18515,23 @@ const json = [
     PartialProperties: [],
     FullProperties: [
       {
-        PropertyString: "25% Chance to cast level 9 Battle Orders when struck",
+        PropertyString: "被擊中時有 25% 機率施展等級 9 戰鬥命令",
         Index: 2
       },
       {
-        PropertyString: "25% Chance to cast level 12 Bone Armor when struck",
+        PropertyString: "被擊中時有 25% 機率施展等級 12 骸骨護甲",
         Index: 3
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "Adds 200-250 to Cold Damage",
+        PropertyString: "增加 200-250 寒冰傷害",
         Index: 4
       },
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 1
       }
     ],
@@ -18539,16 +18539,16 @@ const json = [
   },
   {
     Index: "Dragon Reborn",
-    Name: "Dragon Reborn",
+    Name: "龍之重生 (Dragon Reborn)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Dragon Reborn",
         SetPropertiesString: [
-          "+10 Life after each Kill (2 Items)",
-          "+3 to Mana after each Kill (4 Items)"
+          "+10 擊殺生命恢復 （2 件）",
+          "+3 擊殺法力恢復 （4 件）"
         ],
-        Name: "Warder's Vest",
+        Name: "獄吏的背心 (Warder's Vest)",
         Index: "Warder's Vest",
         Enabled: true,
         Rarity: 7,
@@ -18557,15 +18557,15 @@ const json = [
         Code: "xtu",
         Properties: [
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 2
           },
           {
-            PropertyString: "+75% extra gold from monsters",
+            PropertyString: "怪物金幣掉落量提高 +75%",
             Index: 1
           },
           {
-            PropertyString: "+25-30% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +25-30%",
             Index: 0
           }
         ],
@@ -18575,7 +18575,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "361-417",
           EquipmentType: 0,
-          Name: "Trellised Armor",
+          Name: "格網護甲 (Trellised Armor)",
           RequiredStrength: 61,
           RequiredDexterity: 0,
           Durability: 32,
@@ -18592,7 +18592,7 @@ const json = [
         Type: "Sword",
         "Set": "Dragon Reborn",
         SetPropertiesString: [],
-        Name: "Heron-Branded Blade",
+        Name: "鷺印刀片 (Heron-Branded Blade)",
         Index: "Heron-Branded Blade",
         Enabled: true,
         Rarity: 7,
@@ -18601,27 +18601,27 @@ const json = [
         Code: "9cr",
         Properties: [
           {
-            PropertyString: "4% Chance to cast level 20 Weaken on striking",
+            PropertyString: "擊中時有 4% 機率施展等級 20 削弱",
             Index: 2
           },
           {
-            PropertyString: "+35-50 to Minimum Damage",
+            PropertyString: "+35-50 最小傷害",
             Index: 0
           },
           {
-            PropertyString: "+100-140 to Maximum Damage",
+            PropertyString: "+100-140 最大傷害",
             Index: 1
           },
           {
-            PropertyString: "+200% Damage to Demons",
+            PropertyString: "+200% 對惡魔的傷害",
             Index: 3
           },
           {
-            PropertyString: "+10-15 Cold Absorb",
+            PropertyString: "寒冰吸引 +10-15",
             Index: 5
           },
           {
-            PropertyString: "+10-15 Fire Absorb",
+            PropertyString: "火焰吸引 +10-15",
             Index: 4
           }
         ],
@@ -18634,7 +18634,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Dimensional Blade",
+          Name: "次元刃 (Dimensional Blade)",
           RequiredStrength: 85,
           RequiredDexterity: 60,
           Durability: 250,
@@ -18651,9 +18651,9 @@ const json = [
         Type: "Ring",
         "Set": "Dragon Reborn",
         SetPropertiesString: [
-          "+40 to Life (5 Items)"
+          "+40 生命 （5 件）"
         ],
-        Name: "Ter'Angreal Ring",
+        Name: "特·安格爾之戒 (Ter'Angreal Ring)",
         Index: "Ter'Angreal Ring",
         Enabled: true,
         Rarity: 3,
@@ -18662,26 +18662,26 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 3
           },
           {
-            PropertyString: "+5% Increased Attack Speed",
+            PropertyString: "攻擊速度 +5%",
             Index: 0
           },
           {
-            PropertyString: "+10% Faster Cast Rate",
+            PropertyString: "+10% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+8-15 to All Attributes",
+            PropertyString: "+8-15 所有屬性",
             Index: 2
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -18698,10 +18698,10 @@ const json = [
         Type: "Amulet",
         "Set": "Dragon Reborn",
         SetPropertiesString: [
-          "35% Chance to cast level 1 Decrepify when struck (5 Items)",
-          "+1 to All Skills (6 Items)"
+          "被擊中時有 35% 機率施展等級 1 衰老 （5 件）",
+          "+1 所有技能 （6 件）"
         ],
-        Name: "Ser'Angreal Necklace",
+        Name: "瑟·安格爾護符 (Ser'Angreal Necklace)",
         Index: "Ser'Angreal Necklace",
         Enabled: true,
         Rarity: 3,
@@ -18710,22 +18710,22 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+10% Faster Hit Recovery",
+            PropertyString: "+10% 打擊恢復",
             Index: 0
           },
           {
-            PropertyString: "+5-10% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +5-10%",
             Index: 1
           },
           {
-            PropertyString: "+4-7% to Experience Gained",
+            PropertyString: "獲得的經驗值 +4-7%",
             Index: 2
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -18742,7 +18742,7 @@ const json = [
         Type: "Shield",
         "Set": "Dragon Reborn",
         SetPropertiesString: [],
-        Name: "Taint of Saidin",
+        Name: "賽丁的污點 (Taint of Saidin)",
         Index: "Taint of Saidin",
         Enabled: true,
         Rarity: 7,
@@ -18751,23 +18751,23 @@ const json = [
         Code: "uuc",
         Properties: [
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 4
           },
           {
-            PropertyString: "+20% Faster Block Rate",
+            PropertyString: "+20% 格擋速度",
             Index: 3
           },
           {
-            PropertyString: "+10-25% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +10-25%",
             Index: 2
           },
           {
-            PropertyString: "+130-150% Enhanced Defense",
+            PropertyString: "+130-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+5-8 Replenish Life",
+            PropertyString: "生命回復 +5-8",
             Index: 1
           }
         ],
@@ -18777,7 +18777,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "220-240",
           EquipmentType: 0,
-          Name: "Heater",
+          Name: "斗盾 (Heater)",
           RequiredStrength: 77,
           RequiredDexterity: 0,
           Durability: 88,
@@ -18794,13 +18794,13 @@ const json = [
         Type: "Boots",
         "Set": "Dragon Reborn",
         SetPropertiesString: [
-          "+30% Faster Run/Walk (3 Items)",
-          "+1 to Life (Per Character Level) (6 Items)",
-          "+0.62 to Mana (Per Character Level) (5 Items)",
-          "All Resistances +15% (4 Items)",
-          "+25% better chance of getting magic item (2 Items)"
+          "+30% 跑步 / 行走速度 （3 件）",
+          "+1 生命 （依角色等級而定） （6 件）",
+          "+0.62 法力 （依角色等級而定） （5 件）",
+          "所有抗性 +15% （4 件）",
+          "尋獲魔法物品機率提高 +25% （2 件）"
         ],
-        Name: "Aviendha's Gift",
+        Name: "阿維恩達的禮物 (Aviendha's Gift)",
         Index: "Aviendha's Gift",
         Enabled: true,
         Rarity: 7,
@@ -18809,11 +18809,11 @@ const json = [
         Code: "vbt",
         Properties: [
           {
-            PropertyString: "+25-35 Defense",
+            PropertyString: "+25-35 防禦",
             Index: 0
           },
           {
-            PropertyString: "+10 to Dexterity",
+            PropertyString: "+10 敏捷",
             Index: 1
           }
         ],
@@ -18823,7 +18823,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "30-40",
           EquipmentType: 0,
-          Name: "Heavy Boots",
+          Name: "重靴 (Heavy Boots)",
           RequiredStrength: 18,
           RequiredDexterity: 0,
           Durability: 14,
@@ -18839,41 +18839,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+35% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +35%",
         Index: 2
       },
       {
-        PropertyString: "+65% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +65%",
         Index: 4
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 6
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+7 to Sacrifice",
+        PropertyString: "+7 犧牲打擊",
         Index: 2
       },
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 3
       },
       {
-        PropertyString: "+40 to Maximum Damage",
+        PropertyString: "+40 最大傷害",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 1
       },
       {
-        PropertyString: "+3.12% extra gold from monsters (Per Character Level)",
+        PropertyString: "+3.12% extra gold from monsters （依角色等級而定）",
         Index: 0
       }
     ],
@@ -18881,13 +18881,13 @@ const json = [
   },
   {
     Index: "Soldier's Cairn",
-    Name: "Soldier's Cairn",
+    Name: "士兵墓穴 (Soldier's Cairn)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Soldier's Cairn",
         SetPropertiesString: [],
-        Name: "Heroes Stand",
+        Name: "英雄們的高臺 (Heroes Stand)",
         Index: "Heroes Stand",
         Enabled: true,
         Rarity: 7,
@@ -18896,15 +18896,15 @@ const json = [
         Code: "xng",
         Properties: [
           {
-            PropertyString: "+50-75% Enhanced Damage",
+            PropertyString: "+50-75% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "+130-170% Enhanced Defense",
+            PropertyString: "+130-170% 防禦強化",
             Index: 0
           }
         ],
@@ -18914,7 +18914,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "365-429",
           EquipmentType: 0,
-          Name: "Linked Mail",
+          Name: "鍊扣戰甲 (Linked Mail)",
           RequiredStrength: 74,
           RequiredDexterity: 0,
           Durability: 26,
@@ -18931,11 +18931,11 @@ const json = [
         Type: "Sword",
         "Set": "Soldier's Cairn",
         SetPropertiesString: [
-          "+3 to Melee Mastery (2 Items)",
-          "Adds 100-150 to Damage (3 Items)",
-          "+8% Life stolen per hit (2 Items)"
+          "+3 近戰精通 （2 件）",
+          "增加 100-150 傷害 （3 件）",
+          "擊中竊取 8% 生命 （2 件）"
         ],
-        Name: "Warrior's Heroism",
+        Name: "战士的英勇氣概 (Warrior's Heroism)",
         Index: "Warrior's Heroism",
         Enabled: true,
         Rarity: 7,
@@ -18944,15 +18944,15 @@ const json = [
         Code: "9cm",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+200-300% Enhanced Damage",
+            PropertyString: "+200-300% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (1-4)",
+            PropertyString: "鑲孔 (1-4)",
             Index: 2
           }
         ],
@@ -18969,7 +18969,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Dacian Falx",
+          Name: "達西安長刀 (Dacian Falx)",
           RequiredStrength: 91,
           RequiredDexterity: 20,
           Durability: 250,
@@ -18986,9 +18986,9 @@ const json = [
         Type: "Gloves",
         "Set": "Soldier's Cairn",
         SetPropertiesString: [
-          "+1 to All Skills (2 Items)"
+          "+1 所有技能 （2 件）"
         ],
-        Name: "Martyr's Principle",
+        Name: "烈士的信條 (Martyr's Principle)",
         Index: "Martyr's Principle",
         Enabled: true,
         Rarity: 7,
@@ -18997,19 +18997,19 @@ const json = [
         Code: "utg",
         Properties: [
           {
-            PropertyString: "+25% Increased Attack Speed",
+            PropertyString: "攻擊速度 +25%",
             Index: 1
           },
           {
-            PropertyString: "+7-15% Deadly Strike",
+            PropertyString: "+7-15% 致命打擊",
             Index: 2
           },
           {
-            PropertyString: "+100-160 Defense",
+            PropertyString: "+100-160 防禦",
             Index: 0
           },
           {
-            PropertyString: "+1-2% to Experience Gained",
+            PropertyString: "獲得的經驗值 +1-2%",
             Index: 3
           }
         ],
@@ -19019,7 +19019,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "168-192",
           EquipmentType: 0,
-          Name: "Crusader Gauntlets",
+          Name: "聖教軍護手 (Crusader Gauntlets)",
           RequiredStrength: 151,
           RequiredDexterity: 0,
           Durability: 18,
@@ -19035,21 +19035,21 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+65% Chance of Open Wounds",
+        PropertyString: "+65% 機率造成開放傷口",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+150 to Maximum Damage",
+        PropertyString: "+150 最大傷害",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +20%",
+        PropertyString: "所有抗性 +20%",
         Index: 1
       }
     ],
@@ -19057,13 +19057,13 @@ const json = [
   },
   {
     Index: "Gweibret's Rule",
-    Name: "Gweibret's Rule",
+    Name: "格韋布雷特的規則 (Gweibret's Rule)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Gweibret's Rule",
         SetPropertiesString: [],
-        Name: "Judicial Decree",
+        Name: "司法政令 (Judicial Decree)",
         Index: "Judicial Decree",
         Enabled: true,
         Rarity: 7,
@@ -19072,19 +19072,19 @@ const json = [
         Code: "xcl",
         Properties: [
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+170-210% Enhanced Defense",
+            PropertyString: "+170-210% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+1.25 to Life (Per Character Level)",
+            PropertyString: "+1.25 生命 （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "+0.75 to Mana (Per Character Level)",
+            PropertyString: "+0.75 法力 （依角色等級而定）",
             Index: 3
           }
         ],
@@ -19094,7 +19094,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "477-548",
           EquipmentType: 0,
-          Name: "Tigulated Mail",
+          Name: "鎖鱗戰甲 (Tigulated Mail)",
           RequiredStrength: 86,
           RequiredDexterity: 0,
           Durability: 36,
@@ -19111,7 +19111,7 @@ const json = [
         Type: "Sword",
         "Set": "Gweibret's Rule",
         SetPropertiesString: [],
-        Name: "Regime of Regulation",
+        Name: "法規體制 (Regime of Regulation)",
         Index: "Regime of Regulation",
         Enabled: true,
         Rarity: 7,
@@ -19120,23 +19120,23 @@ const json = [
         Code: "7sm",
         Properties: [
           {
-            PropertyString: "+15% Increased Attack Speed",
+            PropertyString: "攻擊速度 +15%",
             Index: 2
           },
           {
-            PropertyString: "+240-290% Enhanced Damage",
+            PropertyString: "+240-290% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 30-80 to Damage",
+            PropertyString: "增加 30-80 傷害",
             Index: 1
           },
           {
-            PropertyString: "+25% to Lightning Skill Damage",
+            PropertyString: "+25% 閃電技能傷害",
             Index: 3
           },
           {
-            PropertyString: "+8-15 Lightning Absorb",
+            PropertyString: "電擊吸引 +8-15",
             Index: 4
           }
         ],
@@ -19149,7 +19149,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Ataghan",
+          Name: "土耳其彎刀 (Ataghan)",
           RequiredStrength: 138,
           RequiredDexterity: 95,
           Durability: 250,
@@ -19166,10 +19166,10 @@ const json = [
         Type: "Shield",
         "Set": "Gweibret's Rule",
         SetPropertiesString: [
-          "+20% Faster Block Rate (4 Items)",
-          "+20% Increased Chance of Blocking (3 Items)"
+          "+20% 格擋速度 （4 件）",
+          "格擋機率提高 +20% （3 件）"
         ],
-        Name: "King's Prescript",
+        Name: "國王法令 (King's Prescript)",
         Index: "King's Prescript",
         Enabled: true,
         Rarity: 7,
@@ -19178,19 +19178,19 @@ const json = [
         Code: "xit",
         Properties: [
           {
-            PropertyString: "+125% Enhanced Defense",
+            PropertyString: "+125% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +15-20%",
+            PropertyString: "所有抗性 +15-20%",
             Index: 2
           },
           {
-            PropertyString: "+15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15%",
             Index: 1
           },
           {
-            PropertyString: "Socketed (1)",
+            PropertyString: "鑲孔 (1)",
             Index: 3
           }
         ],
@@ -19200,7 +19200,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "135",
           EquipmentType: 0,
-          Name: "Dragon Shield",
+          Name: "龍盾 (Dragon Shield)",
           RequiredStrength: 91,
           RequiredDexterity: 0,
           Durability: 76,
@@ -19217,11 +19217,11 @@ const json = [
         Type: "Belt",
         "Set": "Gweibret's Rule",
         SetPropertiesString: [
-          "+10% Faster Cast Rate (2 Items)",
-          "+30 to Mana (3 Items)",
-          "Regenerate Mana +50% (4 Items)"
+          "+10% 施法速度 （2 件）",
+          "+30 法力 （3 件）",
+          "法力恢復 50% （4 件）"
         ],
-        Name: "Born Supremacy",
+        Name: "天生至高 (Born Supremacy)",
         Index: "Born Supremacy",
         Enabled: true,
         Rarity: 7,
@@ -19230,11 +19230,11 @@ const json = [
         Code: "umc",
         Properties: [
           {
-            PropertyString: "+1.62 Defense (Per Character Level)",
+            PropertyString: "+1.62 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "+25% Increased Maximum Life",
+            PropertyString: "生命上限 +25%",
             Index: 1
           }
         ],
@@ -19244,7 +19244,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "58",
           EquipmentType: 0,
-          Name: "Mithril Coil",
+          Name: "秘銀腰帶 (Mithril Coil)",
           RequiredStrength: 106,
           RequiredDexterity: 0,
           Durability: 16,
@@ -19261,7 +19261,7 @@ const json = [
         Type: "Amulet",
         "Set": "Gweibret's Rule",
         SetPropertiesString: [],
-        Name: "Dominion's Thesis",
+        Name: "統治之論 (Dominion's Thesis)",
         Index: "Dominion's Thesis",
         Enabled: true,
         Rarity: 3,
@@ -19270,26 +19270,26 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+1-2 to Barbarian Skill Levels",
+            PropertyString: "+1-2 野蠻人技能等級",
             Index: 0
           },
           {
-            PropertyString: "+10% Increased Attack Speed",
+            PropertyString: "攻擊速度 +10%",
             Index: 3
           },
           {
-            PropertyString: "+10-15 to Minimum Damage",
+            PropertyString: "+10-15 最小傷害",
             Index: 2
           },
           {
-            PropertyString: "+30-40 to Strength",
+            PropertyString: "+30-40 力量",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -19305,41 +19305,41 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20% Enhanced Damage",
+        PropertyString: "+20% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+30% Enhanced Damage",
+        PropertyString: "+30% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "+50% Enhanced Damage",
+        PropertyString: "+50% 傷害強化",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "10% Chance to cast level 10 Nova on striking",
+        PropertyString: "擊中時有 10% 機率施展等級 10 閃電新星",
         Index: 2
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+469 Poison Damage Over 6 Seconds",
+        PropertyString: "+469 毒素傷害，時效 6 秒",
         Index: 4
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +35%",
+        PropertyString: "所有抗性 +35%",
         Index: 5
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item (Per Character Level)",
+        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
         Index: 1
       }
     ],
@@ -19347,16 +19347,16 @@ const json = [
   },
   {
     Index: "Haunted Asylum",
-    Name: "Haunted Asylum",
+    Name: "闹鬼的精神病院 (Haunted Asylum)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Haunted Asylum",
         SetPropertiesString: [
-          "+200 Defense (4 Items)",
-          "+50% better chance of getting magic item (5 Items)"
+          "+200 防禦 （4 件）",
+          "尋獲魔法物品機率提高 +50% （5 件）"
         ],
-        Name: "Astral Body",
+        Name: "星体 (Astral Body)",
         Index: "Astral Body",
         Enabled: true,
         Rarity: 7,
@@ -19365,19 +19365,19 @@ const json = [
         Code: "xhn",
         Properties: [
           {
-            PropertyString: "+15% Increased Attack Speed",
+            PropertyString: "攻擊速度 +15%",
             Index: 1
           },
           {
-            PropertyString: "+15% Faster Hit Recovery",
+            PropertyString: "+15% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "+15% Faster Block Rate",
+            PropertyString: "+15% 格擋速度",
             Index: 3
           },
           {
-            PropertyString: "+175-225% Enhanced Defense",
+            PropertyString: "+175-225% 防禦強化",
             Index: 0
           },
           {
@@ -19391,7 +19391,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "547-646",
           EquipmentType: 0,
-          Name: "Mesh Armor",
+          Name: "鐵網戰甲 (Mesh Armor)",
           RequiredStrength: 92,
           RequiredDexterity: 0,
           Durability: 45,
@@ -19408,9 +19408,9 @@ const json = [
         Type: "Sword",
         "Set": "Haunted Asylum",
         SetPropertiesString: [
-          "Adds 25-75 to Damage (4 Items)"
+          "增加 25-75 傷害 （4 件）"
         ],
-        Name: "Apparition of Malice",
+        Name: "恶意的显现 (Apparition of Malice)",
         Index: "Apparition of Malice",
         Enabled: true,
         Rarity: 7,
@@ -19419,19 +19419,19 @@ const json = [
         Code: "9ls",
         Properties: [
           {
-            PropertyString: "+200-250% Enhanced Damage",
+            PropertyString: "+200-250% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+10-15% to Cold Skill Damage",
+            PropertyString: "+10-15% 寒冰技能傷害",
             Index: 2
           },
           {
-            PropertyString: "-15-20% to Enemy Cold Resistance",
+            PropertyString: "敵人冰寒抗性 -15-20%",
             Index: 3
           },
           {
-            PropertyString: "+225-250 Defense",
+            PropertyString: "+225-250 防禦",
             Index: 1
           }
         ],
@@ -19444,7 +19444,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Rune Sword",
+          Name: "符文劍 (Rune Sword)",
           RequiredStrength: 103,
           RequiredDexterity: 79,
           Durability: 250,
@@ -19461,9 +19461,9 @@ const json = [
         Type: "Shield",
         "Set": "Haunted Asylum",
         SetPropertiesString: [
-          "All Resistances +25% (5 Items)"
+          "所有抗性 +25% （5 件）"
         ],
-        Name: "Phantasm of Horror",
+        Name: "恐怖幻影 (Phantasm of Horror)",
         Index: "Phantasm of Horror",
         Enabled: true,
         Rarity: 7,
@@ -19472,19 +19472,19 @@ const json = [
         Code: "xsh",
         Properties: [
           {
-            PropertyString: "+15% Faster Block Rate",
+            PropertyString: "+15% 格擋速度",
             Index: 2
           },
           {
-            PropertyString: "+40% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +40%",
             Index: 1
           },
           {
-            PropertyString: "+100% Damage to Demons",
+            PropertyString: "+100% 對惡魔的傷害",
             Index: 3
           },
           {
-            PropertyString: "+75-100% Enhanced Defense",
+            PropertyString: "+75-100% 防禦強化",
             Index: 0
           }
         ],
@@ -19494,7 +19494,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "89-102",
           EquipmentType: 0,
-          Name: "Grim Shield",
+          Name: "陰森盾牌 (Grim Shield)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 70,
@@ -19511,7 +19511,7 @@ const json = [
         Type: "Helm",
         "Set": "Haunted Asylum",
         SetPropertiesString: [],
-        Name: "Haunted Wisdom",
+        Name: "闹鬼的智慧 (Haunted Wisdom)",
         Index: "Haunted Wisdom",
         Enabled: true,
         Rarity: 7,
@@ -19520,27 +19520,27 @@ const json = [
         Code: "uhl",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 2
           },
           {
-            PropertyString: "+30% Faster Cast Rate",
+            PropertyString: "+30% 施法速度",
             Index: 3
           },
           {
-            PropertyString: "+75-100% Enhanced Defense",
+            PropertyString: "+75-100% 防禦強化",
             Index: 1
           },
           {
-            PropertyString: "+1.75 Defense (Per Character Level)",
+            PropertyString: "+1.75 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "Regenerate Mana +75%",
+            PropertyString: "法力恢復 75%",
             Index: 4
           },
           {
-            PropertyString: "+20-50% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +20-50%",
             Index: 5
           }
         ],
@@ -19550,7 +19550,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "194-222",
           EquipmentType: 0,
-          Name: "Giant Conch",
+          Name: "巨螺盔 (Giant Conch)",
           RequiredStrength: 142,
           RequiredDexterity: 0,
           Durability: 30,
@@ -19567,7 +19567,7 @@ const json = [
         Type: "Gloves",
         "Set": "Haunted Asylum",
         SetPropertiesString: [],
-        Name: "Revenant's Claw",
+        Name: "亡灵之爪 (Revenant's Claw)",
         Index: "Revenant's Claw",
         Enabled: true,
         Rarity: 7,
@@ -19576,19 +19576,19 @@ const json = [
         Code: "utg",
         Properties: [
           {
-            PropertyString: "+1-3 to Combat Skills (Barbarian only)",
+            PropertyString: "+1-3 戰鬥技能 （只限野蠻人）",
             Index: 1
           },
           {
-            PropertyString: "+5% Life stolen per hit",
+            PropertyString: "擊中竊取 5% 生命",
             Index: 3
           },
           {
-            PropertyString: "+180-220% Enhanced Defense",
+            PropertyString: "+180-220% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+30-50 to Life",
+            PropertyString: "+30-50 生命",
             Index: 2
           }
         ],
@@ -19598,7 +19598,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "168-192",
           EquipmentType: 0,
-          Name: "Crusader Gauntlets",
+          Name: "聖教軍護手 (Crusader Gauntlets)",
           RequiredStrength: 151,
           RequiredDexterity: 0,
           Durability: 18,
@@ -19614,29 +19614,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       },
       {
-        PropertyString: "Adds 1-300 to Lightning Damage",
+        PropertyString: "增加 1-300 電擊傷害",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+25% to Experience Gained",
+        PropertyString: "獲得的經驗值 +25%",
         Index: 0
       },
       {
-        PropertyString: "+5% extra gold from monsters (Per Character Level)",
+        PropertyString: "怪物金幣掉落量提高 +5% （依角色等級而定）",
         Index: 2
       },
       {
-        PropertyString: "+2.5% better chance of getting magic item (Per Character Level)",
+        PropertyString: "+2.5% better chance of getting magic item （依角色等級而定）",
         Index: 1
       }
     ],
@@ -19644,13 +19644,13 @@ const json = [
   },
   {
     Index: "Alyssa's Archery",
-    Name: "Alyssa's Archery",
+    Name: "阿麗莎的箭術 (Alyssa's Archery)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Alyssa's Archery",
         SetPropertiesString: [],
-        Name: "Alyssa's Essence",
+        Name: "阿麗莎的精髓 (Alyssa's Essence)",
         Index: "Alyssa's Essence",
         Enabled: true,
         Rarity: 7,
@@ -19659,19 +19659,19 @@ const json = [
         Code: "xpl",
         Properties: [
           {
-            PropertyString: "Adds 4-8% Mana stolen per hit",
+            PropertyString: "擊中竊取 4-8% 法力",
             Index: 2
           },
           {
-            PropertyString: "+8% Life stolen per hit",
+            PropertyString: "擊中竊取 8% 生命",
             Index: 3
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 1
           },
           {
-            PropertyString: "+135-180% Enhanced Defense",
+            PropertyString: "+135-180% 防禦強化",
             Index: 0
           }
         ],
@@ -19681,7 +19681,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "531-632",
           EquipmentType: 0,
-          Name: "Russet Armor",
+          Name: "赤褐戰甲 (Russet Armor)",
           RequiredStrength: 97,
           RequiredDexterity: 0,
           Durability: 90,
@@ -19698,10 +19698,10 @@ const json = [
         Type: "Bow",
         "Set": "Alyssa's Archery",
         SetPropertiesString: [
-          "+50 to Minimum Damage (3 Items)",
-          "+2 to Maximum Damage (Per Character Level) (2 Items)"
+          "+50 最小傷害 （3 件）",
+          "+2 最大傷害 （依角色等級而定） （2 件）"
         ],
-        Name: "Alyssa's Leafblighter",
+        Name: "阿麗莎的枯葉術 (Alyssa's Leafblighter)",
         Index: "Alyssa's Leafblighter",
         Enabled: true,
         Rarity: 7,
@@ -19710,15 +19710,15 @@ const json = [
         Code: "8l8",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+180-220% Enhanced Damage",
+            PropertyString: "+180-220% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Socketed (3)",
+            PropertyString: "鑲孔 (3)",
             Index: 2
           }
         ],
@@ -19731,7 +19731,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Large Siege Bow",
+          Name: "攻城長弓 (Large Siege Bow)",
           RequiredStrength: 80,
           RequiredDexterity: 95,
           Durability: 0,
@@ -19748,9 +19748,9 @@ const json = [
         Type: "Boots",
         "Set": "Alyssa's Archery",
         SetPropertiesString: [
-          "+30% Faster Run/Walk (3 Items)"
+          "+30% 跑步 / 行走速度 （3 件）"
         ],
-        Name: "Alyssa's Sandals",
+        Name: "阿麗莎的涼鞋 (Alyssa's Sandals)",
         Index: "Alyssa's Sandals",
         Enabled: true,
         Rarity: 7,
@@ -19759,19 +19759,19 @@ const json = [
         Code: "ulb",
         Properties: [
           {
-            PropertyString: "+20-30% Enhanced Damage",
+            PropertyString: "+20-30% 傷害強化",
             Index: 2
           },
           {
-            PropertyString: "Adds 5-10 to Damage",
+            PropertyString: "增加 5-10 傷害",
             Index: 1
           },
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15 to Strength",
+            PropertyString: "+15 力量",
             Index: 3
           }
         ],
@@ -19781,7 +19781,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "143-165",
           EquipmentType: 0,
-          Name: "Wyrmhide Boots",
+          Name: "龍皮靴 (Wyrmhide Boots)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 12,
@@ -19797,25 +19797,25 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 2
       },
       {
-        PropertyString: "+30% Piercing Attack",
+        PropertyString: "+30% 穿透攻擊",
         Index: 3
       },
       {
-        PropertyString: "Adds 25-50 to Damage",
+        PropertyString: "增加 25-50 傷害",
         Index: 1
       },
       {
-        PropertyString: "+300% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +300%",
         Index: 0
       }
     ],
@@ -19823,13 +19823,13 @@ const json = [
   },
   {
     Index: "Forbidden Lore",
-    Name: "Forbidden Lore",
+    Name: "禁忌傳説 (Forbidden Lore)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Forbidden Lore",
         SetPropertiesString: [],
-        Name: "Unholy Vows",
+        Name: "邪惡誓言 (Unholy Vows)",
         Index: "Unholy Vows",
         Enabled: true,
         Rarity: 7,
@@ -19838,19 +19838,19 @@ const json = [
         Code: "xlt",
         Properties: [
           {
-            PropertyString: "+150-190% Enhanced Defense",
+            PropertyString: "+150-190% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+75-100 to Life",
+            PropertyString: "+75-100 生命",
             Index: 1
           },
           {
-            PropertyString: "+20-30 Replenish Life",
+            PropertyString: "生命回復 +20-30",
             Index: 2
           },
           {
-            PropertyString: "Regenerate Mana +100%",
+            PropertyString: "法力恢復 100%",
             Index: 3
           }
         ],
@@ -19860,7 +19860,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "632-733",
           EquipmentType: 0,
-          Name: "Templar Coat",
+          Name: "聖堂騎士戰甲 (Templar Coat)",
           RequiredStrength: 118,
           RequiredDexterity: 0,
           Durability: 60,
@@ -19877,7 +19877,7 @@ const json = [
         Type: "Knife",
         "Set": "Forbidden Lore",
         SetPropertiesString: [],
-        Name: "Vampirebone Dagger",
+        Name: "吸血鬼骸骨匕首 (Vampirebone Dagger)",
         Index: "Vampirebone Dagger",
         Enabled: true,
         Rarity: 7,
@@ -19886,27 +19886,27 @@ const json = [
         Code: "7dg",
         Properties: [
           {
-            PropertyString: "+1-2 to Necromancer Skill Levels",
+            PropertyString: "+1-2 死靈法師技能等級",
             Index: 5
           },
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+220-250% Enhanced Damage",
+            PropertyString: "+220-250% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 4
           },
           {
-            PropertyString: "+10-20% to Poison Skill Damage",
+            PropertyString: "+10-20% 毒素技能傷害",
             Index: 2
           },
           {
-            PropertyString: "-10-20% to Enemy Poison Resistance",
+            PropertyString: "敵人毒素抗性 -10-20%",
             Index: 3
           }
         ],
@@ -19919,7 +19919,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Bone Knife",
+          Name: "骸骨小刀 (Bone Knife)",
           RequiredStrength: 38,
           RequiredDexterity: 75,
           Durability: 250,
@@ -19936,11 +19936,11 @@ const json = [
         Type: "Shield",
         "Set": "Forbidden Lore",
         SetPropertiesString: [
-          "+22% Increased Chance of Blocking (2 Items)",
-          "+15 to Dexterity (3 Items)",
-          "+25% better chance of getting magic item (4 Items)"
+          "格擋機率提高 +22% （2 件）",
+          "+15 敏捷 （3 件）",
+          "尋獲魔法物品機率提高 +25% （4 件）"
         ],
-        Name: "Wall of Modius",
+        Name: "莫迪烏斯之墻 (Wall of Modius)",
         Index: "Wall of Modius",
         Enabled: true,
         Rarity: 7,
@@ -19949,11 +19949,11 @@ const json = [
         Code: "bsh",
         Properties: [
           {
-            PropertyString: "Level 7-10 Thorns Aura When Equipped",
+            PropertyString: "裝備時賦予等級 7-10 荊棘靈氣",
             Index: 0
           },
           {
-            PropertyString: "+15% Damage Taken Goes To Mana",
+            PropertyString: "+15% 受到的傷害轉為法力",
             Index: 1
           }
         ],
@@ -19963,7 +19963,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "10",
           EquipmentType: 0,
-          Name: "Bone Shield",
+          Name: "骨盾 (Bone Shield)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 40,
@@ -19980,7 +19980,7 @@ const json = [
         Type: "Belt",
         "Set": "Forbidden Lore",
         SetPropertiesString: [],
-        Name: "Death's Door",
+        Name: "死亡之門 (Death's Door)",
         Index: "Death's Door",
         Enabled: true,
         Rarity: 7,
@@ -19989,19 +19989,19 @@ const json = [
         Code: "zvb",
         Properties: [
           {
-            PropertyString: "+120-130% Enhanced Defense",
+            PropertyString: "+120-130% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+55-75 to Mana",
+            PropertyString: "+55-75 法力",
             Index: 1
           },
           {
-            PropertyString: "+2-4 to Mana after each Kill",
+            PropertyString: "+2-4 擊殺法力恢復",
             Index: 2
           },
           {
-            PropertyString: "+1-2% to Experience Gained",
+            PropertyString: "獲得的經驗值 +1-2%",
             Index: 3
           }
         ],
@@ -20011,7 +20011,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "73-83",
           EquipmentType: 0,
-          Name: "Sharkskin Belt",
+          Name: "鯊皮腰帶 (Sharkskin Belt)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 14,
@@ -20027,29 +20027,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+15 to Energy",
+        PropertyString: "+15 能量",
         Index: 0
       },
       {
-        PropertyString: "+15 to Vitality",
+        PropertyString: "+15 體能",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "20% Chance to cast level 3 Corpse Explosion on striking",
+        PropertyString: "擊中時有 20% 機率施展等級 3 屍爆",
         Index: 1
       },
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+30% Faster Cast Rate",
+        PropertyString: "+30% 施法速度",
         Index: 3
       },
       {
-        PropertyString: "+25% bonus to Attack Rating",
+        PropertyString: "+25% 準確率加成",
         Index: 2
       }
     ],
@@ -20057,13 +20057,13 @@ const json = [
   },
   {
     Index: "Hannibal's Demise",
-    Name: "Hannibal's Demise",
+    Name: "漢尼拔的消亡 (Hannibal's Demise)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Hannibal's Demise",
         SetPropertiesString: [],
-        Name: "Hannibal's Shattered Plate",
+        Name: "漢尼拔的破碎板甲 (Hannibal's Shattered Plate)",
         Index: "Hannibal's Shattered Plate",
         Enabled: true,
         Rarity: 7,
@@ -20072,23 +20072,23 @@ const json = [
         Code: "xld",
         Properties: [
           {
-            PropertyString: "+50% Piercing Attack",
+            PropertyString: "+50% 穿透攻擊",
             Index: 4
           },
           {
-            PropertyString: "+35-50% Chance of Open Wounds",
+            PropertyString: "+35-50% 機率造成開放傷口",
             Index: 3
           },
           {
-            PropertyString: "+130-160% Enhanced Defense",
+            PropertyString: "+130-160% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+3 Defense (Per Character Level)",
+            PropertyString: "+3 防禦 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "+15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15%",
             Index: 2
           }
         ],
@@ -20098,7 +20098,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "558-631",
           EquipmentType: 0,
-          Name: "Sharktooth Armor",
+          Name: "鯊齒戰甲 (Sharktooth Armor)",
           RequiredStrength: 103,
           RequiredDexterity: 0,
           Durability: 48,
@@ -20115,8 +20115,8 @@ const json = [
         Type: "Throwing Knife",
         "Set": "Hannibal's Demise",
         SetPropertiesString: [
-          "Adds 25-75 to Damage (3 Items)",
-          "+100 Increased Stack Size (2 Items)"
+          "增加 25-75 傷害 （3 件）",
+          "堆疊數量提高 100 （2 件）"
         ],
         Name: "Hanabal's Final Flight",
         Index: "Hannibal's Final Flight",
@@ -20127,27 +20127,27 @@ const json = [
         Code: "7bk",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+200-300% Enhanced Damage",
+            PropertyString: "+200-300% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "-20-30% Target Defense",
+            PropertyString: "-20-30% 目標防禦",
             Index: 3
           },
           {
-            PropertyString: "Slows target by 75%",
+            PropertyString: "使目標減慢 75%",
             Index: 2
           },
           {
-            PropertyString: "Cannot Be Frozen",
+            PropertyString: "無法冰凍",
             Index: 4
           },
           {
-            PropertyString: "Replenishes quantity",
+            PropertyString: "回復數量",
             Index: 5
           }
         ],
@@ -20164,7 +20164,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Winged Knife",
+          Name: "刃翼飛刀 (Winged Knife)",
           RequiredStrength: 45,
           RequiredDexterity: 142,
           Durability: 250,
@@ -20181,7 +20181,7 @@ const json = [
         Type: "Helm",
         "Set": "Hannibal's Demise",
         SetPropertiesString: [
-          "Lightning Resist +30% (3 Items)"
+          "電擊抗性 +30% （3 件）"
         ],
         Name: "Hanabal's Blurred Vision",
         Index: "Hannibal's Blurred Vision",
@@ -20192,19 +20192,19 @@ const json = [
         Code: "xhl",
         Properties: [
           {
-            PropertyString: "+170-200% Enhanced Defense",
+            PropertyString: "+170-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Fire Resist +25-35%",
+            PropertyString: "火焰抗性 +25-35%",
             Index: 3
           },
           {
-            PropertyString: "+10-20 to All Attributes",
+            PropertyString: "+10-20 所有屬性",
             Index: 1
           },
           {
-            PropertyString: "+1-2% to Experience Gained",
+            PropertyString: "獲得的經驗值 +1-2%",
             Index: 2
           }
         ],
@@ -20214,7 +20214,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "205-228",
           EquipmentType: 0,
-          Name: "Basinet",
+          Name: "輕盔 (Basinet)",
           RequiredStrength: 82,
           RequiredDexterity: 0,
           Durability: 30,
@@ -20231,8 +20231,8 @@ const json = [
         Type: "Boots",
         "Set": "Hannibal's Demise",
         SetPropertiesString: [
-          "+20% Faster Run/Walk (2 Items)",
-          "+100 to Attack Rating (3 Items)"
+          "+20% 跑步 / 行走速度 （2 件）",
+          "+100 準確率 （3 件）"
         ],
         Name: "Hanabal's Bending Knee",
         Index: "Hannibal's Bending Knee",
@@ -20243,15 +20243,15 @@ const json = [
         Code: "xtb",
         Properties: [
           {
-            PropertyString: "+100-120% Enhanced Defense",
+            PropertyString: "+100-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15 to Dexterity",
+            PropertyString: "+15 敏捷",
             Index: 1
           },
           {
-            PropertyString: "+300% extra gold from monsters",
+            PropertyString: "怪物金幣掉落量提高 +300%",
             Index: 2
           }
         ],
@@ -20261,7 +20261,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "90-100",
           EquipmentType: 0,
-          Name: "Battle Boots",
+          Name: "戰鬥靴 (Battle Boots)",
           RequiredStrength: 95,
           RequiredDexterity: 0,
           Durability: 30,
@@ -20277,25 +20277,25 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+100 to Life",
+        PropertyString: "+100 生命",
         Index: 1
       },
       {
-        PropertyString: "+50 to Mana",
+        PropertyString: "+50 法力",
         Index: 2
       },
       {
-        PropertyString: "+150% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +150%",
         Index: 0
       }
     ],
@@ -20303,15 +20303,15 @@ const json = [
   },
   {
     Index: "Wrath of Vengeance",
-    Name: "Wrath of Vengeance",
+    Name: "復仇怒火 (Wrath of Vengeance)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Wrath of Vengeance",
         SetPropertiesString: [
-          "+8 Replenish Life (5 Items)"
+          "生命回復 +8 （5 件）"
         ],
-        Name: "Shroud of Anger",
+        Name: "憤怒之壽衣 (Shroud of Anger)",
         Index: "Shroud of Anger",
         Enabled: true,
         Rarity: 7,
@@ -20320,19 +20320,19 @@ const json = [
         Code: "xth",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+180-220% Enhanced Defense",
+            PropertyString: "+180-220% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+55 to Life",
+            PropertyString: "+55 生命",
             Index: 3
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 2
           }
         ],
@@ -20342,7 +20342,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "792-905",
           EquipmentType: 0,
-          Name: "Embossed Plate",
+          Name: "雕紋戰甲 (Embossed Plate)",
           RequiredStrength: 125,
           RequiredDexterity: 0,
           Durability: 55,
@@ -20359,10 +20359,10 @@ const json = [
         Type: "Javelin",
         "Set": "Wrath of Vengeance",
         SetPropertiesString: [
-          "37% Chance to cast level 10 Chain Lightning on striking (2 Items)",
-          "+6 to Charged Strike (3 Items)"
+          "擊中時有 37% 機率施展等級 10 連鎖閃電 （2 件）",
+          "+6 聚能強擊（3 件）"
         ],
-        Name: "Holy Fury",
+        Name: "神聖之狂怒 (Holy Fury)",
         Index: "Holy Fury",
         Enabled: true,
         Rarity: 7,
@@ -20371,19 +20371,19 @@ const json = [
         Code: "7s7",
         Properties: [
           {
-            PropertyString: "+150-180% Enhanced Damage",
+            PropertyString: "+150-180% 傷害強化",
             Index: 2
           },
           {
-            PropertyString: "Adds 50-200 to Damage",
+            PropertyString: "增加 50-200 傷害",
             Index: 0
           },
           {
-            PropertyString: "+200 Increased Stack Size",
+            PropertyString: "堆疊數量提高 200",
             Index: 1
           },
           {
-            PropertyString: "Replenishes quantity",
+            PropertyString: "回復數量",
             Index: 3
           }
         ],
@@ -20400,7 +20400,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Balrog Spear",
+          Name: "炎魔長矛 (Balrog Spear)",
           RequiredStrength: 127,
           RequiredDexterity: 95,
           Durability: 250,
@@ -20417,7 +20417,7 @@ const json = [
         Type: "Boots",
         "Set": "Wrath of Vengeance",
         SetPropertiesString: [],
-        Name: "Harvest of Cruelty",
+        Name: "殘酷之收穫 (Harvest of Cruelty)",
         Index: "Harvest of Cruelty",
         Enabled: true,
         Rarity: 7,
@@ -20426,23 +20426,23 @@ const json = [
         Code: "uvb",
         Properties: [
           {
-            PropertyString: "5% Chance to cast level 1 Teleport when struck",
+            PropertyString: "被擊中時有 5% 機率施展等級 1 傳送術",
             Index: 4
           },
           {
-            PropertyString: "+25% Faster Run/Walk",
+            PropertyString: "+25% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+130-150% Enhanced Defense",
+            PropertyString: "+130-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15-25 Life after each Kill",
+            PropertyString: "+15-25 擊殺生命恢復",
             Index: 3
           },
           {
-            PropertyString: "+15-25% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +15-25%",
             Index: 2
           }
         ],
@@ -20452,7 +20452,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "131-142",
           EquipmentType: 0,
-          Name: "Scarabshell Boots",
+          Name: "聖甲蟲殼皮靴 (Scarabshell Boots)",
           RequiredStrength: 91,
           RequiredDexterity: 0,
           Durability: 14,
@@ -20469,11 +20469,11 @@ const json = [
         Type: "Gloves",
         "Set": "Wrath of Vengeance",
         SetPropertiesString: [
-          "+1 to Frost Nova (2 Items)",
-          "+1 to Blizzard (3 Items)",
-          "+1 to Frozen Orb (4 Items)"
+          "+1 冰霜新星（2 件）",
+          "+1 暴風雪（3 件）",
+          "+1 冰封球（4 件）"
         ],
-        Name: "Guiding Force",
+        Name: "受引之力量 (Guiding Force)",
         Index: "Guiding Force",
         Enabled: true,
         Rarity: 7,
@@ -20482,15 +20482,15 @@ const json = [
         Code: "umg",
         Properties: [
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 0
           },
           {
-            PropertyString: "+1 to Mana (Per Character Level)",
+            PropertyString: "+1 法力 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "Regenerate Mana +25%",
+            PropertyString: "法力恢復 25%",
             Index: 2
           }
         ],
@@ -20500,7 +20500,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "59",
           EquipmentType: 0,
-          Name: "Vambraces",
+          Name: "護臂 (Vambraces)",
           RequiredStrength: 106,
           RequiredDexterity: 0,
           Durability: 0,
@@ -20517,9 +20517,9 @@ const json = [
         Type: "Belt",
         "Set": "Wrath of Vengeance",
         SetPropertiesString: [
-          "+1 to All Skills (3 Items)"
+          "+1 所有技能 （3 件）"
         ],
-        Name: "Embracing Hatred",
+        Name: "環抱之仇恨 (Embracing Hatred)",
         Index: "Embracing Hatred",
         Enabled: true,
         Rarity: 7,
@@ -20528,19 +20528,19 @@ const json = [
         Code: "ztb",
         Properties: [
           {
-            PropertyString: "Adds 6-8% Mana stolen per hit",
+            PropertyString: "擊中竊取 6-8% 法力",
             Index: 3
           },
           {
-            PropertyString: "+15% to Cold Skill Damage",
+            PropertyString: "+15% 寒冰技能傷害",
             Index: 0
           },
           {
-            PropertyString: "+75-120% Enhanced Defense",
+            PropertyString: "+75-120% 防禦強化",
             Index: 2
           },
           {
-            PropertyString: "+15-20 Cold Absorb",
+            PropertyString: "寒冰吸引 +15-20",
             Index: 1
           }
         ],
@@ -20550,7 +20550,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "66-83",
           EquipmentType: 0,
-          Name: "Battle Belt",
+          Name: "戰鬥腰帶 (Battle Belt)",
           RequiredStrength: 88,
           RequiredDexterity: 0,
           Durability: 18,
@@ -20566,29 +20566,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+2% to Experience Gained",
+        PropertyString: "獲得的經驗值 +2%",
         Index: 2
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       },
       {
-        PropertyString: "+10 to All Maximum Resistances",
+        PropertyString: "所有抗性上限 +10",
         Index: 2
       },
       {
-        PropertyString: "+50% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +50%",
         Index: 1
       }
     ],
@@ -20596,13 +20596,13 @@ const json = [
   },
   {
     Index: "Servitude or Rebellion",
-    Name: "Servitude or Rebellion",
+    Name: "奴役还是反抗 (Servitude or Rebellion)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Servitude or Rebellion",
         SetPropertiesString: [],
-        Name: "Slave to Anarchy",
+        Name: "无政府主义的奴隶 (Slave to Anarchy)",
         Index: "Slave to Anarchy",
         Enabled: true,
         Rarity: 7,
@@ -20611,23 +20611,23 @@ const json = [
         Code: "xul",
         Properties: [
           {
-            PropertyString: "Hit blinds target +3",
+            PropertyString: "擊中使目標目盲 +3",
             Index: 2
           },
           {
-            PropertyString: "+3 Defense (Per Character Level)",
+            PropertyString: "+3 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "+300-400 Defense",
+            PropertyString: "+300-400 防禦",
             Index: 1
           },
           {
-            PropertyString: "All Resistances +20%",
+            PropertyString: "所有抗性 +20%",
             Index: 4
           },
           {
-            PropertyString: "Magic Damage Reduced by 15",
+            PropertyString: "魔法傷害降低 15",
             Index: 3
           }
         ],
@@ -20637,7 +20637,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "615-715",
           EquipmentType: 0,
-          Name: "Chaos Armor",
+          Name: "混沌戰甲 (Chaos Armor)",
           RequiredStrength: 140,
           RequiredDexterity: 0,
           Durability: 70,
@@ -20654,7 +20654,7 @@ const json = [
         Type: "Spear",
         "Set": "Servitude or Rebellion",
         SetPropertiesString: [],
-        Name: "Bound by Honor",
+        Name: "被荣誉束缚 (Bound by Honor)",
         Index: "Bound by Honor",
         Enabled: true,
         Rarity: 7,
@@ -20667,19 +20667,19 @@ const json = [
             Index: 3
           },
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 2
           },
           {
-            PropertyString: "+240-270% Enhanced Damage",
+            PropertyString: "+240-270% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 50-200 to Damage",
+            PropertyString: "增加 50-200 傷害",
             Index: 1
           },
           {
-            PropertyString: "+8% Life stolen per hit",
+            PropertyString: "擊中竊取 8% 生命",
             Index: 4
           }
         ],
@@ -20692,7 +20692,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Stygian Pike",
+          Name: "冥河戰矛 (Stygian Pike)",
           RequiredStrength: 168,
           RequiredDexterity: 97,
           Durability: 250,
@@ -20709,9 +20709,9 @@ const json = [
         Type: "Belt",
         "Set": "Servitude or Rebellion",
         SetPropertiesString: [
-          "+3-5 Replenish Life (2 Items)"
+          "生命回復 +3-5 （2 件）"
         ],
-        Name: "Equilibrium",
+        Name: "平衡 (Equilibrium)",
         Index: "Equilibrium",
         Enabled: true,
         Rarity: 7,
@@ -20720,19 +20720,19 @@ const json = [
         Code: "zmb",
         Properties: [
           {
-            PropertyString: "+1.5 Defense (Per Character Level)",
+            PropertyString: "+1.5 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "+15-20 to Vitality",
+            PropertyString: "+15-20 體能",
             Index: 2
           },
           {
-            PropertyString: "+15-20 to Energy",
+            PropertyString: "+15-20 能量",
             Index: 3
           },
           {
-            PropertyString: "+20-25% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +20-25%",
             Index: 1
           }
         ],
@@ -20742,7 +20742,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "35",
           EquipmentType: 0,
-          Name: "Mesh Belt",
+          Name: "鐵網腰帶 (Mesh Belt)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 16,
@@ -20759,19 +20759,19 @@ const json = [
     PartialProperties: [],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+5 to Whirlwind",
+        PropertyString: "+5 旋風斬",
         Index: 3
       },
       {
-        PropertyString: "+350 to Attack Rating",
+        PropertyString: "+350 準確率",
         Index: 1
       },
       {
-        PropertyString: "Slows target by 15%",
+        PropertyString: "使目標減慢 15%",
         Index: 2
       }
     ],
@@ -20779,15 +20779,15 @@ const json = [
   },
   {
     Index: "Kaldorn's Majesty",
-    Name: "Kaldorn's Majesty",
+    Name: "卡爾多恩的威嚴 (Kaldorn's Majesty)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Kaldorn's Majesty",
         SetPropertiesString: [
-          "All Resistances +50% (4 Items)"
+          "所有抗性 +50% （4 件）"
         ],
-        Name: "Firecam Gilded Plate",
+        Name: "法爾凱姆的飾金甲 (Firecam Gilded Plate)",
         Index: "Firecam Gilded Plate",
         Enabled: true,
         Rarity: 7,
@@ -20796,15 +20796,15 @@ const json = [
         Code: "xar",
         Properties: [
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "+150-180% Enhanced Defense",
+            PropertyString: "+150-180% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +30-50%",
+            PropertyString: "所有抗性 +30-50%",
             Index: 1
           }
         ],
@@ -20814,7 +20814,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1045-1170",
           EquipmentType: 0,
-          Name: "Ornate Plate",
+          Name: "華麗戰甲 (Ornate Plate)",
           RequiredStrength: 170,
           RequiredDexterity: 0,
           Durability: 60,
@@ -20831,7 +20831,7 @@ const json = [
         Type: "Polearm",
         "Set": "Kaldorn's Majesty",
         SetPropertiesString: [],
-        Name: "Axe of Arvoreen",
+        Name: "阿爾沃林之斧 (Axe of Arvoreen)",
         Index: "Axe of Arvoreen",
         Enabled: true,
         Rarity: 7,
@@ -20840,19 +20840,19 @@ const json = [
         Code: "7o7",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 2
           },
           {
-            PropertyString: "+220-270% Enhanced Damage",
+            PropertyString: "+220-270% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+200-300 to Maximum Damage",
+            PropertyString: "+200-300 最大傷害",
             Index: 1
           },
           {
-            PropertyString: "Socketed (1-3)",
+            PropertyString: "鑲孔 (1-3)",
             Index: 3
           }
         ],
@@ -20865,7 +20865,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Ogre Axe",
+          Name: "巨魔斧 (Ogre Axe)",
           RequiredStrength: 195,
           RequiredDexterity: 75,
           Durability: 250,
@@ -20882,7 +20882,7 @@ const json = [
         Type: "Helm",
         "Set": "Kaldorn's Majesty",
         SetPropertiesString: [],
-        Name: "Windspar Mask",
+        Name: "溫德斯巴的面罩 (Windspar Mask)",
         Index: "Windspar Mask",
         Enabled: true,
         Rarity: 7,
@@ -20891,15 +20891,15 @@ const json = [
         Code: "uhm",
         Properties: [
           {
-            PropertyString: "+155-185% Enhanced Defense",
+            PropertyString: "+155-185% 防禦強化",
             Index: 1
           },
           {
-            PropertyString: "+40-50 to Life",
+            PropertyString: "+40-50 生命",
             Index: 2
           },
           {
-            PropertyString: "+15-25% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15-25%",
             Index: 0
           }
         ],
@@ -20909,7 +20909,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "293-327",
           EquipmentType: 0,
-          Name: "Spired Helm",
+          Name: "巨角頭盔 (Spired Helm)",
           RequiredStrength: 192,
           RequiredDexterity: 0,
           Durability: 40,
@@ -20926,7 +20926,7 @@ const json = [
         Type: "Gloves",
         "Set": "Kaldorn's Majesty",
         SetPropertiesString: [],
-        Name: "Waterwyrd's Talon",
+        Name: "烏特維爾之爪 (Waterwyrd's Talon)",
         Index: "Waterwyrd's Talon",
         Enabled: true,
         Rarity: 7,
@@ -20935,11 +20935,11 @@ const json = [
         Code: "xhg",
         Properties: [
           {
-            PropertyString: "+40% Increased Attack Speed",
+            PropertyString: "攻擊速度 +40%",
             Index: 0
           },
           {
-            PropertyString: "+175-200% Enhanced Defense",
+            PropertyString: "+175-200% 防禦強化",
             Index: 1
           }
         ],
@@ -20949,7 +20949,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "121-132",
           EquipmentType: 0,
-          Name: "War Gauntlets",
+          Name: "征戰護手 (War Gauntlets)",
           RequiredStrength: 110,
           RequiredDexterity: 0,
           Durability: 24,
@@ -20966,7 +20966,7 @@ const json = [
         Type: "Belt",
         "Set": "Kaldorn's Majesty",
         SetPropertiesString: [],
-        Name: "Daystar Wrap",
+        Name: "德司達的裹肩 (Daystar Wrap)",
         Index: "Daystar Wrap",
         Enabled: true,
         Rarity: 7,
@@ -20975,11 +20975,11 @@ const json = [
         Code: "zhb",
         Properties: [
           {
-            PropertyString: "+175-200 to Life",
+            PropertyString: "+175-200 生命",
             Index: 0
           },
           {
-            PropertyString: "+75-100 to Mana",
+            PropertyString: "+75-100 法力",
             Index: 1
           }
         ],
@@ -20989,7 +20989,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "41",
           EquipmentType: 0,
-          Name: "War Belt",
+          Name: "征戰腰帶 (War Belt)",
           RequiredStrength: 110,
           RequiredDexterity: 0,
           Durability: 24,
@@ -21005,37 +21005,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+5 to All Skills",
+        PropertyString: "+5 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+25 to All Attributes",
+        PropertyString: "+25 所有屬性",
         Index: 1
       },
       {
-        PropertyString: "+4% to Experience Gained",
+        PropertyString: "獲得的經驗值 +4%",
         Index: 2
       },
       {
-        PropertyString: "+125% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +125%",
         Index: 4
       },
       {
-        PropertyString: "+125% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +125%",
         Index: 3
       }
     ],
@@ -21043,13 +21043,13 @@ const json = [
   },
   {
     Index: "Warlock's Exploration",
-    Name: "Warlock's Exploration",
+    Name: "术士的探索 (Warlock's Exploration)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Warlock's Exploration",
         SetPropertiesString: [],
-        Name: "Incarnadine Elven Plate",
+        Name: "深紅精靈板甲 (Incarnadine Elven Plate)",
         Index: "Incarnadine Elven Plate",
         Enabled: true,
         Rarity: 7,
@@ -21058,15 +21058,15 @@ const json = [
         Code: "xtp",
         Properties: [
           {
-            PropertyString: "+3-4 to All Skills",
+            PropertyString: "+3-4 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+300-500 Defense",
+            PropertyString: "+300-500 防禦",
             Index: 2
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 1
           }
         ],
@@ -21076,7 +21076,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "525-725",
           EquipmentType: 0,
-          Name: "Mage Plate",
+          Name: "法師鎧甲 (Mage Plate)",
           RequiredStrength: 55,
           RequiredDexterity: 0,
           Durability: 60,
@@ -21093,10 +21093,10 @@ const json = [
         Type: "Staff",
         "Set": "Warlock's Exploration",
         SetPropertiesString: [
-          "+20% Faster Cast Rate (3 Items)",
-          "+2% to Experience Gained (4 Items)"
+          "+20% 施法速度 （3 件）",
+          "獲得的經驗值 +2% （4 件）"
         ],
-        Name: "Staff of Elemental Mastery",
+        Name: "元素掌控法杖 (Staff of Elemental Mastery)",
         Index: "Staff of Elemental Mastery",
         Enabled: true,
         Rarity: 7,
@@ -21105,11 +21105,11 @@ const json = [
         Code: "8ss",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+35% Increased Maximum Mana",
+            PropertyString: "法力上限 +35%",
             Index: 1
           }
         ],
@@ -21122,7 +21122,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Jo Staff",
+          Name: "棍杖 (Jo Staff)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 250,
@@ -21139,12 +21139,12 @@ const json = [
         Type: "Helm",
         "Set": "Warlock's Exploration",
         SetPropertiesString: [
-          "+150 Defense (5 Items)",
-          "+40% Increased Maximum Life (4 Items)",
-          "+2 to All Attributes (3 Items)",
-          "+50% better chance of getting magic item (2 Items)"
+          "+150 防禦 （5 件）",
+          "生命上限 +40% （4 件）",
+          "+2 所有屬性 （3 件）",
+          "尋獲魔法物品機率提高 +50% （2 件）"
         ],
-        Name: "Lilarcor Cap",
+        Name: "小黃帽 (Lilarcor Cap)",
         Index: "Lilarcor Cap",
         Enabled: true,
         Rarity: 7,
@@ -21153,11 +21153,11 @@ const json = [
         Code: "xap",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+75-100% Enhanced Defense",
+            PropertyString: "+75-100% 防禦強化",
             Index: 1
           }
         ],
@@ -21167,7 +21167,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "80-92",
           EquipmentType: 0,
-          Name: "War Hat",
+          Name: "戰帽 (War Hat)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -21184,7 +21184,7 @@ const json = [
         Type: "Gloves",
         "Set": "Warlock's Exploration",
         SetPropertiesString: [],
-        Name: "Teleomortis' Gloves",
+        Name: "終焉手套 (Teleomortis' Gloves)",
         Index: "Teleomortis' Gloves",
         Enabled: true,
         Rarity: 7,
@@ -21193,11 +21193,11 @@ const json = [
         Code: "ulg",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+150-200 Defense",
+            PropertyString: "+150-200 防禦",
             Index: 1
           }
         ],
@@ -21207,7 +21207,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "54",
           EquipmentType: 0,
-          Name: "Bramble Mitts",
+          Name: "荊棘手套 (Bramble Mitts)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 12,
@@ -21224,7 +21224,7 @@ const json = [
         Type: "Belt",
         "Set": "Warlock's Exploration",
         SetPropertiesString: [],
-        Name: "Citadel Belt",
+        Name: "堡壘腰带 (Citadel Belt)",
         Index: "Citadel Belt",
         Enabled: true,
         Rarity: 7,
@@ -21233,11 +21233,11 @@ const json = [
         Code: "ulc",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+125-175 Defense",
+            PropertyString: "+125-175 防禦",
             Index: 1
           }
         ],
@@ -21247,7 +21247,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "180-230",
           EquipmentType: 0,
-          Name: "Spiderweb Sash",
+          Name: "蛛網束帶 (Spiderweb Sash)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 12,
@@ -21263,37 +21263,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 2
       },
       {
-        PropertyString: "+25% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +25%",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+4 to All Skills",
+        PropertyString: "+4 所有技能",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 2
       },
       {
-        PropertyString: "+20 Life after each Kill",
+        PropertyString: "+20 擊殺生命恢復",
         Index: 3
       },
       {
-        PropertyString: "+5 to Mana after each Kill",
+        PropertyString: "+5 擊殺法力恢復",
         Index: 4
       },
       {
-        PropertyString: "+75% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +75%",
         Index: 1
       }
     ],
@@ -21301,13 +21301,13 @@ const json = [
   },
   {
     Index: "Amaunator's Peace",
-    Name: "Amaunator's Peace",
+    Name: "阿曼納塔的和平 (Amaunator's Peace)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Amaunator's Peace",
         SetPropertiesString: [],
-        Name: "Holy Shroud of Amaunator",
+        Name: "阿曼納塔的聖潔壽衣 (Holy Shroud of Amaunator)",
         Index: "Holy Shroud of Amaunator",
         Enabled: true,
         Rarity: 7,
@@ -21320,15 +21320,15 @@ const json = [
             Index: 1
           },
           {
-            PropertyString: "Prevent Monster Heal",
+            PropertyString: "防止怪物自療",
             Index: 3
           },
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+25-30% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +25-30%",
             Index: 2
           }
         ],
@@ -21338,7 +21338,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "361",
           EquipmentType: 0,
-          Name: "Dusk Shroud",
+          Name: "灰暮罩衣 (Dusk Shroud)",
           RequiredStrength: 77,
           RequiredDexterity: 0,
           Durability: 20,
@@ -21355,9 +21355,9 @@ const json = [
         Type: "Axe",
         "Set": "Amaunator's Peace",
         SetPropertiesString: [
-          "Adds 40-80 to Damage (5 Items)"
+          "增加 40-80 傷害 （5 件）"
         ],
-        Name: "Holy Cleaver of Amaunator",
+        Name: "阿曼納塔的聖潔之劍 (Holy Cleaver of Amaunator)",
         Index: "Holy Cleaver of Amaunator",
         Enabled: true,
         Rarity: 7,
@@ -21366,23 +21366,23 @@ const json = [
         Code: "9ax",
         Properties: [
           {
-            PropertyString: "+280-320% Enhanced Damage",
+            PropertyString: "+280-320% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 25-100 to Cold Damage",
+            PropertyString: "增加 25-100 寒冰傷害",
             Index: 2
           },
           {
-            PropertyString: "-10-15% to Enemy Cold Resistance",
+            PropertyString: "敵人冰寒抗性 -10-15%",
             Index: 3
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 1
           },
           {
-            PropertyString: "Cold Resist +40-50%",
+            PropertyString: "冰寒抗性 +40-50%",
             Index: 4
           }
         ],
@@ -21395,7 +21395,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Cleaver",
+          Name: "斬斧 (Cleaver)",
           RequiredStrength: 68,
           RequiredDexterity: 0,
           Durability: 250,
@@ -21412,7 +21412,7 @@ const json = [
         Type: "Shield",
         "Set": "Amaunator's Peace",
         SetPropertiesString: [],
-        Name: "Holy Buckler of Amaunator",
+        Name: "阿曼納塔的聖潔之盾 (Holy Buckler of Amaunator)",
         Index: "Holy Buckler of Amaunator",
         Enabled: true,
         Rarity: 7,
@@ -21421,27 +21421,27 @@ const json = [
         Code: "uml",
         Properties: [
           {
-            PropertyString: "+40% Faster Block Rate",
+            PropertyString: "+40% 格擋速度",
             Index: 1
           },
           {
-            PropertyString: "+120-160% Enhanced Defense",
+            PropertyString: "+120-160% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+10-15% Magic Absorb",
+            PropertyString: "魔法吸引 +10-15%",
             Index: 4
           },
           {
-            PropertyString: "+10-15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10-15%",
             Index: 2
           },
           {
-            PropertyString: "Damage Reduced by 15",
+            PropertyString: "物理傷害降低 15",
             Index: 3
           },
           {
-            PropertyString: "+8-12 Life after each Kill",
+            PropertyString: "+8-12 擊殺生命恢復",
             Index: 5
           }
         ],
@@ -21451,7 +21451,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "239-283",
           EquipmentType: 0,
-          Name: "Luna",
+          Name: "圓月盾 (Luna)",
           RequiredStrength: 100,
           RequiredDexterity: 0,
           Durability: 84,
@@ -21468,7 +21468,7 @@ const json = [
         Type: "Ring",
         "Set": "Amaunator's Peace",
         SetPropertiesString: [],
-        Name: "Holy Ring of Amaunator",
+        Name: "阿曼納塔的聖潔之戒 (Holy Ring of Amaunator)",
         Index: "Holy Ring of Amaunator",
         Enabled: true,
         Rarity: 5,
@@ -21477,30 +21477,30 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+125-200 to Attack Rating",
+            PropertyString: "+125-200 準確率",
             Index: 3
           },
           {
-            PropertyString: "+15-20 to Strength",
+            PropertyString: "+15-20 力量",
             Index: 2
           },
           {
-            PropertyString: "+25-30 to Dexterity",
+            PropertyString: "+25-30 敏捷",
             Index: 1
           },
           {
-            PropertyString: "+35-50 to Life",
+            PropertyString: "+35-50 生命",
             Index: 0
           },
           {
-            PropertyString: "+1 Attacker Takes Damage of (Per Character Level)",
+            PropertyString: "+1 Attacker Takes Damage of （依角色等級而定）",
             Index: 4
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -21517,13 +21517,13 @@ const json = [
         Type: "Boots",
         "Set": "Amaunator's Peace",
         SetPropertiesString: [
-          "+20 to Maximum Damage (6 Items)",
-          "+8-15% to Lightning Skill Damage (5 Items)",
-          "+10-15 to Dexterity (2 Items)",
-          "Lightning Resist +30% (3 Items)",
-          "+33% better chance of getting magic item (4 Items)"
+          "+20 最大傷害 （6 件）",
+          "+8-15% 閃電技能傷害 （5 件）",
+          "+10-15 敏捷 （2 件）",
+          "電擊抗性 +30% （3 件）",
+          "尋獲魔法物品機率提高 +33% （4 件）"
         ],
-        Name: "Holy Boots of Amaunator",
+        Name: "阿曼納塔的聖潔之靴 (Holy Boots of Amaunator)",
         Index: "Holy Boots of Amaunator",
         Enabled: true,
         Rarity: 7,
@@ -21532,11 +21532,11 @@ const json = [
         Code: "hbt",
         Properties: [
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+1 Defense (Per Character Level)",
+            PropertyString: "+1 防禦 （依角色等級而定）",
             Index: 0
           }
         ],
@@ -21546,7 +21546,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "12",
           EquipmentType: 0,
-          Name: "Greaves",
+          Name: "護脛",
           RequiredStrength: 70,
           RequiredDexterity: 0,
           Durability: 24,
@@ -21563,10 +21563,10 @@ const json = [
         Type: "Belt",
         "Set": "Amaunator's Peace",
         SetPropertiesString: [
-          "Regenerate Mana +33% (5 Items)",
-          "+33% better chance of getting magic item (4 Items)"
+          "法力恢復 33% （5 件）",
+          "尋獲魔法物品機率提高 +33% （4 件）"
         ],
-        Name: "Holy Sash of Amaunator",
+        Name: "阿曼納塔的聖潔腰帶 (Holy Sash of Amaunator)",
         Index: "Holy Sash of Amaunator",
         Enabled: true,
         Rarity: 7,
@@ -21575,15 +21575,15 @@ const json = [
         Code: "zlb",
         Properties: [
           {
-            PropertyString: "+190-230% Enhanced Defense",
+            PropertyString: "+190-230% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15-20 to Vitality",
+            PropertyString: "+15-20 體能",
             Index: 1
           },
           {
-            PropertyString: "Magic Damage Reduced by 10",
+            PropertyString: "魔法傷害降低 10",
             Index: 2
           }
         ],
@@ -21593,7 +21593,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "54-63",
           EquipmentType: 0,
-          Name: "Demonhide Sash",
+          Name: "魔皮束帶 (Demonhide Sash)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -21609,37 +21609,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 2
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 4
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 6
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+50% Enhanced Damage",
+        PropertyString: "+50% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 2
       },
       {
-        PropertyString: "+100% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +100%",
         Index: 1
       }
     ],
@@ -21647,13 +21647,13 @@ const json = [
   },
   {
     Index: "Tika's Request",
-    Name: "Tika's Request",
+    Name: "蒂卡的请求 (Tika's Request)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Tika's Request",
         SetPropertiesString: [],
-        Name: "Frostwyrm Hide",
+        Name: "霜雪隐藏 (Frostwyrm Hide)",
         Index: "Frostwyrm Hide",
         Enabled: true,
         Rarity: 7,
@@ -21662,23 +21662,23 @@ const json = [
         Code: "uea",
         Properties: [
           {
-            PropertyString: "+25% Increased Attack Speed",
+            PropertyString: "攻擊速度 +25%",
             Index: 2
           },
           {
-            PropertyString: "+30% Faster Cast Rate",
+            PropertyString: "+30% 施法速度",
             Index: 0
           },
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+0.5 to Dexterity (Per Character Level)",
+            PropertyString: "+0.5 敏捷 （依角色等級而定）",
             Index: 4
           },
           {
-            PropertyString: "+40-60 to Life",
+            PropertyString: "+40-60 生命",
             Index: 3
           }
         ],
@@ -21688,7 +21688,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "730-821",
           EquipmentType: 0,
-          Name: "Wyrmhide",
+          Name: "龍皮甲 (Wyrmhide)",
           RequiredStrength: 84,
           RequiredDexterity: 0,
           Durability: 24,
@@ -21705,9 +21705,9 @@ const json = [
         Type: "Axe",
         "Set": "Tika's Request",
         SetPropertiesString: [
-          "+2.5 to Maximum Damage (Per Character Level) (4 Items)"
+          "+2.5 最大傷害 （依角色等級而定） （4 件）"
         ],
-        Name: "Hallowed Redeemer",
+        Name: "神圣的救赎主 (Hallowed Redeemer)",
         Index: "Hallowed Redeemer",
         Enabled: true,
         Rarity: 7,
@@ -21716,23 +21716,23 @@ const json = [
         Code: "7ba",
         Properties: [
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 1
           },
           {
-            PropertyString: "+290-350% Enhanced Damage",
+            PropertyString: "+290-350% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 12-15% Life stolen per hit",
+            PropertyString: "擊中竊取 12-15% 生命",
             Index: 2
           },
           {
-            PropertyString: "+3-7 to Mana after each Kill",
+            PropertyString: "+3-7 擊殺法力恢復",
             Index: 3
           },
           {
-            PropertyString: "Socketed (2)",
+            PropertyString: "鑲孔 (2)",
             Index: 4
           }
         ],
@@ -21745,7 +21745,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Silver-edged Axe",
+          Name: "銀刃斧 (Silver-edged Axe)",
           RequiredStrength: 166,
           RequiredDexterity: 65,
           Durability: 250,
@@ -21762,9 +21762,9 @@ const json = [
         Type: "Helm",
         "Set": "Tika's Request",
         SetPropertiesString: [
-          "+25% better chance of getting magic item (3 Items)"
+          "尋獲魔法物品機率提高 +25% （3 件）"
         ],
-        Name: "Draconian Mask",
+        Name: "龙人面具 (Draconian Mask)",
         Index: "Draconian Mask",
         Enabled: true,
         Rarity: 7,
@@ -21773,23 +21773,23 @@ const json = [
         Code: "xlm",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 4
           },
           {
-            PropertyString: "+5% Mana stolen per hit",
+            PropertyString: "擊中竊取 +5% 法力",
             Index: 2
           },
           {
-            PropertyString: "+120-150% Enhanced Defense",
+            PropertyString: "+120-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+1 Defense (Per Character Level)",
+            PropertyString: "+1 防禦 （依角色等級而定）",
             Index: 1
           },
           {
-            PropertyString: "+1-2% to Experience Gained",
+            PropertyString: "獲得的經驗值 +1-2%",
             Index: 3
           }
         ],
@@ -21799,7 +21799,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "140-160",
           EquipmentType: 0,
-          Name: "Casque",
+          Name: "兜盔",
           RequiredStrength: 59,
           RequiredDexterity: 0,
           Durability: 24,
@@ -21816,7 +21816,7 @@ const json = [
         Type: "Belt",
         "Set": "Tika's Request",
         SetPropertiesString: [],
-        Name: "Girdle of Kitthix",
+        Name: "基特西斯腰带 (Girdle of Kitthix)",
         Index: "Girdle of Kitthix",
         Enabled: true,
         Rarity: 7,
@@ -21829,19 +21829,19 @@ const json = [
             Index: 0
           },
           {
-            PropertyString: "+25-35% Enhanced Damage",
+            PropertyString: "+25-35% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "+35 to Strength",
+            PropertyString: "+35 力量",
             Index: 3
           },
           {
-            PropertyString: "+10-20% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10-20%",
             Index: 2
           },
           {
-            PropertyString: "Requirements -20%",
+            PropertyString: "需求 -20%",
             Index: 4
           }
         ],
@@ -21851,7 +21851,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "139-155",
           EquipmentType: 0,
-          Name: "Colossus Girdle",
+          Name: "巨神腰帶 (Colossus Girdle)",
           RequiredStrength: 185,
           RequiredDexterity: 0,
           Durability: 24,
@@ -21868,9 +21868,9 @@ const json = [
         Type: "Gloves",
         "Set": "Tika's Request",
         SetPropertiesString: [
-          "+45 to Life (4 Items)"
+          "+45 生命 （4 件）"
         ],
-        Name: "Gauntlets of Quietus",
+        Name: "安静之铠 (Gauntlets of Quietus)",
         Index: "Gauntlets of Quietus",
         Enabled: true,
         Rarity: 7,
@@ -21879,7 +21879,7 @@ const json = [
         Code: "xtg",
         Properties: [
           {
-            PropertyString: "12% Chance to cast level 3 Glacial Spike on striking",
+            PropertyString: "擊中時有 12% 機率施展等級 3 冰川之槍",
             Index: 2
           },
           {
@@ -21887,15 +21887,15 @@ const json = [
             Index: 1
           },
           {
-            PropertyString: "+15% Increased Attack Speed",
+            PropertyString: "攻擊速度 +15%",
             Index: 3
           },
           {
-            PropertyString: "+250% Enhanced Defense",
+            PropertyString: "+250% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+10-15 to Dexterity",
+            PropertyString: "+10-15 敏捷",
             Index: 4
           }
         ],
@@ -21905,7 +21905,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "140",
           EquipmentType: 0,
-          Name: "Battle Gauntlets",
+          Name: "戰鬥護手 (Battle Gauntlets)",
           RequiredStrength: 88,
           RequiredDexterity: 0,
           Durability: 18,
@@ -21921,37 +21921,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "All Resistances +10%",
+        PropertyString: "所有抗性 +10%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+20% Lightning Absorb",
+        PropertyString: "電擊吸引 +20%",
         Index: 4
       },
       {
-        PropertyString: "Attacker Takes Lightning Damage of +100",
+        PropertyString: "攻擊者受到 +100 點電擊傷害",
         Index: 3
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 1
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item (Per Character Level)",
+        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
         Index: 2
       }
     ],
@@ -21959,13 +21959,13 @@ const json = [
   },
   {
     Index: "Corthala Family Heirlooms",
-    Name: "Corthala Family Heirlooms",
+    Name: "科薩拉家族的傳家寶 (Corthala Family Heirlooms)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Corthala Family Heirlooms",
         SetPropertiesString: [],
-        Name: "Sir Tylan's Sylvan Mail",
+        Name: "泰蘭爵士的森林之甲 (Sir Tylan's Sylvan Mail)",
         Index: "Sir Tylan's Sylvan Mail",
         Enabled: true,
         Rarity: 7,
@@ -21974,19 +21974,19 @@ const json = [
         Code: "ung",
         Properties: [
           {
-            PropertyString: "Adds 25-50 to Damage",
+            PropertyString: "增加 25-50 傷害",
             Index: 2
           },
           {
-            PropertyString: "+230-300% Enhanced Defense",
+            PropertyString: "+230-300% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15-30 to Strength",
+            PropertyString: "+15-30 力量",
             Index: 3
           },
           {
-            PropertyString: "All Resistances +10-20%",
+            PropertyString: "所有抗性 +10-20%",
             Index: 1
           }
         ],
@@ -21996,7 +21996,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1267-1536",
           EquipmentType: 0,
-          Name: "Diamond Mail",
+          Name: "鑽石鎖甲 (Diamond Mail)",
           RequiredStrength: 131,
           RequiredDexterity: 0,
           Durability: 26,
@@ -22013,11 +22013,11 @@ const json = [
         Type: "Crossbow",
         "Set": "Corthala Family Heirlooms",
         SetPropertiesString: [
-          "+10 to Magic Arrow (3 Items)",
-          "+6 to Guided Arrow (4 Items)",
-          "Adds 20-100 to Damage (5 Items)"
+          "+10 魔法箭（3 件）",
+          "+6 導引箭（4 件）",
+          "增加 20-100 傷害 （5 件）"
         ],
-        Name: "Prince Karnd's Abomination",
+        Name: "卡恩德王子的憎惡 (Prince Karnd's Abomination)",
         Index: "Prince Karnd's Abomination",
         Enabled: true,
         Rarity: 7,
@@ -22026,23 +22026,23 @@ const json = [
         Code: "6rx",
         Properties: [
           {
-            PropertyString: "+60% Increased Attack Speed",
+            PropertyString: "攻擊速度 +60%",
             Index: 2
           },
           {
-            PropertyString: "+200-240% Enhanced Damage",
+            PropertyString: "+200-240% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+40% Piercing Attack",
+            PropertyString: "+40% 穿透攻擊",
             Index: 3
           },
           {
-            PropertyString: "Adds 30-60 to Damage",
+            PropertyString: "增加 30-60 傷害",
             Index: 1
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 4
           }
         ],
@@ -22055,7 +22055,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Demon Crossbow",
+          Name: "惡魔弩 (Demon Crossbow)",
           RequiredStrength: 141,
           RequiredDexterity: 98,
           Durability: 0,
@@ -22072,7 +22072,7 @@ const json = [
         Type: "Helm",
         "Set": "Corthala Family Heirlooms",
         SetPropertiesString: [],
-        Name: "Yavin's Infernal Visage",
+        Name: "雅文的地獄面容 (Yavin's Infernal Visage)",
         Index: "Yavin's Infernal Visage",
         Enabled: true,
         Rarity: 7,
@@ -22081,19 +22081,19 @@ const json = [
         Code: "uh9",
         Properties: [
           {
-            PropertyString: "Adds 15-30 to Damage",
+            PropertyString: "增加 15-30 傷害",
             Index: 2
           },
           {
-            PropertyString: "+200-300 Defense",
+            PropertyString: "+200-300 防禦",
             Index: 0
           },
           {
-            PropertyString: "+15-30 to Dexterity",
+            PropertyString: "+15-30 敏捷",
             Index: 3
           },
           {
-            PropertyString: "All Resistances +10-20%",
+            PropertyString: "所有抗性 +10-20%",
             Index: 1
           }
         ],
@@ -22103,7 +22103,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "252-303",
           EquipmentType: 0,
-          Name: "Bone Visage",
+          Name: "骸骨面罩 (Bone Visage)",
           RequiredStrength: 106,
           RequiredDexterity: 0,
           Durability: 40,
@@ -22120,9 +22120,9 @@ const json = [
         Type: "Gloves",
         "Set": "Corthala Family Heirlooms",
         SetPropertiesString: [
-          "+20% Increased Attack Speed (3 Items)"
+          "攻擊速度 +20% （3 件）"
         ],
-        Name: "Prince Gwar's Bracers",
+        Name: "格瓦王子的臂鎧 (Prince Gwar's Bracers)",
         Index: "Prince Gwar's Bracers",
         Enabled: true,
         Rarity: 7,
@@ -22131,19 +22131,19 @@ const json = [
         Code: "xmg",
         Properties: [
           {
-            PropertyString: "+15-20 to Minimum Damage",
+            PropertyString: "+15-20 最小傷害",
             Index: 2
           },
           {
-            PropertyString: "+30-40 to Maximum Damage",
+            PropertyString: "+30-40 最大傷害",
             Index: 3
           },
           {
-            PropertyString: "+2 Defense (Per Character Level)",
+            PropertyString: "+2 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "Cold Resist +20-30%",
+            PropertyString: "冰寒抗性 +20-30%",
             Index: 1
           }
         ],
@@ -22153,7 +22153,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "37",
           EquipmentType: 0,
-          Name: "Heavy Bracers",
+          Name: "重型護腕 (Heavy Bracers)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 16,
@@ -22170,9 +22170,9 @@ const json = [
         Type: "Boots",
         "Set": "Corthala Family Heirlooms",
         SetPropertiesString: [
-          "+30% Faster Run/Walk (4 Items)"
+          "+30% 跑步 / 行走速度 （4 件）"
         ],
-        Name: "Lady Daan's Celeritous Jambeau",
+        Name: "達安夫人的慶典脛甲（Lady Daan's Celeritous Jambeau)",
         Index: "Lady Daan's Celeritous Jambeau",
         Enabled: true,
         Rarity: 7,
@@ -22181,19 +22181,19 @@ const json = [
         Code: "xmb",
         Properties: [
           {
-            PropertyString: "+10% Increased Attack Speed",
+            PropertyString: "攻擊速度 +10%",
             Index: 3
           },
           {
-            PropertyString: "+20-30 to Maximum Damage",
+            PropertyString: "+20-30 最大傷害",
             Index: 2
           },
           {
-            PropertyString: "+1.75 Defense (Per Character Level)",
+            PropertyString: "+1.75 防禦 （依角色等級而定）",
             Index: 0
           },
           {
-            PropertyString: "Fire Resist +20-30%",
+            PropertyString: "火焰抗性 +20-30%",
             Index: 1
           }
         ],
@@ -22203,7 +22203,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "37",
           EquipmentType: 0,
-          Name: "Mesh Boots",
+          Name: "鐵網靴 (Mesh Boots)",
           RequiredStrength: 65,
           RequiredDexterity: 0,
           Durability: 66,
@@ -22219,33 +22219,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+15% Faster Hit Recovery",
+        PropertyString: "+15% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+25% Faster Hit Recovery",
+        PropertyString: "+25% 打擊恢復",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+8 to Dodge",
+        PropertyString: "+8 閃躲",
         Index: 2
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 3
       },
       {
-        PropertyString: "+0.75% Deadly Strike (Per Character Level)",
+        PropertyString: "+0.75% 致命打擊 （依角色等級而定）",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 1
       }
     ],
@@ -22253,13 +22253,13 @@ const json = [
   },
   {
     Index: "Knight's Gallantry",
-    Name: "Knight's Gallantry",
+    Name: "騎士的英勇 (Knight's Gallantry)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Knight's Gallantry",
         SetPropertiesString: [],
-        Name: "Mail of Courageousness",
+        Name: "無畏之甲 (Mail of Courageousness)",
         Index: "Mail of Courageousness",
         Enabled: true,
         Rarity: 7,
@@ -22268,23 +22268,23 @@ const json = [
         Code: "uhn",
         Properties: [
           {
-            PropertyString: "17% Chance to cast level 22 Fire Ball when struck",
+            PropertyString: "被擊中時有 17% 機率施展等級 22 火球術",
             Index: 3
           },
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+150-190% Enhanced Defense",
+            PropertyString: "+150-190% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+3-5 Replenish Life",
+            PropertyString: "生命回復 +3-5",
             Index: 2
           },
           {
-            PropertyString: "Fire Resist +35-45%",
+            PropertyString: "火焰抗性 +35-45%",
             Index: 4
           }
         ],
@@ -22294,7 +22294,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1100-1400",
           EquipmentType: 0,
-          Name: "Boneweave",
+          Name: "骸骨網甲 (Boneweave)",
           RequiredStrength: 158,
           RequiredDexterity: 0,
           Durability: 0,
@@ -22311,7 +22311,7 @@ const json = [
         Type: "Club",
         "Set": "Knight's Gallantry",
         SetPropertiesString: [],
-        Name: "Baton of Intrepidity",
+        Name: "膽氣之棍 (Baton of Intrepidity)",
         Index: "Baton of Intrepidity",
         Enabled: true,
         Rarity: 7,
@@ -22320,23 +22320,23 @@ const json = [
         Code: "7cl",
         Properties: [
           {
-            PropertyString: "+1-3 to Berserk",
+            PropertyString: "+1-3 狂暴之擊",
             Index: 3
           },
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+230-280% Enhanced Damage",
+            PropertyString: "+230-280% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 2
           },
           {
-            PropertyString: "Cold Resist +35-45%",
+            PropertyString: "冰寒抗性 +35-45%",
             Index: 4
           }
         ],
@@ -22349,7 +22349,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Truncheon",
+          Name: "打擊棍 (Truncheon)",
           RequiredStrength: 88,
           RequiredDexterity: 43,
           Durability: 250,
@@ -22366,7 +22366,7 @@ const json = [
         Type: "Shield",
         "Set": "Knight's Gallantry",
         SetPropertiesString: [],
-        Name: "Wall of Bravery",
+        Name: "勇氣之墻 (Wall of Bravery)",
         Index: "Wall of Bravery",
         Enabled: true,
         Rarity: 7,
@@ -22375,23 +22375,23 @@ const json = [
         Code: "xow",
         Properties: [
           {
-            PropertyString: "+25% Faster Block Rate",
+            PropertyString: "+25% 格擋速度",
             Index: 3
           },
           {
-            PropertyString: "+20-30% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20-30%",
             Index: 1
           },
           {
-            PropertyString: "+100-130% Enhanced Defense",
+            PropertyString: "+100-130% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +25-35%",
+            PropertyString: "所有抗性 +25-35%",
             Index: 4
           },
           {
-            PropertyString: "Level 13 Amplify Damage (100 Charges)",
+            PropertyString: "等級 13 傷害加深（100 次）",
             Index: 2
           }
         ],
@@ -22401,7 +22401,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "189-207",
           EquipmentType: 0,
-          Name: "Pavise",
+          Name: "大盾 (Pavise)",
           RequiredStrength: 133,
           RequiredDexterity: 0,
           Durability: 72,
@@ -22418,7 +22418,7 @@ const json = [
         Type: "Helm",
         "Set": "Knight's Gallantry",
         SetPropertiesString: [],
-        Name: "Helm of Chivalry",
+        Name: "俠義之盔 (Helm of Chivalry)",
         Index: "Helm of Chivalry",
         Enabled: true,
         Rarity: 7,
@@ -22427,23 +22427,23 @@ const json = [
         Code: "ukp",
         Properties: [
           {
-            PropertyString: "100% Chance to cast level 4 Iron Maiden when you Kill an Enemy",
+            PropertyString: "殺死敵人時有 100% 機率施展等級 4 攻擊反噬",
             Index: 3
           },
           {
-            PropertyString: "+120-140% Enhanced Defense",
+            PropertyString: "+120-140% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+10-15 to Strength",
+            PropertyString: "+10-15 力量",
             Index: 2
           },
           {
-            PropertyString: "+10-15 to Dexterity",
+            PropertyString: "+10-15 敏捷",
             Index: 1
           },
           {
-            PropertyString: "Lightning Resist +35-45%",
+            PropertyString: "電擊抗性 +35-45%",
             Index: 4
           }
         ],
@@ -22453,7 +22453,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "224-244",
           EquipmentType: 0,
-          Name: "Hydraskull",
+          Name: "多頭蛇顱盔 (Hydraskull)",
           RequiredStrength: 84,
           RequiredDexterity: 0,
           Durability: 18,
@@ -22470,11 +22470,11 @@ const json = [
         Type: "Belt",
         "Set": "Knight's Gallantry",
         SetPropertiesString: [
-          "Adds 1-100 to Lightning Damage (4 Items)",
-          "+30 to Life (2 Items)",
-          "+30 to Mana (3 Items)"
+          "增加 1-100 電擊傷害 （4 件）",
+          "+30 生命 （2 件）",
+          "+30 法力 （3 件）"
         ],
-        Name: "Belt of Temerity",
+        Name: "蠻勇之帶 (Belt of Temerity)",
         Index: "Belt of Temerity",
         Enabled: true,
         Rarity: 7,
@@ -22483,11 +22483,11 @@ const json = [
         Code: "hbl",
         Properties: [
           {
-            PropertyString: "+100-120% Enhanced Defense",
+            PropertyString: "+100-120% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Poison Resist +35-45%",
+            PropertyString: "毒素抗性 +35-45%",
             Index: 1
           }
         ],
@@ -22497,7 +22497,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "18-19",
           EquipmentType: 0,
-          Name: "Plated Belt",
+          Name: "鎧甲腰帶 (Plated Belt)",
           RequiredStrength: 60,
           RequiredDexterity: 0,
           Durability: 24,
@@ -22513,29 +22513,29 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "+20% Chance of Crushing Blow",
+        PropertyString: "+20% 概率造成粉碎打擊",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+3 to Life (Per Character Level)",
+        PropertyString: "+3 生命 （依角色等級而定）",
         Index: 1
       },
       {
-        PropertyString: "+1.5 to Mana (Per Character Level)",
+        PropertyString: "+1.5 法力 （依角色等級而定）",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +60%",
+        PropertyString: "所有抗性 +60%",
         Index: 3
       }
     ],
@@ -22543,13 +22543,13 @@ const json = [
   },
   {
     Index: "Lord Sith's Province",
-    Name: "Lord Sith's Province",
+    Name: "西斯王的行省 (Lord Sith's Province)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Lord Sith's Province",
         SetPropertiesString: [],
-        Name: "Ebony Plate of Evil",
+        Name: "邪惡之烏木板甲 (Ebony Plate of Evil)",
         Index: "Ebony Plate of Evil",
         Enabled: true,
         Rarity: 7,
@@ -22558,23 +22558,23 @@ const json = [
         Code: "urs",
         Properties: [
           {
-            PropertyString: "+1-3 to Poison and Bone Skills (Necromancer only)",
+            PropertyString: "+1-3 毒素與骸骨技能 （只限死靈法師）",
             Index: 2
           },
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 3
           },
           {
-            PropertyString: "+600-800 Defense",
+            PropertyString: "+600-800 防禦",
             Index: 0
           },
           {
-            PropertyString: "Level 30 Life Tap (12 Charges)",
+            PropertyString: "等級 30 偷取生命（12 次）",
             Index: 4
           },
           {
-            PropertyString: "Requirements -35%",
+            PropertyString: "需求 -35%",
             Index: 1
           }
         ],
@@ -22584,7 +22584,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "995-1195",
           EquipmentType: 0,
-          Name: "Great Hauberk",
+          Name: "鱗鎧胸甲 (Great Hauberk)",
           RequiredStrength: 118,
           RequiredDexterity: 0,
           Durability: 50,
@@ -22601,7 +22601,7 @@ const json = [
         Type: "Shield",
         "Set": "Lord Sith's Province",
         SetPropertiesString: [],
-        Name: "Deflector of Light",
+        Name: "光明之偏轉護盾 (Deflector of Light)",
         Index: "Deflector of Light",
         Enabled: true,
         Rarity: 7,
@@ -22610,27 +22610,27 @@ const json = [
         Code: "xts",
         Properties: [
           {
-            PropertyString: "Adds 4-6% Life stolen per hit",
+            PropertyString: "擊中竊取 4-6% 生命",
             Index: 3
           },
           {
-            PropertyString: "Freezes target +4",
+            PropertyString: "凍結目標 +4",
             Index: 4
           },
           {
-            PropertyString: "+120-140% Enhanced Defense",
+            PropertyString: "+120-140% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15%",
             Index: 1
           },
           {
-            PropertyString: "Half Freeze Duration",
+            PropertyString: "冰凍時間減半",
             Index: 5
           },
           {
-            PropertyString: "Requirements -50%",
+            PropertyString: "需求 -50%",
             Index: 2
           }
         ],
@@ -22640,7 +22640,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "178-194",
           EquipmentType: 0,
-          Name: "Ancient Shield",
+          Name: "上古盾 (Ancient Shield)",
           RequiredStrength: 110,
           RequiredDexterity: 0,
           Durability: 80,
@@ -22657,7 +22657,7 @@ const json = [
         Type: "Helm",
         "Set": "Lord Sith's Province",
         SetPropertiesString: [],
-        Name: "Dark Cataclysm",
+        Name: "黑暗之災變冠冕 (Dark Cataclysm)",
         Index: "Dark Cataclysm",
         Enabled: true,
         Rarity: 7,
@@ -22666,23 +22666,23 @@ const json = [
         Code: "urn",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 3
           },
           {
-            PropertyString: "+2 to Evade",
+            PropertyString: "+2 閃避",
             Index: 4
           },
           {
-            PropertyString: "+135-175% Enhanced Defense",
+            PropertyString: "+135-175% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+35 to Mana",
+            PropertyString: "+35 法力",
             Index: 2
           },
           {
-            PropertyString: "Requirements -60%",
+            PropertyString: "需求 -60%",
             Index: 1
           }
         ],
@@ -22692,7 +22692,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "263-308",
           EquipmentType: 0,
-          Name: "Corona",
+          Name: "日冕之冠 (Corona)",
           RequiredStrength: 174,
           RequiredDexterity: 0,
           Durability: 50,
@@ -22709,9 +22709,9 @@ const json = [
         Type: "Wand",
         "Set": "Lord Sith's Province",
         SetPropertiesString: [
-          "Adds 80-180 to Damage (4 Items)"
+          "增加 80-180 傷害 （4 件）"
         ],
-        Name: "Malignant Rod",
+        Name: "惡毒之短杖 (Malignant Rod)",
         Index: "Malignant Rod",
         Enabled: true,
         Rarity: 7,
@@ -22720,23 +22720,23 @@ const json = [
         Code: "9bw",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+0.75 to Mana (Per Character Level)",
+            PropertyString: "+0.75 法力 （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "Regenerate Mana +45%",
+            PropertyString: "法力恢復 45%",
             Index: 3
           },
           {
-            PropertyString: "+1% to Experience Gained",
+            PropertyString: "獲得的經驗值 +1%",
             Index: 4
           }
         ],
@@ -22749,7 +22749,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Tomb Wand",
+          Name: "古墓魔杖 (Tomb Wand)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 250,
@@ -22765,37 +22765,37 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+50 to Life",
+        PropertyString: "+50 生命",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "100% Chance to cast level 9 Charged Bolt when struck",
+        PropertyString: "被擊中時有 100% 機率施展等級 9 電能彈",
         Index: 5
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 4
       },
       {
-        PropertyString: "+30% Faster Hit Recovery",
+        PropertyString: "+30% 打擊恢復",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 1
       },
       {
-        PropertyString: "+5 to Mana after each Kill",
+        PropertyString: "+5 擊殺法力恢復",
         Index: 3
       },
       {
-        PropertyString: "+75% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +75%",
         Index: 0
       }
     ],
@@ -22803,13 +22803,13 @@ const json = [
   },
   {
     Index: "Kai Lord's Valiance",
-    Name: "Kai Lord's Valiance",
+    Name: "君主凱的英勇 (Kai Lord's Valiance)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Kai Lord's Valiance",
         SetPropertiesString: [],
-        Name: "Helshazag",
+        Name: "赫爾沙扎 (Helshazag)",
         Index: "Helshazag",
         Enabled: true,
         Rarity: 7,
@@ -22818,23 +22818,23 @@ const json = [
         Code: "upl",
         Properties: [
           {
-            PropertyString: "+160-200% Enhanced Defense",
+            PropertyString: "+160-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+25% Increased Maximum Life",
+            PropertyString: "生命上限 +25%",
             Index: 3
           },
           {
-            PropertyString: "Magic Damage Reduced by 20",
+            PropertyString: "魔法傷害降低 20",
             Index: 4
           },
           {
-            PropertyString: "+1.25% better chance of getting magic item (Per Character Level)",
+            PropertyString: "+1.25% better chance of getting magic item （依角色等級而定）",
             Index: 2
           },
           {
-            PropertyString: "Level 12 Find Item (200 Charges)",
+            PropertyString: "等級 12 尋找物品（200 次）",
             Index: 1
           }
         ],
@@ -22844,7 +22844,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1068-1233",
           EquipmentType: 0,
-          Name: "Balrog Skin",
+          Name: "炎魔皮板甲 (Balrog Skin)",
           RequiredStrength: 165,
           RequiredDexterity: 0,
           Durability: 30,
@@ -22861,9 +22861,9 @@ const json = [
         Type: "Sword",
         "Set": "Kai Lord's Valiance",
         SetPropertiesString: [
-          "Adds 256-500 to Magic Damage (5 Items)"
+          "增加 256-500 魔法傷害 （5 件）"
         ],
-        Name: "Summerswerd",
+        Name: "夏日之刃 (Summerswerd)",
         Index: "Summerswerd",
         Enabled: true,
         Rarity: 7,
@@ -22872,23 +22872,23 @@ const json = [
         Code: "7cr",
         Properties: [
           {
-            PropertyString: "Adds 50-150 to Damage",
+            PropertyString: "增加 50-150 傷害",
             Index: 0
           },
           {
-            PropertyString: "+175% Damage to Demons",
+            PropertyString: "+175% 對惡魔的傷害",
             Index: 4
           },
           {
-            PropertyString: "+350% Damage to Undead",
+            PropertyString: "+350% 對不死怪物的傷害",
             Index: 3
           },
           {
-            PropertyString: "Adds 12-15% Mana stolen per hit",
+            PropertyString: "擊中竊取 12-15% 法力",
             Index: 1
           },
           {
-            PropertyString: "Adds 15-18% Life stolen per hit",
+            PropertyString: "擊中竊取 15-18% 生命",
             Index: 2
           }
         ],
@@ -22901,7 +22901,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Phase Blade",
+          Name: "幻化之刃 (Phase Blade)",
           RequiredStrength: 25,
           RequiredDexterity: 136,
           Durability: 0,
@@ -22918,7 +22918,7 @@ const json = [
         Type: "Belt",
         "Set": "Kai Lord's Valiance",
         SetPropertiesString: [],
-        Name: "Helghast Waistband",
+        Name: "赫爾加斯特腰帶 (Helghast Waistband)",
         Index: "Helghast Waistband",
         Enabled: true,
         Rarity: 7,
@@ -22927,23 +22927,23 @@ const json = [
         Code: "utc",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 3
           },
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 4
           },
           {
-            PropertyString: "+110-130% Enhanced Defense",
+            PropertyString: "+110-130% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +10-15%",
+            PropertyString: "所有抗性 +10-15%",
             Index: 2
           },
           {
-            PropertyString: "+10-15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10-15%",
             Index: 1
           }
         ],
@@ -22953,7 +22953,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "126-138",
           EquipmentType: 0,
-          Name: "Troll Belt",
+          Name: "食人妖腰帶 (Troll Belt)",
           RequiredStrength: 151,
           RequiredDexterity: 0,
           Durability: 18,
@@ -22970,9 +22970,9 @@ const json = [
         Type: "Boots",
         "Set": "Kai Lord's Valiance",
         SetPropertiesString: [
-          "+30% Faster Run/Walk (3 Items)"
+          "+30% 跑步 / 行走速度 （3 件）"
         ],
-        Name: "Hallowed Greaves",
+        Name: "神聖護脛 (Hallowed Greaves)",
         Index: "Hallowed Greaves",
         Enabled: true,
         Rarity: 7,
@@ -22981,23 +22981,23 @@ const json = [
         Code: "xtb",
         Properties: [
           {
-            PropertyString: "+1 to Paladin Skill Levels",
+            PropertyString: "+1 聖騎士技能等級",
             Index: 4
           },
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 3
           },
           {
-            PropertyString: "+25-35 to Minimum Damage",
+            PropertyString: "+25-35 最小傷害",
             Index: 1
           },
           {
-            PropertyString: "+125-150% Enhanced Defense",
+            PropertyString: "+125-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+75% extra gold from monsters",
+            PropertyString: "怪物金幣掉落量提高 +75%",
             Index: 2
           }
         ],
@@ -23007,7 +23007,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "90-100",
           EquipmentType: 0,
-          Name: "Battle Boots",
+          Name: "戰鬥靴 (Battle Boots)",
           RequiredStrength: 95,
           RequiredDexterity: 0,
           Durability: 30,
@@ -23024,10 +23024,10 @@ const json = [
         Type: "Shield",
         "Set": "Kai Lord's Valiance",
         SetPropertiesString: [
-          "Level 6 Holy Shock Aura When Equipped (2 Items)",
-          "+65% better chance of getting magic item (3 Items)"
+          "裝備時賦予等級 6 神聖電擊靈氣 （2 件）",
+          "尋獲魔法物品機率提高 +65% （3 件）"
         ],
-        Name: "Sunspear Deflector",
+        Name: "光之矛的偏轉護盾 (Sunspear Deflector)",
         Index: "Sunspear Deflector",
         Enabled: true,
         Rarity: 7,
@@ -23036,15 +23036,15 @@ const json = [
         Code: "xow",
         Properties: [
           {
-            PropertyString: "+15% Faster Block Rate",
+            PropertyString: "+15% 格擋速度",
             Index: 2
           },
           {
-            PropertyString: "+100% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +100%",
             Index: 1
           },
           {
-            PropertyString: "+175-200% Enhanced Defense",
+            PropertyString: "+175-200% 防禦強化",
             Index: 0
           }
         ],
@@ -23054,7 +23054,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "189-207",
           EquipmentType: 0,
-          Name: "Pavise",
+          Name: "大盾 (Pavise)",
           RequiredStrength: 133,
           RequiredDexterity: 0,
           Durability: 72,
@@ -23070,33 +23070,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+10% Increased Attack Speed",
+        PropertyString: "攻擊速度 +10%",
         Index: 0
       },
       {
-        PropertyString: "+10% Increased Attack Speed",
+        PropertyString: "攻擊速度 +10%",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+25% Cold Absorb",
+        PropertyString: "寒冰吸引 +25%",
         Index: 2
       },
       {
-        PropertyString: "+25% Lightning Absorb",
+        PropertyString: "電擊吸引 +25%",
         Index: 3
       },
       {
-        PropertyString: "+25% Fire Absorb",
+        PropertyString: "火焰吸引 +25%",
         Index: 1
       },
       {
-        PropertyString: "Poison Length Reduced by 70%",
+        PropertyString: "中毒的時效縮短 70%",
         Index: 4
       }
     ],
@@ -23104,18 +23104,18 @@ const json = [
   },
   {
     Index: "Path of Bravery",
-    Name: "Path of Bravery",
+    Name: "無畏之路 (Path of Bravery)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Path of Bravery",
         SetPropertiesString: [
-          "-20% to Enemy Fire Resistance (2 Items)",
-          "-20% to Enemy Fire Resistance (3 Items)",
-          "-20% to Enemy Fire Resistance (4 Items)",
-          "-20% to Enemy Fire Resistance (5 Items)"
+          "敵人火焰抗性 -20% （2 件）",
+          "敵人火焰抗性 -20% （3 件）",
+          "敵人火焰抗性 -20% （4 件）",
+          "敵人火焰抗性 -20% （5 件）"
         ],
-        Name: "Imperial Plate",
+        Name: "帝國重甲 (Imperial Plate)",
         Index: "Imperial Plate",
         Enabled: true,
         Rarity: 7,
@@ -23124,15 +23124,15 @@ const json = [
         Code: "ult",
         Properties: [
           {
-            PropertyString: "+200% Damage to Demons",
+            PropertyString: "+200% 對惡魔的傷害",
             Index: 0
           },
           {
-            PropertyString: "-20% to Enemy Fire Resistance",
+            PropertyString: "敵人火焰抗性 -20%",
             Index: 2
           },
           {
-            PropertyString: "+100-125% Enhanced Defense",
+            PropertyString: "+100-125% 防禦強化",
             Index: 1
           }
         ],
@@ -23142,7 +23142,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "844-949",
           EquipmentType: 0,
-          Name: "Hellforge Plate",
+          Name: "地獄鍛甲 (Hellforge Plate)",
           RequiredStrength: 196,
           RequiredDexterity: 0,
           Durability: 60,
@@ -23159,12 +23159,12 @@ const json = [
         Type: "Helm",
         "Set": "Path of Bravery",
         SetPropertiesString: [
-          "-20% to Enemy Cold Resistance (2 Items)",
-          "-20% to Enemy Cold Resistance (3 Items)",
-          "-20% to Enemy Cold Resistance (4 Items)",
-          "-20% to Enemy Cold Resistance (5 Items)"
+          "敵人冰寒抗性 -20% （2 件）",
+          "敵人冰寒抗性 -20% （3 件）",
+          "敵人冰寒抗性 -20% （4 件）",
+          "敵人冰寒抗性 -20% （5 件）"
         ],
-        Name: "Imperial Helm",
+        Name: "帝國头盔 (Imperial Helm)",
         Index: "Imperial Helm",
         Enabled: true,
         Rarity: 7,
@@ -23173,15 +23173,15 @@ const json = [
         Code: "xkp",
         Properties: [
           {
-            PropertyString: "-20% to Enemy Cold Resistance",
+            PropertyString: "敵人冰寒抗性 -20%",
             Index: 2
           },
           {
-            PropertyString: "+125-150% Enhanced Defense",
+            PropertyString: "+125-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+15% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +15%",
             Index: 1
           }
         ],
@@ -23191,7 +23191,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "119-132",
           EquipmentType: 0,
-          Name: "Sallet",
+          Name: "便盔 (Sallet)",
           RequiredStrength: 43,
           RequiredDexterity: 0,
           Durability: 18,
@@ -23208,12 +23208,12 @@ const json = [
         Type: "Belt",
         "Set": "Path of Bravery",
         SetPropertiesString: [
-          "-20% to Enemy Lightning Resistance (2 Items)",
-          "-20% to Enemy Lightning Resistance (3 Items)",
-          "-20% to Enemy Lightning Resistance (4 Items)",
-          "-20% to Enemy Lightning Resistance (5 Items)"
+          "敵人電擊抗性 -20% （2 件）",
+          "敵人電擊抗性 -20% （3 件）",
+          "敵人電擊抗性 -20% （4 件）",
+          "敵人電擊抗性 -20% （5 件）"
         ],
-        Name: "Imperial Girdle",
+        Name: "帝國腰帶 (Imperial Girdle)",
         Index: "Imperial Girdle",
         Enabled: true,
         Rarity: 7,
@@ -23222,15 +23222,15 @@ const json = [
         Code: "uhc",
         Properties: [
           {
-            PropertyString: "-20% to Enemy Lightning Resistance",
+            PropertyString: "敵人電擊抗性 -20%",
             Index: 2
           },
           {
-            PropertyString: "+125-150% Enhanced Defense",
+            PropertyString: "+125-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +35-40%",
+            PropertyString: "所有抗性 +35-40%",
             Index: 1
           }
         ],
@@ -23240,7 +23240,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "139-155",
           EquipmentType: 0,
-          Name: "Colossus Girdle",
+          Name: "巨神腰帶 (Colossus Girdle)",
           RequiredStrength: 185,
           RequiredDexterity: 0,
           Durability: 24,
@@ -23257,12 +23257,12 @@ const json = [
         Type: "Boots",
         "Set": "Path of Bravery",
         SetPropertiesString: [
-          "-20% to Enemy Poison Resistance (2 Items)",
-          "-20% to Enemy Poison Resistance (3 Items)",
-          "-20% to Enemy Poison Resistance (4 Items)",
-          "-20% to Enemy Poison Resistance (5 Items)"
+          "敵人毒素抗性 -20% （2 件）",
+          "敵人毒素抗性 -20% （3 件）",
+          "敵人毒素抗性 -20% （4 件）",
+          "敵人毒素抗性 -20% （5 件）"
         ],
-        Name: "Imperial Greaves",
+        Name: "帝國護脛 (Imperial Greaves)",
         Index: "Imperial Greaves",
         Enabled: true,
         Rarity: 7,
@@ -23271,15 +23271,15 @@ const json = [
         Code: "uhb",
         Properties: [
           {
-            PropertyString: "-20% to Enemy Poison Resistance",
+            PropertyString: "敵人毒素抗性 -20%",
             Index: 2
           },
           {
-            PropertyString: "+120-140% Enhanced Defense",
+            PropertyString: "+120-140% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Magic Resist +20%",
+            PropertyString: "魔法抗性 +20%",
             Index: 1
           }
         ],
@@ -23289,7 +23289,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "138-151",
           EquipmentType: 0,
-          Name: "Myrmidon Greaves",
+          Name: "勇士護脛 (Myrmidon Greaves)",
           RequiredStrength: 208,
           RequiredDexterity: 0,
           Durability: 24,
@@ -23306,9 +23306,9 @@ const json = [
         Type: "Gloves",
         "Set": "Path of Bravery",
         SetPropertiesString: [
-          "+20% Increased Attack Speed (3 Items)"
+          "攻擊速度 +20% （3 件）"
         ],
-        Name: "Imperial Gauntlets",
+        Name: "帝國臂鎧 (Imperial Gauntlets)",
         Index: "Imperial Gauntlets",
         Enabled: true,
         Rarity: 7,
@@ -23317,19 +23317,19 @@ const json = [
         Code: "uhg",
         Properties: [
           {
-            PropertyString: "+30% Faster Cast Rate",
+            PropertyString: "+30% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+120-150% Enhanced Defense",
+            PropertyString: "+120-150% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "Regenerate Mana +60%",
+            PropertyString: "法力恢復 60%",
             Index: 3
           },
           {
-            PropertyString: "Requirements -50%",
+            PropertyString: "需求 -50%",
             Index: 2
           }
         ],
@@ -23339,7 +23339,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "138-157",
           EquipmentType: 0,
-          Name: "Ogre Gauntlets",
+          Name: "巨魔護手 (Ogre Gauntlets)",
           RequiredStrength: 185,
           RequiredDexterity: 0,
           Durability: 24,
@@ -23356,13 +23356,13 @@ const json = [
         Type: "Scepter",
         "Set": "Path of Bravery",
         SetPropertiesString: [
-          "Adds 50-100 to Damage (4 Items)",
-          "-20% to Enemy Fire Resistance (2 Items)",
-          "-20% to Enemy Cold Resistance (3 Items)",
-          "-20% to Enemy Lightning Resistance (4 Items)",
-          "-20% to Enemy Poison Resistance (5 Items)"
+          "增加 50-100 傷害 （4 件）",
+          "敵人火焰抗性 -20% （2 件）",
+          "敵人冰寒抗性 -20% （3 件）",
+          "敵人電擊抗性 -20% （4 件）",
+          "敵人毒素抗性 -20% （5 件）"
         ],
-        Name: "Imperial Scepter",
+        Name: "帝國權杖 (Imperial Scepter)",
         Index: "Imperial Scepter",
         Enabled: true,
         Rarity: 7,
@@ -23371,23 +23371,23 @@ const json = [
         Code: "9ws",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
-            PropertyString: "+200-220% Enhanced Damage",
+            PropertyString: "+200-220% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Adds 6-8% Life stolen per hit",
+            PropertyString: "擊中竊取 6-8% 生命",
             Index: 3
           },
           {
-            PropertyString: "+5 to Light Radius",
+            PropertyString: "照亮範圍 +5",
             Index: 4
           },
           {
-            PropertyString: "Socketed (2-3)",
+            PropertyString: "鑲孔 (2-3)",
             Index: 2
           }
         ],
@@ -23400,7 +23400,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Divine Scepter",
+          Name: "聖恩權杖 (Divine Scepter)",
           RequiredStrength: 103,
           RequiredDexterity: 0,
           Durability: 250,
@@ -23416,33 +23416,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 2
       },
       {
-        PropertyString: "+30% Faster Block Rate",
+        PropertyString: "+30% 格擋速度",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+30% Faster Run/Walk",
+        PropertyString: "+30% 跑步 / 行走速度",
         Index: 3
       },
       {
-        PropertyString: "+15% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +15%",
         Index: 1
       },
       {
-        PropertyString: "+2% to Experience Gained",
+        PropertyString: "獲得的經驗值 +2%",
         Index: 2
       }
     ],
@@ -23450,13 +23450,13 @@ const json = [
   },
   {
     Index: "Terror of the Deep",
-    Name: "Terror of the Deep",
+    Name: "深海之恐怖 (Terror of the Deep)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Terror of the Deep",
         SetPropertiesString: [],
-        Name: "Great White Terror",
+        Name: "慘白恐怖 (Great White Terror)",
         Index: "Great White Terror",
         Enabled: true,
         Rarity: 7,
@@ -23465,23 +23465,23 @@ const json = [
         Code: "uld",
         Properties: [
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 4
           },
           {
-            PropertyString: "Lightning Resist -50%",
+            PropertyString: "電擊抗性 -50%",
             Index: 2
           },
           {
-            PropertyString: "Fire Resist +75%",
+            PropertyString: "火焰抗性 +75%",
             Index: 3
           },
           {
-            PropertyString: "+25% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +25%",
             Index: 0
           },
           {
-            PropertyString: "Damage Reduced by 35",
+            PropertyString: "物理傷害降低 35",
             Index: 1
           }
         ],
@@ -23491,7 +23491,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "417",
           EquipmentType: 0,
-          Name: "Kraken Shell",
+          Name: "海怪之殼 (Kraken Shell)",
           RequiredStrength: 174,
           RequiredDexterity: 0,
           Durability: 48,
@@ -23508,10 +23508,10 @@ const json = [
         Type: "Polearm",
         "Set": "Terror of the Deep",
         SetPropertiesString: [
-          "+45% Increased Attack Speed (4 Items)",
-          "Adds 50-250 to Damage (3 Items)"
+          "攻擊速度 +45% （4 件）",
+          "增加 50-250 傷害 （3 件）"
         ],
-        Name: "Feeding Frenzy",
+        Name: "飼育狂怒 (Feeding Frenzy)",
         Index: "Feeding Frenzy",
         Enabled: true,
         Rarity: 7,
@@ -23520,23 +23520,23 @@ const json = [
         Code: "7wc",
         Properties: [
           {
-            PropertyString: "+3 to Barbarian Skill Levels",
+            PropertyString: "+3 野蠻人技能等級",
             Index: 4
           },
           {
-            PropertyString: "+220-290% Enhanced Damage",
+            PropertyString: "+220-290% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+6% Mana stolen per hit",
+            PropertyString: "擊中竊取 +6% 法力",
             Index: 3
           },
           {
-            PropertyString: "+6% Life stolen per hit",
+            PropertyString: "擊中竊取 6% 生命",
             Index: 2
           },
           {
-            PropertyString: "Requirements -25%",
+            PropertyString: "需求 -25%",
             Index: 1
           }
         ],
@@ -23549,7 +23549,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Giant Thresher",
+          Name: "巨型斬鐮 (Giant Thresher)",
           RequiredStrength: 188,
           RequiredDexterity: 140,
           Durability: 250,
@@ -23566,7 +23566,7 @@ const json = [
         Type: "Belt",
         "Set": "Terror of the Deep",
         SetPropertiesString: [],
-        Name: "Mako's Quickness",
+        Name: "真子的迅捷 (Mako's Quickness)",
         Index: "Mako's Quickness",
         Enabled: true,
         Rarity: 7,
@@ -23575,23 +23575,23 @@ const json = [
         Code: "zvb",
         Properties: [
           {
-            PropertyString: "+4-8 to Avoid",
+            PropertyString: "+4-8 閃身",
             Index: 4
           },
           {
-            PropertyString: "+15% Faster Run/Walk",
+            PropertyString: "+15% 跑步 / 行走速度",
             Index: 1
           },
           {
-            PropertyString: "+15% Faster Hit Recovery",
+            PropertyString: "+15% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "+130-160% Enhanced Defense",
+            PropertyString: "+130-160% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+25 to Dexterity",
+            PropertyString: "+25 敏捷",
             Index: 3
           }
         ],
@@ -23601,7 +23601,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "73-83",
           EquipmentType: 0,
-          Name: "Sharkskin Belt",
+          Name: "鯊皮腰帶 (Sharkskin Belt)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 14,
@@ -23618,7 +23618,7 @@ const json = [
         Type: "Boots",
         "Set": "Terror of the Deep",
         SetPropertiesString: [],
-        Name: "Hammerhead's Persistence",
+        Name: "錘头的堅持 (Hammerhead's Persistence)",
         Index: "Hammerhead's Persistence",
         Enabled: true,
         Rarity: 7,
@@ -23627,19 +23627,19 @@ const json = [
         Code: "xvb",
         Properties: [
           {
-            PropertyString: "+15-25% Chance of Crushing Blow",
+            PropertyString: "+15-25% 概率造成粉碎打擊",
             Index: 3
           },
           {
-            PropertyString: "+100% Enhanced Defense",
+            PropertyString: "+100% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+60-90 to Life",
+            PropertyString: "+60-90 生命",
             Index: 4
           },
           {
-            PropertyString: "+10% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10%",
             Index: 1
           }
         ],
@@ -23649,7 +23649,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "68",
           EquipmentType: 0,
-          Name: "Sharkskin Boots",
+          Name: "鯊皮靴 (Sharkskin Boots)",
           RequiredStrength: 47,
           RequiredDexterity: 0,
           Durability: 14,
@@ -23665,33 +23665,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "Half Freeze Duration",
+        PropertyString: "冰凍時間減半",
         Index: 0
       },
       {
-        PropertyString: "+25% Deadly Strike",
+        PropertyString: "+25% 致命打擊",
         Index: 2
       }
     ],
     FullProperties: [
       {
-        PropertyString: "15% Chance to cast level 18 Shock Wave on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 18 震波衝擊",
         Index: 4
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+150% Enhanced Damage",
+        PropertyString: "+150% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "Adds 25-50 to Damage",
+        PropertyString: "增加 25-50 傷害",
         Index: 3
       },
       {
-        PropertyString: "+66% Chance of Crushing Blow",
+        PropertyString: "+66% 概率造成粉碎打擊",
         Index: 1
       }
     ],
@@ -23699,13 +23699,13 @@ const json = [
   },
   {
     Index: "Celestial Hierarchy",
-    Name: "Celestial Hierarchy",
+    Name: "天堂體系 (Celestial Hierarchy)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Celestial Hierarchy",
         SetPropertiesString: [],
-        Name: "Angels",
+        Name: "天使 (Angels)",
         Index: "Angels",
         Enabled: true,
         Rarity: 7,
@@ -23714,15 +23714,15 @@ const json = [
         Code: "uth",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 5
           },
           {
-            PropertyString: "+20% Faster Cast Rate",
+            PropertyString: "+20% 施法速度",
             Index: 0
           },
           {
-            PropertyString: "+20% Faster Hit Recovery",
+            PropertyString: "+20% 打擊恢復",
             Index: 2
           },
           {
@@ -23730,11 +23730,11 @@ const json = [
             Index: 1
           },
           {
-            PropertyString: "+1.12% better chance of getting magic item (Per Character Level)",
+            PropertyString: "+1.12% better chance of getting magic item （依角色等級而定）",
             Index: 3
           },
           {
-            PropertyString: "Socketed (1-2)",
+            PropertyString: "鑲孔 (1-2)",
             Index: 4
           }
         ],
@@ -23744,7 +23744,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "433",
           EquipmentType: 0,
-          Name: "Lacquered Plate",
+          Name: "漆護鎧甲 (Lacquered Plate)",
           RequiredStrength: 208,
           RequiredDexterity: 0,
           Durability: 55,
@@ -23761,13 +23761,13 @@ const json = [
         Type: "Sword",
         "Set": "Celestial Hierarchy",
         SetPropertiesString: [
-          "+250 to Maximum Damage (6 Items)",
-          "Adds 100-200 to Magic Damage (2 Items)",
-          "Adds 100-200 to Fire Damage (4 Items)",
-          "Adds 64-200 to Lightning Damage (5 Items)",
-          "Adds 100-200 to Cold Damage (3 Items)"
+          "+250 最大傷害 （6 件）",
+          "增加 100-200 魔法傷害 （2 件）",
+          "增加 100-200 火焰傷害 （4 件）",
+          "增加 64-200 電擊傷害 （5 件）",
+          "增加 100-200 寒冰傷害 （3 件）"
         ],
-        Name: "Principality",
+        Name: "權天使 (Principality)",
         Index: "Principality",
         Enabled: true,
         Rarity: 7,
@@ -23776,23 +23776,23 @@ const json = [
         Code: "9b9",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 4
           },
           {
-            PropertyString: "+260-300% Enhanced Damage",
+            PropertyString: "+260-300% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "+15% Chance of Crushing Blow",
+            PropertyString: "+15% 概率造成粉碎打擊",
             Index: 2
           },
           {
-            PropertyString: "+15% Deadly Strike",
+            PropertyString: "+15% 致命打擊",
             Index: 1
           },
           {
-            PropertyString: "-1 to -5 Drain Life",
+            PropertyString: "-1 to 吸取生命 -5",
             Index: 3
           }
         ],
@@ -23809,7 +23809,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Gothic Sword",
+          Name: "哥德劍 (Gothic Sword)",
           RequiredStrength: 113,
           RequiredDexterity: 20,
           Durability: 250,
@@ -23826,11 +23826,11 @@ const json = [
         Type: "Belt",
         "Set": "Celestial Hierarchy",
         SetPropertiesString: [
-          "Regenerate Mana +50% (3 Items)",
-          "All Resistances +10% (4 Items)",
-          "+35% better chance of getting magic item (5 Items)"
+          "法力恢復 50% （3 件）",
+          "所有抗性 +10% （4 件）",
+          "尋獲魔法物品機率提高 +35% （5 件）"
         ],
-        Name: "Virtue",
+        Name: "德天使 (Virtue)",
         Index: "Virtue",
         Enabled: true,
         Rarity: 7,
@@ -23839,19 +23839,19 @@ const json = [
         Code: "zlb",
         Properties: [
           {
-            PropertyString: "+80-110% Enhanced Defense",
+            PropertyString: "+80-110% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+35-50 to Life",
+            PropertyString: "+35-50 生命",
             Index: 1
           },
           {
-            PropertyString: "+6 Replenish Life",
+            PropertyString: "生命回復 +6",
             Index: 3
           },
           {
-            PropertyString: "+7 to Mana after each Kill",
+            PropertyString: "+7 擊殺法力恢復",
             Index: 2
           }
         ],
@@ -23861,7 +23861,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "54-63",
           EquipmentType: 0,
-          Name: "Demonhide Sash",
+          Name: "魔皮束帶 (Demonhide Sash)",
           RequiredStrength: 20,
           RequiredDexterity: 0,
           Durability: 12,
@@ -23878,9 +23878,9 @@ const json = [
         Type: "Boots",
         "Set": "Celestial Hierarchy",
         SetPropertiesString: [
-          "+35 to Strength (5 Items)"
+          "+35 力量 （5 件）"
         ],
-        Name: "Dominion",
+        Name: "主天使 (Dominion)",
         Index: "Dominion",
         Enabled: true,
         Rarity: 7,
@@ -23889,7 +23889,7 @@ const json = [
         Code: "utb",
         Properties: [
           {
-            PropertyString: "+50% Faster Run/Walk",
+            PropertyString: "+50% 跑步 / 行走速度",
             Index: 2
           },
           {
@@ -23897,15 +23897,15 @@ const json = [
             Index: 4
           },
           {
-            PropertyString: "+180-210% Enhanced Defense",
+            PropertyString: "+180-210% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "-20 to Dexterity",
+            PropertyString: "-20 敏捷",
             Index: 3
           },
           {
-            PropertyString: "Requirements -20%",
+            PropertyString: "需求 -20%",
             Index: 1
           }
         ],
@@ -23915,7 +23915,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "168-186",
           EquipmentType: 0,
-          Name: "Mirrored Boots",
+          Name: "幻鏡戰靴 (Mirrored Boots)",
           RequiredStrength: 163,
           RequiredDexterity: 0,
           Durability: 18,
@@ -23932,7 +23932,7 @@ const json = [
         Type: "Helm",
         "Set": "Celestial Hierarchy",
         SetPropertiesString: [],
-        Name: "Cherubim",
+        Name: "智天使 (Cherubim)",
         Index: "Cherubim",
         Enabled: true,
         Rarity: 7,
@@ -23941,23 +23941,23 @@ const json = [
         Code: "ulm",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+150-200 Defense",
+            PropertyString: "+150-200 防禦",
             Index: 1
           },
           {
-            PropertyString: "+0.5 to Energy (Per Character Level)",
+            PropertyString: "+0.5 能量 （依角色等級而定）",
             Index: 4
           },
           {
-            PropertyString: "+30 to Mana",
+            PropertyString: "+30 法力",
             Index: 2
           },
           {
-            PropertyString: "Poison Resist +25%",
+            PropertyString: "毒素抗性 +25%",
             Index: 3
           }
         ],
@@ -23967,7 +23967,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "255-305",
           EquipmentType: 0,
-          Name: "Armet",
+          Name: "覆頰盔 (Armet)",
           RequiredStrength: 109,
           RequiredDexterity: 0,
           Durability: 24,
@@ -23984,7 +23984,7 @@ const json = [
         Type: "Ring",
         "Set": "Celestial Hierarchy",
         SetPropertiesString: [],
-        Name: "Seraphim",
+        Name: "六翼天使 (Seraphim)",
         Index: "Seraphim",
         Enabled: true,
         Rarity: 5,
@@ -23993,30 +23993,30 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+25% Enhanced Damage",
+            PropertyString: "+25% 傷害強化",
             Index: 1
           },
           {
-            PropertyString: "+10 Life after each Kill",
+            PropertyString: "+10 擊殺生命恢復",
             Index: 2
           },
           {
-            PropertyString: "+1-2% to Experience Gained",
+            PropertyString: "獲得的經驗值 +1-2%",
             Index: 3
           },
           {
-            PropertyString: "Reduces all Vendor Prices 5%",
+            PropertyString: "所有商人的價格降低 5%",
             Index: 4
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -24032,33 +24032,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+20% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +20%",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 2
       },
       {
-        PropertyString: "+45% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +45%",
         Index: 4
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 6
       }
     ],
     FullProperties: [
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 2
       },
       {
-        PropertyString: "+20 Replenish Life",
+        PropertyString: "生命回復 +20",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 0
       }
     ],
@@ -24066,13 +24066,13 @@ const json = [
   },
   {
     Index: "Lords of Hell",
-    Name: "Lords of Hell",
+    Name: "地獄之主 (Lords of Hell)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Lords of Hell",
         SetPropertiesString: [],
-        Name: "Mephisto's Misty Aura",
+        Name: "墨菲斯托的迷霧光環 (Mephisto's Misty Aura)",
         Index: "Mephisto's Misty Aura",
         Enabled: true,
         Rarity: 7,
@@ -24081,19 +24081,19 @@ const json = [
         Code: "uul",
         Properties: [
           {
-            PropertyString: "20% Chance to cast level 8 Cloak Of Shadows when struck",
+            PropertyString: "被擊中時有 20% 機率施展等級 8 魔影斗蓬",
             Index: 0
           },
           {
-            PropertyString: "Level 1 Cleansing Aura When Equipped",
+            PropertyString: "裝備時賦予等級 1 淨化靈氣",
             Index: 3
           },
           {
-            PropertyString: "+140-160% Enhanced Defense",
+            PropertyString: "+140-160% 防禦強化",
             Index: 2
           },
           {
-            PropertyString: "-4 to Light Radius",
+            PropertyString: "照亮範圍 -4",
             Index: 1
           }
         ],
@@ -24103,7 +24103,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1072-1162",
           EquipmentType: 0,
-          Name: "Shadow Plate",
+          Name: "暗影鎧甲 (Shadow Plate)",
           RequiredStrength: 230,
           RequiredDexterity: 0,
           Durability: 70,
@@ -24120,9 +24120,9 @@ const json = [
         Type: "Ring",
         "Set": "Lords of Hell",
         SetPropertiesString: [
-          "+50% better chance of getting magic item (4 Items)"
+          "尋獲魔法物品機率提高 +50% （4 件）"
         ],
-        Name: "Diablo's Soulstone Ring",
+        Name: "迪亞波羅的灵魂石之戒 (Diablo's Soulstone Ring)",
         Index: "Diablo's Soulstone Ring",
         Enabled: true,
         Rarity: 3,
@@ -24131,30 +24131,30 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+50 to Life",
+            PropertyString: "+50 生命",
             Index: 1
           },
           {
-            PropertyString: "+50 to Mana",
+            PropertyString: "+50 法力",
             Index: 2
           },
           {
-            PropertyString: "+10% Physical Damage Reduction",
+            PropertyString: "物理傷害降低 +10%",
             Index: 3
           },
           {
-            PropertyString: "Magic Damage Reduced by 20",
+            PropertyString: "魔法傷害降低 20",
             Index: 4
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -24171,7 +24171,7 @@ const json = [
         Type: "Amulet",
         "Set": "Lords of Hell",
         SetPropertiesString: [],
-        Name: "Baal's Cryptic Amulet",
+        Name: "巴爾的神秘護身符 (Baal's Cryptic Amulet)",
         Index: "Baal's Cryptic Amulet",
         Enabled: true,
         Rarity: 3,
@@ -24180,26 +24180,26 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+2 to All Skills",
+            PropertyString: "+2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+25 Replenish Life",
+            PropertyString: "生命回復 +25",
             Index: 2
           },
           {
-            PropertyString: "Regenerate Mana +50%",
+            PropertyString: "法力恢復 50%",
             Index: 3
           },
           {
-            PropertyString: "+35-50% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +35-50%",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -24216,10 +24216,10 @@ const json = [
         Type: "Javelin",
         "Set": "Lords of Hell",
         SetPropertiesString: [
-          "+8 to Lightning Fury (3 Items)",
-          "+25% Increased Attack Speed (2 Items)"
+          "+8 閃電烈怒（3 件）",
+          "攻擊速度 +25% （2 件）"
         ],
-        Name: "Heaven's Lances",
+        Name: "天堂之槍 (Heaven's Lances)",
         Index: "Heaven's Lances",
         Enabled: true,
         Rarity: 7,
@@ -24228,23 +24228,23 @@ const json = [
         Code: "9ts",
         Properties: [
           {
-            PropertyString: "+190-240% Enhanced Damage",
+            PropertyString: "+190-240% 傷害強化",
             Index: 0
           },
           {
-            PropertyString: "Knockback",
+            PropertyString: "擊退",
             Index: 3
           },
           {
-            PropertyString: "+75 Increased Stack Size",
+            PropertyString: "堆疊數量提高 75",
             Index: 1
           },
           {
-            PropertyString: "Replenishes quantity",
+            PropertyString: "回復數量",
             Index: 2
           },
           {
-            PropertyString: "Replenishes quantity",
+            PropertyString: "回復數量",
             Index: 4
           }
         ],
@@ -24261,7 +24261,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Harpoon",
+          Name: "魚叉 (Harpoon)",
           RequiredStrength: 25,
           RequiredDexterity: 118,
           Durability: 250,
@@ -24277,33 +24277,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "13% Chance to cast level 31 Charged Bolt when struck",
+        PropertyString: "被擊中時有 13% 機率施展等級 31 電能彈",
         Index: 1
       },
       {
-        PropertyString: "+75% Piercing Attack",
+        PropertyString: "+75% 穿透攻擊",
         Index: 0
       },
       {
-        PropertyString: "+55% Chance of Open Wounds",
+        PropertyString: "+55% 機率造成開放傷口",
         Index: 5
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 4
       },
       {
-        PropertyString: "Slows target by 20%",
+        PropertyString: "使目標減慢 20%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 3
       }
     ],
@@ -24311,16 +24311,16 @@ const json = [
   },
   {
     Index: "Corruption Coils",
-    Name: "Corruption Coils",
+    Name: "腐化纏繞 (Corruption Coils)",
     SetItems: [
       {
         Type: "Ring",
         "Set": "Corruption Coils",
         SetPropertiesString: [
-          "+40% to Fire Skill Damage (3 Items)",
-          "+50% better chance of getting magic item (2 Items)"
+          "+40% 火焰技能傷害 （3 件）",
+          "尋獲魔法物品機率提高 +50% （2 件）"
         ],
-        Name: "Demonic Chuckle",
+        Name: "惡魔的嗤笑 (Demonic Chuckle)",
         Index: "Demonic Chuckle",
         Enabled: true,
         Rarity: 1,
@@ -24329,18 +24329,18 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+35-50 to Life",
+            PropertyString: "+35-50 生命",
             Index: 0
           },
           {
-            PropertyString: "+25 to Mana",
+            PropertyString: "+25 法力",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -24357,10 +24357,10 @@ const json = [
         Type: "Ring",
         "Set": "Corruption Coils",
         SetPropertiesString: [
-          "+40% to Lightning Skill Damage (3 Items)",
-          "+100% extra gold from monsters (2 Items)"
+          "+40% 閃電技能傷害 （3 件）",
+          "怪物金幣掉落量提高 +100% （2 件）"
         ],
-        Name: "Evil Humor",
+        Name: "邪惡的幽默 (Evil Humor)",
         Index: "Evil Humor",
         Enabled: true,
         Rarity: 1,
@@ -24369,18 +24369,18 @@ const json = [
         Code: "rin",
         Properties: [
           {
-            PropertyString: "+35-50 to Life",
+            PropertyString: "+35-50 生命",
             Index: 0
           },
           {
-            PropertyString: "+25 to Mana",
+            PropertyString: "+25 法力",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Ring",
+          Name: "戒指",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -24397,10 +24397,10 @@ const json = [
         Type: "Amulet",
         "Set": "Corruption Coils",
         SetPropertiesString: [
-          "10% Chance to cast level 20 Taunt when struck (2 Items)",
-          "+40% to Cold Skill Damage (3 Items)"
+          "被擊中時有 10% 機率施展等級 20 嘲諷 （2 件）",
+          "+40% 寒冰技能傷害 （3 件）"
         ],
-        Name: "Temptation's Death",
+        Name: "誘惑的死亡 (Temptation's Death)",
         Index: "Temptation's Death",
         Enabled: true,
         Rarity: 1,
@@ -24409,18 +24409,18 @@ const json = [
         Code: "amu",
         Properties: [
           {
-            PropertyString: "+50-75 to Life",
+            PropertyString: "+50-75 生命",
             Index: 0
           },
           {
-            PropertyString: "+40 to Mana",
+            PropertyString: "+40 法力",
             Index: 1
           }
         ],
         DamageArmorEnhanced: false,
         Equipment: {
           EquipmentType: 2,
-          Name: "Amulet",
+          Name: "護身符",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 0,
@@ -24436,17 +24436,17 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "-50 Drain Life",
+        PropertyString: "吸取生命 -50",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+5 to All Skills",
+        PropertyString: "+5 所有技能",
         Index: 4
       },
       {
-        PropertyString: "+40% to Poison Skill Damage",
+        PropertyString: "+40% 毒素技能傷害",
         Index: 2
       },
       {
@@ -24458,7 +24458,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 3
       }
     ],
@@ -24466,16 +24466,16 @@ const json = [
   },
   {
     Index: "Maadi's Paradox",
-    Name: "Maadi's Paradox",
+    Name: "马迪悖论 (Maadi's Paradox)",
     SetItems: [
       {
         Type: "Gloves",
         "Set": "Maadi's Paradox",
         SetPropertiesString: [
-          "+5 to Bone Spear (Necromancer Only) (3 Items)",
-          "+30 to Energy (2 Items)"
+          "+5 骨矛（只限死靈法師） （3 件）",
+          "+30 能量 （2 件）"
         ],
-        Name: "Maadi's Silence",
+        Name: "马迪的沉默 (Maadi's Silence)",
         Index: "Maadi's Silence",
         Enabled: true,
         Rarity: 7,
@@ -24484,19 +24484,19 @@ const json = [
         Code: "uvg",
         Properties: [
           {
-            PropertyString: "+50-100 Defense",
+            PropertyString: "+50-100 防禦",
             Index: 3
           },
           {
-            PropertyString: "+50 to Life",
+            PropertyString: "+50 生命",
             Index: 2
           },
           {
-            PropertyString: "Damage Reduced by 10",
+            PropertyString: "物理傷害降低 10",
             Index: 1
           },
           {
-            PropertyString: "Magic Damage Reduced by 10",
+            PropertyString: "魔法傷害降低 10",
             Index: 0
           }
         ],
@@ -24506,7 +24506,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "106-156",
           EquipmentType: 0,
-          Name: "Vampirebone Gloves",
+          Name: "吸血鬼骸骨手套 (Vampirebone Gloves)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 14,
@@ -24523,10 +24523,10 @@ const json = [
         Type: "Helm",
         "Set": "Maadi's Paradox",
         SetPropertiesString: [
-          "+15-20% Faster Run/Walk (2 Items)",
-          "+15% Faster Cast Rate (3 Items)"
+          "+15-20% 跑步 / 行走速度 （2 件）",
+          "+15% 施法速度 （3 件）"
         ],
-        Name: "Maadi's Vision",
+        Name: "马迪的愿景 (Maadi's Vision)",
         Index: "Maadi's Vision",
         Enabled: true,
         Rarity: 7,
@@ -24535,23 +24535,23 @@ const json = [
         Code: "uh9",
         Properties: [
           {
-            PropertyString: "+20-30% Faster Hit Recovery",
+            PropertyString: "+20-30% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "+150-200% Enhanced Defense",
+            PropertyString: "+150-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+25 to Vitality",
+            PropertyString: "+25 體能",
             Index: 1
           },
           {
-            PropertyString: "All Resistances +10%",
+            PropertyString: "所有抗性 +10%",
             Index: 3
           },
           {
-            PropertyString: "+30-50% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +30-50%",
             Index: 4
           }
         ],
@@ -24561,7 +24561,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "252-303",
           EquipmentType: 0,
-          Name: "Bone Visage",
+          Name: "骸骨面罩 (Bone Visage)",
           RequiredStrength: 106,
           RequiredDexterity: 0,
           Durability: 40,
@@ -24578,12 +24578,12 @@ const json = [
         Type: "Armor",
         "Set": "Maadi's Paradox",
         SetPropertiesString: [
-          "+50 to Vitality (2 Items)",
-          "+50 to Energy (3 Items)",
-          "+10% Magic Absorb (4 Items)",
-          "Magic Damage Reduced by 10 (5 Items)"
+          "+50 體能 （2 件）",
+          "+50 能量 （3 件）",
+          "魔法吸引 +10% （4 件）",
+          "魔法傷害降低 10 （5 件）"
         ],
-        Name: "Maadi's Spirit",
+        Name: "马迪的精神 (Maadi's Spirit)",
         Index: "Maadi's Spirit",
         Enabled: true,
         Rarity: 7,
@@ -24592,23 +24592,23 @@ const json = [
         Code: "uhn",
         Properties: [
           {
-            PropertyString: "+150-200% Enhanced Defense",
+            PropertyString: "+150-200% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+100-200 Defense",
+            PropertyString: "+100-200 防禦",
             Index: 4
           },
           {
-            PropertyString: "+25 to Vitality",
+            PropertyString: "+25 體能",
             Index: 1
           },
           {
-            PropertyString: "+25 to Energy",
+            PropertyString: "+25 能量",
             Index: 2
           },
           {
-            PropertyString: "+10-15% Increased Maximum Mana",
+            PropertyString: "法力上限 +10-15%",
             Index: 3
           }
         ],
@@ -24618,7 +24618,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "1100-1400",
           EquipmentType: 0,
-          Name: "Boneweave",
+          Name: "骸骨網甲 (Boneweave)",
           RequiredStrength: 158,
           RequiredDexterity: 0,
           Durability: 0,
@@ -24635,10 +24635,10 @@ const json = [
         Type: "Wand",
         "Set": "Maadi's Paradox",
         SetPropertiesString: [
-          "+25% Faster Cast Rate (2 Items)",
-          "All Resistances +20% (3 Items)"
+          "+25% 施法速度 （2 件）",
+          "所有抗性 +20% （3 件）"
         ],
-        Name: "Maadi's Torch",
+        Name: "马迪的火炬 (Maadi's Torch)",
         Index: "Maadi's Torch",
         Enabled: true,
         Rarity: 7,
@@ -24651,15 +24651,15 @@ const json = [
             Index: 1
           },
           {
-            PropertyString: "+1-2 to All Skills",
+            PropertyString: "+1-2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+30% Faster Cast Rate",
+            PropertyString: "+30% 施法速度",
             Index: 2
           },
           {
-            PropertyString: "+10-30% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +10-30%",
             Index: 3
           }
         ],
@@ -24672,7 +24672,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Unearthed Wand",
+          Name: "埋骨魔杖 (Unearthed Wand)",
           RequiredStrength: 25,
           RequiredDexterity: 0,
           Durability: 250,
@@ -24689,9 +24689,9 @@ const json = [
         Type: "Voodoo Heads",
         "Set": "Maadi's Paradox",
         SetPropertiesString: [
-          "+1 Additional Bone Spear Projectiles (5 Items)"
+          "+1 Additional Bone Spear Projectiles （5 件）"
         ],
-        Name: "Maadi's Soul",
+        Name: "马迪的灵魂 (Maadi's Soul)",
         Index: "Maadi's Soul",
         Enabled: true,
         Rarity: 7,
@@ -24700,11 +24700,11 @@ const json = [
         Code: "ned",
         Properties: [
           {
-            PropertyString: "+1-2 to All Skills",
+            PropertyString: "+1-2 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+20-30% Faster Cast Rate",
+            PropertyString: "+20-30% 施法速度",
             Index: 1
           },
           {
@@ -24712,15 +24712,15 @@ const json = [
             Index: 4
           },
           {
-            PropertyString: "+20-35% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20-35%",
             Index: 3
           },
           {
-            PropertyString: "+150-200% Enhanced Defense",
+            PropertyString: "+150-200% 防禦強化",
             Index: 5
           },
           {
-            PropertyString: "All Resistances +20%",
+            PropertyString: "所有抗性 +20%",
             Index: 2
           }
         ],
@@ -24730,7 +24730,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "247-297",
           EquipmentType: 0,
-          Name: "Overseer Skull",
+          Name: "督軍顱骨 (Overseer Skull)",
           RequiredStrength: 91,
           RequiredDexterity: 0,
           Durability: 20,
@@ -24746,33 +24746,33 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 0
       },
       {
-        PropertyString: "+5 to Bone Spear (Necromancer Only)",
+        PropertyString: "+5 骨矛（只限死靈法師）",
         Index: 2
       },
       {
-        PropertyString: "+200 to Life",
+        PropertyString: "+200 生命",
         Index: 4
       }
     ],
     FullProperties: [
       {
-        PropertyString: "+5 to All Skills",
+        PropertyString: "+5 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy Shield",
+        PropertyString: "+10 能量 Shield",
         Index: 2
       },
       {
-        PropertyString: "Magic Resist +15%",
+        PropertyString: "魔法抗性 +15%",
         Index: 3
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 1
       }
     ],
@@ -24780,16 +24780,16 @@ const json = [
   },
   {
     Index: "The Raven's Nest",
-    Name: "The Raven's Nest",
+    Name: "烏鴉的巢穴 (The Raven's Nest)",
     SetItems: [
       {
         Type: "Gloves",
         "Set": "The Raven's Nest",
         SetPropertiesString: [
-          "+15% Faster Cast Rate (4 Items)",
-          "Cold Resist +30% (2 Items)"
+          "+15% 施法速度 （4 件）",
+          "冰寒抗性 +30% （2 件）"
         ],
-        Name: "The Raven's Talons",
+        Name: "烏鴉的利爪 (The Raven's Talons)",
         Index: "The Raven's Talons",
         Enabled: true,
         Rarity: 7,
@@ -24798,15 +24798,15 @@ const json = [
         Code: "lgl",
         Properties: [
           {
-            PropertyString: "+5-10% Faster Cast Rate",
+            PropertyString: "+5-10% 施法速度",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +5-10%",
+            PropertyString: "所有抗性 +5-10%",
             Index: 1
           },
           {
-            PropertyString: "+5-10 to All Attributes",
+            PropertyString: "+5-10 所有屬性",
             Index: 2
           }
         ],
@@ -24816,7 +24816,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "2",
           EquipmentType: 0,
-          Name: "Leather Gloves",
+          Name: "皮革手套 (Leather Gloves)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 12,
@@ -24833,10 +24833,10 @@ const json = [
         Type: "Boots",
         "Set": "The Raven's Nest",
         SetPropertiesString: [
-          "+30% Faster Run/Walk (2 Items)",
-          "All Resistances +20% (3 Items)"
+          "+30% 跑步 / 行走速度 （2 件）",
+          "所有抗性 +20% （3 件）"
         ],
-        Name: "The Raven's Feet",
+        Name: "烏鴉之足 (The Raven's Feet)",
         Index: "The Raven's Feet",
         Enabled: true,
         Rarity: 7,
@@ -24845,19 +24845,19 @@ const json = [
         Code: "mbt",
         Properties: [
           {
-            PropertyString: "+10% Faster Run/Walk",
+            PropertyString: "+10% 跑步 / 行走速度",
             Index: 2
           },
           {
-            PropertyString: "+100 Defense",
+            PropertyString: "+100 防禦",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +10%",
+            PropertyString: "所有抗性 +10%",
             Index: 1
           },
           {
-            PropertyString: "+10-25% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +10-25%",
             Index: 3
           }
         ],
@@ -24867,7 +24867,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "108",
           EquipmentType: 0,
-          Name: "Chain Boots",
+          Name: "鎖鍊靴 (Chain Boots)",
           RequiredStrength: 30,
           RequiredDexterity: 0,
           Durability: 16,
@@ -24884,11 +24884,11 @@ const json = [
         Type: "Shield",
         "Set": "The Raven's Nest",
         SetPropertiesString: [
-          "+2 to All Skills (3 Items)",
-          "+2 to Maximum Cold Resist (4 Items)",
-          "+15 Cold Absorb (2 Items)"
+          "+2 所有技能 （3 件）",
+          "冰寒抗性上限 +2 （4 件）",
+          "寒冰吸引 +15 （2 件）"
         ],
-        Name: "The Raven's Wing",
+        Name: "烏鴉之翼 (The Raven's Wing)",
         Index: "The Raven's Wing",
         Enabled: true,
         Rarity: 7,
@@ -24897,11 +24897,11 @@ const json = [
         Code: "xpk",
         Properties: [
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 4
           },
           {
-            PropertyString: "+20-30% Faster Cast Rate",
+            PropertyString: "+20-30% 施法速度",
             Index: 3
           },
           {
@@ -24909,15 +24909,15 @@ const json = [
             Index: 2
           },
           {
-            PropertyString: "+20-30% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +20-30%",
             Index: 1
           },
           {
-            PropertyString: "+100% Enhanced Defense",
+            PropertyString: "+100% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "All Resistances +20-30%",
+            PropertyString: "所有抗性 +20-30%",
             Index: 5
           }
         ],
@@ -24927,7 +24927,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "118",
           EquipmentType: 0,
-          Name: "Barbed Shield",
+          Name: "倒刺盾 (Barbed Shield)",
           RequiredStrength: 65,
           RequiredDexterity: 0,
           Durability: 55,
@@ -24944,10 +24944,10 @@ const json = [
         Type: "Knife",
         "Set": "The Raven's Nest",
         SetPropertiesString: [
-          "+2 to Raven Hits (4 Items)",
-          "+10% Faster Cast Rate (2 Items)"
+          "+2 to Raven Hits （4 件）",
+          "+10% 施法速度 （2 件）"
         ],
-        Name: "The Raven's Beak",
+        Name: "烏鴉的喙 (The Raven's Beak)",
         Index: "The Raven's Beak",
         Enabled: true,
         Rarity: 7,
@@ -24960,27 +24960,27 @@ const json = [
             Index: 7
           },
           {
-            PropertyString: "+1 to All Skills",
+            PropertyString: "+1 所有技能",
             Index: 0
           },
           {
-            PropertyString: "+15-30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +15-30%",
             Index: 3
           },
           {
-            PropertyString: "+20-30% Faster Cast Rate",
+            PropertyString: "+20-30% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+15-30% Faster Hit Recovery",
+            PropertyString: "+15-30% 打擊恢復",
             Index: 2
           },
           {
-            PropertyString: "Ignore Target's Defense",
+            PropertyString: "無視目標防禦",
             Index: 4
           },
           {
-            PropertyString: "Hit blinds target +1",
+            PropertyString: "擊中使目標目盲 +1",
             Index: 5
           }
         ],
@@ -24993,7 +24993,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "Stiletto",
+          Name: "窄刃匕首 (Stiletto)",
           RequiredStrength: 47,
           RequiredDexterity: 97,
           Durability: 250,
@@ -25010,11 +25010,11 @@ const json = [
         Type: "Armor",
         "Set": "The Raven's Nest",
         SetPropertiesString: [
-          "+3 to Maximum Cold Resist (4 Items)",
-          "+10% Cold Absorb (2 Items)",
-          "Cannot Be Frozen (3 Items)"
+          "冰寒抗性上限 +3 （4 件）",
+          "寒冰吸引 +10% （2 件）",
+          "無法冰凍 （3 件）"
         ],
-        Name: "The Raven's Feathers",
+        Name: "烏鴉的羽毛 (The Raven's Feathers)",
         Index: "The Raven's Feathers",
         Enabled: true,
         Rarity: 7,
@@ -25023,31 +25023,31 @@ const json = [
         Code: "uea",
         Properties: [
           {
-            PropertyString: "+2-5 to Warmth",
+            PropertyString: "+2-5 暖流",
             Index: 4
           },
           {
-            PropertyString: "+20% Faster Run/Walk",
+            PropertyString: "+20% 跑步 / 行走速度",
             Index: 2
           },
           {
-            PropertyString: "+100-125% Enhanced Defense",
+            PropertyString: "+100-125% 防禦強化",
             Index: 0
           },
           {
-            PropertyString: "+300-500 Defense vs. Missile",
+            PropertyString: "+300-500 對遠程防禦",
             Index: 1
           },
           {
-            PropertyString: "Cold Resist +30%",
+            PropertyString: "冰寒抗性 +30%",
             Index: 3
           },
           {
-            PropertyString: "Damage Reduced by 10",
+            PropertyString: "物理傷害降低 10",
             Index: 5
           },
           {
-            PropertyString: "Magic Damage Reduced by 10",
+            PropertyString: "魔法傷害降低 10",
             Index: 6
           }
         ],
@@ -25057,7 +25057,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "730-821",
           EquipmentType: 0,
-          Name: "Wyrmhide",
+          Name: "龍皮甲 (Wyrmhide)",
           RequiredStrength: 84,
           RequiredDexterity: 0,
           Durability: 24,
@@ -25073,7 +25073,7 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+5 to Raven (Druid Only)",
+        PropertyString: "+5 掠鴉（只限德魯伊）",
         Index: 0
       },
       {
@@ -25081,7 +25081,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 2
       },
       {
@@ -25095,19 +25095,19 @@ const json = [
         Index: 0
       },
       {
-        PropertyString: "+1 to Amplify Damage",
+        PropertyString: "+1 傷害加深",
         Index: 1
       },
       {
-        PropertyString: "+30% Faster Cast Rate",
+        PropertyString: "+30% 施法速度",
         Index: 4
       },
       {
-        PropertyString: "+10% Magic Absorb",
+        PropertyString: "魔法吸引 +10%",
         Index: 3
       },
       {
-        PropertyString: "+20% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +20%",
         Index: 2
       }
     ],
@@ -25115,15 +25115,15 @@ const json = [
   },
   {
     Index: "Tools of Vindication",
-    Name: "Tools of Vindication",
+    Name: "平反工具 (Tools of Vindication)",
     SetItems: [
       {
         Type: "Hammer",
         "Set": "Tools of Vindication",
         SetPropertiesString: [
-          "+40% Increased Attack Speed (2 Items)"
+          "攻擊速度 +40% （2 件）"
         ],
-        Name: "Hand of the Vindicator",
+        Name: "复仇者之手 (Hand of the Vindicator)",
         Index: "Hand of the Vindicator",
         Enabled: true,
         Rarity: 7,
@@ -25132,7 +25132,7 @@ const json = [
         Code: "whm",
         Properties: [
           {
-            PropertyString: "+20% Increased Attack Speed",
+            PropertyString: "攻擊速度 +20%",
             Index: 1
           },
           {
@@ -25140,7 +25140,7 @@ const json = [
             Index: 0
           },
           {
-            PropertyString: "+3 to Vengeance (Paladin Only)",
+            PropertyString: "+3 復仇打擊（只限聖騎士）",
             Index: 2
           }
         ],
@@ -25153,7 +25153,7 @@ const json = [
             }
           ],
           EquipmentType: 1,
-          Name: "War Hammer",
+          Name: "戰鎚 (War Hammer)",
           RequiredStrength: 53,
           RequiredDexterity: 0,
           Durability: 250,
@@ -25170,11 +25170,11 @@ const json = [
         Type: "Auric Shields",
         "Set": "Tools of Vindication",
         SetPropertiesString: [
-          "+ to Minimum Damage (3 Items)",
-          "Cold Resist +30% (2 Items)",
-          "+15% Physical Damage Reduction (3 Items)"
+          "+ to Minimum Damage （3 件）",
+          "冰寒抗性 +30% （2 件）",
+          "物理傷害降低 +15% （3 件）"
         ],
-        Name: "Bulwark of the Vindicator",
+        Name: "复仇者堡垒 (Bulwark of the Vindicator)",
         Index: "Bulwark of the Vindicator",
         Enabled: true,
         Rarity: 7,
@@ -25183,19 +25183,19 @@ const json = [
         Code: "pa9",
         Properties: [
           {
-            PropertyString: "Level 12 Holy Freeze Aura When Equipped",
+            PropertyString: "裝備時賦予等級 12 神聖冰凍靈氣",
             Index: 3
           },
           {
-            PropertyString: "+40% Faster Hit Recovery",
+            PropertyString: "+40% 打擊恢復",
             Index: 1
           },
           {
-            PropertyString: "+55% Faster Block Rate",
+            PropertyString: "+55% 格擋速度",
             Index: 2
           },
           {
-            PropertyString: "All Resistances +35%",
+            PropertyString: "所有抗性 +35%",
             Index: 0
           }
         ],
@@ -25205,7 +25205,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "144",
           EquipmentType: 0,
-          Name: "Gilded Shield",
+          Name: "金紋盾 (Gilded Shield)",
           RequiredStrength: 89,
           RequiredDexterity: 0,
           Durability: 50,
@@ -25222,11 +25222,11 @@ const json = [
         Type: "Belt",
         "Set": "Tools of Vindication",
         SetPropertiesString: [
-          "+ to Minimum Damage (2 Items)",
-          "Lightning Resist +30% (3 Items)",
-          "Fire Resist +30% (2 Items)"
+          "+ to Minimum Damage （2 件）",
+          "電擊抗性 +30% （3 件）",
+          "火焰抗性 +30% （2 件）"
         ],
-        Name: "Belt of the Vindicator",
+        Name: "复仇者腰带 (Belt of the Vindicator)",
         Index: "Belt of the Vindicator",
         Enabled: true,
         Rarity: 7,
@@ -25235,19 +25235,19 @@ const json = [
         Code: "zmb",
         Properties: [
           {
-            PropertyString: "Cold Resist +20%",
+            PropertyString: "冰寒抗性 +20%",
             Index: 2
           },
           {
-            PropertyString: "Lightning Resist +20%",
+            PropertyString: "電擊抗性 +20%",
             Index: 1
           },
           {
-            PropertyString: "Fire Resist +20%",
+            PropertyString: "火焰抗性 +20%",
             Index: 0
           },
           {
-            PropertyString: "+30% better chance of getting magic item",
+            PropertyString: "尋獲魔法物品機率提高 +30%",
             Index: 3
           }
         ],
@@ -25257,7 +25257,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "35",
           EquipmentType: 0,
-          Name: "Mesh Belt",
+          Name: "鐵網腰帶 (Mesh Belt)",
           RequiredStrength: 58,
           RequiredDexterity: 0,
           Durability: 16,
@@ -25273,13 +25273,13 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "+3 to Vengeance (Paladin Only)",
+        PropertyString: "+3 復仇打擊（只限聖騎士）",
         Index: 0
       }
     ],
     FullProperties: [
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 0
       }
     ],
@@ -25287,13 +25287,13 @@ const json = [
   },
   {
     Index: "Panda's Polar Adventure",
-    Name: "Panda's Polar Adventure",
+    Name: "熊貓的極地冒險 (Panda's Polar Adventure)",
     SetItems: [
       {
         Type: "Pelt",
         "Set": "Panda's Polar Adventure",
         SetPropertiesString: [],
-        Name: "Panda's Pelt",
+        Name: "熊貓的毛皮 (Panda's Pelt)",
         Index: "Panda's Pelt",
         Enabled: true,
         Rarity: 7,
@@ -25302,7 +25302,7 @@ const json = [
         Code: "dr6",
         Properties: [
           {
-            PropertyString: "+2-3 to All Skills",
+            PropertyString: "+2-3 所有技能",
             Index: 4
           },
           {
@@ -25310,15 +25310,15 @@ const json = [
             Index: 1
           },
           {
-            PropertyString: "+30% Faster Run/Walk",
+            PropertyString: "+30% 跑步 / 行走速度",
             Index: 2
           },
           {
-            PropertyString: "+30% Faster Hit Recovery",
+            PropertyString: "+30% 打擊恢復",
             Index: 3
           },
           {
-            PropertyString: "Cannot Be Frozen",
+            PropertyString: "無法冰凍",
             Index: 0
           }
         ],
@@ -25328,7 +25328,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "52",
           EquipmentType: 0,
-          Name: "Alpha Helm",
+          Name: "猛狼頭盔 (Alpha Helm)",
           RequiredStrength: 44,
           RequiredDexterity: 0,
           Durability: 20,
@@ -25345,7 +25345,7 @@ const json = [
         Type: "Gloves",
         "Set": "Panda's Polar Adventure",
         SetPropertiesString: [],
-        Name: "Panda's Mitts",
+        Name: "熊貓的手套 (Panda's Mittens)",
         Index: "Panda's Mitts",
         Enabled: true,
         Rarity: 7,
@@ -25358,19 +25358,19 @@ const json = [
             Index: 0
           },
           {
-            PropertyString: "+30% Increased Attack Speed",
+            PropertyString: "攻擊速度 +30%",
             Index: 2
           },
           {
-            PropertyString: "+5% Life stolen per hit",
+            PropertyString: "擊中竊取 5% 生命",
             Index: 1
           },
           {
-            PropertyString: "Freezes target +1",
+            PropertyString: "凍結目標 +1",
             Index: 4
           },
           {
-            PropertyString: "Fire Resist +15%",
+            PropertyString: "火焰抗性 +15%",
             Index: 3
           }
         ],
@@ -25380,7 +25380,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "54",
           EquipmentType: 0,
-          Name: "Bramble Mitts",
+          Name: "荊棘手套 (Bramble Mitts)",
           RequiredStrength: 50,
           RequiredDexterity: 0,
           Durability: 12,
@@ -25397,7 +25397,7 @@ const json = [
         Type: "Armor",
         "Set": "Panda's Polar Adventure",
         SetPropertiesString: [],
-        Name: "Panda's Coat",
+        Name: "熊貓的外套 (Panda's Jacket)",
         Index: "Panda's Coat",
         Enabled: true,
         Rarity: 7,
@@ -25406,23 +25406,23 @@ const json = [
         Code: "uui",
         Properties: [
           {
-            PropertyString: "+2-3 to All Skills",
+            PropertyString: "+2-3 所有技能",
             Index: 3
           },
           {
-            PropertyString: "+1 to Warmth",
+            PropertyString: "+1 暖流",
             Index: 0
           },
           {
-            PropertyString: "+15% Faster Cast Rate",
+            PropertyString: "+15% 施法速度",
             Index: 1
           },
           {
-            PropertyString: "+10 to Maximum Cold Resist",
+            PropertyString: "冰寒抗性上限 +10",
             Index: 2
           },
           {
-            PropertyString: "Cold Resist +50%",
+            PropertyString: "冰寒抗性 +50%",
             Index: 4
           }
         ],
@@ -25432,7 +25432,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "361",
           EquipmentType: 0,
-          Name: "Dusk Shroud",
+          Name: "灰暮罩衣 (Dusk Shroud)",
           RequiredStrength: 77,
           RequiredDexterity: 0,
           Durability: 20,
@@ -25449,7 +25449,7 @@ const json = [
         Type: "Belt",
         "Set": "Panda's Polar Adventure",
         SetPropertiesString: [],
-        Name: "Panda's Sash",
+        Name: "熊貓的腰帶 (Panda's Sash)",
         Index: "Panda's Sash",
         Enabled: true,
         Rarity: 7,
@@ -25458,19 +25458,19 @@ const json = [
         Code: "lbl",
         Properties: [
           {
-            PropertyString: "20% Chance to cast level 20 Tornado when struck",
+            PropertyString: "被擊中時有 20% 機率施展等級 20 龍捲風",
             Index: 3
           },
           {
-            PropertyString: "+10 to Vitality",
+            PropertyString: "+10 體能",
             Index: 1
           },
           {
-            PropertyString: "+100 to Life",
+            PropertyString: "+100 生命",
             Index: 2
           },
           {
-            PropertyString: "All Resistances +10%",
+            PropertyString: "所有抗性 +10%",
             Index: 0
           }
         ],
@@ -25480,7 +25480,7 @@ const json = [
           DamageStringPrefix: null,
           ArmorString: "2",
           EquipmentType: 0,
-          Name: "Sash",
+          Name: "束帶 (Sash)",
           RequiredStrength: 0,
           RequiredDexterity: 0,
           Durability: 12,
@@ -25497,7 +25497,7 @@ const json = [
         Type: "Shield",
         "Set": "Panda's Polar Adventure",
         SetPropertiesString: [],
-        Name: "Panda's Sled",
+        Name: "熊貓的雪橇 (Panda's Sled)",
         Index: "Panda's Sled",
         Enabled: true,
         Rarity: 7,
@@ -25506,19 +25506,19 @@ const json = [
         Code: "uow",
         Properties: [
           {
-            PropertyString: "+5-8 to Summon Spirit Wolf",
+            PropertyString: "+5-8 召喚幽靈狼",
             Index: 2
           },
           {
-            PropertyString: "+15% Increased Chance of Blocking",
+            PropertyString: "格擋機率提高 +15%",
             Index: 3
           },
           {
-            PropertyString: "All Resistances +25%",
+            PropertyString: "所有抗性 +25%",
             Index: 1
           },
           {
-            PropertyString: "Requirements -30%",
+            PropertyString: "需求 -30%",
             Index: 0
           }
         ],
@@ -25528,7 +25528,7 @@ const json = [
           DamageStringPrefix: "Unhandled Damage Prefix",
           ArmorString: "145",
           EquipmentType: 0,
-          Name: "Aegis",
+          Name: "禦塔盾 (Aegis)",
           RequiredStrength: 219,
           RequiredDexterity: 0,
           Durability: 92,
@@ -25544,11 +25544,11 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "-10% to Enemy Cold Resistance",
+        PropertyString: "敵人冰寒抗性 -10%",
         Index: 0
       },
       {
-        PropertyString: "+10% to Cold Skill Damage",
+        PropertyString: "+10% 寒冰技能傷害",
         Index: 1
       },
       {
@@ -25560,11 +25560,11 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "-10% to Enemy Cold Resistance",
+        PropertyString: "敵人冰寒抗性 -10%",
         Index: 4
       },
       {
-        PropertyString: "+10% to Cold Skill Damage",
+        PropertyString: "+10% 寒冰技能傷害",
         Index: 5
       }
     ],
@@ -25578,15 +25578,15 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "+20% to Cold Skill Damage",
+        PropertyString: "+20% 寒冰技能傷害",
         Index: 0
       },
       {
-        PropertyString: "-20% to Enemy Cold Resistance",
+        PropertyString: "敵人冰寒抗性 -20%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 4
       }
     ],
@@ -25652,13 +25652,13 @@ class Sets {
     __publicField(this, "class", __runInitializers(_init, 12, this)), __runInitializers(_init, 15, this);
     __publicField(this, "classes", [
       { value: null, label: "-" },
-      { value: "Amazon", label: "Amazon" },
-      { value: "Assassin", label: "Assassin" },
-      { value: "Barbarian", label: "Barbarian" },
-      { value: "Druid", label: "Druid" },
-      { value: "Necromancer", label: "Necromancer" },
-      { value: "Paladin", label: "Paladin" },
-      { value: "Sorceress", label: "Sorceress" }
+      { value: "亞馬遜", label: "亞馬遜" },
+      { value: "刺客", label: "刺客" },
+      { value: "野蠻人", label: "野蠻人" },
+      { value: "德魯伊", label: "德魯伊" },
+      { value: "死靈法師", label: "死靈法師" },
+      { value: "聖騎士", label: "聖騎士" },
+      { value: "魔法使", label: "魔法使" }
     ]);
   }
   attached() {
@@ -25777,13 +25777,13 @@ class Sets {
   getDamageTypeString(type) {
     switch (type) {
       case 3:
-        return "Damage: ";
+        return "傷害: ";
       case 2:
-        return "Throw Damage: ";
+        return "投擲傷害: ";
       case 1:
-        return "Two-Handed Damage: ";
+        return "雙手傷害: ";
       default:
-        return "Damage: ";
+        return "傷害: ";
     }
   }
 }

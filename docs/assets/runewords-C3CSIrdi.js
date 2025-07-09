@@ -1,7 +1,7 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-BePQ-y0p.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-Fs0eH6wK.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "runewords";
-const template = '<template>\n    <h3 class="text-center my-4">\n        ${filteredRunewords.length} Runewords Found\n    </h3>\n    <div class="container">\n        <div class="row align-content-center justify-content-center text-center mb-5">\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="Select Socket Count"\n                            options.bind="amounts"\n                            class="standard-betsy-select"\n                            value.bind="selectedAmount"\n                    ></moo-select>\n                </div>\n            </div>\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="Select Type"\n                            options.bind="types"\n                            class="standard-betsy-select"\n                            value.bind="selectedType"\n                    ></moo-select>\n                    <moo-checkbox checked.bind="exclusiveType" id="exclusiveType">Exact type only</moo-checkbox>\n                </div>\n            </div>\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="mb-2">\n                    <moo-text-field\n                            class="w-100"\n                            label="Search Runewords"\n                            type="text"\n                            value.bind="search"\n                    ></moo-text-field>\n                </div>\n            </div>\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="mb-2">\n                    <moo-text-field\n                            class="w-100"\n                            label="Runes"\n                            type="text"\n                            value.bind="searchRunes"\n                    ></moo-text-field>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class="row gy-5 px-5 text-center">\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="runeword of filteredRunewords">\n            <div class="card bg-dark p-2">\n                <div class="unique-text fs-4 mb-1">\n                    ${runeword.Name}\n                </div>\n                <div class="combo">\n                    <span repeat.for="rune of runeword.Runes">\n                        ${rune.Name | runeName} ${$index + 1 !== runeword.Runes.length ? \' + \' : \'\'}\n                    </span>\n                </div>\n                <div class="types py-2">\n                    <span repeat.for="type of runeword.Types">\n                        ${transformTypeName(type.Name)} ${$index + 1 !== runeword.Types.length ? \' or \' : \'\'}\n                    </span>\n                </div>\n                <div class="requirement" if.bind="actualLevelRequirement(runeword) > 0">\n                    Level ${actualLevelRequirement(runeword)} Required\n                </div>\n                <div class="mt-2">\n                    <div class="enhanced" repeat.for="property of runeword.Properties">\n                        ${property.PropertyString}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</template>\n';
+const template = '<template>\n    <h3 class="text-center my-4">\n        共 ${filteredRunewords.length} 符文之語\n    </h3>\n    <div class="container">\n        <div class="row align-content-center justify-content-center text-center mb-5">\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="凹槽数量"\n                            options.bind="amounts"\n                            class="standard-betsy-select"\n                            value.bind="selectedAmount"\n                    ></moo-select>\n                </div>\n            </div>\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="底材类型"\n                            options.bind="types"\n                            class="standard-betsy-select"\n                            value.bind="selectedType"\n                    ></moo-select>\n                    <moo-checkbox checked.bind="exclusiveType" id="exclusiveType">Exact type only</moo-checkbox>\n                </div>\n            </div>\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="mb-2">\n                    <moo-text-field\n                            class="w-100"\n                            label="Search Runewords"\n                            type="text"\n                            value.bind="search"\n                    ></moo-text-field>\n                </div>\n            </div>\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="mb-2">\n                    <moo-text-field\n                            class="w-100"\n                            label="Runes"\n                            type="text"\n                            value.bind="searchRunes"\n                    ></moo-text-field>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class="row gy-5 px-5 text-center">\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="runeword of filteredRunewords">\n            <div class="card bg-dark p-2">\n                <div class="unique-text fs-4 mb-1">\n                    ${runeword.Name}\n                </div>\n                <div class="combo">\n                    <span repeat.for="rune of runeword.Runes">\n                        ${rune.Name | runeName} ${$index + 1 !== runeword.Runes.length ? \' + \' : \'\'}\n                    </span>\n                </div>\n                <div class="types py-2">\n                    <span repeat.for="type of runeword.Types">\n                        ${transformTypeName(type.Name)} ${$index + 1 !== runeword.Types.length ? \' or \' : \'\'}\n                    </span>\n                </div>\n                <div class="requirement" if.bind="actualLevelRequirement(runeword) > 0">\n                    等級需求：${actualLevelRequirement(runeword)}\n                </div>\n                <div class="mt-2">\n                    <div class="enhanced" repeat.for="property of runeword.Properties">\n                        ${property.PropertyString}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</template>\n';
 const dependencies = [];
 const bindables = {};
 let _e;
@@ -51,7 +51,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Law",
+    Name: "律法 (Law)",
     Index: "Law",
     Enabled: true,
     Rarity: 0,
@@ -60,35 +60,35 @@ const json = [
     Code: "Law",
     Properties: [
       {
-        PropertyString: "+15% Increased Attack Speed",
+        PropertyString: "攻擊速度 +15%",
         Index: 2
       },
       {
-        PropertyString: "+120-170% Enhanced Damage",
+        PropertyString: "+120-170% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 6
       },
       {
-        PropertyString: "Slows target by 30%",
+        PropertyString: "使目標減慢 30%",
         Index: 5
       },
       {
-        PropertyString: "+48 to Life",
+        PropertyString: "+48 生命",
         Index: 3
       },
       {
-        PropertyString: "+24 to Mana",
+        PropertyString: "+24 法力",
         Index: 4
       },
       {
-        PropertyString: "+26 To Required Level",
+        PropertyString: "+26 需求等級",
         Index: 0
       },
       {
-        PropertyString: "Requirements -40%",
+        PropertyString: "需求 -40%",
         Index: 0
       }
     ],
@@ -135,7 +135,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Knowledge",
+    Name: "學識 (Knowledge)",
     Index: "Knowledge",
     Enabled: true,
     Rarity: 0,
@@ -144,35 +144,35 @@ const json = [
     Code: "Knowledge",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 3
       },
       {
-        PropertyString: "+15% Increased Attack Speed",
+        PropertyString: "攻擊速度 +15%",
         Index: 4
       },
       {
-        PropertyString: "+100% Enhanced Damage",
+        PropertyString: "+100% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+1.5 to Maximum Damage (Per Character Level)",
+        PropertyString: "+1.5 最大傷害 （依角色等級而定）",
         Index: 1
       },
       {
-        PropertyString: "+150 to Attack Rating",
+        PropertyString: "+150 準確率",
         Index: 1
       },
       {
-        PropertyString: "+10% to Experience Gained",
+        PropertyString: "獲得的經驗值 +10%",
         Index: 2
       },
       {
-        PropertyString: "+3 to Light Radius",
+        PropertyString: "照亮範圍 +3",
         Index: 0
       },
       {
-        PropertyString: "+11 To Required Level",
+        PropertyString: "+11 需求等級",
         Index: 5
       }
     ],
@@ -229,7 +229,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Desire",
+    Name: "渴望 (Desire)",
     Index: "Desire",
     Enabled: true,
     Rarity: 0,
@@ -238,55 +238,55 @@ const json = [
     Code: "Desire",
     Properties: [
       {
-        PropertyString: "+30-50% Enhanced Damage",
+        PropertyString: "+30-50% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+30-50% Enhanced Defense",
+        PropertyString: "+30-50% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+5 to All Attributes",
+        PropertyString: "+5 所有屬性",
         Index: 2
       },
       {
-        PropertyString: "+20-25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +20-25%",
         Index: 3
       },
       {
-        PropertyString: "+100 to Attack Rating (Weapon)",
+        PropertyString: "+100 準確率 （只限武器）",
         Index: 1
       },
       {
-        PropertyString: "+2 to Light Radius (Weapon)",
+        PropertyString: "照亮範圍 +2 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill (Weapon)",
+        PropertyString: "+2 擊殺法力恢復 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+2 to Light Radius (Armor)",
+        PropertyString: "照亮範圍 +2 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill (Armor)",
+        PropertyString: "+2 擊殺法力恢復 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+30 Defense (Armor)",
+        PropertyString: "+30 防禦 （只限盔甲）",
         Index: 1
       },
       {
-        PropertyString: "+2 to Light Radius (Shield)",
+        PropertyString: "照亮範圍 +2 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill (Shield)",
+        PropertyString: "+2 擊殺法力恢復 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+30 Defense (Shield)",
+        PropertyString: "+30 防禦 （只限盾牌）",
         Index: 1
       }
     ],
@@ -323,7 +323,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Nadir",
+    Name: "天底 (Nadir)",
     Index: "Nadir",
     Enabled: true,
     Rarity: 0,
@@ -332,35 +332,35 @@ const json = [
     Code: "Nadir",
     Properties: [
       {
-        PropertyString: "+50% Enhanced Defense",
+        PropertyString: "+50% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+10 Defense",
+        PropertyString: "+10 防禦",
         Index: 1
       },
       {
-        PropertyString: "+30 Defense vs. Missile",
+        PropertyString: "+30 對遠程防禦",
         Index: 0
       },
       {
-        PropertyString: "+5 to Strength",
+        PropertyString: "+5 力量",
         Index: 5
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "-33% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 -33%",
         Index: 4
       },
       {
-        PropertyString: "-3 to Light Radius",
+        PropertyString: "照亮範圍 -3",
         Index: 2
       },
       {
-        PropertyString: "Level 13 Cloak of Shadows (9 Charges)",
+        PropertyString: "等級 13 魔影斗蓬（9 次）",
         Index: 3
       }
     ],
@@ -417,7 +417,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Steel",
+    Name: "鋼鐵 (Steel)",
     Index: "Steel",
     Enabled: true,
     Rarity: 0,
@@ -426,35 +426,35 @@ const json = [
     Code: "Steel",
     Properties: [
       {
-        PropertyString: "+25% Increased Attack Speed",
+        PropertyString: "攻擊速度 +25%",
         Index: 0
       },
       {
-        PropertyString: "+20% Enhanced Damage",
+        PropertyString: "+20% 傷害強化",
         Index: 4
       },
       {
-        PropertyString: "+3 to Minimum Damage",
+        PropertyString: "+3 最小傷害",
         Index: 1
       },
       {
-        PropertyString: "+3 to Maximum Damage",
+        PropertyString: "+3 最大傷害",
         Index: 2
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 1
       },
       {
-        PropertyString: "+50% Chance of Open Wounds",
+        PropertyString: "+50% 機率造成開放傷口",
         Index: 3
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       }
     ],
@@ -491,7 +491,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Scout",
+    Name: "斥候 (Scout)",
     Index: "Scout",
     Enabled: true,
     Rarity: 0,
@@ -500,31 +500,31 @@ const json = [
     Code: "Scout",
     Properties: [
       {
-        PropertyString: "+1 to Dodge",
+        PropertyString: "+1 閃躲",
         Index: 4
       },
       {
-        PropertyString: "+10% Faster Run/Walk",
+        PropertyString: "+10% 跑步 / 行走速度",
         Index: 0
       },
       {
-        PropertyString: "+10% Faster Hit Recovery",
+        PropertyString: "+10% 打擊恢復",
         Index: 1
       },
       {
-        PropertyString: "+15 Defense",
+        PropertyString: "+15 防禦",
         Index: 1
       },
       {
-        PropertyString: "+30 Defense vs. Missile",
+        PropertyString: "+30 對遠程防禦",
         Index: 0
       },
       {
-        PropertyString: "+5 to Dexterity",
+        PropertyString: "+5 敏捷",
         Index: 2
       },
       {
-        PropertyString: "+12 to Light Radius",
+        PropertyString: "照亮範圍 +12",
         Index: 3
       }
     ],
@@ -561,7 +561,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Old Ben's Walking Stick",
+    Name: "老班的拐杖 (Old Ben's Walking Stick)",
     Index: "Old Ben's Walking Stick",
     Enabled: true,
     Rarity: 0,
@@ -570,39 +570,39 @@ const json = [
     Code: "Old Ben's Walking Stick",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 1 Burst of Speed when you Level-Up",
+        PropertyString: "當你升級時有 100% 機率施展等級 1 速度爆發",
         Index: 3
       },
       {
-        PropertyString: "+100% Faster Run/Walk",
+        PropertyString: "+100% 跑步 / 行走速度",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 1
       },
       {
-        PropertyString: "-3.75 Drain Life (Per Character Level)",
+        PropertyString: "吸取生命 -3.75 （依角色等級而定）",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "-100% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 -100%",
         Index: 5
       },
       {
-        PropertyString: "-100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 -100%",
         Index: 4
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       },
       {
-        PropertyString: "Level 1 Teleport (5 Charges)",
+        PropertyString: "等級 1 傳送術（5 次）",
         Index: 2
       }
     ],
@@ -649,7 +649,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Chance",
+    Name: "機會 (Chance)",
     Index: "Chance",
     Enabled: true,
     Rarity: 0,
@@ -658,39 +658,39 @@ const json = [
     Code: "Chance",
     Properties: [
       {
-        PropertyString: "+15% Faster Cast Rate",
+        PropertyString: "+15% 施法速度",
         Index: 3
       },
       {
-        PropertyString: "+20% Faster Block Rate",
+        PropertyString: "+20% 格擋速度",
         Index: 1
       },
       {
-        PropertyString: "+15% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +15%",
         Index: 0
       },
       {
-        PropertyString: "+25 to Mana",
+        PropertyString: "+25 法力",
         Index: 2
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 5
       },
       {
-        PropertyString: "+20-30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +20-30%",
         Index: 4
       }
     ],
@@ -737,7 +737,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Malice",
+    Name: "怨恨 (Malice)",
     Index: "Malice",
     Enabled: true,
     Rarity: 0,
@@ -746,39 +746,39 @@ const json = [
     Code: "Malice",
     Properties: [
       {
-        PropertyString: "+33% Enhanced Damage",
+        PropertyString: "+33% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+100% Chance of Open Wounds",
+        PropertyString: "+100% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 2
       },
       {
-        PropertyString: "-100 to Monster Defense Per Hit",
+        PropertyString: "每次攻擊降低敵人防禦 100",
         Index: 1
       },
       {
-        PropertyString: "+15 Defense",
+        PropertyString: "+15 防禦",
         Index: 1
       },
       {
-        PropertyString: "-5 Drain Life",
+        PropertyString: "吸取生命 -5",
         Index: 5
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       },
       {
-        PropertyString: "+0 to Light Radius",
+        PropertyString: "照亮範圍 +0",
         Index: 4
       }
     ],
@@ -820,7 +820,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Penitence",
+    Name: "懺悔 (Penitence)",
     Index: "Penitence",
     Enabled: true,
     Rarity: 0,
@@ -829,39 +829,39 @@ const json = [
     Code: "Penitence",
     Properties: [
       {
-        PropertyString: "+15% Faster Hit Recovery",
+        PropertyString: "+15% 打擊恢復",
         Index: 1
       },
       {
-        PropertyString: "+15% Faster Block Rate",
+        PropertyString: "+15% 格擋速度",
         Index: 0
       },
       {
-        PropertyString: "Half Freeze Duration",
+        PropertyString: "冰凍時間減半",
         Index: 3
       },
       {
-        PropertyString: "Poison Length Reduced by 50%",
+        PropertyString: "中毒的時效縮短 50%",
         Index: 4
       },
       {
-        PropertyString: "Repairs 0.1 durability per second",
+        PropertyString: "每 1 秒修復 0.1 點耐久度",
         Index: 2
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana (Armor)",
+        PropertyString: "+15% 受到的傷害轉為法力 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill (Armor)",
+        PropertyString: "+2 擊殺法力恢復 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana (Shield)",
+        PropertyString: "+15% 受到的傷害轉為法力 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill (Shield)",
+        PropertyString: "+2 擊殺法力恢復 （只限盾牌）",
         Index: 0
       }
     ],
@@ -898,7 +898,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Jealousy",
+    Name: "妒忌 (Jealousy)",
     Index: "Jealousy",
     Enabled: true,
     Rarity: 0,
@@ -907,39 +907,39 @@ const json = [
     Code: "Jealousy",
     Properties: [
       {
-        PropertyString: "+3 to Jab",
+        PropertyString: "+3 戳刺",
         Index: 3
       },
       {
-        PropertyString: "+3 to Melee Mastery",
+        PropertyString: "+3 近戰精通",
         Index: 4
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 5
       },
       {
-        PropertyString: "+122% Enhanced Damage",
+        PropertyString: "+122% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+75% Damage to Undead",
+        PropertyString: "+75% 對不死怪物的傷害",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating against Undead",
+        PropertyString: "+50 對不死怪物的准确率",
         Index: 0
       },
       {
-        PropertyString: "+76 Poison Damage Over 5 Seconds",
+        PropertyString: "+76 毒素傷害，時效 5 秒",
         Index: 0
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 2
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 1
       }
     ],
@@ -976,7 +976,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Stealth",
+    Name: "隱密 (Stealth)",
     Index: "Stealth",
     Enabled: true,
     Rarity: 0,
@@ -985,31 +985,31 @@ const json = [
     Code: "Stealth",
     Properties: [
       {
-        PropertyString: "+25% Faster Run/Walk",
+        PropertyString: "+25% 跑步 / 行走速度",
         Index: 2
       },
       {
-        PropertyString: "+25% Faster Cast Rate",
+        PropertyString: "+25% 施法速度",
         Index: 3
       },
       {
-        PropertyString: "+25% Faster Hit Recovery",
+        PropertyString: "+25% 打擊恢復",
         Index: 4
       },
       {
-        PropertyString: "+6 to Dexterity",
+        PropertyString: "+6 敏捷",
         Index: 1
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "Poison Resist +30%",
+        PropertyString: "毒素抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 3",
+        PropertyString: "魔法傷害降低 3",
         Index: 0
       }
     ],
@@ -1056,7 +1056,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Sting",
+    Name: "螫刺 (Sting)",
     Index: "Sting",
     Enabled: true,
     Rarity: 0,
@@ -1065,35 +1065,35 @@ const json = [
     Code: "Sting",
     Properties: [
       {
-        PropertyString: "+3 to Multiple Shot",
+        PropertyString: "+3 多重箭",
         Index: 3
       },
       {
-        PropertyString: "+5 to Ice Arrow",
+        PropertyString: "+5 寒冰箭",
         Index: 4
       },
       {
-        PropertyString: "+15% Increased Attack Speed",
+        PropertyString: "攻擊速度 +15%",
         Index: 1
       },
       {
-        PropertyString: "+25-40 to Maximum Damage",
+        PropertyString: "+25-40 最大傷害",
         Index: 0
       },
       {
-        PropertyString: "Adds 5-8% Mana stolen per hit",
+        PropertyString: "擊中竊取 5-8% 法力",
         Index: 2
       },
       {
-        PropertyString: "+30 Defense vs. Missile",
+        PropertyString: "+30 對遠程防禦",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "Poison Resist +30%",
+        PropertyString: "毒素抗性 +30%",
         Index: 0
       }
     ],
@@ -1130,7 +1130,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Leaf",
+    Name: "葉子 (Leaf)",
     Index: "Leaf",
     Enabled: true,
     Rarity: 0,
@@ -1139,35 +1139,35 @@ const json = [
     Code: "Leaf",
     Properties: [
       {
-        PropertyString: "+3 to Fire Skills",
+        PropertyString: "+3 火焰技能",
         Index: 0
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage",
+        PropertyString: "增加 5-30 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "+3 to Inferno (Sorceress Only)",
+        PropertyString: "+3 煉獄之火（只限魔法使）",
         Index: 3
       },
       {
-        PropertyString: "+3 to Fire Bolt (Sorceress Only)",
+        PropertyString: "+3 火焰彈（只限魔法使）",
         Index: 4
       },
       {
-        PropertyString: "+3 to Warmth (Sorceress Only)",
+        PropertyString: "+3 暖流（只限魔法使）",
         Index: 5
       },
       {
-        PropertyString: "+2 Defense (Per Character Level)",
+        PropertyString: "+2 防禦 （依角色等級而定）",
         Index: 1
       },
       {
-        PropertyString: "Cold Resist +33%",
+        PropertyString: "冰寒抗性 +33%",
         Index: 2
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       }
     ],
@@ -1224,7 +1224,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Patience",
+    Name: "耐心 (Patience)",
     Index: "Patience",
     Enabled: true,
     Rarity: 0,
@@ -1233,67 +1233,67 @@ const json = [
     Code: "Patience",
     Properties: [
       {
-        PropertyString: "+15% Faster Run/Walk",
+        PropertyString: "+15% 跑步 / 行走速度",
         Index: 5
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+20-25 to Life",
+        PropertyString: "+20-25 生命",
         Index: 2
       },
       {
-        PropertyString: "+3-5 Life after each Kill",
+        PropertyString: "+3-5 擊殺生命恢復",
         Index: 3
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 4
       },
       {
-        PropertyString: "+1-3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +1-3%",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating against Undead (Weapon)",
+        PropertyString: "+50 對不死怪物的准确率 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+75% Damage to Undead (Weapon)",
+        PropertyString: "+75% 對不死怪物的傷害 （只限武器）",
         Index: 1
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage (Weapon)",
+        PropertyString: "增加 5-30 火焰傷害 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Knockback (Weapon)",
+        PropertyString: "擊退 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+30 Defense vs. Missile (Armor)",
+        PropertyString: "+30 對遠程防禦 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+5 Life after each Kill (Armor)",
+        PropertyString: "+5 擊殺生命恢復 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +30% (Armor)",
+        PropertyString: "火焰抗性 +30% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+30 Defense vs. Missile (Shield)",
+        PropertyString: "+30 對遠程防禦 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+7% Increased Chance of Blocking (Shield)",
+        PropertyString: "格擋機率提高 +7% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +35% (Shield)",
+        PropertyString: "火焰抗性 +35% （只限盾牌）",
         Index: 0
       }
     ],
@@ -1340,7 +1340,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Ancient's Pledge",
+    Name: "先祖之契 (Ancient's Pledge)",
     Index: "Ancient's Pledge",
     Enabled: true,
     Rarity: 0,
@@ -1349,31 +1349,31 @@ const json = [
     Code: "Ancient's Pledge",
     Properties: [
       {
-        PropertyString: "+50% Enhanced Defense",
+        PropertyString: "+50% 防禦強化",
         Index: 2
       },
       {
-        PropertyString: "Cold Resist +30%",
+        PropertyString: "冰寒抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +35%",
+        PropertyString: "電擊抗性 +35%",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +35%",
+        PropertyString: "火焰抗性 +35%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +13%",
+        PropertyString: "所有抗性 +13%",
         Index: 1
       },
       {
-        PropertyString: "Poison Resist +35%",
+        PropertyString: "毒素抗性 +35%",
         Index: 0
       },
       {
-        PropertyString: "+10% Damage Taken Goes To Mana",
+        PropertyString: "+10% 受到的傷害轉為法力",
         Index: 3
       }
     ],
@@ -1430,7 +1430,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Holy Thunder",
+    Name: "神聖雷擊 (Holy Thunder)",
     Index: "Holy Thunder",
     Enabled: true,
     Rarity: 0,
@@ -1439,43 +1439,43 @@ const json = [
     Code: "Holy Thunder",
     Properties: [
       {
-        PropertyString: "+60% Enhanced Damage",
+        PropertyString: "+60% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+10 to Maximum Damage",
+        PropertyString: "+10 最大傷害",
         Index: 2
       },
       {
-        PropertyString: "-25% Target Defense",
+        PropertyString: "-25% 目標防禦",
         Index: 0
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage",
+        PropertyString: "增加 5-30 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "+21-110 to Minimum Lightning Damage",
+        PropertyString: "增加 21-110 電擊傷害",
         Index: 1
       },
       {
-        PropertyString: "+76 Poison Damage Over 5 Seconds",
+        PropertyString: "+76 毒素傷害，時效 5 秒",
         Index: 0
       },
       {
-        PropertyString: "+3 to Holy Shock (Paladin Only)",
+        PropertyString: "+3 神聖電擊（只限聖騎士）",
         Index: 5
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist",
+        PropertyString: "電擊抗性上限 +5",
         Index: 4
       },
       {
-        PropertyString: "Lightning Resist +60%",
+        PropertyString: "電擊抗性 +60%",
         Index: 3
       },
       {
-        PropertyString: "Level 7 Chain Lightning (60 Charges)",
+        PropertyString: "等級 7 連鎖閃電（60 次）",
         Index: 6
       }
     ],
@@ -1532,7 +1532,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Temptation",
+    Name: "誘惑 (Temptation)",
     Index: "Temptation",
     Enabled: true,
     Rarity: 0,
@@ -1541,27 +1541,27 @@ const json = [
     Code: "Temptation",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 4
       },
       {
-        PropertyString: "+176% Enhanced Damage",
+        PropertyString: "+176% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 1
       },
       {
-        PropertyString: "Adds 1-50 to Lightning Damage",
+        PropertyString: "增加 1-50 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 0
       },
       {
@@ -1569,11 +1569,11 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "+10% to Experience Gained",
+        PropertyString: "獲得的經驗值 +10%",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       }
     ],
@@ -1610,7 +1610,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Youth",
+    Name: "年輕 (Youth)",
     Index: "Youth",
     Enabled: true,
     Rarity: 0,
@@ -1619,35 +1619,35 @@ const json = [
     Code: "Youth",
     Properties: [
       {
-        PropertyString: "9% Chance to cast level 4 Weaken on striking",
+        PropertyString: "擊中時有 9% 機率施展等級 4 削弱",
         Index: 6
       },
       {
-        PropertyString: "+90-120% Enhanced Defense",
+        PropertyString: "+90-120% 防禦強化",
         Index: 3
       },
       {
-        PropertyString: "+8-10 Replenish Life",
+        PropertyString: "生命回復 +8-10",
         Index: 4
       },
       {
-        PropertyString: "Regenerate Mana +100%",
+        PropertyString: "法力恢復 100%",
         Index: 5
       },
       {
-        PropertyString: "Cold Resist +30-35%",
+        PropertyString: "冰寒抗性 +30-35%",
         Index: 1
       },
       {
-        PropertyString: "Lightning Resist +30%",
+        PropertyString: "電擊抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +30-35%",
+        PropertyString: "火焰抗性 +30-35%",
         Index: 0
       },
       {
-        PropertyString: "Poison Resist +30-35%",
+        PropertyString: "毒素抗性 +30-35%",
         Index: 2
       }
     ],
@@ -1684,7 +1684,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Zephyr",
+    Name: "和風 (Zephyr)",
     Index: "Zephyr",
     Enabled: true,
     Rarity: 0,
@@ -1693,35 +1693,35 @@ const json = [
     Code: "Zephyr",
     Properties: [
       {
-        PropertyString: "7% Chance to cast level 1 Twister when struck",
+        PropertyString: "被擊中時有 7% 機率施展等級 1 旋風術",
         Index: 4
       },
       {
-        PropertyString: "+25% Faster Run/Walk",
+        PropertyString: "+25% 跑步 / 行走速度",
         Index: 0
       },
       {
-        PropertyString: "+25% Increased Attack Speed",
+        PropertyString: "攻擊速度 +25%",
         Index: 1
       },
       {
-        PropertyString: "+33% Enhanced Damage",
+        PropertyString: "+33% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "+66 to Attack Rating",
+        PropertyString: "+66 準確率",
         Index: 3
       },
       {
-        PropertyString: "+25 Defense",
+        PropertyString: "+25 防禦",
         Index: 5
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +30%",
+        PropertyString: "電擊抗性 +30%",
         Index: 0
       }
     ],
@@ -1768,7 +1768,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Distortion",
+    Name: "扭曲 (Distortion)",
     Index: "Distortion",
     Enabled: true,
     Rarity: 0,
@@ -1777,35 +1777,35 @@ const json = [
     Code: "Distortion",
     Properties: [
       {
-        PropertyString: "+1 to Warp",
+        PropertyString: "+1 傳送術（Warp）",
         Index: 1
       },
       {
-        PropertyString: "+3-5% Faster Run/Walk",
+        PropertyString: "+3-5% 跑步 / 行走速度",
         Index: 2
       },
       {
-        PropertyString: "+6-10% Increased Attack Speed",
+        PropertyString: "攻擊速度 +6-10%",
         Index: 4
       },
       {
-        PropertyString: "Cold Resist +30%",
+        PropertyString: "冰寒抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +30%",
+        PropertyString: "電擊抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +5-10%",
+        PropertyString: "所有抗性 +5-10%",
         Index: 0
       },
       {
-        PropertyString: "+10-15 to All Attributes",
+        PropertyString: "+10-15 所有屬性",
         Index: 3
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       }
     ],
@@ -1852,7 +1852,7 @@ const json = [
         Class: "ass"
       }
     ],
-    Name: "Pattern",
+    Name: "圖紋 (Pattern)",
     Index: "Pattern",
     Enabled: true,
     Rarity: 0,
@@ -1861,43 +1861,43 @@ const json = [
     Code: "Pattern",
     Properties: [
       {
-        PropertyString: "+40-80% Enhanced Damage",
+        PropertyString: "+40-80% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+30% Faster Block Rate",
+        PropertyString: "+30% 格擋速度",
         Index: 6
       },
       {
-        PropertyString: "+10% bonus to Attack Rating",
+        PropertyString: "+10% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "Adds 12-32 to Fire Damage",
+        PropertyString: "增加 12-32 火焰傷害",
         Index: 2
       },
       {
-        PropertyString: "Adds 1-50 to Lightning Damage",
+        PropertyString: "增加 1-50 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+76 Poison Damage Over 5 Seconds",
+        PropertyString: "+76 毒素傷害，時效 5 秒",
         Index: 0
       },
       {
-        PropertyString: "+6 to Strength",
+        PropertyString: "+6 力量",
         Index: 4
       },
       {
-        PropertyString: "+6 to Dexterity",
+        PropertyString: "+6 敏捷",
         Index: 5
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 3
       }
     ],
@@ -1954,7 +1954,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Prayer",
+    Name: "祈禱 (Prayer)",
     Index: "Prayer",
     Enabled: true,
     Rarity: 0,
@@ -1963,67 +1963,67 @@ const json = [
     Code: "Prayer",
     Properties: [
       {
-        PropertyString: "Level 10-14 Prayer Aura When Equipped",
+        PropertyString: "裝備時賦予等級 10-14 祈禱靈氣",
         Index: 5
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 2
       },
       {
-        PropertyString: "+20-30% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +20-30%",
         Index: 4
       },
       {
-        PropertyString: "Adds 10-30 to Damage",
+        PropertyString: "增加 10-30 傷害",
         Index: 0
       },
       {
-        PropertyString: "+50-100 Defense",
+        PropertyString: "+50-100 防禦",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +15-25%",
+        PropertyString: "所有抗性 +15-25%",
         Index: 6
       },
       {
-        PropertyString: "+7 To Required Level",
+        PropertyString: "+7 需求等級",
         Index: 3
       },
       {
-        PropertyString: "-25% Target Defense (Weapon)",
+        PropertyString: "-25% 目標防禦 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage (Weapon)",
+        PropertyString: "增加 3-14 寒冰傷害 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Requirements -20% (Weapon)",
+        PropertyString: "需求 -20% （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist +30% (Armor)",
+        PropertyString: "冰寒抗性 +30% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +15% (Armor)",
+        PropertyString: "法力恢復 15% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Requirements -15% (Armor)",
+        PropertyString: "需求 -15% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist +35% (Shield)",
+        PropertyString: "冰寒抗性 +35% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +15% (Shield)",
+        PropertyString: "法力恢復 15% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Requirements -15% (Shield)",
+        PropertyString: "需求 -15% （只限盾牌）",
         Index: 0
       }
     ],
@@ -2065,7 +2065,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Revenge",
+    Name: "報復 (Revenge)",
     Index: "Revenge",
     Enabled: true,
     Rarity: 0,
@@ -2074,47 +2074,47 @@ const json = [
     Code: "Revenge",
     Properties: [
       {
-        PropertyString: "+1 to Sorceress Skill Levels",
+        PropertyString: "+1 魔法使技能等級",
         Index: 0
       },
       {
-        PropertyString: "+15% Faster Cast Rate",
+        PropertyString: "+15% 施法速度",
         Index: 2
       },
       {
-        PropertyString: "+50-75 to Mana",
+        PropertyString: "+50-75 法力",
         Index: 1
       },
       {
-        PropertyString: "Regenerate Mana +60%",
+        PropertyString: "法力恢復 60%",
         Index: 4
       },
       {
-        PropertyString: "Magic Resist +5-10%",
+        PropertyString: "魔法抗性 +5-10%",
         Index: 5
       },
       {
-        PropertyString: "+1-3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +1-3%",
         Index: 3
       },
       {
-        PropertyString: "+3 To Required Level",
+        PropertyString: "+3 需求等級",
         Index: 6
       },
       {
-        PropertyString: "+5 Life after each Kill (Armor)",
+        PropertyString: "+5 擊殺生命恢復 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist +30% (Armor)",
+        PropertyString: "冰寒抗性 +30% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+7% Increased Chance of Blocking (Shield)",
+        PropertyString: "格擋機率提高 +7% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist +35% (Shield)",
+        PropertyString: "冰寒抗性 +35% （只限盾牌）",
         Index: 0
       }
     ],
@@ -2151,7 +2151,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Snowdrop",
+    Name: "雪花蓮 (Snowdrop)",
     Index: "Snowdrop",
     Enabled: true,
     Rarity: 0,
@@ -2160,39 +2160,39 @@ const json = [
     Code: "Snowdrop",
     Properties: [
       {
-        PropertyString: "+3 to Cold Skills (Sorceress only)",
+        PropertyString: "+3 冰寒技能 （只限魔法使）",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+3 to Shiver Armor (Sorceress Only)",
+        PropertyString: "+3 碎冰甲（只限魔法使）",
         Index: 3
       },
       {
-        PropertyString: "+3 to Glacial Spike (Sorceress Only)",
+        PropertyString: "+3 冰川之槍（只限魔法使）",
         Index: 4
       },
       {
-        PropertyString: "+3 to Warmth (Sorceress Only)",
+        PropertyString: "+3 暖流（只限魔法使）",
         Index: 5
       },
       {
-        PropertyString: "+3 to Frost Nova (Sorceress Only)",
+        PropertyString: "+3 冰霜新星（只限魔法使）",
         Index: 6
       },
       {
-        PropertyString: "+2 to Mana (Per Character Level)",
+        PropertyString: "+2 法力 （依角色等級而定）",
         Index: 1
       },
       {
-        PropertyString: "Fire Resist +33%",
+        PropertyString: "火焰抗性 +33%",
         Index: 2
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       }
     ],
@@ -2239,7 +2239,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Friendship",
+    Name: "友情 (Friendship)",
     Index: "Friendship",
     Enabled: true,
     Rarity: 0,
@@ -2248,27 +2248,27 @@ const json = [
     Code: "Friendship",
     Properties: [
       {
-        PropertyString: "+133% Enhanced Damage",
+        PropertyString: "+133% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "Adds 25-50 to Damage",
+        PropertyString: "增加 25-50 傷害",
         Index: 4
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "+66% Chance of Crushing Blow",
+        PropertyString: "+66% 概率造成粉碎打擊",
         Index: 5
       },
       {
-        PropertyString: "+34% Deadly Strike",
+        PropertyString: "+34% 致命打擊",
         Index: 6
       },
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 2
       },
       {
@@ -2276,11 +2276,11 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "+5 To Required Level",
+        PropertyString: "+5 需求等級",
         Index: 0
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -2327,7 +2327,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Edge",
+    Name: "邊緣 (Edge)",
     Index: "Edge",
     Enabled: true,
     Rarity: 0,
@@ -2336,43 +2336,43 @@ const json = [
     Code: "Edge",
     Properties: [
       {
-        PropertyString: "Level 15 Thorns Aura When Equipped",
+        PropertyString: "裝備時賦予等級 15 荊棘靈氣",
         Index: 0
       },
       {
-        PropertyString: "+35% Increased Attack Speed",
+        PropertyString: "攻擊速度 +35%",
         Index: 1
       },
       {
-        PropertyString: "+320-380% Damage to Demons",
+        PropertyString: "+320-380% 對惡魔的傷害",
         Index: 2
       },
       {
-        PropertyString: "+280% Damage to Undead",
+        PropertyString: "+280% 對不死怪物的傷害",
         Index: 3
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 4
       },
       {
-        PropertyString: "+8-9 to All Attributes",
+        PropertyString: "+8-9 所有屬性",
         Index: 6
       },
       {
-        PropertyString: "Poison Resist +30%",
+        PropertyString: "毒素抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       },
       {
-        PropertyString: "Reduces all Vendor Prices 15%",
+        PropertyString: "所有商人的價格降低 15%",
         Index: 5
       }
     ],
@@ -2409,7 +2409,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Hunger",
+    Name: "飢餓 (Hunger)",
     Index: "Hunger",
     Enabled: true,
     Rarity: 0,
@@ -2418,39 +2418,39 @@ const json = [
     Code: "Hunger",
     Properties: [
       {
-        PropertyString: "+15-30% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +15-30%",
         Index: 1
       },
       {
-        PropertyString: "+5% Life stolen per hit",
+        PropertyString: "擊中竊取 5% 生命",
         Index: 5
       },
       {
-        PropertyString: "-1 Drain Life",
+        PropertyString: "吸取生命 -1",
         Index: 6
       },
       {
-        PropertyString: "Magic Resist +20%",
+        PropertyString: "魔法抗性 +20%",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +20%",
+        PropertyString: "所有抗性 +20%",
         Index: 3
       },
       {
-        PropertyString: "+10-15% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +10-15%",
         Index: 2
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       },
       {
-        PropertyString: "+8 To Required Level",
+        PropertyString: "+8 需求等級",
         Index: 0
       },
       {
-        PropertyString: "Requirements -15%",
+        PropertyString: "需求 -15%",
         Index: 0
       }
     ],
@@ -2502,7 +2502,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "King's Grace",
+    Name: "王者的慈悲 (King's Grace)",
     Index: "King's Grace",
     Enabled: true,
     Rarity: 0,
@@ -2511,39 +2511,39 @@ const json = [
     Code: "King's Grace",
     Properties: [
       {
-        PropertyString: "+100% Enhanced Damage",
+        PropertyString: "+100% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+150 to Attack Rating",
+        PropertyString: "+150 準確率",
         Index: 1
       },
       {
-        PropertyString: "+100% Damage to Demons",
+        PropertyString: "+100% 對惡魔的傷害",
         Index: 2
       },
       {
-        PropertyString: "+100 to Attack Rating against Demons",
+        PropertyString: "+100 對惡魔的准确率",
         Index: 4
       },
       {
-        PropertyString: "+50% Damage to Undead",
+        PropertyString: "+50% 對不死怪物的傷害",
         Index: 3
       },
       {
-        PropertyString: "+100 to Attack Rating against Undead",
+        PropertyString: "+100 對不死怪物的准确率",
         Index: 5
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage",
+        PropertyString: "增加 5-30 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       }
     ],
@@ -2590,7 +2590,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Lightning",
+    Name: "閃電 (Lightning)",
     Index: "Lightning",
     Enabled: true,
     Rarity: 0,
@@ -2599,35 +2599,35 @@ const json = [
     Code: "Lightning",
     Properties: [
       {
-        PropertyString: "15% Chance to cast level 9 Lightning on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 9 閃電箭",
         Index: 3
       },
       {
-        PropertyString: "Level 2 Holy Shock Aura When Equipped",
+        PropertyString: "裝備時賦予等級 2 神聖電擊靈氣",
         Index: 4
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 2
       },
       {
-        PropertyString: "+100-175% Enhanced Damage",
+        PropertyString: "+100-175% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+2-100 to Minimum Lightning Damage",
+        PropertyString: "增加 2-100 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +35-50%",
+        PropertyString: "電擊抗性 +35-50%",
         Index: 0
       },
       {
-        PropertyString: "+8-10 Lightning Absorb",
+        PropertyString: "電擊吸引 +8-10",
         Index: 5
       }
     ],
@@ -2664,7 +2664,7 @@ const json = [
         Class: "dru"
       }
     ],
-    Name: "Nature's Kingdom",
+    Name: "自然王國 (Nature's Kingdom)",
     Index: "Nature's Kingdom",
     Enabled: true,
     Rarity: 0,
@@ -2673,35 +2673,35 @@ const json = [
     Code: "Nature's Kingdom",
     Properties: [
       {
-        PropertyString: "+1 to Druid Skill Levels",
+        PropertyString: "+1 德魯伊技能等級",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Cast Rate",
+        PropertyString: "+20% 施法速度",
         Index: 3
       },
       {
-        PropertyString: "+75-100% Enhanced Defense",
+        PropertyString: "+75-100% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+40-60 to Mana",
+        PropertyString: "+40-60 法力",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +20%",
+        PropertyString: "所有抗性 +20%",
         Index: 4
       },
       {
-        PropertyString: "+10 to All Attributes",
+        PropertyString: "+10 所有屬性",
         Index: 5
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       }
     ],
@@ -2738,7 +2738,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Serendipity",
+    Name: "機緣 (Serendipity)",
     Index: "Serendipity",
     Enabled: true,
     Rarity: 0,
@@ -2747,27 +2747,27 @@ const json = [
     Code: "Serendipity",
     Properties: [
       {
-        PropertyString: "50% Chance to cast level 2 Inner Sight on striking",
+        PropertyString: "擊中時有 50% 機率施展等級 2 心靈視野",
         Index: 1
       },
       {
-        PropertyString: "+120% Enhanced Damage",
+        PropertyString: "+120% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Cast Rate",
+        PropertyString: "+20% 施法速度",
         Index: 4
       },
       {
-        PropertyString: "+14% Life stolen per hit",
+        PropertyString: "擊中竊取 14% 生命",
         Index: 0
       },
       {
-        PropertyString: "+20 to Energy",
+        PropertyString: "+20 能量",
         Index: 2
       },
       {
-        PropertyString: "Regenerate Mana +50%",
+        PropertyString: "法力恢復 50%",
         Index: 3
       }
     ],
@@ -2829,7 +2829,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Spirit",
+    Name: "精神 (Spirit)",
     Index: "Spirit",
     Enabled: true,
     Rarity: 0,
@@ -2838,63 +2838,63 @@ const json = [
     Code: "Spirit",
     Properties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 6
       },
       {
-        PropertyString: "+25-35% Faster Cast Rate",
+        PropertyString: "+25-35% 施法速度",
         Index: 4
       },
       {
-        PropertyString: "+55% Faster Hit Recovery",
+        PropertyString: "+55% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+250 Defense vs. Missile",
+        PropertyString: "+250 對遠程防禦",
         Index: 2
       },
       {
-        PropertyString: "+22 to Vitality",
+        PropertyString: "+22 體能",
         Index: 3
       },
       {
-        PropertyString: "+89-112 to Mana",
+        PropertyString: "+89-112 法力",
         Index: 1
       },
       {
-        PropertyString: "+3-8 Magic Absorb",
+        PropertyString: "魔法吸引 +3-8",
         Index: 5
       },
       {
-        PropertyString: "+7% Life stolen per hit (Weapon)",
+        PropertyString: "擊中竊取 7% 生命 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+76 Poison Damage Over 5 Seconds (Weapon)",
+        PropertyString: "+76 毒素傷害，時效 5 秒 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Adds 1-50 to Lightning Damage (Weapon)",
+        PropertyString: "增加 1-50 電擊傷害 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage (Weapon)",
+        PropertyString: "增加 3-14 寒冰傷害 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14 (Shield)",
+        PropertyString: "攻擊者反傷 +14 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist +35% (Shield)",
+        PropertyString: "冰寒抗性 +35% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +35% (Shield)",
+        PropertyString: "電擊抗性 +35% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Poison Resist +35% (Shield)",
+        PropertyString: "毒素抗性 +35% （只限盾牌）",
         Index: 0
       }
     ],
@@ -2931,7 +2931,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Strength",
+    Name: "力量 (Strength)",
     Index: "Strength",
     Enabled: true,
     Rarity: 0,
@@ -2940,27 +2940,27 @@ const json = [
     Code: "Strength",
     Properties: [
       {
-        PropertyString: "+35% Enhanced Damage",
+        PropertyString: "+35% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+25% Chance of Crushing Blow",
+        PropertyString: "+25% 概率造成粉碎打擊",
         Index: 3
       },
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 2
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       }
     ],
@@ -3007,7 +3007,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Myth",
+    Name: "神話 (Myth)",
     Index: "Myth",
     Enabled: true,
     Rarity: 0,
@@ -3016,31 +3016,31 @@ const json = [
     Code: "Myth",
     Properties: [
       {
-        PropertyString: "10% Chance to cast level 1 Taunt on striking",
+        PropertyString: "擊中時有 10% 機率施展等級 1 嘲諷",
         Index: 0
       },
       {
-        PropertyString: "3% Chance to cast level 1 Howl when struck",
+        PropertyString: "被擊中時有 3% 機率施展等級 1 狂嗥",
         Index: 1
       },
       {
-        PropertyString: "+2 to Barbarian Skill Levels",
+        PropertyString: "+2 野蠻人技能等級",
         Index: 2
       },
       {
-        PropertyString: "+30 Defense vs. Missile",
+        PropertyString: "+30 對遠程防禦",
         Index: 0
       },
       {
-        PropertyString: "+10 Replenish Life",
+        PropertyString: "生命回復 +10",
         Index: 3
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       },
       {
-        PropertyString: "Requirements -15%",
+        PropertyString: "需求 -15%",
         Index: 0
       }
     ],
@@ -3107,7 +3107,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Honor",
+    Name: "榮耀 (Honor)",
     Index: "Honor",
     Enabled: true,
     Rarity: 0,
@@ -3116,51 +3116,51 @@ const json = [
     Code: "Honor",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       },
       {
-        PropertyString: "+160% Enhanced Damage",
+        PropertyString: "+160% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+200 to Attack Rating",
+        PropertyString: "+200 準確率",
         Index: 3
       },
       {
-        PropertyString: "+25% Deadly Strike",
+        PropertyString: "+25% 致命打擊",
         Index: 4
       },
       {
-        PropertyString: "+15 Defense",
+        PropertyString: "+15 防禦",
         Index: 1
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 5
       },
       {
-        PropertyString: "+10 Replenish Life",
+        PropertyString: "生命回復 +10",
         Index: 1
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       }
     ],
@@ -3232,7 +3232,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Insight",
+    Name: "靈光 (Insight)",
     Index: "Insight",
     Enabled: true,
     Rarity: 0,
@@ -3241,63 +3241,63 @@ const json = [
     Code: "Insight",
     Properties: [
       {
-        PropertyString: "Level 12-17 Meditation Aura When Equipped",
+        PropertyString: "裝備時賦予等級 12-17 冥想靈氣",
         Index: 5
       },
       {
-        PropertyString: "+1-6 to Critical Strike",
+        PropertyString: "+1-6 致命攻勢",
         Index: 3
       },
       {
-        PropertyString: "+200-260% Enhanced Damage",
+        PropertyString: "+200-260% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+35% Faster Cast Rate",
+        PropertyString: "+35% 施法速度",
         Index: 4
       },
       {
-        PropertyString: "+180-250% bonus to Attack Rating",
+        PropertyString: "+180-250% 準確率加成",
         Index: 1
       },
       {
-        PropertyString: "+5 to All Attributes",
+        PropertyString: "+5 所有屬性",
         Index: 6
       },
       {
-        PropertyString: "+23% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +23%",
         Index: 2
       },
       {
-        PropertyString: "+2 to Mana after each Kill (Weapon)",
+        PropertyString: "+2 擊殺法力恢復 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+76 Poison Damage Over 5 Seconds (Weapon)",
+        PropertyString: "+76 毒素傷害，時效 5 秒 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage (Weapon)",
+        PropertyString: "增加 5-30 火焰傷害 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Adds 9 to Damage (Weapon)",
+        PropertyString: "增加 9 傷害 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill (Armor)",
+        PropertyString: "+2 擊殺法力恢復 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7 (Armor)",
+        PropertyString: "物理傷害降低 7 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +30% (Armor)",
+        PropertyString: "火焰抗性 +30% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Poison Resist +30% (Armor)",
+        PropertyString: "毒素抗性 +30% （只限盔甲）",
         Index: 0
       }
     ],
@@ -3334,7 +3334,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Lore",
+    Name: "知識 (Lore)",
     Index: "Lore",
     Enabled: true,
     Rarity: 0,
@@ -3343,27 +3343,27 @@ const json = [
     Code: "Lore",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 1
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +30%",
+        PropertyString: "電擊抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 3
       },
       {
-        PropertyString: "+2 to Light Radius",
+        PropertyString: "照亮範圍 +2",
         Index: 2
       }
     ],
@@ -3410,7 +3410,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Radiance",
+    Name: "光輝 (Radiance)",
     Index: "Radiance",
     Enabled: true,
     Rarity: 0,
@@ -3419,39 +3419,39 @@ const json = [
     Code: "Radiance",
     Properties: [
       {
-        PropertyString: "+75% Enhanced Defense",
+        PropertyString: "+75% 防禦強化",
         Index: 5
       },
       {
-        PropertyString: "+30 Defense vs. Missile",
+        PropertyString: "+30 對遠程防禦",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 2
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 1
       },
       {
-        PropertyString: "+33 to Mana",
+        PropertyString: "+33 法力",
         Index: 4
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 3",
+        PropertyString: "魔法傷害降低 3",
         Index: 3
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       },
       {
-        PropertyString: "+5 to Light Radius",
+        PropertyString: "照亮範圍 +5",
         Index: 0
       }
     ],
@@ -3498,7 +3498,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Thirst",
+    Name: "飢渴 (Thirst)",
     Index: "Thirst",
     Enabled: true,
     Rarity: 0,
@@ -3507,39 +3507,39 @@ const json = [
     Code: "Thirst",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+125-150% Enhanced Damage",
+        PropertyString: "+125-150% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+9 to Minimum Damage",
+        PropertyString: "+9 最小傷害",
         Index: 0
       },
       {
-        PropertyString: "+1.5 to Maximum Damage (Per Character Level)",
+        PropertyString: "+1.5 最大傷害 （依角色等級而定）",
         Index: 5
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage",
+        PropertyString: "增加 5-30 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+8-12 Life after each Kill",
+        PropertyString: "+8-12 擊殺生命恢復",
         Index: 3
       },
       {
-        PropertyString: "+2-5 to Mana after each Kill",
+        PropertyString: "+2-5 擊殺法力恢復",
         Index: 4
       },
       {
-        PropertyString: "+1-3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +1-3%",
         Index: 2
       }
     ],
@@ -3576,7 +3576,7 @@ const json = [
         Class: "sor"
       }
     ],
-    Name: "Truth",
+    Name: "真理 (Truth)",
     Index: "Truth",
     Enabled: true,
     Rarity: 0,
@@ -3585,31 +3585,31 @@ const json = [
     Code: "Truth",
     Properties: [
       {
-        PropertyString: "+1 to Sorceress Skill Levels",
+        PropertyString: "+1 魔法使技能等級",
         Index: 1
       },
       {
-        PropertyString: "+100% Enhanced Damage",
+        PropertyString: "+100% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+25% Faster Cast Rate",
+        PropertyString: "+25% 施法速度",
         Index: 4
       },
       {
-        PropertyString: "+9 to Minimum Damage",
+        PropertyString: "+9 最小傷害",
         Index: 0
       },
       {
-        PropertyString: "+9 to Maximum Damage",
+        PropertyString: "+9 最大傷害",
         Index: 0
       },
       {
-        PropertyString: "+35 to Mana",
+        PropertyString: "+35 法力",
         Index: 2
       },
       {
-        PropertyString: "Regenerate Mana +75%",
+        PropertyString: "法力恢復 75%",
         Index: 3
       }
     ],
@@ -3646,7 +3646,7 @@ const json = [
         Class: "bar"
       }
     ],
-    Name: "Void",
+    Name: "虛無 (Void)",
     Index: "Void",
     Enabled: true,
     Rarity: 0,
@@ -3655,39 +3655,39 @@ const json = [
     Code: "Void",
     Properties: [
       {
-        PropertyString: "+1 to Barbarian Skill Levels",
+        PropertyString: "+1 野蠻人技能等級",
         Index: 0
       },
       {
-        PropertyString: "+25% Faster Run/Walk",
+        PropertyString: "+25% 跑步 / 行走速度",
         Index: 4
       },
       {
-        PropertyString: "+25% Faster Hit Recovery",
+        PropertyString: "+25% 打擊恢復",
         Index: 3
       },
       {
-        PropertyString: "+10-15 to Maximum Damage",
+        PropertyString: "+10-15 最大傷害",
         Index: 1
       },
       {
-        PropertyString: "Adds 3-6% Mana stolen per hit",
+        PropertyString: "擊中竊取 3-6% 法力",
         Index: 6
       },
       {
-        PropertyString: "Adds 3-6% Life stolen per hit",
+        PropertyString: "擊中竊取 3-6% 生命",
         Index: 5
       },
       {
-        PropertyString: "+50 to Life",
+        PropertyString: "+50 生命",
         Index: 2
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       }
     ],
@@ -3724,7 +3724,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Rhyme",
+    Name: "聲韻 (Rhyme)",
     Index: "Rhyme",
     Enabled: true,
     Rarity: 0,
@@ -3733,31 +3733,31 @@ const json = [
     Code: "Rhyme",
     Properties: [
       {
-        PropertyString: "+40% Faster Block Rate",
+        PropertyString: "+40% 格擋速度",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +20%",
         Index: 1
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 2
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 3
       },
       {
-        PropertyString: "+50% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +50%",
         Index: 4
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 5
       }
     ],
@@ -3804,7 +3804,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Sorrow",
+    Name: "哀傷 (Sorrow)",
     Index: "Sorrow",
     Enabled: true,
     Rarity: 0,
@@ -3813,35 +3813,35 @@ const json = [
     Code: "Sorrow",
     Properties: [
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 1
       },
       {
-        PropertyString: "+160-200% Enhanced Damage",
+        PropertyString: "+160-200% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+6% Mana stolen per hit",
+        PropertyString: "擊中竊取 +6% 法力",
         Index: 2
       },
       {
-        PropertyString: "-2 Drain Life",
+        PropertyString: "吸取生命 -2",
         Index: 6
       },
       {
-        PropertyString: "Regenerate Mana +50%",
+        PropertyString: "法力恢復 50%",
         Index: 5
       },
       {
-        PropertyString: "+6-9 Life after each Kill",
+        PropertyString: "+6-9 擊殺生命恢復",
         Index: 4
       },
       {
-        PropertyString: "Level 20 Clay Golem (5 Charges)",
+        PropertyString: "等級 20 黏土魔像（5 次）",
         Index: 3
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -3888,7 +3888,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Whisper",
+    Name: "低語 (Whisper)",
     Index: "Whisper",
     Enabled: true,
     Rarity: 0,
@@ -3897,27 +3897,27 @@ const json = [
     Code: "Whisper",
     Properties: [
       {
-        PropertyString: "+60% Increased Attack Speed",
+        PropertyString: "攻擊速度 +60%",
         Index: 0
       },
       {
-        PropertyString: "+100% Enhanced Damage",
+        PropertyString: "+100% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "Adds 25-75 to Damage",
+        PropertyString: "增加 25-75 傷害",
         Index: 0
       },
       {
-        PropertyString: "-15% Target Defense",
+        PropertyString: "-15% 目標防禦",
         Index: 3
       },
       {
-        PropertyString: "+6 Replenish Life",
+        PropertyString: "生命回復 +6",
         Index: 2
       },
       {
-        PropertyString: "Requirements -25%",
+        PropertyString: "需求 -25%",
         Index: 4
       }
     ],
@@ -3964,7 +3964,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Peace",
+    Name: "和平 (Peace)",
     Index: "Peace",
     Enabled: true,
     Rarity: 0,
@@ -3973,31 +3973,31 @@ const json = [
     Code: "Peace",
     Properties: [
       {
-        PropertyString: "2% Chance to cast level 15 Valkyrie on striking",
+        PropertyString: "擊中時有 2% 機率施展等級 15 女武神",
         Index: 0
       },
       {
-        PropertyString: "4% Chance to cast level 5 Slow Missiles when struck",
+        PropertyString: "被擊中時有 4% 機率施展等級 5 緩箭術",
         Index: 1
       },
       {
-        PropertyString: "+2 to Amazon Skill Levels",
+        PropertyString: "+2 亞馬遜技能等級",
         Index: 2
       },
       {
-        PropertyString: "+2 to Critical Strike",
+        PropertyString: "+2 致命攻勢",
         Index: 3
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist +30%",
+        PropertyString: "冰寒抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       }
     ],
@@ -4044,7 +4044,7 @@ const json = [
         Class: "ass"
       }
     ],
-    Name: "Duriel's Fang",
+    Name: "督瑞爾的獠牙 (Duriel's Fang)",
     Index: "Duriel's Fang",
     Enabled: true,
     Rarity: 0,
@@ -4053,27 +4053,27 @@ const json = [
     Code: "Duriel's Fang",
     Properties: [
       {
-        PropertyString: "+1-2 to Poison Skills",
+        PropertyString: "+1-2 毒素技能",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 3
       },
       {
-        PropertyString: "+10-15% to Poison Skill Damage",
+        PropertyString: "+10-15% 毒素技能傷害",
         Index: 1
       },
       {
-        PropertyString: "-5-8% to Enemy Poison Resistance",
+        PropertyString: "敵人毒素抗性 -5-8%",
         Index: 2
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       }
     ],
@@ -4110,7 +4110,7 @@ const json = [
         Class: "ama"
       }
     ],
-    Name: "Beauty",
+    Name: "美貌 (Beauty)",
     Index: "Beauty",
     Enabled: true,
     Rarity: 0,
@@ -4119,39 +4119,39 @@ const json = [
     Code: "Beauty",
     Properties: [
       {
-        PropertyString: "+3 to Bow and Crossbow Skills (Amazon only)",
+        PropertyString: "+3 弓與弩技能 （只限亞馬遜）",
         Index: 0
       },
       {
-        PropertyString: "Adds 30-60 to Damage",
+        PropertyString: "增加 30-60 傷害",
         Index: 1
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 5
       },
       {
-        PropertyString: "+8% Life stolen per hit",
+        PropertyString: "擊中竊取 8% 生命",
         Index: 4
       },
       {
-        PropertyString: "+50% Chance of Open Wounds",
+        PropertyString: "+50% 機率造成開放傷口",
         Index: 6
       },
       {
-        PropertyString: "25% Hit Causes Monster To Flee",
+        PropertyString: "25% 機率擊中使怪物逃跑",
         Index: 0
       },
       {
-        PropertyString: "Slows target by 15%",
+        PropertyString: "使目標減慢 15%",
         Index: 3
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 2
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       }
     ],
@@ -4198,7 +4198,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Dread",
+    Name: "恐懼 (Dread)",
     Index: "Dread",
     Enabled: true,
     Rarity: 0,
@@ -4207,47 +4207,47 @@ const json = [
     Code: "Dread",
     Properties: [
       {
-        PropertyString: "13% Chance to cast level 13 Charged Bolt on striking",
+        PropertyString: "擊中時有 13% 機率施展等級 13 電能彈",
         Index: 1
       },
       {
-        PropertyString: "+20% Faster Run/Walk",
+        PropertyString: "+20% 跑步 / 行走速度",
         Index: 2
       },
       {
-        PropertyString: "+100-125% Enhanced Defense",
+        PropertyString: "+100-125% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+15 Defense",
+        PropertyString: "+15 防禦",
         Index: 1
       },
       {
-        PropertyString: "+0.5 to Strength (Per Character Level)",
+        PropertyString: "+0.5 力量 （依角色等級而定）",
         Index: 5
       },
       {
-        PropertyString: "+0.5 to Dexterity (Per Character Level)",
+        PropertyString: "+0.5 敏捷 （依角色等級而定）",
         Index: 6
       },
       {
-        PropertyString: "+7 Replenish Life",
+        PropertyString: "生命回復 +7",
         Index: 0
       },
       {
-        PropertyString: "+6-8 Life after each Kill",
+        PropertyString: "+6-8 擊殺生命恢復",
         Index: 3
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       },
       {
-        PropertyString: "+1 To Required Level",
+        PropertyString: "+1 需求等級",
         Index: 4
       }
     ],
@@ -4284,7 +4284,7 @@ const json = [
         Class: "pal"
       }
     ],
-    Name: "Heaven's Will",
+    Name: "天堂意志 (Heaven's Will)",
     Index: "Heaven's Will",
     Enabled: true,
     Rarity: 0,
@@ -4293,35 +4293,35 @@ const json = [
     Code: "Heaven's Will",
     Properties: [
       {
-        PropertyString: "+1 to Paladin Skill Levels",
+        PropertyString: "+1 聖騎士技能等級",
         Index: 0
       },
       {
-        PropertyString: "+30-50% Enhanced Damage",
+        PropertyString: "+30-50% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+30% Faster Block Rate",
+        PropertyString: "+30% 格擋速度",
         Index: 2
       },
       {
-        PropertyString: "+50% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +50%",
         Index: 1
       },
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 4
       },
       {
-        PropertyString: "+6 to Fist of the Heavens (Paladin Only)",
+        PropertyString: "+6 天堂之拳（只限聖騎士）",
         Index: 5
       },
       {
-        PropertyString: "+7 Replenish Life",
+        PropertyString: "生命回復 +7",
         Index: 0
       },
       {
-        PropertyString: "+5 Life after each Kill",
+        PropertyString: "+5 擊殺生命恢復",
         Index: 0
       }
     ],
@@ -4368,7 +4368,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Punishment",
+    Name: "懲罰 (Punishment)",
     Index: "Punishment",
     Enabled: true,
     Rarity: 0,
@@ -4377,39 +4377,39 @@ const json = [
     Code: "Punishment",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 35 Thunder Storm when you Level-Up",
+        PropertyString: "當你升級時有 100% 機率施展等級 35 雷電風暴",
         Index: 5
       },
       {
-        PropertyString: "+135% Enhanced Damage",
+        PropertyString: "+135% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "Adds 20-40 to Damage",
+        PropertyString: "增加 20-40 傷害",
         Index: 1
       },
       {
-        PropertyString: "Adds 1-50 to Lightning Damage",
+        PropertyString: "增加 1-50 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "25% Hit Causes Monster To Flee",
+        PropertyString: "25% 機率擊中使怪物逃跑",
         Index: 0
       },
       {
-        PropertyString: "-3 Drain Life",
+        PropertyString: "吸取生命 -3",
         Index: 2
       },
       {
-        PropertyString: "+20 to All Attributes",
+        PropertyString: "+20 所有屬性",
         Index: 4
       },
       {
-        PropertyString: "Damage Reduced by 15",
+        PropertyString: "物理傷害降低 15",
         Index: 6
       },
       {
@@ -4450,7 +4450,7 @@ const json = [
         Class: "ass"
       }
     ],
-    Name: "Vengeance",
+    Name: "復仇 (Vengeance)",
     Index: "Vengeance",
     Enabled: true,
     Rarity: 0,
@@ -4459,35 +4459,35 @@ const json = [
     Code: "Vengeance",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 55 Poison Nova when you Die",
+        PropertyString: "當你死亡時有 100% 機率施展等級 55 劇毒新星",
         Index: 1
       },
       {
-        PropertyString: "+1 to Assassin Skill Levels",
+        PropertyString: "+1 刺客技能等級",
         Index: 5
       },
       {
-        PropertyString: "Adds 35-70 to Damage",
+        PropertyString: "增加 35-70 傷害",
         Index: 0
       },
       {
-        PropertyString: "+6% Life stolen per hit",
+        PropertyString: "擊中竊取 6% 生命",
         Index: 2
       },
       {
-        PropertyString: "25% Hit Causes Monster To Flee",
+        PropertyString: "25% 機率擊中使怪物逃跑",
         Index: 0
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 0
       },
       {
-        PropertyString: "+40 to Life",
+        PropertyString: "+40 生命",
         Index: 3
       },
       {
-        PropertyString: "+10 to All Attributes",
+        PropertyString: "+10 所有屬性",
         Index: 4
       }
     ],
@@ -4544,7 +4544,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Black",
+    Name: "黑錘 (Black)",
     Index: "Black",
     Enabled: true,
     Rarity: 0,
@@ -4553,39 +4553,39 @@ const json = [
     Code: "Black",
     Properties: [
       {
-        PropertyString: "+15% Increased Attack Speed",
+        PropertyString: "攻擊速度 +15%",
         Index: 2
       },
       {
-        PropertyString: "+120% Enhanced Damage",
+        PropertyString: "+120% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+200 to Attack Rating",
+        PropertyString: "+200 準確率",
         Index: 4
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+40% Chance of Crushing Blow",
+        PropertyString: "+40% 概率造成粉碎打擊",
         Index: 0
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 2",
+        PropertyString: "魔法傷害降低 2",
         Index: 3
       },
       {
-        PropertyString: "Level 4 Corpse Explosion (12 Charges)",
+        PropertyString: "等級 4 屍爆（12 次）",
         Index: 5
       }
     ],
@@ -4632,7 +4632,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Bulwark",
+    Name: "壁壘 (Bulwark)",
     Index: "Bulwark",
     Enabled: true,
     Rarity: 0,
@@ -4641,35 +4641,35 @@ const json = [
     Code: "Bulwark",
     Properties: [
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "Adds 4-6% Life stolen per hit",
+        PropertyString: "擊中竊取 4-6% 生命",
         Index: 4
       },
       {
-        PropertyString: "+75-100% Enhanced Defense",
+        PropertyString: "+75-100% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "+30 Replenish Life",
+        PropertyString: "生命回復 +30",
         Index: 3
       },
       {
-        PropertyString: "+10-15% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +10-15%",
         Index: 2
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       }
     ],
@@ -4716,7 +4716,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Cure",
+    Name: "治癒 (Cure)",
     Index: "Cure",
     Enabled: true,
     Rarity: 0,
@@ -4725,31 +4725,31 @@ const json = [
     Code: "Cure",
     Properties: [
       {
-        PropertyString: "Level 1 Cleansing Aura When Equipped",
+        PropertyString: "裝備時賦予等級 1 淨化靈氣",
         Index: 4
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+75-100% Enhanced Defense",
+        PropertyString: "+75-100% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "Poison Resist +40-60%",
+        PropertyString: "毒素抗性 +40-60%",
         Index: 2
       },
       {
-        PropertyString: "Poison Length Reduced by 50%",
+        PropertyString: "中毒的時效縮短 50%",
         Index: 3
       }
     ],
@@ -4796,7 +4796,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Ground",
+    Name: "接地 (Ground)",
     Index: "Ground",
     Enabled: true,
     Rarity: 0,
@@ -4805,27 +4805,27 @@ const json = [
     Code: "Ground",
     Properties: [
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+75-100% Enhanced Defense",
+        PropertyString: "+75-100% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +40-60%",
+        PropertyString: "電擊抗性 +40-60%",
         Index: 2
       },
       {
-        PropertyString: "+10-15% Lightning Absorb",
+        PropertyString: "電擊吸引 +10-15%",
         Index: 3
       }
     ],
@@ -4862,7 +4862,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Hatred",
+    Name: "憎恨 (Hatred)",
     Index: "Hatred",
     Enabled: true,
     Rarity: 0,
@@ -4871,35 +4871,35 @@ const json = [
     Code: "Hatred",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 1
       },
       {
-        PropertyString: "+140-190% Enhanced Damage",
+        PropertyString: "+140-190% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+100-200% Damage to Demons",
+        PropertyString: "+100-200% 對惡魔的傷害",
         Index: 5
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 4
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 3
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +50%",
         Index: 2
       }
     ],
@@ -4946,7 +4946,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Hearth",
+    Name: "火爐 (Hearth)",
     Index: "Hearth",
     Enabled: true,
     Rarity: 0,
@@ -4955,31 +4955,31 @@ const json = [
     Code: "Hearth",
     Properties: [
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+75-100% Enhanced Defense",
+        PropertyString: "+75-100% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist +40-60%",
+        PropertyString: "冰寒抗性 +40-60%",
         Index: 2
       },
       {
-        PropertyString: "+10-15% Cold Absorb",
+        PropertyString: "寒冰吸引 +10-15%",
         Index: 3
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 4
       }
     ],
@@ -5026,7 +5026,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Holy Tears",
+    Name: "神聖之淚 (Holy Tears)",
     Index: "Holy Tears",
     Enabled: true,
     Rarity: 0,
@@ -5035,39 +5035,39 @@ const json = [
     Code: "Holy Tears",
     Properties: [
       {
-        PropertyString: "16% Chance to cast level 9 Fist Of The Heavens on striking",
+        PropertyString: "擊中時有 16% 機率施展等級 9 天堂之拳",
         Index: 1
       },
       {
-        PropertyString: "+5 to Zeal",
+        PropertyString: "+5 熱忱打擊",
         Index: 5
       },
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 6
       },
       {
-        PropertyString: "+160-200% Enhanced Damage",
+        PropertyString: "+160-200% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+35% bonus to Attack Rating",
+        PropertyString: "+35% 準確率加成",
         Index: 3
       },
       {
-        PropertyString: "+300% Damage to Demons",
+        PropertyString: "+300% 對惡魔的傷害",
         Index: 2
       },
       {
-        PropertyString: "Slows target by 35%",
+        PropertyString: "使目標減慢 35%",
         Index: 4
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       }
     ],
@@ -5119,7 +5119,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Madness",
+    Name: "瘋狂 (Madness)",
     Index: "Madness",
     Enabled: true,
     Rarity: 0,
@@ -5128,55 +5128,55 @@ const json = [
     Code: "Madness",
     Properties: [
       {
-        PropertyString: "9% Chance to cast level 5 Confuse when struck",
+        PropertyString: "被擊中時有 9% 機率施展等級 5 混亂",
         Index: 0
       },
       {
-        PropertyString: "12% Chance to cast level 16 Terror on striking",
+        PropertyString: "擊中時有 12% 機率施展等級 16 恐懼",
         Index: 1
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 4
       },
       {
-        PropertyString: "+15% Increased Attack Speed",
+        PropertyString: "攻擊速度 +15%",
         Index: 2
       },
       {
-        PropertyString: "+15% Faster Block Rate",
+        PropertyString: "+15% 格擋速度",
         Index: 5
       },
       {
-        PropertyString: "+35-50 to Life",
+        PropertyString: "+35-50 生命",
         Index: 6
       },
       {
-        PropertyString: "+1 To Required Level",
+        PropertyString: "+1 需求等級",
         Index: 3
       },
       {
-        PropertyString: "+10 to Vitality (Armor)",
+        PropertyString: "+10 體能 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+7 Replenish Life (Armor)",
+        PropertyString: "生命回復 +7 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +15% (Armor)",
+        PropertyString: "法力恢復 15% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality (Shield)",
+        PropertyString: "+10 體能 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+7 Replenish Life (Shield)",
+        PropertyString: "生命回復 +7 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +15% (Shield)",
+        PropertyString: "法力恢復 15% （只限盾牌）",
         Index: 0
       }
     ],
@@ -5233,7 +5233,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Red",
+    Name: "鮮紅 (Red)",
     Index: "Red",
     Enabled: true,
     Rarity: 0,
@@ -5242,39 +5242,39 @@ const json = [
     Code: "Red",
     Properties: [
       {
-        PropertyString: "8% Chance to cast level 4 Meteor on striking",
+        PropertyString: "擊中時有 8% 機率施展等級 4 隕石術",
         Index: 6
       },
       {
-        PropertyString: "+155% Enhanced Damage",
+        PropertyString: "+155% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+15-25% to Fire Skill Damage",
+        PropertyString: "+15-25% 火焰技能傷害",
         Index: 5
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist -20%",
+        PropertyString: "冰寒抗性 -20%",
         Index: 4
       },
       {
-        PropertyString: "Fire Resist +95-110%",
+        PropertyString: "火焰抗性 +95-110%",
         Index: 2
       },
       {
-        PropertyString: "+10% Fire Absorb",
+        PropertyString: "火焰吸引 +10%",
         Index: 3
       },
       {
-        PropertyString: "Repairs 0.2 durability per second",
+        PropertyString: "每 1 秒修復 0.2 點耐久度",
         Index: 1
       },
       {
-        PropertyString: "Requirements -15%",
+        PropertyString: "需求 -15%",
         Index: 0
       }
     ],
@@ -5311,7 +5311,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Shadow of Doubt",
+    Name: "懷疑之影 (Shadow of Doubt)",
     Index: "Shadow of Doubt",
     Enabled: true,
     Rarity: 0,
@@ -5320,31 +5320,31 @@ const json = [
     Code: "Shadow of Doubt",
     Properties: [
       {
-        PropertyString: "+1-3 to Curses (Necromancer only)",
+        PropertyString: "+1-3 詛咒 （只限死靈法師）",
         Index: 0
       },
       {
-        PropertyString: "+1-3 to Poison and Bone Skills (Necromancer only)",
+        PropertyString: "+1-3 毒素與骸骨技能 （只限死靈法師）",
         Index: 1
       },
       {
-        PropertyString: "+1-3 to Summoning Skills (Necromancer only)",
+        PropertyString: "+1-3 召喚技能 （只限死靈法師）",
         Index: 2
       },
       {
-        PropertyString: "+15% Faster Cast Rate",
+        PropertyString: "+15% 施法速度",
         Index: 3
       },
       {
-        PropertyString: "+10% to Poison Skill Damage",
+        PropertyString: "+10% 毒素技能傷害",
         Index: 4
       },
       {
-        PropertyString: "25% Hit Causes Monster To Flee",
+        PropertyString: "25% 機率擊中使怪物逃跑",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       }
     ],
@@ -5391,7 +5391,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Temper",
+    Name: "和緩 (Temper)",
     Index: "Temper",
     Enabled: true,
     Rarity: 0,
@@ -5400,27 +5400,27 @@ const json = [
     Code: "Temper",
     Properties: [
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+75-100% Enhanced Defense",
+        PropertyString: "+75-100% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +40-60%",
+        PropertyString: "火焰抗性 +40-60%",
         Index: 2
       },
       {
-        PropertyString: "+10-15% Fire Absorb",
+        PropertyString: "火焰吸引 +10-15%",
         Index: 3
       }
     ],
@@ -5457,7 +5457,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "White",
+    Name: "蒼白 (White)",
     Index: "White",
     Enabled: true,
     Rarity: 0,
@@ -5466,39 +5466,39 @@ const json = [
     Code: "White",
     Properties: [
       {
-        PropertyString: "+3 to Poison and Bone Skills (Necromancer only)",
+        PropertyString: "+3 毒素與骸骨技能 （只限死靈法師）",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Cast Rate",
+        PropertyString: "+20% 施法速度",
         Index: 2
       },
       {
-        PropertyString: "+3 to Bone Armor (Necromancer Only)",
+        PropertyString: "+3 骸骨護甲（只限死靈法師）",
         Index: 4
       },
       {
-        PropertyString: "+2 to Bone Spear (Necromancer Only)",
+        PropertyString: "+2 骨矛（只限死靈法師）",
         Index: 5
       },
       {
-        PropertyString: "+4 to Skeleton Mastery (Necromancer Only)",
+        PropertyString: "+4 骷髏專精（只限死靈法師）",
         Index: 6
       },
       {
-        PropertyString: "25% Hit Causes Monster To Flee",
+        PropertyString: "25% 機率擊中使怪物逃跑",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+13 to Mana",
+        PropertyString: "+13 法力",
         Index: 3
       },
       {
-        PropertyString: "Magic Damage Reduced by 4",
+        PropertyString: "魔法傷害降低 4",
         Index: 1
       }
     ],
@@ -5545,7 +5545,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Deception",
+    Name: "欺暪 (Deception)",
     Index: "Deception",
     Enabled: true,
     Rarity: 0,
@@ -5554,43 +5554,43 @@ const json = [
     Code: "Deception",
     Properties: [
       {
-        PropertyString: "+1 to Warp",
+        PropertyString: "+1 傳送術（Warp）",
         Index: 2
       },
       {
-        PropertyString: "+165-205% Enhanced Damage",
+        PropertyString: "+165-205% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+40% Faster Hit Recovery",
+        PropertyString: "+40% 打擊恢復",
         Index: 3
       },
       {
-        PropertyString: "+1 to Maximum Damage (Per Character Level)",
+        PropertyString: "+1 最大傷害 （依角色等級而定）",
         Index: 4
       },
       {
-        PropertyString: "+8% Life stolen per hit",
+        PropertyString: "擊中竊取 8% 生命",
         Index: 1
       },
       {
-        PropertyString: "+15% to Fire Skill Damage",
+        PropertyString: "+15% 火焰技能傷害",
         Index: 5
       },
       {
-        PropertyString: "25% Hit Causes Monster To Flee",
+        PropertyString: "25% 機率擊中使怪物逃跑",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "Level 18 Meteor (150 Charges)",
+        PropertyString: "等級 18 隕石術（150 次）",
         Index: 6
       }
     ],
@@ -5647,7 +5647,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Memory",
+    Name: "記憶 (Memory)",
     Index: "Memory",
     Enabled: true,
     Rarity: 0,
@@ -5656,47 +5656,47 @@ const json = [
     Code: "Memory",
     Properties: [
       {
-        PropertyString: "+3 to Sorceress Skill Levels",
+        PropertyString: "+3 魔法使技能等級",
         Index: 4
       },
       {
-        PropertyString: "+33% Faster Cast Rate",
+        PropertyString: "+33% 施法速度",
         Index: 3
       },
       {
-        PropertyString: "+9 to Minimum Damage",
+        PropertyString: "+9 最小傷害",
         Index: 0
       },
       {
-        PropertyString: "-25% Target Defense",
+        PropertyString: "-25% 目標防禦",
         Index: 0
       },
       {
-        PropertyString: "+3 to Energy Shield (Sorceress Only)",
+        PropertyString: "+3 能量 Shield （只限魔法使）",
         Index: 5
       },
       {
-        PropertyString: "+2 to Static Field (Sorceress Only)",
+        PropertyString: "+2 靜電力場（只限魔法使）",
         Index: 6
       },
       {
-        PropertyString: "+50% Enhanced Defense",
+        PropertyString: "+50% 防禦強化",
         Index: 2
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Maximum Mana",
+        PropertyString: "法力上限 +20%",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 7",
+        PropertyString: "魔法傷害降低 7",
         Index: 1
       }
     ],
@@ -5733,7 +5733,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Smoke",
+    Name: "煙霧 (Smoke)",
     Index: "Smoke",
     Enabled: true,
     Rarity: 0,
@@ -5742,31 +5742,31 @@ const json = [
     Code: "Smoke",
     Properties: [
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 3
       },
       {
-        PropertyString: "+75% Enhanced Defense",
+        PropertyString: "+75% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+280 Defense vs. Missile",
+        PropertyString: "+280 對遠程防禦",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +50%",
+        PropertyString: "所有抗性 +50%",
         Index: 2
       },
       {
-        PropertyString: "-1 to Light Radius",
+        PropertyString: "照亮範圍 -1",
         Index: 4
       },
       {
-        PropertyString: "Level 6 Weaken (18 Charges)",
+        PropertyString: "等級 6 削弱（18 次）",
         Index: 5
       }
     ],
@@ -5803,7 +5803,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Splendor",
+    Name: "燦爛 (Splendor)",
     Index: "Splendor",
     Enabled: true,
     Rarity: 0,
@@ -5812,39 +5812,39 @@ const json = [
     Code: "Splendor",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+10% Faster Cast Rate",
+        PropertyString: "+10% 施法速度",
         Index: 1
       },
       {
-        PropertyString: "+20% Faster Block Rate",
+        PropertyString: "+20% 格擋速度",
         Index: 2
       },
       {
-        PropertyString: "+60-100% Enhanced Defense",
+        PropertyString: "+60-100% 防禦強化",
         Index: 3
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "+50% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +50%",
         Index: 4
       },
       {
-        PropertyString: "+20% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +20%",
         Index: 5
       },
       {
-        PropertyString: "+3 to Light Radius",
+        PropertyString: "照亮範圍 +3",
         Index: 6
       }
     ],
@@ -5901,7 +5901,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Harmony",
+    Name: "和諧 (Harmony)",
     Index: "Harmony",
     Enabled: true,
     Rarity: 0,
@@ -5910,47 +5910,47 @@ const json = [
     Code: "Harmony",
     Properties: [
       {
-        PropertyString: "Level 10 Vigor Aura When Equipped",
+        PropertyString: "裝備時賦予等級 10 活力靈氣",
         Index: 0
       },
       {
-        PropertyString: "+2-6 to Valkyrie",
+        PropertyString: "+2-6 女武神",
         Index: 4
       },
       {
-        PropertyString: "+200-275% Enhanced Damage",
+        PropertyString: "+200-275% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "Adds 55-160 to Fire Damage",
+        PropertyString: "增加 55-160 火焰傷害",
         Index: 2
       },
       {
-        PropertyString: "Adds 55-160 to Cold Damage",
+        PropertyString: "增加 55-160 寒冰傷害",
         Index: 3
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +20%",
+        PropertyString: "法力恢復 20%",
         Index: 5
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       },
       {
-        PropertyString: "Level 20 Revive (25 Charges)",
+        PropertyString: "等級 20 重生（25 次）",
         Index: 6
       }
     ],
@@ -5997,7 +5997,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Hustle",
+    Name: "催促 (Hustle)",
     Index: "Hustle (Torso)",
     Enabled: true,
     Rarity: 0,
@@ -6006,31 +6006,31 @@ const json = [
     Code: "Hustle (Torso)",
     Properties: [
       {
-        PropertyString: "+6 to Evade",
+        PropertyString: "+6 閃避",
         Index: 3
       },
       {
-        PropertyString: "+65% Faster Run/Walk",
+        PropertyString: "+65% 跑步 / 行走速度",
         Index: 0
       },
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 1
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +10%",
+        PropertyString: "所有抗性 +10%",
         Index: 2
       },
       {
-        PropertyString: "+5 Life after each Kill",
+        PropertyString: "+5 擊殺生命恢復",
         Index: 0
       }
     ],
@@ -6077,7 +6077,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Hustle",
+    Name: "催促 (Hustle)",
     Index: "Hustle (Weapon)",
     Enabled: true,
     Rarity: 0,
@@ -6086,31 +6086,31 @@ const json = [
     Code: "Hustle (Weapon)",
     Properties: [
       {
-        PropertyString: "5% Chance to cast level 1 Burst of Speed on striking",
+        PropertyString: "擊中時有 5% 機率施展等級 1 速度爆發",
         Index: 0
       },
       {
-        PropertyString: "Level 1 Fanaticism Aura When Equipped",
+        PropertyString: "裝備時賦予等級 1 狂熱靈氣",
         Index: 3
       },
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 1
       },
       {
-        PropertyString: "+180-200% Enhanced Damage",
+        PropertyString: "+180-200% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "+75% Damage to Undead",
+        PropertyString: "+75% 對不死怪物的傷害",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating against Undead",
+        PropertyString: "+50 對不死怪物的准确率",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       }
     ],
@@ -6157,7 +6157,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Melody",
+    Name: "旋律 (Melody)",
     Index: "Melody",
     Enabled: true,
     Rarity: 0,
@@ -6166,39 +6166,39 @@ const json = [
     Code: "Melody",
     Properties: [
       {
-        PropertyString: "+3 to Bow and Crossbow Skills (Amazon only)",
+        PropertyString: "+3 弓與弩技能 （只限亞馬遜）",
         Index: 1
       },
       {
-        PropertyString: "+50% Enhanced Damage",
+        PropertyString: "+50% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+300% Damage to Undead",
+        PropertyString: "+300% 對不死怪物的傷害",
         Index: 5
       },
       {
-        PropertyString: "+3 to Critical Strike (Amazon Only)",
+        PropertyString: "+3 致命攻勢（只限亞馬遜）",
         Index: 2
       },
       {
-        PropertyString: "+3 to Dodge (Amazon Only)",
+        PropertyString: "+3 閃躲（只限亞馬遜）",
         Index: 3
       },
       {
-        PropertyString: "+3 to Slow Missiles (Amazon Only)",
+        PropertyString: "+3 緩箭術（只限亞馬遜）",
         Index: 4
       },
       {
-        PropertyString: "+30 Defense vs. Missile",
+        PropertyString: "+30 對遠程防禦",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       }
     ],
@@ -6245,7 +6245,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Pestilence",
+    Name: "疫病 (Pestilence)",
     Index: "Pestilence",
     Enabled: true,
     Rarity: 0,
@@ -6254,43 +6254,43 @@ const json = [
     Code: "Pestilence",
     Properties: [
       {
-        PropertyString: "+1 to Poison Skills",
+        PropertyString: "+1 毒素技能",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 5
       },
       {
-        PropertyString: "+150-175% Enhanced Damage",
+        PropertyString: "+150-175% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+9 to Minimum Damage",
+        PropertyString: "+9 最小傷害",
         Index: 0
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 6
       },
       {
-        PropertyString: "+10% to Poison Skill Damage",
+        PropertyString: "+10% 毒素技能傷害",
         Index: 4
       },
       {
-        PropertyString: "+3 to Poison Dagger (Necromancer Only)",
+        PropertyString: "+3 淬毒匕首（只限死靈法師）",
         Index: 1
       },
       {
-        PropertyString: "+3 to Poison Volley (Necromancer Only)",
+        PropertyString: "+3 毒爆（只限死靈法師）",
         Index: 2
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       }
     ],
@@ -6327,7 +6327,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Question",
+    Name: "疑問 (Question)",
     Index: "Question",
     Enabled: true,
     Rarity: 0,
@@ -6336,11 +6336,11 @@ const json = [
     Code: "Question",
     Properties: [
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 0
       },
       {
-        PropertyString: "+0.75 to Strength (Per Character Level)",
+        PropertyString: "+0.75 力量 （依角色等級而定）",
         Index: 2
       },
       {
@@ -6348,23 +6348,23 @@ const json = [
         Index: 6
       },
       {
-        PropertyString: "+0.75 to Dexterity (Per Character Level)",
+        PropertyString: "+0.75 敏捷 （依角色等級而定）",
         Index: 3
       },
       {
-        PropertyString: "+0.75 to Vitality (Per Character Level)",
+        PropertyString: "+0.75 體能 （依角色等級而定）",
         Index: 4
       },
       {
-        PropertyString: "+0.75 to Energy (Per Character Level)",
+        PropertyString: "+0.75 能量 （依角色等級而定）",
         Index: 5
       },
       {
-        PropertyString: "+2% extra gold from monsters (Per Character Level)",
+        PropertyString: "怪物金幣掉落量提高 +2% （依角色等級而定）",
         Index: 1
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item (Per Character Level)",
+        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
         Index: 0
       }
     ],
@@ -6411,7 +6411,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Water",
+    Name: "清水 (Water)",
     Index: "Water",
     Enabled: true,
     Rarity: 0,
@@ -6420,43 +6420,43 @@ const json = [
     Code: "Water",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 25 Battle Orders when you Level-Up",
+        PropertyString: "當你升級時有 100% 機率施展等級 25 戰鬥命令",
         Index: 5
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+175% Enhanced Damage",
+        PropertyString: "+175% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+25% Faster Hit Recovery",
+        PropertyString: "+25% 打擊恢復",
         Index: 4
       },
       {
-        PropertyString: "Adds 33-122 to Cold Damage",
+        PropertyString: "增加 33-122 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+3-5 Replenish Life",
+        PropertyString: "生命回復 +3-5",
         Index: 2
       },
       {
-        PropertyString: "Regenerate Mana +35%",
+        PropertyString: "法力恢復 35%",
         Index: 1
       },
       {
-        PropertyString: "Fire Resist +50%",
+        PropertyString: "火焰抗性 +50%",
         Index: 6
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -6513,7 +6513,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Envy",
+    Name: "羨慕 (Envy)",
     Index: "Envy",
     Enabled: true,
     Rarity: 0,
@@ -6522,47 +6522,47 @@ const json = [
     Code: "Envy",
     Properties: [
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 1
       },
       {
-        PropertyString: "+222% Enhanced Damage",
+        PropertyString: "+222% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+6% Mana stolen per hit",
+        PropertyString: "擊中竊取 +6% 法力",
         Index: 2
       },
       {
-        PropertyString: "+6% Life stolen per hit",
+        PropertyString: "擊中竊取 6% 生命",
         Index: 3
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 6
       },
       {
-        PropertyString: "+2% to Experience Gained",
+        PropertyString: "獲得的經驗值 +2%",
         Index: 4
       },
       {
-        PropertyString: "+35% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +35%",
         Index: 5
       }
     ],
@@ -6609,7 +6609,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Fortune's Favor",
+    Name: "機運 (Fortune's Favor)",
     Index: "Fortune's Favor",
     Enabled: true,
     Rarity: 0,
@@ -6618,51 +6618,51 @@ const json = [
     Code: "Fortune's Favor",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 1
       },
       {
-        PropertyString: "+30-50 to Life",
+        PropertyString: "+30-50 生命",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +10%",
+        PropertyString: "所有抗性 +10%",
         Index: 3
       },
       {
-        PropertyString: "+200% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +200%",
         Index: 5
       },
       {
-        PropertyString: "+2% better chance of getting magic item (Per Character Level)",
+        PropertyString: "尋獲魔法物品機率提高 +2% （依角色等級而定）",
         Index: 0
       },
       {
-        PropertyString: "+5 To Required Level",
+        PropertyString: "+5 需求等級",
         Index: 4
       },
       {
-        PropertyString: "+10 to Strength (Weapon)",
+        PropertyString: "+10 力量 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality (Weapon)",
+        PropertyString: "+10 體能 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+10 to Strength (Armor)",
+        PropertyString: "+10 力量 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality (Armor)",
+        PropertyString: "+10 體能 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+10 to Strength (Shield)",
+        PropertyString: "+10 力量 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality (Shield)",
+        PropertyString: "+10 體能 （只限盾牌）",
         Index: 0
       }
     ],
@@ -6709,7 +6709,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Lionheart",
+    Name: "獅子心 (Lionheart)",
     Index: "Lionheart",
     Enabled: true,
     Rarity: 0,
@@ -6718,35 +6718,35 @@ const json = [
     Code: "Lionheart",
     Properties: [
       {
-        PropertyString: "+20% Enhanced Damage",
+        PropertyString: "+20% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+25 to Strength",
+        PropertyString: "+25 力量",
         Index: 0
       },
       {
-        PropertyString: "+15 to Dexterity",
+        PropertyString: "+15 敏捷",
         Index: 2
       },
       {
-        PropertyString: "+20 to Vitality",
+        PropertyString: "+20 體能",
         Index: 1
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+50 to Life",
+        PropertyString: "+50 生命",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 5
       },
       {
-        PropertyString: "Requirements -15%",
+        PropertyString: "需求 -15%",
         Index: 0
       }
     ],
@@ -6818,7 +6818,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Obedience",
+    Name: "遵從 (Obedience)",
     Index: "Obedience",
     Enabled: true,
     Rarity: 0,
@@ -6827,51 +6827,51 @@ const json = [
     Code: "Obedience",
     Properties: [
       {
-        PropertyString: "30% Chance to cast level 21 Enchant when you Kill an Enemy",
+        PropertyString: "殺死敵人時有 30% 機率施展等級 21 附魔",
         Index: 2
       },
       {
-        PropertyString: "+370% Enhanced Damage",
+        PropertyString: "+370% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+40% Faster Hit Recovery",
+        PropertyString: "+40% 打擊恢復",
         Index: 5
       },
       {
-        PropertyString: "-25% Target Defense",
+        PropertyString: "-25% 目標防禦",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "-25% to Enemy Fire Resistance",
+        PropertyString: "敵人火焰抗性 -25%",
         Index: 3
       },
       {
-        PropertyString: "+40% Chance of Crushing Blow",
+        PropertyString: "+40% 概率造成粉碎打擊",
         Index: 1
       },
       {
-        PropertyString: "+200-300 Defense",
+        PropertyString: "+200-300 防禦",
         Index: 4
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +20-30%",
+        PropertyString: "所有抗性 +20-30%",
         Index: 6
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -6948,7 +6948,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Unbending Will",
+    Name: "不屈意志 (Unbending Will)",
     Index: "Unbending Will",
     Enabled: true,
     Rarity: 0,
@@ -6957,63 +6957,63 @@ const json = [
     Code: "Unbending Will",
     Properties: [
       {
-        PropertyString: "18% Chance to cast level 18 Taunt on striking",
+        PropertyString: "擊中時有 18% 機率施展等級 18 嘲諷",
         Index: 1
       },
       {
-        PropertyString: "+3 to Combat Skills (Barbarian only)",
+        PropertyString: "+3 戰鬥技能 （只限野蠻人）",
         Index: 0
       },
       {
-        PropertyString: "+20-30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20-30%",
         Index: 2
       },
       {
-        PropertyString: "+300-350% Enhanced Damage",
+        PropertyString: "+300-350% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+9 to Maximum Damage",
+        PropertyString: "+9 最大傷害",
         Index: 0
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 1
       },
       {
-        PropertyString: "+75% Damage to Undead",
+        PropertyString: "+75% 對不死怪物的傷害",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating against Undead",
+        PropertyString: "+50 對不死怪物的准确率",
         Index: 0
       },
       {
-        PropertyString: "Adds 8-10% Life stolen per hit",
+        PropertyString: "擊中竊取 8-10% 生命",
         Index: 6
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 5
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 8",
+        PropertyString: "物理傷害降低 8",
         Index: 4
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -7080,7 +7080,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Lawbringer",
+    Name: "執法者 (Lawbringer)",
     Index: "Lawbringer",
     Enabled: true,
     Rarity: 0,
@@ -7089,43 +7089,43 @@ const json = [
     Code: "Lawbringer",
     Properties: [
       {
-        PropertyString: "20% Chance to cast level 15 Decrepify on striking",
+        PropertyString: "擊中時有 20% 機率施展等級 15 衰老",
         Index: 0
       },
       {
-        PropertyString: "Level 18 Sanctuary Aura When Equipped",
+        PropertyString: "裝備時賦予等級 18 庇護靈氣",
         Index: 1
       },
       {
-        PropertyString: "-50% Target Defense",
+        PropertyString: "-50% 目標防禦",
         Index: 2
       },
       {
-        PropertyString: "Adds 150-220 to Fire Damage",
+        PropertyString: "增加 150-220 火焰傷害",
         Index: 3
       },
       {
-        PropertyString: "Adds 130-180 to Cold Damage",
+        PropertyString: "增加 130-180 寒冰傷害",
         Index: 4
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 5
       },
       {
-        PropertyString: "+200-250 Defense vs. Missile",
+        PropertyString: "+200-250 對遠程防禦",
         Index: 6
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 0
       }
     ],
@@ -7182,7 +7182,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Passion",
+    Name: "熱情 (Passion)",
     Index: "Passion",
     Enabled: true,
     Rarity: 0,
@@ -7191,51 +7191,51 @@ const json = [
     Code: "Passion",
     Properties: [
       {
-        PropertyString: "+1 to Zeal",
+        PropertyString: "+1 熱忱打擊",
         Index: 1
       },
       {
-        PropertyString: "+1 to Berserk",
+        PropertyString: "+1 狂暴之擊",
         Index: 3
       },
       {
-        PropertyString: "+25% Increased Attack Speed",
+        PropertyString: "攻擊速度 +25%",
         Index: 4
       },
       {
-        PropertyString: "+160-210% Enhanced Damage",
+        PropertyString: "+160-210% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+50-80% bonus to Attack Rating",
+        PropertyString: "+50-80% 準確率加成",
         Index: 2
       },
       {
-        PropertyString: "+75% Damage to Undead",
+        PropertyString: "+75% 對不死怪物的傷害",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating against Undead",
+        PropertyString: "+50 對不死怪物的准确率",
         Index: 0
       },
       {
-        PropertyString: "Adds 1-50 to Lightning Damage",
+        PropertyString: "增加 1-50 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "Hit blinds target +10",
+        PropertyString: "擊中使目標目盲 +10",
         Index: 6
       },
       {
-        PropertyString: "25% Hit Causes Monster To Flee",
+        PropertyString: "25% 機率擊中使怪物逃跑",
         Index: 0
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 0
       },
       {
-        PropertyString: "Level 3 Heart of Wolverine (12 Charges)",
+        PropertyString: "等級 3 狼獾之心（12 次）",
         Index: 5
       }
     ],
@@ -7282,7 +7282,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Piety",
+    Name: "虔誠 (Piety)",
     Index: "Piety",
     Enabled: true,
     Rarity: 0,
@@ -7291,43 +7291,43 @@ const json = [
     Code: "Piety",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 3
       },
       {
-        PropertyString: "+20% Faster Cast Rate",
+        PropertyString: "+20% 施法速度",
         Index: 4
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+90-125% Enhanced Defense",
+        PropertyString: "+90-125% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+30 Defense vs. Missile",
+        PropertyString: "+30 對遠程防禦",
         Index: 0
       },
       {
-        PropertyString: "+20 to Energy",
+        PropertyString: "+20 能量",
         Index: 1
       },
       {
-        PropertyString: "+1 to Mana (Per Character Level)",
+        PropertyString: "+1 法力 （依角色等級而定）",
         Index: 2
       },
       {
-        PropertyString: "Magic Resist +15-25%",
+        PropertyString: "魔法抗性 +15-25%",
         Index: 6
       },
       {
-        PropertyString: "All Resistances +15-25%",
+        PropertyString: "所有抗性 +15-25%",
         Index: 5
       },
       {
-        PropertyString: "+50% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +50%",
         Index: 0
       }
     ],
@@ -7364,7 +7364,7 @@ const json = [
         Class: "ass"
       }
     ],
-    Name: "Tempest",
+    Name: "暴風雨 (Tempest)",
     Index: "Tempest",
     Enabled: true,
     Rarity: 0,
@@ -7373,39 +7373,39 @@ const json = [
     Code: "Tempest",
     Properties: [
       {
-        PropertyString: "+3 to Traps (Assassin only)",
+        PropertyString: "+3 陷阱 （只限刺客）",
         Index: 5
       },
       {
-        PropertyString: "+2 to Assassin Skill Levels",
+        PropertyString: "+2 刺客技能等級",
         Index: 4
       },
       {
-        PropertyString: "+140-190% Enhanced Damage",
+        PropertyString: "+140-190% 傷害強化",
         Index: 6
       },
       {
-        PropertyString: "Adds 100-200 to Fire Damage",
+        PropertyString: "增加 100-200 火焰傷害",
         Index: 1
       },
       {
-        PropertyString: "Adds 1-300 to Lightning Damage",
+        PropertyString: "增加 1-300 電擊傷害",
         Index: 2
       },
       {
-        PropertyString: "Adds 30-70 to Cold Damage",
+        PropertyString: "增加 30-70 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+20-30% to Lightning Skill Damage",
+        PropertyString: "+20-30% 閃電技能傷害",
         Index: 3
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 0
       }
     ],
@@ -7452,7 +7452,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Treachery",
+    Name: "背信 (Treachery)",
     Index: "Treachery",
     Enabled: true,
     Rarity: 0,
@@ -7461,31 +7461,31 @@ const json = [
     Code: "Treachery",
     Properties: [
       {
-        PropertyString: "25% Chance to cast level 15 Venom on striking",
+        PropertyString: "擊中時有 25% 機率施展等級 15 淬毒",
         Index: 0
       },
       {
-        PropertyString: "5% Chance to cast level 15 Fade when struck",
+        PropertyString: "被擊中時有 5% 機率施展等級 15 影散",
         Index: 1
       },
       {
-        PropertyString: "+2 to Assassin Skill Levels",
+        PropertyString: "+2 刺客技能等級",
         Index: 2
       },
       {
-        PropertyString: "+45% Increased Attack Speed",
+        PropertyString: "攻擊速度 +45%",
         Index: 3
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist +30%",
+        PropertyString: "冰寒抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "+50% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +50%",
         Index: 0
       }
     ],
@@ -7557,7 +7557,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Voice of Reason",
+    Name: "理性之聲 (Voice of Reason)",
     Index: "Voice of Reason",
     Enabled: true,
     Rarity: 0,
@@ -7566,51 +7566,51 @@ const json = [
     Code: "Voice of Reason",
     Properties: [
       {
-        PropertyString: "15% Chance to cast level 13 Frozen Orb on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 13 冰封球",
         Index: 0
       },
       {
-        PropertyString: "18% Chance to cast level 20 Ice Blast on striking",
+        PropertyString: "擊中時有 18% 機率施展等級 20 寒冰球",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 1
       },
       {
-        PropertyString: "+220-350% Damage to Demons",
+        PropertyString: "+220-350% 對惡魔的傷害",
         Index: 2
       },
       {
-        PropertyString: "+355-375% Damage to Undead",
+        PropertyString: "+355-375% 對不死怪物的傷害",
         Index: 3
       },
       {
-        PropertyString: "+50 to Attack Rating against Undead",
+        PropertyString: "+50 對不死怪物的准确率",
         Index: 0
       },
       {
-        PropertyString: "Adds 100-220 to Cold Damage",
+        PropertyString: "增加 100-220 寒冰傷害",
         Index: 4
       },
       {
-        PropertyString: "-24% to Enemy Cold Resistance",
+        PropertyString: "敵人冰寒抗性 -24%",
         Index: 5
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 6
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       }
     ],
@@ -7657,7 +7657,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Wealth",
+    Name: "財富 (Wealth)",
     Index: "Wealth",
     Enabled: true,
     Rarity: 0,
@@ -7666,19 +7666,19 @@ const json = [
     Code: "Wealth",
     Properties: [
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+300% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +300%",
         Index: 0
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 1
       }
     ],
@@ -7725,7 +7725,7 @@ const json = [
         Class: "ama"
       }
     ],
-    Name: "Love",
+    Name: "愛情 (Love)",
     Index: "Love",
     Enabled: true,
     Rarity: 0,
@@ -7734,51 +7734,51 @@ const json = [
     Code: "Love",
     Properties: [
       {
-        PropertyString: "+2 to Amazon Skill Levels",
+        PropertyString: "+2 亞馬遜技能等級",
         Index: 0
       },
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 4
       },
       {
-        PropertyString: "+200% Enhanced Damage",
+        PropertyString: "+200% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+1 Fires Explosive Arrows or Bolts",
+        PropertyString: "+1 射出爆炸的弓矢或弩箭",
         Index: 6
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 1
       },
       {
-        PropertyString: "+75% Damage to Demons",
+        PropertyString: "+75% 對惡魔的傷害",
         Index: 1
       },
       {
-        PropertyString: "+100 to Attack Rating against Demons",
+        PropertyString: "+100 對惡魔的准确率",
         Index: 0
       },
       {
-        PropertyString: "+30% Deadly Strike",
+        PropertyString: "+30% 致命打擊",
         Index: 5
       },
       {
-        PropertyString: "+75 to Life",
+        PropertyString: "+75 生命",
         Index: 1
       },
       {
-        PropertyString: "+50 to Mana",
+        PropertyString: "+50 法力",
         Index: 2
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -7835,7 +7835,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Shadow",
+    Name: "暗影 (Shadow)",
     Index: "Shadow",
     Enabled: true,
     Rarity: 0,
@@ -7844,35 +7844,35 @@ const json = [
     Code: "Shadow",
     Properties: [
       {
-        PropertyString: "25% Chance to cast level 12 Cloak Of Shadows when struck",
+        PropertyString: "被擊中時有 25% 機率施展等級 12 魔影斗蓬",
         Index: 4
       },
       {
-        PropertyString: "+50% Faster Run/Walk",
+        PropertyString: "+50% 跑步 / 行走速度",
         Index: 3
       },
       {
-        PropertyString: "+166% Enhanced Damage",
+        PropertyString: "+166% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "Adds 80-140 to Cold Damage",
+        PropertyString: "增加 80-140 寒冰傷害",
         Index: 1
       },
       {
-        PropertyString: "+30% Enhanced Defense",
+        PropertyString: "+30% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 14",
+        PropertyString: "物理傷害降低 14",
         Index: 0
       },
       {
-        PropertyString: "Level 10 Bone Wall (50 Charges)",
+        PropertyString: "等級 10 骨牆（50 次）",
         Index: 5
       }
     ],
@@ -7929,7 +7929,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Thunder",
+    Name: "雷霆 (Thunder)",
     Index: "Thunder",
     Enabled: true,
     Rarity: 0,
@@ -7938,47 +7938,47 @@ const json = [
     Code: "Thunder",
     Properties: [
       {
-        PropertyString: "10% Chance to cast level 22 Thunder Storm when struck",
+        PropertyString: "被擊中時有 10% 機率施展等級 22 雷電風暴",
         Index: 2
       },
       {
-        PropertyString: "+1 to Static Field",
+        PropertyString: "+1 靜電力場",
         Index: 5
       },
       {
-        PropertyString: "+235% Enhanced Damage",
+        PropertyString: "+235% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "Adds 1-444 to Lightning Damage",
+        PropertyString: "增加 1-444 電擊傷害",
         Index: 1
       },
       {
-        PropertyString: "+30% Enhanced Defense",
+        PropertyString: "+30% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist -25%",
+        PropertyString: "冰寒抗性 -25%",
         Index: 4
       },
       {
-        PropertyString: "Lightning Resist +75%",
+        PropertyString: "電擊抗性 +75%",
         Index: 3
       },
       {
-        PropertyString: "+2% to Experience Gained",
+        PropertyString: "獲得的經驗值 +2%",
         Index: 6
       },
       {
-        PropertyString: "+50% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +50%",
         Index: 0
       }
     ],
@@ -8025,7 +8025,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "War",
+    Name: "戰爭 (War)",
     Index: "War",
     Enabled: true,
     Rarity: 0,
@@ -8034,39 +8034,39 @@ const json = [
     Code: "War",
     Properties: [
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 2
       },
       {
-        PropertyString: "+35-50% Enhanced Damage",
+        PropertyString: "+35-50% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+25% Faster Hit Recovery",
+        PropertyString: "+25% 打擊恢復",
         Index: 6
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 4
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 5
       },
       {
-        PropertyString: "+100-140% Enhanced Defense",
+        PropertyString: "+100-140% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+20-25% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +20-25%",
         Index: 3
       },
       {
-        PropertyString: "Requirements -15%",
+        PropertyString: "需求 -15%",
         Index: 0
       }
     ],
@@ -8113,7 +8113,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Wisdom",
+    Name: "智慧 (Wisdom)",
     Index: "Wisdom",
     Enabled: true,
     Rarity: 0,
@@ -8122,39 +8122,39 @@ const json = [
     Code: "Wisdom",
     Properties: [
       {
-        PropertyString: "+33% Piercing Attack",
+        PropertyString: "+33% 穿透攻擊",
         Index: 0
       },
       {
-        PropertyString: "+15-25% bonus to Attack Rating",
+        PropertyString: "+15-25% 準確率加成",
         Index: 2
       },
       {
-        PropertyString: "Adds 4-8% Mana stolen per hit",
+        PropertyString: "擊中竊取 4-8% 法力",
         Index: 1
       },
       {
-        PropertyString: "+30% Enhanced Defense",
+        PropertyString: "+30% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 5
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 4
       },
       {
-        PropertyString: "+5 to Mana after each Kill",
+        PropertyString: "+5 擊殺法力恢復",
         Index: 3
       },
       {
-        PropertyString: "+5 Life after each Kill",
+        PropertyString: "+5 擊殺生命恢復",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       }
     ],
@@ -8201,7 +8201,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Enlightenment",
+    Name: "教化 (Enlightenment)",
     Index: "Enlightenment",
     Enabled: true,
     Rarity: 0,
@@ -8210,31 +8210,31 @@ const json = [
     Code: "Enlightenment",
     Properties: [
       {
-        PropertyString: "5% Chance to cast level 15 Fire Ball on striking",
+        PropertyString: "擊中時有 5% 機率施展等級 15 火球術",
         Index: 0
       },
       {
-        PropertyString: "5% Chance to cast level 15 Blaze when struck",
+        PropertyString: "被擊中時有 5% 機率施展等級 15 熾烈之徑",
         Index: 1
       },
       {
-        PropertyString: "+2 to Sorceress Skill Levels",
+        PropertyString: "+2 魔法使技能等級",
         Index: 2
       },
       {
-        PropertyString: "+1 to Warmth",
+        PropertyString: "+1 暖流",
         Index: 3
       },
       {
-        PropertyString: "+30% Enhanced Defense",
+        PropertyString: "+30% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +30%",
+        PropertyString: "火焰抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       }
     ],
@@ -8291,7 +8291,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Crescent Moon",
+    Name: "新月 (Crescent Moon)",
     Index: "Crescent Moon",
     Enabled: true,
     Rarity: 0,
@@ -8300,43 +8300,43 @@ const json = [
     Code: "Crescent Moon",
     Properties: [
       {
-        PropertyString: "15% Chance to cast level 13 Static Field on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 13 靜電力場",
         Index: 5
       },
       {
-        PropertyString: "20% Chance to cast level 17 Chain Lightning on striking",
+        PropertyString: "擊中時有 20% 機率施展等級 17 連鎖閃電",
         Index: 6
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+180-220% Enhanced Damage",
+        PropertyString: "+180-220% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 1
       },
       {
-        PropertyString: "-35% to Enemy Lightning Resistance",
+        PropertyString: "敵人電擊抗性 -35%",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "+9-11 Magic Absorb",
+        PropertyString: "魔法吸引 +9-11",
         Index: 3
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "Level 18 Summon Spirit Wolf (30 Charges)",
+        PropertyString: "等級 18 召喚幽靈狼（30 次）",
         Index: 4
       }
     ],
@@ -8383,7 +8383,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Duress",
+    Name: "強制 (Duress)",
     Index: "Duress",
     Enabled: true,
     Rarity: 0,
@@ -8392,35 +8392,35 @@ const json = [
     Code: "Duress",
     Properties: [
       {
-        PropertyString: "+10-20% Enhanced Damage",
+        PropertyString: "+10-20% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+40% Faster Hit Recovery",
+        PropertyString: "+40% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "Adds 37-133 to Cold Damage",
+        PropertyString: "增加 37-133 寒冰傷害",
         Index: 2
       },
       {
-        PropertyString: "+15% Chance of Crushing Blow",
+        PropertyString: "+15% 概率造成粉碎打擊",
         Index: 3
       },
       {
-        PropertyString: "+33% Chance of Open Wounds",
+        PropertyString: "+33% 機率造成開放傷口",
         Index: 4
       },
       {
-        PropertyString: "+150-200% Enhanced Defense",
+        PropertyString: "+150-200% 防禦強化",
         Index: 5
       },
       {
-        PropertyString: "Cold Resist +30%",
+        PropertyString: "冰寒抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 0
       }
     ],
@@ -8467,7 +8467,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Gloom",
+    Name: "幽暗 (Gloom)",
     Index: "Gloom",
     Enabled: true,
     Rarity: 0,
@@ -8476,35 +8476,35 @@ const json = [
     Code: "Gloom",
     Properties: [
       {
-        PropertyString: "15% Chance to cast level 3 Dim Vision when struck",
+        PropertyString: "被擊中時有 15% 機率施展等級 3 昏暗視野",
         Index: 2
       },
       {
-        PropertyString: "+10% Faster Hit Recovery",
+        PropertyString: "+10% 打擊恢復",
         Index: 3
       },
       {
-        PropertyString: "+200-260% Enhanced Defense",
+        PropertyString: "+200-260% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +45%",
+        PropertyString: "所有抗性 +45%",
         Index: 1
       },
       {
-        PropertyString: "Half Freeze Duration",
+        PropertyString: "冰凍時間減半",
         Index: 6
       },
       {
-        PropertyString: "+5% Damage Taken Goes To Mana",
+        PropertyString: "+5% 受到的傷害轉為法力",
         Index: 4
       },
       {
-        PropertyString: "-3 to Light Radius",
+        PropertyString: "照亮範圍 -3",
         Index: 5
       }
     ],
@@ -8551,7 +8551,7 @@ const json = [
         Class: "pal"
       }
     ],
-    Name: "Judgement",
+    Name: "審判 (Judgement)",
     Index: "Judgement",
     Enabled: true,
     Rarity: 0,
@@ -8560,39 +8560,39 @@ const json = [
     Code: "Judgement",
     Properties: [
       {
-        PropertyString: "2% Chance to cast level 35 Holy Shield when struck",
+        PropertyString: "被擊中時有 2% 機率施展等級 35 神聖之盾",
         Index: 4
       },
       {
-        PropertyString: "50% Chance to cast level 5 Decrepify when struck",
+        PropertyString: "被擊中時有 50% 機率施展等級 5 衰老",
         Index: 5
       },
       {
-        PropertyString: "+2 to Paladin Skill Levels",
+        PropertyString: "+2 聖騎士技能等級",
         Index: 0
       },
       {
-        PropertyString: "+25-35% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +25-35%",
         Index: 2
       },
       {
-        PropertyString: "+20-30 to Maximum Damage",
+        PropertyString: "+20-30 最大傷害",
         Index: 3
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 35",
+        PropertyString: "魔法傷害降低 35",
         Index: 6
       },
       {
-        PropertyString: "Requirements -15%",
+        PropertyString: "需求 -15%",
         Index: 0
       }
     ],
@@ -8639,7 +8639,7 @@ const json = [
         Class: "bar"
       }
     ],
-    Name: "Oblivion",
+    Name: "湮沒 (Oblivion)",
     Index: "Oblivion",
     Enabled: true,
     Rarity: 0,
@@ -8648,43 +8648,43 @@ const json = [
     Code: "Oblivion",
     Properties: [
       {
-        PropertyString: "12% Chance to cast level 9 Amplify Damage on striking",
+        PropertyString: "擊中時有 12% 機率施展等級 9 傷害加深",
         Index: 3
       },
       {
-        PropertyString: "+2 to Barbarian Skill Levels",
+        PropertyString: "+2 野蠻人技能等級",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 5
       },
       {
-        PropertyString: "+10% Chance of Crushing Blow",
+        PropertyString: "+10% 概率造成粉碎打擊",
         Index: 6
       },
       {
-        PropertyString: "+3 to random Barbarian Skill",
+        PropertyString: "+3 野蠻人隨機技能等級",
         Index: 2
       },
       {
-        PropertyString: "+115-160% Enhanced Defense",
+        PropertyString: "+115-160% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+1.5 to Life (Per Character Level)",
+        PropertyString: "+1.5 生命 （依角色等級而定）",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 0
       }
     ],
@@ -8741,7 +8741,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Pillar of Faith",
+    Name: "信念之柱 (Pillar of Faith)",
     Index: "Pillar of Faith",
     Enabled: true,
     Rarity: 0,
@@ -8750,43 +8750,43 @@ const json = [
     Code: "Pillar of Faith",
     Properties: [
       {
-        PropertyString: "Level 12 Cleansing Aura When Equipped",
+        PropertyString: "裝備時賦予等級 12 淨化靈氣",
         Index: 3
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 4
       },
       {
-        PropertyString: "+230% Enhanced Damage",
+        PropertyString: "+230% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "+400-500 Defense",
+        PropertyString: "+400-500 防禦",
         Index: 2
       },
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 0
       },
       {
-        PropertyString: "+75 to Life",
+        PropertyString: "+75 生命",
         Index: 5
       },
       {
-        PropertyString: "+15% Fire Absorb",
+        PropertyString: "火焰吸引 +15%",
         Index: 6
       },
       {
-        PropertyString: "Repairs 0.2 durability per second",
+        PropertyString: "每 1 秒修復 0.2 點耐久度",
         Index: 1
       }
     ],
@@ -8843,7 +8843,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Stone",
+    Name: "石塊 (Stone)",
     Index: "Stone",
     Enabled: true,
     Rarity: 0,
@@ -8852,39 +8852,39 @@ const json = [
     Code: "Stone",
     Properties: [
       {
-        PropertyString: "+60% Faster Hit Recovery",
+        PropertyString: "+60% 打擊恢復",
         Index: 6
       },
       {
-        PropertyString: "+250-290% Enhanced Defense",
+        PropertyString: "+250-290% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+300 Defense vs. Missile",
+        PropertyString: "+300 對遠程防禦",
         Index: 2
       },
       {
-        PropertyString: "+16 to Strength",
+        PropertyString: "+16 力量",
         Index: 4
       },
       {
-        PropertyString: "+16 to Vitality",
+        PropertyString: "+16 體能",
         Index: 5
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 0
       },
       {
-        PropertyString: "Level 16 Clay Golem (16 Charges)",
+        PropertyString: "等級 16 黏土魔像（16 次）",
         Index: 1
       },
       {
-        PropertyString: "Level 16 Molten Boulder (80 Charges)",
+        PropertyString: "等級 16 熔火巨石（80 次）",
         Index: 3
       }
     ],
@@ -8946,7 +8946,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Voice",
+    Name: "聲音 (Voice)",
     Index: "Voice",
     Enabled: true,
     Rarity: 0,
@@ -8955,59 +8955,59 @@ const json = [
     Code: "Voice",
     Properties: [
       {
-        PropertyString: "+10-15% to Cold Skill Damage",
+        PropertyString: "+10-15% 寒冰技能傷害",
         Index: 1
       },
       {
-        PropertyString: "+10-15% to Fire Skill Damage",
+        PropertyString: "+10-15% 火焰技能傷害",
         Index: 2
       },
       {
-        PropertyString: "+10-15% to Lightning Skill Damage",
+        PropertyString: "+10-15% 閃電技能傷害",
         Index: 3
       },
       {
-        PropertyString: "+1 to Mana (Per Character Level)",
+        PropertyString: "+1 法力 （依角色等級而定）",
         Index: 5
       },
       {
-        PropertyString: "All Resistances +7-10%",
+        PropertyString: "所有抗性 +7-10%",
         Index: 4
       },
       {
-        PropertyString: "+1 To Required Level",
+        PropertyString: "+1 需求等級",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana (Armor)",
+        PropertyString: "+15% 受到的傷害轉為法力 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +15% (Armor)",
+        PropertyString: "所有抗性 +15% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14 (Armor)",
+        PropertyString: "攻擊者反傷 +14 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Requirements -15% (Armor)",
+        PropertyString: "需求 -15% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana (Shield)",
+        PropertyString: "+15% 受到的傷害轉為法力 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +22% (Shield)",
+        PropertyString: "所有抗性 +22% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14 (Shield)",
+        PropertyString: "攻擊者反傷 +14 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Requirements -15% (Shield)",
+        PropertyString: "需求 -15% （只限盾牌）",
         Index: 0
       }
     ],
@@ -9054,7 +9054,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Bone",
+    Name: "骸骨 (Bone)",
     Index: "Bone",
     Enabled: true,
     Rarity: 0,
@@ -9063,27 +9063,27 @@ const json = [
     Code: "Bone",
     Properties: [
       {
-        PropertyString: "15% Chance to cast level 10 Bone Spear on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 10 骨矛",
         Index: 0
       },
       {
-        PropertyString: "15% Chance to cast level 10 Bone Armor when struck",
+        PropertyString: "被擊中時有 15% 機率施展等級 10 骸骨護甲",
         Index: 1
       },
       {
-        PropertyString: "+2 to Necromancer Skill Levels",
+        PropertyString: "+2 死靈法師技能等級",
         Index: 2
       },
       {
-        PropertyString: "+100-150 to Mana",
+        PropertyString: "+100-150 法力",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       }
     ],
@@ -9140,7 +9140,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Searing Moon",
+    Name: "血月 (Searing Moon)",
     Index: "Searing Moon",
     Enabled: true,
     Rarity: 0,
@@ -9149,43 +9149,43 @@ const json = [
     Code: "Searing Moon",
     Properties: [
       {
-        PropertyString: "15% Chance to cast level 13 Meteor on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 13 隕石術",
         Index: 5
       },
       {
-        PropertyString: "20% Chance to cast level 17 Fire Ball on striking",
+        PropertyString: "擊中時有 20% 機率施展等級 17 火球術",
         Index: 6
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+180-220% Enhanced Damage",
+        PropertyString: "+180-220% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 1
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage",
+        PropertyString: "增加 5-30 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "-35% to Enemy Fire Resistance",
+        PropertyString: "敵人火焰抗性 -35%",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "+9-11 Magic Absorb",
+        PropertyString: "魔法吸引 +9-11",
         Index: 3
       },
       {
-        PropertyString: "Level 18 Summon Spirit Wolf (30 Charges)",
+        PropertyString: "等級 18 召喚幽靈狼（30 次）",
         Index: 4
       }
     ],
@@ -9242,7 +9242,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Winter Moon",
+    Name: "冬月 (Winter Moon)",
     Index: "Winter Moon",
     Enabled: true,
     Rarity: 0,
@@ -9251,43 +9251,43 @@ const json = [
     Code: "Winter Moon",
     Properties: [
       {
-        PropertyString: "15% Chance to cast level 13 Blizzard on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 13 暴風雪",
         Index: 5
       },
       {
-        PropertyString: "20% Chance to cast level 17 Glacial Spike on striking",
+        PropertyString: "擊中時有 20% 機率施展等級 17 冰川之槍",
         Index: 6
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+180-220% Enhanced Damage",
+        PropertyString: "+180-220% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 1
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "-35% to Enemy Cold Resistance",
+        PropertyString: "敵人冰寒抗性 -35%",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "+9-11 Magic Absorb",
+        PropertyString: "魔法吸引 +9-11",
         Index: 3
       },
       {
-        PropertyString: "Level 18 Summon Spirit Wolf (30 Charges)",
+        PropertyString: "等級 18 召喚幽靈狼（30 次）",
         Index: 4
       }
     ],
@@ -9344,7 +9344,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Harvest Moon",
+    Name: "豐收月 (Harvest Moon)",
     Index: "Harvest Moon",
     Enabled: true,
     Rarity: 0,
@@ -9353,43 +9353,43 @@ const json = [
     Code: "Harvest Moon",
     Properties: [
       {
-        PropertyString: "15% Chance to cast level 13 Corpse Explosion on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 13 屍爆",
         Index: 5
       },
       {
-        PropertyString: "20% Chance to cast level 17 Poison Nova on striking",
+        PropertyString: "擊中時有 20% 機率施展等級 17 劇毒新星",
         Index: 6
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+180-220% Enhanced Damage",
+        PropertyString: "+180-220% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 1
       },
       {
-        PropertyString: "+76 Poison Damage Over 5 Seconds",
+        PropertyString: "+76 毒素傷害，時效 5 秒",
         Index: 0
       },
       {
-        PropertyString: "-35% to Enemy Poison Resistance",
+        PropertyString: "敵人毒素抗性 -35%",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "+9-11 Magic Absorb",
+        PropertyString: "魔法吸引 +9-11",
         Index: 3
       },
       {
-        PropertyString: "Level 18 Summon Spirit Wolf (30 Charges)",
+        PropertyString: "等級 18 召喚幽靈狼（30 次）",
         Index: 4
       }
     ],
@@ -9436,7 +9436,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Blood",
+    Name: "鮮血 (Blood)",
     Index: "Blood",
     Enabled: true,
     Rarity: 0,
@@ -9445,51 +9445,51 @@ const json = [
     Code: "Blood",
     Properties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 4
       },
       {
-        PropertyString: "+200-250% Enhanced Damage",
+        PropertyString: "+200-250% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+125-175 Defense",
+        PropertyString: "+125-175 防禦",
         Index: 2
       },
       {
-        PropertyString: "+10-15% Increased Maximum Life",
+        PropertyString: "生命上限 +10-15%",
         Index: 5
       },
       {
-        PropertyString: "+10-15% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +10-15%",
         Index: 6
       },
       {
-        PropertyString: "+18 To Required Level",
+        PropertyString: "+18 需求等級",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed (Weapon)",
+        PropertyString: "攻擊速度 +20% （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal (Weapon)",
+        PropertyString: "防止怪物自療 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Hit Recovery (Armor)",
+        PropertyString: "+20% 打擊恢復 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 7 (Armor)",
+        PropertyString: "魔法傷害降低 7 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Block Rate (Shield)",
+        PropertyString: "+20% 格擋速度 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 7 (Shield)",
+        PropertyString: "魔法傷害降低 7 （只限盾牌）",
         Index: 0
       }
     ],
@@ -9526,7 +9526,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Lust",
+    Name: "慾望 (Lust)",
     Index: "Lust",
     Enabled: true,
     Rarity: 0,
@@ -9535,39 +9535,39 @@ const json = [
     Code: "Lust",
     Properties: [
       {
-        PropertyString: "Level 8 Holy Shock Aura When Equipped",
+        PropertyString: "裝備時賦予等級 8 神聖電擊靈氣",
         Index: 4
       },
       {
-        PropertyString: "+2 to Necromancer Skill Levels",
+        PropertyString: "+2 死靈法師技能等級",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "+35% Increased Maximum Mana",
+        PropertyString: "法力上限 +35%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +35-50%",
+        PropertyString: "所有抗性 +35-50%",
         Index: 3
       },
       {
-        PropertyString: "+5% to Experience Gained",
+        PropertyString: "獲得的經驗值 +5%",
         Index: 1
       },
       {
-        PropertyString: "+80-120% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +80-120%",
         Index: 6
       },
       {
-        PropertyString: "+40% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +40%",
         Index: 5
       }
     ],
@@ -9644,7 +9644,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Oath",
+    Name: "誓約 (Oath)",
     Index: "Oath",
     Enabled: true,
     Rarity: 0,
@@ -9653,47 +9653,47 @@ const json = [
     Code: "Oath",
     Properties: [
       {
-        PropertyString: "30% Chance to cast level 20 Bone Spirit on striking",
+        PropertyString: "擊中時有 30% 機率施展等級 20 骸骨之魂",
         Index: 0
       },
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 1
       },
       {
-        PropertyString: "+50% Increased Attack Speed",
+        PropertyString: "攻擊速度 +50%",
         Index: 2
       },
       {
-        PropertyString: "+210-340% Enhanced Damage",
+        PropertyString: "+210-340% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+75% Damage to Demons",
+        PropertyString: "+75% 對惡魔的傷害",
         Index: 1
       },
       {
-        PropertyString: "+100 to Attack Rating against Demons",
+        PropertyString: "+100 對惡魔的准确率",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+10-15 Magic Absorb",
+        PropertyString: "魔法吸引 +10-15",
         Index: 4
       },
       {
-        PropertyString: "Level 16 Heart of Wolverine (20 Charges)",
+        PropertyString: "等級 16 狼獾之心（20 次）",
         Index: 5
       },
       {
-        PropertyString: "Level 17 Iron Golem (14 Charges)",
+        PropertyString: "等級 17 鋼鐵魔像（14 次）",
         Index: 6
       }
     ],
@@ -9730,7 +9730,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Prudence",
+    Name: "謹慎 (Prudence)",
     Index: "Prudence",
     Enabled: true,
     Rarity: 0,
@@ -9739,35 +9739,35 @@ const json = [
     Code: "Prudence",
     Properties: [
       {
-        PropertyString: "+25% Faster Hit Recovery",
+        PropertyString: "+25% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+140-170% Enhanced Defense",
+        PropertyString: "+140-170% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +25-35%",
+        PropertyString: "所有抗性 +25-35%",
         Index: 2
       },
       {
-        PropertyString: "Damage Reduced by 3",
+        PropertyString: "物理傷害降低 3",
         Index: 3
       },
       {
-        PropertyString: "Magic Damage Reduced by 17",
+        PropertyString: "魔法傷害降低 17",
         Index: 4
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 5
       },
       {
-        PropertyString: "Repairs 0.25 durability per second",
+        PropertyString: "每 1 秒修復 0.25 點耐久度",
         Index: 6
       }
     ],
@@ -9814,7 +9814,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Rain",
+    Name: "降雨 (Rain)",
     Index: "Rain",
     Enabled: true,
     Rarity: 0,
@@ -9823,31 +9823,31 @@ const json = [
     Code: "Rain",
     Properties: [
       {
-        PropertyString: "5% Chance to cast level 15 Twister on striking",
+        PropertyString: "擊中時有 5% 機率施展等級 15 旋風術",
         Index: 0
       },
       {
-        PropertyString: "5% Chance to cast level 15 Cyclone Armor when struck",
+        PropertyString: "被擊中時有 5% 機率施展等級 15 氣旋護甲",
         Index: 1
       },
       {
-        PropertyString: "+2 to Druid Skill Levels",
+        PropertyString: "+2 德魯伊技能等級",
         Index: 2
       },
       {
-        PropertyString: "+100-150 to Mana",
+        PropertyString: "+100-150 法力",
         Index: 3
       },
       {
-        PropertyString: "Lightning Resist +30%",
+        PropertyString: "電擊抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 7",
+        PropertyString: "魔法傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       }
     ],
@@ -9894,7 +9894,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Sanctuary",
+    Name: "聖堂 (Sanctuary)",
     Index: "Sanctuary",
     Enabled: true,
     Rarity: 0,
@@ -9903,39 +9903,39 @@ const json = [
     Code: "Sanctuary",
     Properties: [
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 5
       },
       {
-        PropertyString: "+20% Faster Block Rate",
+        PropertyString: "+20% 格擋速度",
         Index: 1
       },
       {
-        PropertyString: "+20% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +20%",
         Index: 0
       },
       {
-        PropertyString: "+130-160% Enhanced Defense",
+        PropertyString: "+130-160% 防禦強化",
         Index: 2
       },
       {
-        PropertyString: "+250 Defense vs. Missile",
+        PropertyString: "+250 對遠程防禦",
         Index: 3
       },
       {
-        PropertyString: "+20 to Dexterity",
+        PropertyString: "+20 敏捷",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +50-70%",
+        PropertyString: "所有抗性 +50-70%",
         Index: 4
       },
       {
-        PropertyString: "Magic Damage Reduced by 7",
+        PropertyString: "魔法傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "Level 12 Slow Missiles (60 Charges)",
+        PropertyString: "等級 12 緩箭術（60 次）",
         Index: 6
       }
     ],
@@ -9972,7 +9972,7 @@ const json = [
         Class: "nec"
       }
     ],
-    Name: "Terror",
+    Name: "恐佈 (Terror)",
     Index: "Terror",
     Enabled: true,
     Rarity: 0,
@@ -9981,39 +9981,39 @@ const json = [
     Code: "Terror",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 10 Terror when struck",
+        PropertyString: "被擊中時有 100% 機率施展等級 10 恐懼",
         Index: 0
       },
       {
-        PropertyString: "+2 to Necromancer Skill Levels",
+        PropertyString: "+2 死靈法師技能等級",
         Index: 1
       },
       {
-        PropertyString: "+3 to Fanaticism",
+        PropertyString: "+3 狂熱",
         Index: 6
       },
       {
-        PropertyString: "+25% Faster Cast Rate",
+        PropertyString: "+25% 施法速度",
         Index: 4
       },
       {
-        PropertyString: "+4 to random Necromancer Skill",
+        PropertyString: "+4 死靈法師隨機技能等級",
         Index: 2
       },
       {
-        PropertyString: "+1.5 Defense (Per Character Level)",
+        PropertyString: "+1.5 防禦 （依角色等級而定）",
         Index: 3
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 7",
+        PropertyString: "魔法傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "+1% better chance of getting magic item (Per Character Level)",
+        PropertyString: "尋獲魔法物品機率提高 +1% （依角色等級而定）",
         Index: 5
       }
     ],
@@ -10070,7 +10070,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Full Moon",
+    Name: "滿月 (Full Moon)",
     Index: "Full Moon",
     Enabled: true,
     Rarity: 0,
@@ -10079,43 +10079,43 @@ const json = [
     Code: "Full Moon",
     Properties: [
       {
-        PropertyString: "20% Chance to cast level 20 Blessed Hammer on striking",
+        PropertyString: "擊中時有 20% 機率施展等級 20 祝福之鎚",
         Index: 5
       },
       {
-        PropertyString: "15% Chance to cast level 20 Bone Spear on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 20 骨矛",
         Index: 6
       },
       {
-        PropertyString: "Level 10 Sanctuary Aura When Equipped",
+        PropertyString: "裝備時賦予等級 10 庇護靈氣",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+180-220% Enhanced Damage",
+        PropertyString: "+180-220% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 1
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "+9-11 Magic Absorb",
+        PropertyString: "魔法吸引 +9-11",
         Index: 3
       },
       {
-        PropertyString: "Level 18 Summon Spirit Wolf (30 Charges)",
+        PropertyString: "等級 18 召喚幽靈狼（30 次）",
         Index: 4
       }
     ],
@@ -10162,7 +10162,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Delirium",
+    Name: "精神錯亂 (Delirium)",
     Index: "Delirium",
     Enabled: true,
     Rarity: 0,
@@ -10171,43 +10171,43 @@ const json = [
     Code: "Delirium",
     Properties: [
       {
-        PropertyString: "11% Chance to cast level 18 Confuse on striking",
+        PropertyString: "擊中時有 11% 機率施展等級 18 混亂",
         Index: 0
       },
       {
-        PropertyString: "14% Chance to cast level 13 Terror when struck",
+        PropertyString: "被擊中時有 14% 機率施展等級 13 恐懼",
         Index: 2
       },
       {
-        PropertyString: "6% Chance to cast level 14 Mind Blast when struck",
+        PropertyString: "被擊中時有 6% 機率施展等級 14 心靈震爆",
         Index: 4
       },
       {
-        PropertyString: "1% Chance to cast level 50 Delerium Change when struck",
+        PropertyString: "被擊中時有 1% 機率施展等級 50 精神錯亂",
         Index: 5
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 6
       },
       {
-        PropertyString: "+261 Defense",
+        PropertyString: "+261 防禦",
         Index: 3
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+50% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +50%",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       },
       {
-        PropertyString: "Level 17 Attract (60 Charges)",
+        PropertyString: "等級 17 致命吸引（60 次）",
         Index: 1
       }
     ],
@@ -10264,7 +10264,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Glory",
+    Name: "榮譽 (Glory)",
     Index: "Glory",
     Enabled: true,
     Rarity: 0,
@@ -10273,35 +10273,35 @@ const json = [
     Code: "Glory",
     Properties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+35% Faster Cast Rate",
+        PropertyString: "+35% 施法速度",
         Index: 2
       },
       {
-        PropertyString: "+25% Faster Hit Recovery",
+        PropertyString: "+25% 打擊恢復",
         Index: 1
       },
       {
-        PropertyString: "+75-125% Enhanced Defense",
+        PropertyString: "+75-125% 防禦強化",
         Index: 5
       },
       {
-        PropertyString: "+25% Increased Maximum Life",
+        PropertyString: "生命上限 +25%",
         Index: 4
       },
       {
-        PropertyString: "+25% Increased Maximum Mana",
+        PropertyString: "法力上限 +25%",
         Index: 3
       },
       {
-        PropertyString: "+100% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +100%",
         Index: 0
       },
       {
-        PropertyString: "Requirements -30%",
+        PropertyString: "需求 -30%",
         Index: 6
       }
     ],
@@ -10348,7 +10348,7 @@ const json = [
         Class: "sor"
       }
     ],
-    Name: "Thought",
+    Name: "思維 (Thought)",
     Index: "Thought",
     Enabled: true,
     Rarity: 0,
@@ -10357,43 +10357,43 @@ const json = [
     Code: "Thought",
     Properties: [
       {
-        PropertyString: "+2 to Sorceress Skill Levels",
+        PropertyString: "+2 魔法使技能等級",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 6
       },
       {
-        PropertyString: "+15% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +15%",
         Index: 5
       },
       {
-        PropertyString: "-20% to Enemy Lightning Resistance",
+        PropertyString: "敵人電擊抗性 -20%",
         Index: 3
       },
       {
-        PropertyString: "+20% to Cold Skill Damage",
+        PropertyString: "+20% 寒冰技能傷害",
         Index: 4
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+6 Replenish Life",
+        PropertyString: "生命回復 +6",
         Index: 1
       },
       {
-        PropertyString: "Regenerate Mana +75%",
+        PropertyString: "法力恢復 75%",
         Index: 2
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       }
     ],
@@ -10460,7 +10460,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Despair",
+    Name: "絕望 (Despair)",
     Index: "Despair",
     Enabled: true,
     Rarity: 0,
@@ -10469,47 +10469,47 @@ const json = [
     Code: "Despair",
     Properties: [
       {
-        PropertyString: "32% Chance to cast level 6 Weaken on striking",
+        PropertyString: "擊中時有 32% 機率施展等級 6 削弱",
         Index: 1
       },
       {
-        PropertyString: "+7 to Fend",
+        PropertyString: "+7 疾刺",
         Index: 3
       },
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 0
       },
       {
-        PropertyString: "+260-300% Enhanced Damage",
+        PropertyString: "+260-300% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+20% bonus to Attack Rating",
+        PropertyString: "+20% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 1
       },
       {
-        PropertyString: "+9% Mana stolen per hit",
+        PropertyString: "擊中竊取 +9% 法力",
         Index: 5
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "Slows target by 20%",
+        PropertyString: "使目標減慢 20%",
         Index: 2
       },
       {
-        PropertyString: "+35% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +35%",
         Index: 4
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       }
     ],
@@ -10571,7 +10571,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Kingslayer",
+    Name: "弒王者 (Kingslayer)",
     Index: "Kingslayer",
     Enabled: true,
     Rarity: 0,
@@ -10580,43 +10580,43 @@ const json = [
     Code: "Kingslayer",
     Properties: [
       {
-        PropertyString: "+1 to Vengeance",
+        PropertyString: "+1 復仇打擊",
         Index: 5
       },
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 0
       },
       {
-        PropertyString: "+230-270% Enhanced Damage",
+        PropertyString: "+230-270% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "-25% Target Defense",
+        PropertyString: "-25% 目標防禦",
         Index: 2
       },
       {
-        PropertyString: "+20% bonus to Attack Rating",
+        PropertyString: "+20% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "+33% Chance of Crushing Blow",
+        PropertyString: "+33% 概率造成粉碎打擊",
         Index: 3
       },
       {
-        PropertyString: "+50% Chance of Open Wounds",
+        PropertyString: "+50% 機率造成開放傷口",
         Index: 4
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+40% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +40%",
         Index: 6
       }
     ],
@@ -10663,7 +10663,7 @@ const json = [
         Class: "ass"
       }
     ],
-    Name: "Mosaic",
+    Name: "嵌飾 (Mosaic)",
     Index: "Mosaic",
     Enabled: true,
     Rarity: 0,
@@ -10676,39 +10676,39 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "+2 to Martial Arts (Assassin only)",
+        PropertyString: "+2 武學技藝 （只限刺客）",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 2
       },
       {
-        PropertyString: "+200-250% Enhanced Damage",
+        PropertyString: "+200-250% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+20% bonus to Attack Rating",
+        PropertyString: "+20% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "+8-15% to Fire Skill Damage",
+        PropertyString: "+8-15% 火焰技能傷害",
         Index: 4
       },
       {
-        PropertyString: "+8-15% to Cold Skill Damage",
+        PropertyString: "+8-15% 寒冰技能傷害",
         Index: 5
       },
       {
-        PropertyString: "+8-15% to Lightning Skill Damage",
+        PropertyString: "+8-15% 閃電技能傷害",
         Index: 6
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       }
     ],
@@ -10770,7 +10770,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Rift",
+    Name: "裂隙 (Rift)",
     Index: "Rift",
     Enabled: true,
     Rarity: 0,
@@ -10779,47 +10779,47 @@ const json = [
     Code: "Rift",
     Properties: [
       {
-        PropertyString: "20% Chance to cast level 16 Tornado on striking",
+        PropertyString: "擊中時有 20% 機率施展等級 16 龍捲風",
         Index: 0
       },
       {
-        PropertyString: "16% Chance to cast level 21 Frozen Orb on attack",
+        PropertyString: "攻擊時有 16% 機率施展等級 21 冰封球",
         Index: 1
       },
       {
-        PropertyString: "+20% bonus to Attack Rating",
+        PropertyString: "+20% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "Adds 160-250 to Magic Damage",
+        PropertyString: "增加 160-250 魔法傷害",
         Index: 2
       },
       {
-        PropertyString: "Adds 60-180 to Fire Damage",
+        PropertyString: "增加 60-180 火焰傷害",
         Index: 3
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+5-10 to All Attributes",
+        PropertyString: "+5-10 所有屬性",
         Index: 4
       },
       {
-        PropertyString: "+38% Damage Taken Goes To Mana",
+        PropertyString: "+38% 受到的傷害轉為法力",
         Index: 5
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 0
       },
       {
-        PropertyString: "Level 15 Iron Maiden (40 Charges)",
+        PropertyString: "等級 15 攻擊反噬（40 次）",
         Index: 6
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -10876,7 +10876,7 @@ const json = [
         Class: "ama"
       }
     ],
-    Name: "Still Water",
+    Name: "寂靜之水 (Still Water)",
     Index: "Still Water",
     Enabled: true,
     Rarity: 0,
@@ -10885,47 +10885,47 @@ const json = [
     Code: "Still Water",
     Properties: [
       {
-        PropertyString: "+2 to Bow and Crossbow Skills (Amazon only)",
+        PropertyString: "+2 弓與弩技能 （只限亞馬遜）",
         Index: 4
       },
       {
-        PropertyString: "+1 to Amazon Skill Levels",
+        PropertyString: "+1 亞馬遜技能等級",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 1
       },
       {
-        PropertyString: "+80-120% Enhanced Damage",
+        PropertyString: "+80-120% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "Adds 30-150 to Damage",
+        PropertyString: "增加 30-150 傷害",
         Index: 2
       },
       {
-        PropertyString: "+20% bonus to Attack Rating",
+        PropertyString: "+20% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "Adds 100-150 to Cold Damage",
+        PropertyString: "增加 100-150 寒冰傷害",
         Index: 6
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 0
       },
       {
-        PropertyString: "+15-20 Life after each Kill",
+        PropertyString: "+15-20 擊殺生命恢復",
         Index: 5
       }
     ],
@@ -10972,7 +10972,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Principle",
+    Name: "原則 (Principle)",
     Index: "Principle",
     Enabled: true,
     Rarity: 0,
@@ -10981,31 +10981,31 @@ const json = [
     Code: "Principle",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 5 Holy Bolt on striking",
+        PropertyString: "擊中時有 100% 機率施展等級 5 聖光彈",
         Index: 0
       },
       {
-        PropertyString: "+2 to Paladin Skill Levels",
+        PropertyString: "+2 聖騎士技能等級",
         Index: 1
       },
       {
-        PropertyString: "+50% Damage to Undead",
+        PropertyString: "+50% 對不死怪物的傷害",
         Index: 3
       },
       {
-        PropertyString: "+100-150 to Life",
+        PropertyString: "+100-150 生命",
         Index: 2
       },
       {
-        PropertyString: "+5 to Maximum Poison Resist",
+        PropertyString: "毒素抗性上限 ++5",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +30%",
+        PropertyString: "火焰抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "+5 Life after each Kill",
+        PropertyString: "+5 擊殺生命恢復",
         Index: 0
       }
     ],
@@ -11077,7 +11077,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Death",
+    Name: "死神 (Death)",
     Index: "Death",
     Enabled: true,
     Rarity: 0,
@@ -11086,55 +11086,55 @@ const json = [
     Code: "Death",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 44 Chain Lightning when you Die",
+        PropertyString: "當你死亡時有 100% 機率施展等級 44 連鎖閃電",
         Index: 0
       },
       {
-        PropertyString: "25% Chance to cast level 18 Glacial Spike on attack",
+        PropertyString: "攻擊時有 25% 機率施展等級 18 冰川之槍",
         Index: 1
       },
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 2
       },
       {
-        PropertyString: "+300-385% Enhanced Damage",
+        PropertyString: "+300-385% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+20% bonus to Attack Rating",
+        PropertyString: "+20% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 1
       },
       {
-        PropertyString: "Adds 1-50 to Lightning Damage",
+        PropertyString: "增加 1-50 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 0
       },
       {
-        PropertyString: "+50% Chance of Crushing Blow",
+        PropertyString: "+50% 概率造成粉碎打擊",
         Index: 4
       },
       {
-        PropertyString: "+0.5% Deadly Strike (Per Character Level)",
+        PropertyString: "+0.5% 致命打擊 （依角色等級而定）",
         Index: 5
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       },
       {
-        PropertyString: "Level 22 Blood Golem (15 Charges)",
+        PropertyString: "等級 22 鮮血魔像（15 次）",
         Index: 6
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -11181,7 +11181,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Flame",
+    Name: "火焰 (Flame)",
     Index: "Flame",
     Enabled: true,
     Rarity: 0,
@@ -11190,43 +11190,43 @@ const json = [
     Code: "Flame",
     Properties: [
       {
-        PropertyString: "20% Chance to cast level 19 Fire Ball when struck",
+        PropertyString: "被擊中時有 20% 機率施展等級 19 火球術",
         Index: 0
       },
       {
-        PropertyString: "8% Chance to cast level 13 Eruption on striking",
+        PropertyString: "擊中時有 8% 機率施展等級 13 裂地之火",
         Index: 1
       },
       {
-        PropertyString: "Level 17 Holy Fire Aura When Equipped",
+        PropertyString: "裝備時賦予等級 17 神聖火焰靈氣",
         Index: 2
       },
       {
-        PropertyString: "+15-20% to Fire Skill Damage",
+        PropertyString: "+15-20% 火焰技能傷害",
         Index: 3
       },
       {
-        PropertyString: "-15-20% to Enemy Fire Resistance",
+        PropertyString: "敵人火焰抗性 -15-20%",
         Index: 4
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Fire Resist",
+        PropertyString: "火焰抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +30%",
+        PropertyString: "火焰抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "+15-20 Fire Absorb",
+        PropertyString: "火焰吸引 +15-20",
         Index: 5
       },
       {
-        PropertyString: "+5 to Light Radius",
+        PropertyString: "照亮範圍 +5",
         Index: 6
       }
     ],
@@ -11273,7 +11273,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Flickering Flame",
+    Name: "閃爍火焰 (Flickering Flame)",
     Index: "Flickering Flame",
     Enabled: true,
     Rarity: 0,
@@ -11282,39 +11282,39 @@ const json = [
     Code: "Flickering Flame",
     Properties: [
       {
-        PropertyString: "Level 4-8 Resist Fire Aura When Equipped",
+        PropertyString: "裝備時賦予等級 4-8 抗火靈氣",
         Index: 1
       },
       {
-        PropertyString: "+3 to Fire Skills",
+        PropertyString: "+3 火焰技能",
         Index: 0
       },
       {
-        PropertyString: "-10-15% to Enemy Fire Resistance",
+        PropertyString: "敵人火焰抗性 -10-15%",
         Index: 2
       },
       {
-        PropertyString: "+30% Enhanced Defense",
+        PropertyString: "+30% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+30 Defense vs. Missile",
+        PropertyString: "+30 對遠程防禦",
         Index: 0
       },
       {
-        PropertyString: "+50-75 to Mana",
+        PropertyString: "+50-75 法力",
         Index: 3
       },
       {
-        PropertyString: "+5 to Maximum Fire Resist",
+        PropertyString: "火焰抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "Half Freeze Duration",
+        PropertyString: "冰凍時間減半",
         Index: 4
       },
       {
-        PropertyString: "Poison Length Reduced by 50%",
+        PropertyString: "中毒的時效縮短 50%",
         Index: 5
       }
     ],
@@ -11386,7 +11386,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Heart of the Oak",
+    Name: "橡樹之心 (Heart of the Oak)",
     Index: "Heart of the Oak",
     Enabled: true,
     Rarity: 0,
@@ -11395,51 +11395,51 @@ const json = [
     Code: "Heart of the Oak",
     Properties: [
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 3
       },
       {
-        PropertyString: "+40% Faster Cast Rate",
+        PropertyString: "+40% 施法速度",
         Index: 0
       },
       {
-        PropertyString: "+75% Damage to Demons",
+        PropertyString: "+75% 對惡魔的傷害",
         Index: 1
       },
       {
-        PropertyString: "+100 to Attack Rating against Demons",
+        PropertyString: "+100 對惡魔的准确率",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+20 Replenish Life",
+        PropertyString: "生命回復 +20",
         Index: 4
       },
       {
-        PropertyString: "+15% Increased Maximum Mana",
+        PropertyString: "法力上限 +15%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +30-40%",
+        PropertyString: "所有抗性 +30-40%",
         Index: 5
       },
       {
-        PropertyString: "Level 4 Oak Sage (25 Charges)",
+        PropertyString: "等級 4 橡木智者（25 次）",
         Index: 1
       },
       {
-        PropertyString: "Level 14 Raven (60 Charges)",
+        PropertyString: "等級 14 掠鴉（60 次）",
         Index: 6
       }
     ],
@@ -11496,7 +11496,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Innocence",
+    Name: "純真 (Innocence)",
     Index: "Innocence",
     Enabled: true,
     Rarity: 0,
@@ -11505,27 +11505,27 @@ const json = [
     Code: "Innocence",
     Properties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 3
       },
       {
-        PropertyString: "+190-240% Enhanced Damage",
+        PropertyString: "+190-240% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+2 to Maximum Damage (Per Character Level)",
+        PropertyString: "+2 最大傷害 （依角色等級而定）",
         Index: 1
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 0
       },
       {
-        PropertyString: "+25% Increased Maximum Life",
+        PropertyString: "生命上限 +25%",
         Index: 4
       },
       {
-        PropertyString: "+15-25 to All Attributes",
+        PropertyString: "+15-25 所有屬性",
         Index: 5
       },
       {
@@ -11533,15 +11533,15 @@ const json = [
         Index: 6
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 0
       },
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       },
       {
-        PropertyString: "Repairs 0.15 durability per second",
+        PropertyString: "每 1 秒修復 0.15 點耐久度",
         Index: 2
       }
     ],
@@ -11578,7 +11578,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Loyalty",
+    Name: "忠誠 (Loyalty)",
     Index: "Loyalty",
     Enabled: true,
     Rarity: 0,
@@ -11587,39 +11587,39 @@ const json = [
     Code: "Loyalty",
     Properties: [
       {
-        PropertyString: "Level 5-9 Thorns Aura When Equipped",
+        PropertyString: "裝備時賦予等級 5-9 荊棘靈氣",
         Index: 0
       },
       {
-        PropertyString: "+35-50% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +35-50%",
         Index: 6
       },
       {
-        PropertyString: "+7 Replenish Life",
+        PropertyString: "生命回復 +7",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Poison Resist",
+        PropertyString: "毒素抗性上限 ++5",
         Index: 3
       },
       {
-        PropertyString: "+5 to Maximum Cold Resist",
+        PropertyString: "冰寒抗性上限 +5",
         Index: 2
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist",
+        PropertyString: "電擊抗性上限 +5",
         Index: 1
       },
       {
-        PropertyString: "+5 to Maximum Fire Resist",
+        PropertyString: "火焰抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +40-50%",
+        PropertyString: "所有抗性 +40-50%",
         Index: 4
       },
       {
-        PropertyString: "+6% to Experience Gained",
+        PropertyString: "獲得的經驗值 +6%",
         Index: 5
       }
     ],
@@ -11696,7 +11696,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Silence",
+    Name: "寂靜 (Silence)",
     Index: "Silence",
     Enabled: true,
     Rarity: 0,
@@ -11705,55 +11705,55 @@ const json = [
     Code: "Silence",
     Properties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 5
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 3
       },
       {
-        PropertyString: "+200% Enhanced Damage",
+        PropertyString: "+200% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 6
       },
       {
-        PropertyString: "+75% Damage to Undead",
+        PropertyString: "+75% 對不死怪物的傷害",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating against Undead",
+        PropertyString: "+50 對不死怪物的准确率",
         Index: 0
       },
       {
-        PropertyString: "+11% Mana stolen per hit",
+        PropertyString: "擊中竊取 +11% 法力",
         Index: 0
       },
       {
-        PropertyString: "Hit blinds target +33",
+        PropertyString: "擊中使目標目盲 +33",
         Index: 1
       },
       {
-        PropertyString: "25% Hit Causes Monster To Flee",
+        PropertyString: "25% 機率擊中使怪物逃跑",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +75%",
+        PropertyString: "所有抗性 +75%",
         Index: 4
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -11795,7 +11795,7 @@ const json = [
         Class: "sor"
       }
     ],
-    Name: "Arcane",
+    Name: "祕法 (Arcane)",
     Index: "Arcane2",
     Enabled: true,
     Rarity: 0,
@@ -11804,39 +11804,39 @@ const json = [
     Code: "Arcane2",
     Properties: [
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+1 to Warmth",
+        PropertyString: "+1 暖流",
         Index: 4
       },
       {
-        PropertyString: "+50% Faster Cast Rate",
+        PropertyString: "+50% 施法速度",
         Index: 1
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+100 to Mana",
+        PropertyString: "+100 法力",
         Index: 6
       },
       {
-        PropertyString: "+20% Increased Maximum Mana",
+        PropertyString: "法力上限 +20%",
         Index: 2
       },
       {
-        PropertyString: "Regenerate Mana +75%",
+        PropertyString: "法力恢復 75%",
         Index: 3
       },
       {
-        PropertyString: "+5-10% to Experience Gained",
+        PropertyString: "獲得的經驗值 +5-10%",
         Index: 5
       }
     ],
@@ -11903,7 +11903,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Wonder",
+    Name: "驚奇 (Wonder)",
     Index: "Wonder",
     Enabled: true,
     Rarity: 0,
@@ -11912,39 +11912,39 @@ const json = [
     Code: "Wonder",
     Properties: [
       {
-        PropertyString: "+275% Enhanced Damage",
+        PropertyString: "+275% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+50% Faster Hit Recovery",
+        PropertyString: "+50% 打擊恢復",
         Index: 1
       },
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 2
       },
       {
-        PropertyString: "+20 to Dexterity",
+        PropertyString: "+20 敏捷",
         Index: 3
       },
       {
-        PropertyString: "+1.5 to Life (Per Character Level)",
+        PropertyString: "+1.5 生命 （依角色等級而定）",
         Index: 6
       },
       {
-        PropertyString: "+10 to Maximum Fire Resist",
+        PropertyString: "火焰抗性上限 +10",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +28",
+        PropertyString: "攻擊者反傷 +28",
         Index: 0
       },
       {
-        PropertyString: "+100-140% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +100-140%",
         Index: 4
       },
       {
-        PropertyString: "+60-80% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +60-80%",
         Index: 5
       }
     ],
@@ -11991,7 +11991,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Natalya's Shroud",
+    Name: "娜塔亞的裹屍布 (Natalya's Shroud)",
     Index: "Natalya's Shroud",
     Enabled: true,
     Rarity: 0,
@@ -12000,39 +12000,39 @@ const json = [
     Code: "Natalya's Shroud",
     Properties: [
       {
-        PropertyString: "+2 to Assassin Skill Levels",
+        PropertyString: "+2 刺客技能等級",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 2
       },
       {
-        PropertyString: "+20% Faster Cast Rate",
+        PropertyString: "+20% 施法速度",
         Index: 3
       },
       {
-        PropertyString: "+20% to Lightning Skill Damage",
+        PropertyString: "+20% 閃電技能傷害",
         Index: 4
       },
       {
-        PropertyString: "+20% to Fire Skill Damage",
+        PropertyString: "+20% 火焰技能傷害",
         Index: 5
       },
       {
-        PropertyString: "+200-250% Enhanced Defense",
+        PropertyString: "+200-250% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+7 Replenish Life",
+        PropertyString: "生命回復 +7",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Fire Resist",
+        PropertyString: "火焰抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 6
       }
     ],
@@ -12099,7 +12099,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Call to Arms",
+    Name: "戰爭召喚 (Call to Arms)",
     Index: "Call to Arms",
     Enabled: true,
     Rarity: 0,
@@ -12108,47 +12108,47 @@ const json = [
     Code: "Call to Arms",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       },
       {
-        PropertyString: "+2-6 to Battle Command",
+        PropertyString: "+2-6 戰鬥指揮",
         Index: 3
       },
       {
-        PropertyString: "+1-6 to Battle Orders",
+        PropertyString: "+1-6 戰鬥命令",
         Index: 4
       },
       {
-        PropertyString: "+1-4 to Battle Cry",
+        PropertyString: "+1-4 戰鬥怒吼",
         Index: 5
       },
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 0
       },
       {
-        PropertyString: "+250-290% Enhanced Damage",
+        PropertyString: "+250-290% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage",
+        PropertyString: "增加 5-30 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "+12 Replenish Life",
+        PropertyString: "生命回復 +12",
         Index: 6
       },
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       }
     ],
@@ -12195,7 +12195,7 @@ const json = [
         Class: "ass"
       }
     ],
-    Name: "Chaos",
+    Name: "混沌 (Chaos)",
     Index: "Chaos",
     Enabled: true,
     Rarity: 0,
@@ -12204,39 +12204,39 @@ const json = [
     Code: "Chaos",
     Properties: [
       {
-        PropertyString: "9% Chance to cast level 11 Frozen Orb on striking",
+        PropertyString: "擊中時有 9% 機率施展等級 11 冰封球",
         Index: 5
       },
       {
-        PropertyString: "11% Chance to cast level 9 Charged Bolt on striking",
+        PropertyString: "擊中時有 11% 機率施展等級 9 電能彈",
         Index: 6
       },
       {
-        PropertyString: "+1 to Whirlwind",
+        PropertyString: "+1 旋風斬",
         Index: 3
       },
       {
-        PropertyString: "+35% Increased Attack Speed",
+        PropertyString: "攻擊速度 +35%",
         Index: 4
       },
       {
-        PropertyString: "+290-340% Enhanced Damage",
+        PropertyString: "+290-340% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "Adds 216-471 to Magic Damage",
+        PropertyString: "增加 216-471 魔法傷害",
         Index: 2
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+15 Life after each Demon Kill",
+        PropertyString: "+15 擊殺惡魔生命恢復",
         Index: 0
       }
     ],
@@ -12293,7 +12293,7 @@ const json = [
         Class: "pal"
       }
     ],
-    Name: "Exile",
+    Name: "流亡 (Exile)",
     Index: "Exile",
     Enabled: true,
     Rarity: 0,
@@ -12302,47 +12302,47 @@ const json = [
     Code: "Exile",
     Properties: [
       {
-        PropertyString: "15% Chance to cast level 5 Life Tap on striking",
+        PropertyString: "擊中時有 15% 機率施展等級 5 偷取生命",
         Index: 5
       },
       {
-        PropertyString: "Level 13-16 Defiance Aura When Equipped",
+        PropertyString: "裝備時賦予等級 13-16 反抗靈氣",
         Index: 3
       },
       {
-        PropertyString: "+2 to Offensive Auras (Paladin only)",
+        PropertyString: "+2 防禦靈氣 （只限聖騎士）",
         Index: 4
       },
       {
-        PropertyString: "+30% Faster Block Rate",
+        PropertyString: "+30% 格擋速度",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +1",
+        PropertyString: "凍結目標 +1",
         Index: 1
       },
       {
-        PropertyString: "+220-260% Enhanced Defense",
+        PropertyString: "+220-260% 防禦強化",
         Index: 2
       },
       {
-        PropertyString: "+7 Replenish Life",
+        PropertyString: "生命回復 +7",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Cold Resist",
+        PropertyString: "冰寒抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Fire Resist",
+        PropertyString: "火焰抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       },
       {
-        PropertyString: "Repairs 0.25 durability per second",
+        PropertyString: "每 1 秒修復 0.25 點耐久度",
         Index: 6
       }
     ],
@@ -12409,7 +12409,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Praise",
+    Name: "頌揚 (Praise)",
     Index: "Praise",
     Enabled: true,
     Rarity: 0,
@@ -12418,43 +12418,43 @@ const json = [
     Code: "Praise",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 47 Frozen Orb when you Die",
+        PropertyString: "當你死亡時有 100% 機率施展等級 47 冰封球",
         Index: 3
       },
       {
-        PropertyString: "100% Chance to cast level 10 Glacial Spike when struck",
+        PropertyString: "被擊中時有 100% 機率施展等級 10 冰川之槍",
         Index: 4
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+330-400% Enhanced Damage",
+        PropertyString: "+330-400% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 2
       },
       {
-        PropertyString: "+20% bonus to Attack Rating",
+        PropertyString: "+20% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "+10% Life stolen per hit",
+        PropertyString: "擊中竊取 10% 生命",
         Index: 6
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+40-60% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +40-60%",
         Index: 5
       },
       {
-        PropertyString: "+15 To Required Level",
+        PropertyString: "+15 需求等級",
         Index: 0
       }
     ],
@@ -12501,7 +12501,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Trust",
+    Name: "信任 (Trust)",
     Index: "Trust",
     Enabled: true,
     Rarity: 0,
@@ -12510,43 +12510,43 @@ const json = [
     Code: "Trust",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 57 Nova when you Die",
+        PropertyString: "當你死亡時有 100% 機率施展等級 57 閃電新星",
         Index: 6
       },
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 2
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 4
       },
       {
-        PropertyString: "Adds 15-30 to Damage",
+        PropertyString: "增加 15-30 傷害",
         Index: 5
       },
       {
-        PropertyString: "+125-200% Enhanced Defense",
+        PropertyString: "+125-200% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+75-100 to Life",
+        PropertyString: "+75-100 生命",
         Index: 3
       },
       {
-        PropertyString: "+5 to Maximum Cold Resist",
+        PropertyString: "冰寒抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       },
       {
-        PropertyString: "+5 To Required Level",
+        PropertyString: "+5 需求等級",
         Index: 0
       }
     ],
@@ -12623,7 +12623,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Victory",
+    Name: "勝利 (Victory)",
     Index: "Victory",
     Enabled: true,
     Rarity: 0,
@@ -12632,43 +12632,43 @@ const json = [
     Code: "Victory",
     Properties: [
       {
-        PropertyString: "+60% Increased Attack Speed",
+        PropertyString: "攻擊速度 +60%",
         Index: 3
       },
       {
-        PropertyString: "+200% Enhanced Damage",
+        PropertyString: "+200% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+2.5 to Maximum Damage (Per Character Level)",
+        PropertyString: "+2.5 最大傷害 （依角色等級而定）",
         Index: 1
       },
       {
-        PropertyString: "+1-300 to Minimum Fire Damage",
+        PropertyString: "增加 1-300 火焰傷害",
         Index: 6
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 5
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 0
       },
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       },
       {
-        PropertyString: "Repairs 0.1 durability per second",
+        PropertyString: "每 1 秒修復 0.1 點耐久度",
         Index: 2
       },
       {
-        PropertyString: "+24 To Required Level",
+        PropertyString: "+24 需求等級",
         Index: 0
       },
       {
-        PropertyString: "Requirements -50%",
+        PropertyString: "需求 -50%",
         Index: 4
       }
     ],
@@ -12735,7 +12735,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Fortitude",
+    Name: "剛毅 (Fortitude)",
     Index: "Fortitude",
     Enabled: true,
     Rarity: 0,
@@ -12744,87 +12744,87 @@ const json = [
     Code: "Fortitude",
     Properties: [
       {
-        PropertyString: "20% Chance to cast level 15 Chilling Armor when struck",
+        PropertyString: "被擊中時有 20% 機率施展等級 15 寒冰甲",
         Index: 0
       },
       {
-        PropertyString: "+300% Enhanced Damage",
+        PropertyString: "+300% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+25% Faster Cast Rate",
+        PropertyString: "+25% 施法速度",
         Index: 5
       },
       {
-        PropertyString: "+200% Enhanced Defense",
+        PropertyString: "+200% 防禦強化",
         Index: 2
       },
       {
-        PropertyString: "+1-1.5 to Life (Per Character Level)",
+        PropertyString: "+1-1.5 生命 （依角色等級而定）",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +25-30%",
+        PropertyString: "所有抗性 +25-30%",
         Index: 4
       },
       {
-        PropertyString: "+1 to Light Radius (Weapon)",
+        PropertyString: "照亮範圍 +1 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+20% Deadly Strike (Weapon)",
+        PropertyString: "+20% 致命打擊 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+50 to Attack Rating (Weapon)",
+        PropertyString: "+50 準確率 （只限武器）",
         Index: 1
       },
       {
-        PropertyString: "25% Hit Causes Monster To Flee (Weapon)",
+        PropertyString: "25% 機率擊中使怪物逃跑 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Adds 9 to Damage (Weapon)",
+        PropertyString: "增加 9 傷害 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius (Armor)",
+        PropertyString: "照亮範圍 +1 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+15 Defense (Armor)",
+        PropertyString: "+15 防禦 （只限盔甲）",
         Index: 1
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist (Armor)",
+        PropertyString: "電擊抗性上限 +5 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+7 Replenish Life (Armor)",
+        PropertyString: "生命回復 +7 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7 (Armor)",
+        PropertyString: "物理傷害降低 7 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius (Shield)",
+        PropertyString: "照亮範圍 +1 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+15 Defense (Shield)",
+        PropertyString: "+15 防禦 （只限盾牌）",
         Index: 1
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist (Shield)",
+        PropertyString: "電擊抗性上限 +5 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+7 Replenish Life (Shield)",
+        PropertyString: "生命回復 +7 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7 (Shield)",
+        PropertyString: "物理傷害降低 7 （只限盾牌）",
         Index: 0
       }
     ],
@@ -12881,7 +12881,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Fortitude (Helm Removed)",
+    Name: "剛毅（頭盔 已移除）",
     Index: "Fortitude (Dummy)",
     Enabled: true,
     Rarity: 0,
@@ -12890,23 +12890,23 @@ const json = [
     Code: "Fortitude (Dummy)",
     Properties: [
       {
-        PropertyString: "+15 Defense",
+        PropertyString: "+15 防禦",
         Index: 1
       },
       {
-        PropertyString: "+7 Replenish Life",
+        PropertyString: "生命回復 +7",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist",
+        PropertyString: "電擊抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "+0 to Light Radius",
+        PropertyString: "照亮範圍 +0",
         Index: 0
       }
     ],
@@ -12978,7 +12978,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Grief",
+    Name: "悔恨 (Grief)",
     Index: "Grief",
     Enabled: true,
     Rarity: 0,
@@ -12987,11 +12987,11 @@ const json = [
     Code: "Grief",
     Properties: [
       {
-        PropertyString: "20% Chance to cast level 15 Venom on striking",
+        PropertyString: "擊中時有 20% 機率施展等級 15 淬毒",
         Index: 0
       },
       {
-        PropertyString: "+30-40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30-40%",
         Index: 1
       },
       {
@@ -12999,39 +12999,39 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 3
       },
       {
-        PropertyString: "-25% Target Defense",
+        PropertyString: "-25% 目標防禦",
         Index: 0
       },
       {
-        PropertyString: "+1.88% Damage to Demons (Per Character Level)",
+        PropertyString: "+1.88% 對惡魔的傷害 （依角色等級而定）",
         Index: 4
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage",
+        PropertyString: "增加 5-30 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "-20-25% to Enemy Poison Resistance",
+        PropertyString: "敵人毒素抗性 -20-25%",
         Index: 5
       },
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "+11 Life after each Kill",
+        PropertyString: "+11 擊殺生命恢復",
         Index: 6
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       }
     ],
@@ -13078,7 +13078,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Night",
+    Name: "夜晚 (Night)",
     Index: "Night",
     Enabled: true,
     Rarity: 0,
@@ -13087,43 +13087,43 @@ const json = [
     Code: "Night",
     Properties: [
       {
-        PropertyString: "+10-20 to Maximum Damage",
+        PropertyString: "+10-20 最大傷害",
         Index: 4
       },
       {
-        PropertyString: "+150-300% Enhanced Defense",
+        PropertyString: "+150-300% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+200-300 Defense",
+        PropertyString: "+200-300 防禦",
         Index: 3
       },
       {
-        PropertyString: "+10-20 to Vitality",
+        PropertyString: "+10-20 體能",
         Index: 2
       },
       {
-        PropertyString: "+15-20 to Energy",
+        PropertyString: "+15-20 能量",
         Index: 6
       },
       {
-        PropertyString: "+5 to Maximum Cold Resist",
+        PropertyString: "冰寒抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist",
+        PropertyString: "電擊抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "+70-100% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +70-100%",
         Index: 5
       },
       {
-        PropertyString: "+40-70% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +40-70%",
         Index: 1
       },
       {
-        PropertyString: "Requirements -15%",
+        PropertyString: "需求 -15%",
         Index: 0
       }
     ],
@@ -13180,7 +13180,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Bramble",
+    Name: "刺藤 (Bramble)",
     Index: "Bramble",
     Enabled: true,
     Rarity: 0,
@@ -13189,47 +13189,47 @@ const json = [
     Code: "Bramble",
     Properties: [
       {
-        PropertyString: "Level 15-21 Thorns Aura When Equipped",
+        PropertyString: "裝備時賦予等級 15-21 荊棘靈氣",
         Index: 2
       },
       {
-        PropertyString: "+50% Faster Hit Recovery",
+        PropertyString: "+50% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+25-50% to Poison Skill Damage",
+        PropertyString: "+25-50% 毒素技能傷害",
         Index: 4
       },
       {
-        PropertyString: "+300 Defense",
+        PropertyString: "+300 防禦",
         Index: 1
       },
       {
-        PropertyString: "+5% Increased Maximum Mana",
+        PropertyString: "法力上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Cold Resist",
+        PropertyString: "冰寒抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "Fire Resist +30%",
+        PropertyString: "火焰抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "Poison Resist +100%",
+        PropertyString: "毒素抗性 +100%",
         Index: 5
       },
       {
-        PropertyString: "+13 Life after each Kill",
+        PropertyString: "+13 擊殺生命恢復",
         Index: 3
       },
       {
-        PropertyString: "Level 13 Spirit of Barbs (33 Charges)",
+        PropertyString: "等級 13 荊棘之靈（33 次）",
         Index: 6
       }
     ],
@@ -13281,7 +13281,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Dragon",
+    Name: "飛龍 (Dragon)",
     Index: "Dragon",
     Enabled: true,
     Rarity: 0,
@@ -13290,55 +13290,55 @@ const json = [
     Code: "Dragon",
     Properties: [
       {
-        PropertyString: "20% Chance to cast level 18 Venom when struck",
+        PropertyString: "被擊中時有 20% 機率施展等級 18 淬毒",
         Index: 0
       },
       {
-        PropertyString: "12% Chance to cast level 15 Hydra on striking",
+        PropertyString: "擊中時有 12% 機率施展等級 15 多頭蛇",
         Index: 1
       },
       {
-        PropertyString: "Level 14 Holy Fire Aura When Equipped",
+        PropertyString: "裝備時賦予等級 14 神聖火焰靈氣",
         Index: 6
       },
       {
-        PropertyString: "+360 Defense",
+        PropertyString: "+360 防禦",
         Index: 2
       },
       {
-        PropertyString: "+230 Defense vs. Missile",
+        PropertyString: "+230 對遠程防禦",
         Index: 3
       },
       {
-        PropertyString: "+0.38 to Strength (Per Character Level)",
+        PropertyString: "+0.38 力量 （依角色等級而定）",
         Index: 4
       },
       {
-        PropertyString: "+3-5 to All Attributes",
+        PropertyString: "+3-5 所有屬性",
         Index: 5
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist (Armor)",
+        PropertyString: "電擊抗性上限 +5 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Mana (Armor)",
+        PropertyString: "法力上限 +5% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7 (Armor)",
+        PropertyString: "物理傷害降低 7 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist (Shield)",
+        PropertyString: "電擊抗性上限 +5 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+50 to Mana (Shield)",
+        PropertyString: "+50 法力 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7 (Shield)",
+        PropertyString: "物理傷害降低 7 （只限盾牌）",
         Index: 0
       }
     ],
@@ -13395,7 +13395,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Mantle of Lazarus",
+    Name: "拉撒路的披風 (Mantle of Lazarus)",
     Index: "Mantle of Lazarus",
     Enabled: true,
     Rarity: 0,
@@ -13404,43 +13404,43 @@ const json = [
     Code: "Mantle of Lazarus",
     Properties: [
       {
-        PropertyString: "+2 to Sorceress Skill Levels",
+        PropertyString: "+2 魔法使技能等級",
         Index: 0
       },
       {
-        PropertyString: "+30% Faster Cast Rate",
+        PropertyString: "+30% 施法速度",
         Index: 1
       },
       {
-        PropertyString: "+20% to Fire Skill Damage",
+        PropertyString: "+20% 火焰技能傷害",
         Index: 4
       },
       {
-        PropertyString: "+20% to Cold Skill Damage",
+        PropertyString: "+20% 寒冰技能傷害",
         Index: 5
       },
       {
-        PropertyString: "+20% to Lightning Skill Damage",
+        PropertyString: "+20% 閃電技能傷害",
         Index: 6
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+10% Increased Maximum Mana",
+        PropertyString: "法力上限 +10%",
         Index: 3
       },
       {
-        PropertyString: "Regenerate Mana +75%",
+        PropertyString: "法力恢復 75%",
         Index: 2
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       }
     ],
@@ -13517,7 +13517,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Eclipse",
+    Name: "蝕 (Eclipse)",
     Index: "Eclipse",
     Enabled: true,
     Rarity: 0,
@@ -13526,47 +13526,47 @@ const json = [
     Code: "Eclipse",
     Properties: [
       {
-        PropertyString: "8% Chance to cast level 5 Amplify Damage on striking",
+        PropertyString: "擊中時有 8% 機率施展等級 5 傷害加深",
         Index: 0
       },
       {
-        PropertyString: "+1 to Melee Mastery",
+        PropertyString: "+1 近戰精通",
         Index: 1
       },
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 0
       },
       {
-        PropertyString: "+300-350% Enhanced Damage",
+        PropertyString: "+300-350% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 5
       },
       {
-        PropertyString: "+10% Chance of Crushing Blow",
+        PropertyString: "+10% 概率造成粉碎打擊",
         Index: 4
       },
       {
-        PropertyString: "+10% Deadly Strike",
+        PropertyString: "+10% 致命打擊",
         Index: 3
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "Hit blinds target +1",
+        PropertyString: "擊中使目標目盲 +1",
         Index: 0
       },
       {
-        PropertyString: "+5% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +5%",
         Index: 6
       }
     ],
@@ -13623,7 +13623,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Siren's Song",
+    Name: "賽蓮之歌 (Siren's Song)",
     Index: "Siren's Song",
     Enabled: true,
     Rarity: 0,
@@ -13632,39 +13632,39 @@ const json = [
     Code: "Siren's Song",
     Properties: [
       {
-        PropertyString: "44% Chance to cast level 3 Confuse when struck",
+        PropertyString: "被擊中時有 44% 機率施展等級 3 混亂",
         Index: 5
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+25% Faster Cast Rate",
+        PropertyString: "+25% 施法速度",
         Index: 2
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+1 Defense (Per Character Level)",
+        PropertyString: "+1 防禦 （依角色等級而定）",
         Index: 6
       },
       {
-        PropertyString: "+20% Increased Maximum Mana",
+        PropertyString: "法力上限 +20%",
         Index: 1
       },
       {
-        PropertyString: "+10-20 to All Attributes",
+        PropertyString: "+10-20 所有屬性",
         Index: 3
       },
       {
-        PropertyString: "+50% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +50%",
         Index: 0
       },
       {
-        PropertyString: "+30-50% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30-50%",
         Index: 4
       }
     ],
@@ -13731,7 +13731,7 @@ const json = [
         Class: "ama"
       }
     ],
-    Name: "Tradition",
+    Name: "傳統 (Tradition)",
     Index: "Tradition",
     Enabled: true,
     Rarity: 0,
@@ -13740,47 +13740,47 @@ const json = [
     Code: "Tradition",
     Properties: [
       {
-        PropertyString: "+3 to Amazon Skill Levels",
+        PropertyString: "+3 亞馬遜技能等級",
         Index: 0
       },
       {
-        PropertyString: "+50% Increased Attack Speed",
+        PropertyString: "攻擊速度 +50%",
         Index: 4
       },
       {
-        PropertyString: "+375-450% Enhanced Damage",
+        PropertyString: "+375-450% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+20% bonus to Attack Rating",
+        PropertyString: "+20% 準確率加成",
         Index: 0
       },
       {
-        PropertyString: "+10% Mana stolen per hit",
+        PropertyString: "擊中竊取 +10% 法力",
         Index: 3
       },
       {
-        PropertyString: "+10% Life stolen per hit",
+        PropertyString: "擊中竊取 10% 生命",
         Index: 2
       },
       {
-        PropertyString: "-25% to Enemy Lightning Resistance",
+        PropertyString: "敵人電擊抗性 -25%",
         Index: 5
       },
       {
-        PropertyString: "+25% to Lightning Skill Damage",
+        PropertyString: "+25% 閃電技能傷害",
         Index: 6
       },
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "Hit blinds target +1",
+        PropertyString: "擊中使目標目盲 +1",
         Index: 0
       },
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       }
     ],
@@ -13817,7 +13817,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Wind",
+    Name: "輕風 (Wind)",
     Index: "Wind",
     Enabled: true,
     Rarity: 0,
@@ -13826,43 +13826,43 @@ const json = [
     Code: "Wind",
     Properties: [
       {
-        PropertyString: "10% Chance to cast level 9 Tornado on striking",
+        PropertyString: "擊中時有 10% 機率施展等級 9 龍捲風",
         Index: 4
       },
       {
-        PropertyString: "+20% Faster Run/Walk",
+        PropertyString: "+20% 跑步 / 行走速度",
         Index: 2
       },
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 1
       },
       {
-        PropertyString: "+120-160% Enhanced Damage",
+        PropertyString: "+120-160% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+15% Faster Hit Recovery",
+        PropertyString: "+15% 打擊恢復",
         Index: 6
       },
       {
-        PropertyString: "-50% Target Defense",
+        PropertyString: "-50% 目標防禦",
         Index: 3
       },
       {
-        PropertyString: "+15 Defense",
+        PropertyString: "+15 防禦",
         Index: 1
       },
       {
-        PropertyString: "+5% Increased Maximum Mana",
+        PropertyString: "法力上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       },
       {
-        PropertyString: "Level 13 Twister (127 Charges)",
+        PropertyString: "等級 13 旋風術（127 次）",
         Index: 5
       }
     ],
@@ -13949,7 +13949,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Beast",
+    Name: "野獸 (Beast)",
     Index: "Beast",
     Enabled: true,
     Rarity: 0,
@@ -13958,51 +13958,51 @@ const json = [
     Code: "Beast",
     Properties: [
       {
-        PropertyString: "Level 9 Fanaticism Aura When Equipped",
+        PropertyString: "裝備時賦予等級 9 狂熱靈氣",
         Index: 1
       },
       {
-        PropertyString: "+3 to Werebear",
+        PropertyString: "+3 熊人變化",
         Index: 5
       },
       {
-        PropertyString: "+3 to Lycanthropy",
+        PropertyString: "+3 變形術",
         Index: 6
       },
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 0
       },
       {
-        PropertyString: "+240-270% Enhanced Damage",
+        PropertyString: "+240-270% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "+20% Chance of Crushing Blow",
+        PropertyString: "+20% 概率造成粉碎打擊",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "+25-40 to Strength",
+        PropertyString: "+25-40 力量",
         Index: 3
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "Level 13 Summon Grizzly (5 Charges)",
+        PropertyString: "等級 13 召喚灰熊（5 次）",
         Index: 4
       }
     ],
@@ -14039,7 +14039,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Rathma's Husk",
+    Name: "拉斯瑪的外殼 (Rathma's Husk)",
     Index: "Rathma's Husk",
     Enabled: true,
     Rarity: 0,
@@ -14048,35 +14048,35 @@ const json = [
     Code: "Rathma's Husk",
     Properties: [
       {
-        PropertyString: "+2 to Poison Skills",
+        PropertyString: "+2 毒素技能",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 5
       },
       {
-        PropertyString: "+20% to Poison Skill Damage",
+        PropertyString: "+20% 毒素技能傷害",
         Index: 1
       },
       {
-        PropertyString: "+2 to Poison Dagger (Necromancer Only)",
+        PropertyString: "+2 淬毒匕首（只限死靈法師）",
         Index: 3
       },
       {
-        PropertyString: "+2 to Poison Volley (Necromancer Only)",
+        PropertyString: "+2 毒爆（只限死靈法師）",
         Index: 4
       },
       {
-        PropertyString: "+200-250% Enhanced Defense",
+        PropertyString: "+200-250% 防禦強化",
         Index: 6
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 2
       },
       {
-        PropertyString: "+8% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +8%",
         Index: 0
       }
     ],
@@ -14133,7 +14133,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Chains of Honor",
+    Name: "榮耀之鍊 (Chains of Honor)",
     Index: "Chains of Honor",
     Enabled: true,
     Rarity: 0,
@@ -14142,43 +14142,43 @@ const json = [
     Code: "Chains of Honor",
     Properties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 5
       },
       {
-        PropertyString: "+200% Damage to Demons",
+        PropertyString: "+200% 對惡魔的傷害",
         Index: 2
       },
       {
-        PropertyString: "+100% Damage to Undead",
+        PropertyString: "+100% 對不死怪物的傷害",
         Index: 3
       },
       {
-        PropertyString: "+8% Life stolen per hit",
+        PropertyString: "擊中竊取 8% 生命",
         Index: 4
       },
       {
-        PropertyString: "+70% Enhanced Defense",
+        PropertyString: "+70% 防禦強化",
         Index: 1
       },
       {
-        PropertyString: "+20 to Strength",
+        PropertyString: "+20 力量",
         Index: 6
       },
       {
-        PropertyString: "+7 Replenish Life",
+        PropertyString: "生命回復 +7",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +65%",
+        PropertyString: "所有抗性 +65%",
         Index: 0
       },
       {
-        PropertyString: "+8% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +8%",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       }
     ],
@@ -14245,7 +14245,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Eternity",
+    Name: "永恆 (Eternity)",
     Index: "Eternity",
     Enabled: true,
     Rarity: 0,
@@ -14254,51 +14254,51 @@ const json = [
     Code: "Eternity",
     Properties: [
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 1
       },
       {
-        PropertyString: "+260-310% Enhanced Damage",
+        PropertyString: "+260-310% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "Slows target by 33%",
+        PropertyString: "使目標減慢 33%",
         Index: 2
       },
       {
-        PropertyString: "+16 Replenish Life",
+        PropertyString: "生命回復 +16",
         Index: 4
       },
       {
-        PropertyString: "+5% Increased Maximum Mana",
+        PropertyString: "法力上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +16%",
+        PropertyString: "法力恢復 16%",
         Index: 5
       },
       {
-        PropertyString: "+8% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +8%",
         Index: 0
       },
       {
-        PropertyString: "Damage Reduced by 7",
+        PropertyString: "物理傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 6
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       },
       {
-        PropertyString: "Level 8 Revive (88 Charges)",
+        PropertyString: "等級 8 重生（88 次）",
         Index: 3
       }
     ],
@@ -14360,7 +14360,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Infinity",
+    Name: "無限 (Infinity)",
     Index: "Infinity",
     Enabled: true,
     Rarity: 0,
@@ -14369,43 +14369,43 @@ const json = [
     Code: "Infinity",
     Properties: [
       {
-        PropertyString: "50% Chance to cast level 20 Chain Lightning when you Kill an Enemy",
+        PropertyString: "殺死敵人時有 50% 機率施展等級 20 連鎖閃電",
         Index: 4
       },
       {
-        PropertyString: "Level 12 Conviction Aura When Equipped",
+        PropertyString: "裝備時賦予等級 12 信念靈氣",
         Index: 3
       },
       {
-        PropertyString: "+35% Faster Run/Walk",
+        PropertyString: "+35% 跑步 / 行走速度",
         Index: 1
       },
       {
-        PropertyString: "+255-325% Enhanced Damage",
+        PropertyString: "+255-325% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "-45-55% to Enemy Lightning Resistance",
+        PropertyString: "敵人電擊抗性 -45-55%",
         Index: 5
       },
       {
-        PropertyString: "+40% Chance of Crushing Blow",
+        PropertyString: "+40% 概率造成粉碎打擊",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "+0.5 to Vitality (Per Character Level)",
+        PropertyString: "+0.5 體能 （依角色等級而定）",
         Index: 2
       },
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       },
       {
-        PropertyString: "Level 21 Cyclone Armor (30 Charges)",
+        PropertyString: "等級 21 氣旋護甲（30 次）",
         Index: 6
       }
     ],
@@ -14467,7 +14467,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Knight's Vigil",
+    Name: "騎士守望 (Knight's Vigil)",
     Index: "Knight's Vigil",
     Enabled: true,
     Rarity: 0,
@@ -14476,63 +14476,63 @@ const json = [
     Code: "Knight's Vigil",
     Properties: [
       {
-        PropertyString: "Level 8-12 Meditation Aura When Equipped",
+        PropertyString: "裝備時賦予等級 8-12 冥想靈氣",
         Index: 1
       },
       {
-        PropertyString: "+2 to Paladin Skill Levels",
+        PropertyString: "+2 聖騎士技能等級",
         Index: 0
       },
       {
-        PropertyString: "+40% Faster Cast Rate",
+        PropertyString: "+40% 施法速度",
         Index: 2
       },
       {
-        PropertyString: "+20% Faster Block Rate",
+        PropertyString: "+20% 格擋速度",
         Index: 4
       },
       {
-        PropertyString: "+20-30% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +20-30%",
         Index: 3
       },
       {
-        PropertyString: "+10-15 Replenish Life",
+        PropertyString: "生命回復 +10-15",
         Index: 6
       },
       {
-        PropertyString: "+12 To Required Level",
+        PropertyString: "+12 需求等級",
         Index: 5
       },
       {
-        PropertyString: "+25% better chance of getting magic item (Armor)",
+        PropertyString: "尋獲魔法物品機率提高 +25% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+50% extra gold from monsters (Armor)",
+        PropertyString: "怪物金幣掉落量提高 +50% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+8% Physical Damage Reduction (Armor)",
+        PropertyString: "物理傷害降低 +8% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +15% (Armor)",
+        PropertyString: "所有抗性 +15% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item (Shield)",
+        PropertyString: "尋獲魔法物品機率提高 +25% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+50% extra gold from monsters (Shield)",
+        PropertyString: "怪物金幣掉落量提高 +50% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+8% Physical Damage Reduction (Shield)",
+        PropertyString: "物理傷害降低 +8% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +22% (Shield)",
+        PropertyString: "所有抗性 +22% （只限盾牌）",
         Index: 0
       }
     ],
@@ -14579,7 +14579,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Mail of the Askari",
+    Name: "阿斯卡利的信件 (Mail of the Askari)",
     Index: "Mail of the Askari",
     Enabled: true,
     Rarity: 0,
@@ -14588,43 +14588,43 @@ const json = [
     Code: "Mail of the Askari",
     Properties: [
       {
-        PropertyString: "Level 12 Vigor Aura When Equipped",
+        PropertyString: "裝備時賦予等級 12 活力靈氣",
         Index: 5
       },
       {
-        PropertyString: "+2 to Amazon Skill Levels",
+        PropertyString: "+2 亞馬遜技能等級",
         Index: 0
       },
       {
-        PropertyString: "+150-200% Enhanced Damage",
+        PropertyString: "+150-200% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+30% Faster Hit Recovery",
+        PropertyString: "+30% 打擊恢復",
         Index: 1
       },
       {
-        PropertyString: "+200-250% Enhanced Defense",
+        PropertyString: "+200-250% 防禦強化",
         Index: 6
       },
       {
-        PropertyString: "+40 to Dexterity",
+        PropertyString: "+40 敏捷",
         Index: 2
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist",
+        PropertyString: "電擊抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 4
       },
       {
-        PropertyString: "+8% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +8%",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 7",
+        PropertyString: "魔法傷害降低 7",
         Index: 0
       }
     ],
@@ -14676,7 +14676,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Venom",
+    Name: "劇毒 (Venom)",
     Index: "Venom",
     Enabled: true,
     Rarity: 0,
@@ -14685,39 +14685,39 @@ const json = [
     Code: "Venom",
     Properties: [
       {
-        PropertyString: "Level 8 Cleansing Aura When Equipped",
+        PropertyString: "裝備時賦予等級 8 淨化靈氣",
         Index: 1
       },
       {
-        PropertyString: "+2 to Poison Skills",
+        PropertyString: "+2 毒素技能",
         Index: 0
       },
       {
-        PropertyString: "+1 to Venom",
+        PropertyString: "+1 淬毒",
         Index: 3
       },
       {
-        PropertyString: "+15% to Poison Skill Damage",
+        PropertyString: "+15% 毒素技能傷害",
         Index: 2
       },
       {
-        PropertyString: "-15% to Enemy Poison Resistance",
+        PropertyString: "敵人毒素抗性 -15%",
         Index: 6
       },
       {
-        PropertyString: "+7 Replenish Life",
+        PropertyString: "生命回復 +7",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 4
       },
       {
-        PropertyString: "+13% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +13%",
         Index: 5
       },
       {
-        PropertyString: "Magic Damage Reduced by 7",
+        PropertyString: "魔法傷害降低 7",
         Index: 0
       }
     ],
@@ -14774,7 +14774,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Wrath",
+    Name: "憤怒 (Wrath)",
     Index: "Wrath",
     Enabled: true,
     Rarity: 0,
@@ -14783,47 +14783,47 @@ const json = [
     Code: "Wrath",
     Properties: [
       {
-        PropertyString: "5% Chance to cast level 10 Life Tap on striking",
+        PropertyString: "擊中時有 5% 機率施展等級 10 偷取生命",
         Index: 4
       },
       {
-        PropertyString: "30% Chance to cast level 1 Decrepify on striking",
+        PropertyString: "擊中時有 30% 機率施展等級 1 衰老",
         Index: 5
       },
       {
-        PropertyString: "+300% Damage to Demons",
+        PropertyString: "+300% 對惡魔的傷害",
         Index: 0
       },
       {
-        PropertyString: "+250-300% Damage to Undead",
+        PropertyString: "+250-300% 對不死怪物的傷害",
         Index: 1
       },
       {
-        PropertyString: "Adds 85-120 to Magic Damage",
+        PropertyString: "增加 85-120 魔法傷害",
         Index: 3
       },
       {
-        PropertyString: "Adds 41-240 to Lightning Damage",
+        PropertyString: "增加 41-240 電擊傷害",
         Index: 2
       },
       {
-        PropertyString: "+30% Enhanced Defense",
+        PropertyString: "+30% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+8% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +8%",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 7",
+        PropertyString: "魔法傷害降低 7",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 6
       }
     ],
@@ -14880,7 +14880,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Brand",
+    Name: "烙印 (Brand)",
     Index: "Brand",
     Enabled: true,
     Rarity: 0,
@@ -14889,43 +14889,43 @@ const json = [
     Code: "Brand",
     Properties: [
       {
-        PropertyString: "35% Chance to cast level 14 Amplify Damage when struck",
+        PropertyString: "被擊中時有 35% 機率施展等級 14 傷害加深",
         Index: 0
       },
       {
-        PropertyString: "100% Chance to cast level 18 Bone Spear on striking",
+        PropertyString: "擊中時有 100% 機率施展等級 18 骨矛",
         Index: 1
       },
       {
-        PropertyString: "+260-340% Enhanced Damage",
+        PropertyString: "+260-340% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+1 Fires Explosive Arrows or Bolts",
+        PropertyString: "+1 射出爆炸的弓矢或弩箭",
         Index: 2
       },
       {
-        PropertyString: "+280-330% Damage to Demons",
+        PropertyString: "+280-330% 對惡魔的傷害",
         Index: 4
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 5
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Poison Resist",
+        PropertyString: "毒素抗性上限 ++5",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist",
+        PropertyString: "電擊抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "Magic Damage Reduced by 7",
+        PropertyString: "魔法傷害降低 7",
         Index: 0
       }
     ],
@@ -14972,7 +14972,7 @@ const json = [
         Class: "sor"
       }
     ],
-    Name: "Daylight",
+    Name: "白晝 (Daylight)",
     Index: "Daylight",
     Enabled: true,
     Rarity: 0,
@@ -14981,43 +14981,43 @@ const json = [
     Code: "Daylight",
     Properties: [
       {
-        PropertyString: "Level 4 Conviction Aura When Equipped",
+        PropertyString: "裝備時賦予等級 4 信念靈氣",
         Index: 3
       },
       {
-        PropertyString: "+3 to Sorceress Skill Levels",
+        PropertyString: "+3 魔法使技能等級",
         Index: 0
       },
       {
-        PropertyString: "+30% Faster Cast Rate",
+        PropertyString: "+30% 施法速度",
         Index: 2
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+25% Increased Maximum Life",
+        PropertyString: "生命上限 +25%",
         Index: 6
       },
       {
-        PropertyString: "+50% Increased Maximum Mana",
+        PropertyString: "法力上限 +50%",
         Index: 5
       },
       {
-        PropertyString: "Regenerate Mana +50%",
+        PropertyString: "法力恢復 50%",
         Index: 1
       },
       {
-        PropertyString: "Level 18 Lower Resist (33 Charges)",
+        PropertyString: "等級 18 降低抗性（33 次）",
         Index: 4
       }
     ],
@@ -15089,7 +15089,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Destruction",
+    Name: "毀滅 (Destruction)",
     Index: "Destruction",
     Enabled: true,
     Rarity: 0,
@@ -15098,47 +15098,47 @@ const json = [
     Code: "Destruction",
     Properties: [
       {
-        PropertyString: "23% Chance to cast level 12 Volcano on striking",
+        PropertyString: "擊中時有 23% 機率施展等級 12 火山噴發",
         Index: 0
       },
       {
-        PropertyString: "5% Chance to cast level 23 Molten Boulder on striking",
+        PropertyString: "擊中時有 5% 機率施展等級 23 熔火巨石",
         Index: 1
       },
       {
-        PropertyString: "100% Chance to cast level 45 Meteor when you Die",
+        PropertyString: "當你死亡時有 100% 機率施展等級 45 隕石術",
         Index: 2
       },
       {
-        PropertyString: "15% Chance to cast level 22 Nova on attack",
+        PropertyString: "攻擊時有 15% 機率施展等級 22 閃電新星",
         Index: 3
       },
       {
-        PropertyString: "+350% Enhanced Damage",
+        PropertyString: "+350% 傷害強化",
         Index: 4
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 0
       },
       {
-        PropertyString: "Adds 100-180 to Magic Damage",
+        PropertyString: "增加 100-180 魔法傷害",
         Index: 5
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 0
       },
       {
-        PropertyString: "+20% Chance of Crushing Blow",
+        PropertyString: "+20% 概率造成粉碎打擊",
         Index: 0
       },
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       }
     ],
@@ -15190,7 +15190,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Dream",
+    Name: "夢境 (Dream)",
     Index: "Dream",
     Enabled: true,
     Rarity: 0,
@@ -15199,55 +15199,55 @@ const json = [
     Code: "Dream",
     Properties: [
       {
-        PropertyString: "10% Chance to cast level 15 Confuse when struck",
+        PropertyString: "被擊中時有 10% 機率施展等級 15 混亂",
         Index: 0
       },
       {
-        PropertyString: "Level 15 Holy Shock Aura When Equipped",
+        PropertyString: "裝備時賦予等級 15 神聖電擊靈氣",
         Index: 1
       },
       {
-        PropertyString: "+20-30% Faster Hit Recovery",
+        PropertyString: "+20-30% 打擊恢復",
         Index: 2
       },
       {
-        PropertyString: "+150-220 Defense",
+        PropertyString: "+150-220 防禦",
         Index: 3
       },
       {
-        PropertyString: "+0.62 to Mana (Per Character Level)",
+        PropertyString: "+0.62 法力 （依角色等級而定）",
         Index: 4
       },
       {
-        PropertyString: "All Resistances +5-20%",
+        PropertyString: "所有抗性 +5-20%",
         Index: 5
       },
       {
-        PropertyString: "+15-25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +15-25%",
         Index: 6
       },
       {
-        PropertyString: "+10 to Vitality (Armor)",
+        PropertyString: "+10 體能 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+30% Enhanced Defense (Armor)",
+        PropertyString: "+30% 防禦強化 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Life (Armor)",
+        PropertyString: "生命上限 +5% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality (Shield)",
+        PropertyString: "+10 體能 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+30% Enhanced Defense (Shield)",
+        PropertyString: "+30% 防禦強化 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+50 to Life (Shield)",
+        PropertyString: "+50 生命 （只限盾牌）",
         Index: 0
       }
     ],
@@ -15294,7 +15294,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Enigma",
+    Name: "謎團 (Enigma)",
     Index: "Enigma",
     Enabled: true,
     Rarity: 0,
@@ -15303,43 +15303,43 @@ const json = [
     Code: "Enigma",
     Properties: [
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 4
       },
       {
-        PropertyString: "+1 to Teleport",
+        PropertyString: "+1 傳送術",
         Index: 6
       },
       {
-        PropertyString: "+45% Faster Run/Walk",
+        PropertyString: "+45% 跑步 / 行走速度",
         Index: 2
       },
       {
-        PropertyString: "+750-775 Defense",
+        PropertyString: "+750-775 防禦",
         Index: 0
       },
       {
-        PropertyString: "+0.75 to Strength (Per Character Level)",
+        PropertyString: "+0.75 力量 （依角色等級而定）",
         Index: 3
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "+8% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +8%",
         Index: 0
       },
       {
-        PropertyString: "+14 Life after each Kill",
+        PropertyString: "+14 擊殺生命恢復",
         Index: 1
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       },
       {
-        PropertyString: "+1% better chance of getting magic item (Per Character Level)",
+        PropertyString: "尋獲魔法物品機率提高 +1% （依角色等級而定）",
         Index: 5
       }
     ],
@@ -15396,7 +15396,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Faith",
+    Name: "信心 (Faith)",
     Index: "Faith",
     Enabled: true,
     Rarity: 0,
@@ -15405,35 +15405,35 @@ const json = [
     Code: "Faith",
     Properties: [
       {
-        PropertyString: "Level 12-15 Fanaticism Aura When Equipped",
+        PropertyString: "裝備時賦予等級 12-15 狂熱靈氣",
         Index: 4
       },
       {
-        PropertyString: "+1-2 to All Skills",
+        PropertyString: "+1-2 所有技能",
         Index: 6
       },
       {
-        PropertyString: "+280% Enhanced Damage",
+        PropertyString: "+280% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+300% bonus to Attack Rating",
+        PropertyString: "+300% 準確率加成",
         Index: 1
       },
       {
-        PropertyString: "+120 to Minimum Fire Damage",
+        PropertyString: "增加 120 火焰傷害",
         Index: 2
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Cold Resist",
+        PropertyString: "冰寒抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 3
       },
       {
@@ -15441,11 +15441,11 @@ const json = [
         Index: 5
       },
       {
-        PropertyString: "+5 Life after each Kill",
+        PropertyString: "+5 擊殺生命恢復",
         Index: 0
       },
       {
-        PropertyString: "+50% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +50%",
         Index: 0
       }
     ],
@@ -15517,7 +15517,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Famine",
+    Name: "饑荒 (Famine)",
     Index: "Famine",
     Enabled: true,
     Rarity: 0,
@@ -15526,43 +15526,43 @@ const json = [
     Code: "Famine",
     Properties: [
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 2
       },
       {
-        PropertyString: "+320-370% Enhanced Damage",
+        PropertyString: "+320-370% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 0
       },
       {
-        PropertyString: "Adds 180-200 to Magic Damage",
+        PropertyString: "增加 180-200 魔法傷害",
         Index: 4
       },
       {
-        PropertyString: "Adds 50-200 to Fire Damage",
+        PropertyString: "增加 50-200 火焰傷害",
         Index: 5
       },
       {
-        PropertyString: "Adds 1-50 to Lightning Damage",
+        PropertyString: "增加 1-50 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "+12% Life stolen per hit",
+        PropertyString: "擊中竊取 12% 生命",
         Index: 1
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 3
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "Ethereal (Cannot Be Repaired)",
+        PropertyString: "無形 （無法修復）",
         Index: 6
       }
     ],
@@ -15609,7 +15609,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Fury",
+    Name: "狂怒 (Fury)",
     Index: "Fury",
     Enabled: true,
     Rarity: 0,
@@ -15618,43 +15618,43 @@ const json = [
     Code: "Fury",
     Properties: [
       {
-        PropertyString: "+40% Increased Attack Speed",
+        PropertyString: "攻擊速度 +40%",
         Index: 1
       },
       {
-        PropertyString: "+209% Enhanced Damage",
+        PropertyString: "+209% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+6% Life stolen per hit",
+        PropertyString: "擊中竊取 6% 生命",
         Index: 4
       },
       {
-        PropertyString: "+33% Deadly Strike",
+        PropertyString: "+33% 致命打擊",
         Index: 5
       },
       {
-        PropertyString: "+66% Chance of Open Wounds",
+        PropertyString: "+66% 機率造成開放傷口",
         Index: 3
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 2
       },
       {
-        PropertyString: "+5 to Frenzy (Barbarian Only)",
+        PropertyString: "+5 狂亂連擊（只限野蠻人）",
         Index: 6
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Poison Resist",
+        PropertyString: "毒素抗性上限 ++5",
         Index: 0
       }
     ],
@@ -15711,7 +15711,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Ice",
+    Name: "寒冰 (Ice)",
     Index: "Ice",
     Enabled: true,
     Rarity: 0,
@@ -15720,47 +15720,47 @@ const json = [
     Code: "Ice",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 40 Blizzard when you Level-Up",
+        PropertyString: "當你升級時有 100% 機率施展等級 40 暴風雪",
         Index: 0
       },
       {
-        PropertyString: "25% Chance to cast level 22 Frost Nova on striking",
+        PropertyString: "擊中時有 25% 機率施展等級 22 冰霜新星",
         Index: 1
       },
       {
-        PropertyString: "Level 18 Holy Freeze Aura When Equipped",
+        PropertyString: "裝備時賦予等級 18 神聖冰凍靈氣",
         Index: 2
       },
       {
-        PropertyString: "+140-210% Enhanced Damage",
+        PropertyString: "+140-210% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+25-30% to Cold Skill Damage",
+        PropertyString: "+25-30% 寒冰技能傷害",
         Index: 4
       },
       {
-        PropertyString: "-20% to Enemy Cold Resistance",
+        PropertyString: "敵人冰寒抗性 -20%",
         Index: 5
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist",
+        PropertyString: "電擊抗性上限 +5",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14",
+        PropertyString: "攻擊者反傷 +14",
         Index: 0
       },
       {
-        PropertyString: "+3.12% extra gold from monsters (Per Character Level)",
+        PropertyString: "+3.12% extra gold from monsters （依角色等級而定）",
         Index: 6
       }
     ],
@@ -15822,7 +15822,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Phoenix",
+    Name: "鳳凰 (Phoenix)",
     Index: "Phoenix",
     Enabled: true,
     Rarity: 0,
@@ -15831,55 +15831,55 @@ const json = [
     Code: "Phoenix",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 40 Blaze when you Level-Up",
+        PropertyString: "當你升級時有 100% 機率施展等級 40 熾烈之徑",
         Index: 0
       },
       {
-        PropertyString: "40% Chance to cast level 22 Firestorm on striking",
+        PropertyString: "擊中時有 40% 機率施展等級 22 火焰風暴",
         Index: 1
       },
       {
-        PropertyString: "Level 13 Redemption Aura When Equipped",
+        PropertyString: "裝備時賦予等級 13 救贖靈氣",
         Index: 2
       },
       {
-        PropertyString: "+350-400% Enhanced Damage",
+        PropertyString: "+350-400% 傷害強化",
         Index: 3
       },
       {
-        PropertyString: "-28% to Enemy Fire Resistance",
+        PropertyString: "敵人火焰抗性 -28%",
         Index: 4
       },
       {
-        PropertyString: "+350-400 Defense vs. Missile",
+        PropertyString: "+350-400 對遠程防禦",
         Index: 5
       },
       {
-        PropertyString: "+15-21 Fire Absorb",
+        PropertyString: "火焰吸引 +15-21",
         Index: 6
       },
       {
-        PropertyString: "+14% Mana stolen per hit (Weapon)",
+        PropertyString: "擊中竊取 +14% 法力 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+20% Deadly Strike (Weapon)",
+        PropertyString: "+20% 致命打擊 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Ignore Target's Defense (Weapon)",
+        PropertyString: "無視目標防禦 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+10 to Maximum Fire Resist (Shield)",
+        PropertyString: "火焰抗性上限 +10 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+5 to Maximum Lightning Resist (Shield)",
+        PropertyString: "電擊抗性上限 +5 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+50 to Life (Shield)",
+        PropertyString: "+50 生命 （只限盾牌）",
         Index: 0
       }
     ],
@@ -15936,7 +15936,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Akarat's Devotion",
+    Name: "阿卡拉特的虔誠 (Akarat's Devotion)",
     Index: "Akarat's Devotion",
     Enabled: true,
     Rarity: 0,
@@ -15945,43 +15945,43 @@ const json = [
     Code: "Akarat's Devotion",
     Properties: [
       {
-        PropertyString: "Level 8 Redemption Aura When Equipped",
+        PropertyString: "裝備時賦予等級 8 救贖靈氣",
         Index: 0
       },
       {
-        PropertyString: "+2 to Paladin Skill Levels",
+        PropertyString: "+2 聖騎士技能等級",
         Index: 1
       },
       {
-        PropertyString: "+20% Faster Cast Rate",
+        PropertyString: "+20% 施法速度",
         Index: 2
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+3 to Blessed Hammer (Paladin Only)",
+        PropertyString: "+3 祝福之鎚（只限聖騎士）",
         Index: 5
       },
       {
-        PropertyString: "+200-250% Enhanced Defense",
+        PropertyString: "+200-250% 防禦強化",
         Index: 3
       },
       {
-        PropertyString: "+50 to Strength",
+        PropertyString: "+50 力量",
         Index: 6
       },
       {
-        PropertyString: "+10 to Dexterity",
+        PropertyString: "+10 敏捷",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +35%",
+        PropertyString: "所有抗性 +35%",
         Index: 4
       }
     ],
@@ -16028,7 +16028,7 @@ const json = [
         Class: "bar"
       }
     ],
-    Name: "Prowess in Battle",
+    Name: "勇戰之力 (Prowess in Battle)",
     Index: "Prowess in Battle",
     Enabled: true,
     Rarity: 0,
@@ -16037,43 +16037,43 @@ const json = [
     Code: "Prowess in Battle",
     Properties: [
       {
-        PropertyString: "Level 6 Fanaticism Aura When Equipped",
+        PropertyString: "裝備時賦予等級 6 狂熱靈氣",
         Index: 3
       },
       {
-        PropertyString: "+3 to Barbarian Skill Levels",
+        PropertyString: "+3 野蠻人技能等級",
         Index: 1
       },
       {
-        PropertyString: "+100% Enhanced Damage",
+        PropertyString: "+100% 傷害強化",
         Index: 4
       },
       {
-        PropertyString: "+40% Faster Hit Recovery",
+        PropertyString: "+40% 打擊恢復",
         Index: 5
       },
       {
-        PropertyString: "+50% bonus to Attack Rating",
+        PropertyString: "+50% 準確率加成",
         Index: 2
       },
       {
-        PropertyString: "+3 Defense (Per Character Level)",
+        PropertyString: "+3 防禦 （依角色等級而定）",
         Index: 6
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Life",
+        PropertyString: "生命上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       },
       {
-        PropertyString: "+10 To Required Level",
+        PropertyString: "+10 需求等級",
         Index: 0
       }
     ],
@@ -16140,7 +16140,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Storm",
+    Name: "風暴 (Storm)",
     Index: "Storm",
     Enabled: true,
     Rarity: 0,
@@ -16149,47 +16149,47 @@ const json = [
     Code: "Storm",
     Properties: [
       {
-        PropertyString: "16% Chance to cast level 21 Lightning on striking",
+        PropertyString: "擊中時有 16% 機率施展等級 21 閃電箭",
         Index: 2
       },
       {
-        PropertyString: "+10 to Thunder Storm",
+        PropertyString: "+10 雷電風暴",
         Index: 3
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 1
       },
       {
-        PropertyString: "+383% Enhanced Damage",
+        PropertyString: "+383% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 0
       },
       {
-        PropertyString: "Adds 1-50 to Lightning Damage",
+        PropertyString: "增加 1-50 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 0
       },
       {
-        PropertyString: "Lightning Resist +100%",
+        PropertyString: "電擊抗性 +100%",
         Index: 4
       },
       {
-        PropertyString: "+25% Lightning Absorb",
+        PropertyString: "電擊吸引 +25%",
         Index: 5
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 6
       }
     ],
@@ -16231,7 +16231,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Time",
+    Name: "時間 (Time)",
     Index: "Time",
     Enabled: true,
     Rarity: 0,
@@ -16240,47 +16240,47 @@ const json = [
     Code: "Time",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 25 Nova when struck",
+        PropertyString: "被擊中時有 100% 機率施展等級 25 閃電新星",
         Index: 4
       },
       {
-        PropertyString: "+1 to Teleport",
+        PropertyString: "+1 傳送術",
         Index: 6
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 5
       },
       {
-        PropertyString: "+160-220% Enhanced Defense",
+        PropertyString: "+160-220% 防禦強化",
         Index: 0
       },
       {
-        PropertyString: "+35-50 to Life",
+        PropertyString: "+35-50 生命",
         Index: 2
       },
       {
-        PropertyString: "+10-20% Increased Maximum Life",
+        PropertyString: "生命上限 +10-20%",
         Index: 3
       },
       {
-        PropertyString: "+20 To Required Level",
+        PropertyString: "+20 需求等級",
         Index: 1
       },
       {
-        PropertyString: "+5% Increased Maximum Life (Armor)",
+        PropertyString: "生命上限 +5% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14 (Armor)",
+        PropertyString: "攻擊者反傷 +14 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+50 to Life (Shield)",
+        PropertyString: "+50 生命 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Attacker Takes Damage of +14 (Shield)",
+        PropertyString: "攻擊者反傷 +14 （只限盾牌）",
         Index: 0
       }
     ],
@@ -16357,7 +16357,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Armageddon",
+    Name: "毀天滅地 (Armageddon)",
     Index: "Armageddon",
     Enabled: true,
     Rarity: 0,
@@ -16366,55 +16366,55 @@ const json = [
     Code: "Armageddon",
     Properties: [
       {
-        PropertyString: "40% Chance to cast level 20 Blizzard on striking",
+        PropertyString: "擊中時有 40% 機率施展等級 20 暴風雪",
         Index: 3
       },
       {
-        PropertyString: "40% Chance to cast level 20 Chain Lightning when struck",
+        PropertyString: "被擊中時有 40% 機率施展等級 20 連鎖閃電",
         Index: 4
       },
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 5
       },
       {
-        PropertyString: "+275-350% Enhanced Damage",
+        PropertyString: "+275-350% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "Adds 50-300 to Fire Damage",
+        PropertyString: "增加 50-300 火焰傷害",
         Index: 2
       },
       {
-        PropertyString: "Adds 5-30 to Fire Damage",
+        PropertyString: "增加 5-30 火焰傷害",
         Index: 0
       },
       {
-        PropertyString: "Adds 1-50 to Lightning Damage",
+        PropertyString: "增加 1-50 電擊傷害",
         Index: 0
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+20% Chance of Crushing Blow",
+        PropertyString: "+20% 概率造成粉碎打擊",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +35%",
+        PropertyString: "所有抗性 +35%",
         Index: 6
       },
       {
-        PropertyString: "+13 To Required Level",
+        PropertyString: "+13 需求等級",
         Index: 0
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -16481,7 +16481,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Broken Promise",
+    Name: "破碎誓言 (Broken Promise)",
     Index: "Broken Promise",
     Enabled: true,
     Rarity: 0,
@@ -16490,43 +16490,43 @@ const json = [
     Code: "Broken Promise",
     Properties: [
       {
-        PropertyString: "18% Chance to cast level 18 Bone Spirit on striking",
+        PropertyString: "擊中時有 18% 機率施展等級 18 骸骨之魂",
         Index: 4
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 1
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+350-400% Enhanced Damage",
+        PropertyString: "+350-400% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+3 to Maximum Damage (Per Character Level)",
+        PropertyString: "+3 最大傷害 （依角色等級而定）",
         Index: 2
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 0
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "+35% Chance of Crushing Blow",
+        PropertyString: "+35% 概率造成粉碎打擊",
         Index: 6
       },
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       },
       {
@@ -16534,7 +16534,7 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "+15 To Required Level",
+        PropertyString: "+15 需求等級",
         Index: 5
       }
     ],
@@ -16601,7 +16601,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Doom",
+    Name: "末日 (Doom)",
     Index: "Doom",
     Enabled: true,
     Rarity: 0,
@@ -16610,51 +16610,51 @@ const json = [
     Code: "Doom",
     Properties: [
       {
-        PropertyString: "5% Chance to cast level 18 Cyclone Armor when struck",
+        PropertyString: "被擊中時有 5% 機率施展等級 18 氣旋護甲",
         Index: 6
       },
       {
-        PropertyString: "Level 12 Holy Freeze Aura When Equipped",
+        PropertyString: "裝備時賦予等級 12 神聖冰凍靈氣",
         Index: 1
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 5
       },
       {
-        PropertyString: "+50% Enhanced Damage",
+        PropertyString: "+50% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "+40% Faster Cast Rate",
+        PropertyString: "+40% 施法速度",
         Index: 2
       },
       {
-        PropertyString: "+15-25% to Cold Skill Damage",
+        PropertyString: "+15-25% 寒冰技能傷害",
         Index: 0
       },
       {
-        PropertyString: "-40-60% to Enemy Cold Resistance",
+        PropertyString: "敵人冰寒抗性 -40-60%",
         Index: 4
       },
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       },
       {
-        PropertyString: "+30% Increased Maximum Mana",
+        PropertyString: "法力上限 +30%",
         Index: 3
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -16741,7 +16741,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Doom",
+    Name: "末日 (Doom)",
     Index: "Doom",
     Enabled: true,
     Rarity: 0,
@@ -16750,47 +16750,47 @@ const json = [
     Code: "Doom",
     Properties: [
       {
-        PropertyString: "5% Chance to cast level 18 Volcano on striking",
+        PropertyString: "擊中時有 5% 機率施展等級 18 火山噴發",
         Index: 6
       },
       {
-        PropertyString: "Level 12 Holy Freeze Aura When Equipped",
+        PropertyString: "裝備時賦予等級 12 神聖冰凍靈氣",
         Index: 1
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 5
       },
       {
-        PropertyString: "+45% Increased Attack Speed",
+        PropertyString: "攻擊速度 +45%",
         Index: 2
       },
       {
-        PropertyString: "+330-370% Enhanced Damage",
+        PropertyString: "+330-370% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "-40-60% to Enemy Cold Resistance",
+        PropertyString: "敵人冰寒抗性 -40-60%",
         Index: 4
       },
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 3
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -16857,7 +16857,7 @@ const json = [
         Class: "ama"
       }
     ],
-    Name: "Elation",
+    Name: "興高彩烈 (Elation)",
     Index: "Elation",
     Enabled: true,
     Rarity: 0,
@@ -16866,51 +16866,51 @@ const json = [
     Code: "Elation",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 8 Nova on striking",
+        PropertyString: "擊中時有 100% 機率施展等級 8 閃電新星",
         Index: 2
       },
       {
-        PropertyString: "100% Chance to cast level 60 Nova when you Die",
+        PropertyString: "當你死亡時有 100% 機率施展等級 60 閃電新星",
         Index: 4
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+40-75 to Minimum Damage",
+        PropertyString: "+40-75 最小傷害",
         Index: 0
       },
       {
-        PropertyString: "+2.25 to Maximum Damage (Per Character Level)",
+        PropertyString: "+2.25 最大傷害 （依角色等級而定）",
         Index: 1
       },
       {
-        PropertyString: "Adds 3-14 to Cold Damage",
+        PropertyString: "增加 3-14 寒冰傷害",
         Index: 0
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 0
       },
       {
-        PropertyString: "+20-25% to Cold Skill Damage",
+        PropertyString: "+20-25% 寒冰技能傷害",
         Index: 5
       },
       {
-        PropertyString: "+20-25% to Fire Skill Damage",
+        PropertyString: "+20-25% 火焰技能傷害",
         Index: 6
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 3
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 0
       }
     ],
@@ -16967,7 +16967,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Hand of Justice",
+    Name: "正義之手 (Hand of Justice)",
     Index: "Hand of Justice",
     Enabled: true,
     Rarity: 0,
@@ -16976,47 +16976,47 @@ const json = [
     Code: "Hand of Justice",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 36 Blaze when you Level-Up",
+        PropertyString: "當你升級時有 100% 機率施展等級 36 熾烈之徑",
         Index: 3
       },
       {
-        PropertyString: "100% Chance to cast level 48 Meteor when you Die",
+        PropertyString: "當你死亡時有 100% 機率施展等級 48 隕石術",
         Index: 4
       },
       {
-        PropertyString: "Level 16 Holy Fire Aura When Equipped",
+        PropertyString: "裝備時賦予等級 16 神聖火焰靈氣",
         Index: 2
       },
       {
-        PropertyString: "+33% Increased Attack Speed",
+        PropertyString: "攻擊速度 +33%",
         Index: 0
       },
       {
-        PropertyString: "+280-330% Enhanced Damage",
+        PropertyString: "+280-330% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 5
       },
       {
-        PropertyString: "-20% to Enemy Fire Resistance",
+        PropertyString: "敵人火焰抗性 -20%",
         Index: 6
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "Hit blinds target +1",
+        PropertyString: "擊中使目標目盲 +1",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       }
     ],
@@ -17113,7 +17113,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Last Wish",
+    Name: "最後遺願 (Last Wish)",
     Index: "Last Wish",
     Enabled: true,
     Rarity: 0,
@@ -17122,51 +17122,51 @@ const json = [
     Code: "Last Wish",
     Properties: [
       {
-        PropertyString: "6% Chance to cast level 11 Fade when struck",
+        PropertyString: "被擊中時有 6% 機率施展等級 11 影散",
         Index: 0
       },
       {
-        PropertyString: "10% Chance to cast level 18 Life Tap on striking",
+        PropertyString: "擊中時有 10% 機率施展等級 18 偷取生命",
         Index: 1
       },
       {
-        PropertyString: "20% Chance to cast level 20 Charged Bolt on attack",
+        PropertyString: "攻擊時有 20% 機率施展等級 20 電能彈",
         Index: 2
       },
       {
-        PropertyString: "Level 17 Might Aura When Equipped",
+        PropertyString: "裝備時賦予等級 17 力量靈氣",
         Index: 3
       },
       {
-        PropertyString: "+350-400% Enhanced Damage",
+        PropertyString: "+350-400% 傷害強化",
         Index: 4
       },
       {
-        PropertyString: "+40-50 to Minimum Damage",
+        PropertyString: "+40-50 最小傷害",
         Index: 5
       },
       {
-        PropertyString: "+80-100 to Maximum Damage",
+        PropertyString: "+80-100 最大傷害",
         Index: 6
       },
       {
-        PropertyString: "Ignore Target's Defense",
+        PropertyString: "無視目標防禦",
         Index: 0
       },
       {
-        PropertyString: "+20% Chance of Crushing Blow",
+        PropertyString: "+20% 概率造成粉碎打擊",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "Hit blinds target +1",
+        PropertyString: "擊中使目標目盲 +1",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       }
     ],
@@ -17213,7 +17213,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Metamorphosis",
+    Name: "變化 (Metamorphosis)",
     Index: "Metamorphosis",
     Enabled: true,
     Rarity: 0,
@@ -17222,39 +17222,39 @@ const json = [
     Code: "Metamorphosis",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 1 Mark Of The Bear on striking",
+        PropertyString: "擊中時有 100% 機率施展等級 1 熊人印記",
         Index: 0
       },
       {
-        PropertyString: "100% Chance to cast level 1 Mark Of The Wolf on striking",
+        PropertyString: "擊中時有 100% 機率施展等級 1 狼人印記",
         Index: 1
       },
       {
-        PropertyString: "+5 to Shape Shifting Skills (Druid only)",
+        PropertyString: "+5 變形技能 （只限德魯伊）",
         Index: 2
       },
       {
-        PropertyString: "+25% Chance of Crushing Blow",
+        PropertyString: "+25% 概率造成粉碎打擊",
         Index: 5
       },
       {
-        PropertyString: "+50-80% Enhanced Defense",
+        PropertyString: "+50-80% 防禦強化",
         Index: 3
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +10%",
+        PropertyString: "所有抗性 +10%",
         Index: 4
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       }
     ],
@@ -17321,7 +17321,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Mist",
+    Name: "迷霧 (Mist)",
     Index: "Mist",
     Enabled: true,
     Rarity: 0,
@@ -17330,47 +17330,47 @@ const json = [
     Code: "Mist",
     Properties: [
       {
-        PropertyString: "Level 8-12 Concentration Aura When Equipped",
+        PropertyString: "裝備時賦予等級 8-12 專注靈氣",
         Index: 2
       },
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+325-375% Enhanced Damage",
+        PropertyString: "+325-375% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+100% Piercing Attack",
+        PropertyString: "+100% 穿透攻擊",
         Index: 3
       },
       {
-        PropertyString: "+24 to Vitality",
+        PropertyString: "+24 體能",
         Index: 4
       },
       {
-        PropertyString: "+5 to Maximum Poison Resist",
+        PropertyString: "毒素抗性上限 ++5",
         Index: 0
       },
       {
-        PropertyString: "Cold Resist +30%",
+        PropertyString: "冰寒抗性 +30%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +40%",
+        PropertyString: "所有抗性 +40%",
         Index: 5
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       }
     ],
@@ -17427,7 +17427,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Qual-Kehk's Oath",
+    Name: "庫爾凱克的誓言 (Qual-Kehk's Oath)",
     Index: "Qual-Kehk's Oath",
     Enabled: true,
     Rarity: 0,
@@ -17436,43 +17436,43 @@ const json = [
     Code: "Qual-Kehk's Oath",
     Properties: [
       {
-        PropertyString: "9% Chance to cast level 8 Decrepify on striking",
+        PropertyString: "擊中時有 9% 機率施展等級 8 衰老",
         Index: 5
       },
       {
-        PropertyString: "+2 to Barbarian Skill Levels",
+        PropertyString: "+2 野蠻人技能等級",
         Index: 0
       },
       {
-        PropertyString: "+30% Increased Attack Speed",
+        PropertyString: "攻擊速度 +30%",
         Index: 3
       },
       {
-        PropertyString: "+200-250% Enhanced Damage",
+        PropertyString: "+200-250% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+200-250% Enhanced Defense",
+        PropertyString: "+200-250% 防禦強化",
         Index: 2
       },
       {
-        PropertyString: "+10 to Strength",
+        PropertyString: "+10 力量",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +30%",
+        PropertyString: "所有抗性 +30%",
         Index: 4
       },
       {
-        PropertyString: "+8% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +8%",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       },
       {
-        PropertyString: "Requirements -15%",
+        PropertyString: "需求 -15%",
         Index: 0
       }
     ],
@@ -17549,7 +17549,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Peril",
+    Name: "危害 (Peril)",
     Index: "Peril",
     Enabled: true,
     Rarity: 0,
@@ -17558,43 +17558,43 @@ const json = [
     Code: "Peril",
     Properties: [
       {
-        PropertyString: "+1 to All Skills",
+        PropertyString: "+1 所有技能",
         Index: 4
       },
       {
-        PropertyString: "+75% Increased Attack Speed",
+        PropertyString: "攻擊速度 +75%",
         Index: 3
       },
       {
-        PropertyString: "+250% Enhanced Damage",
+        PropertyString: "+250% 傷害強化",
         Index: 1
       },
       {
-        PropertyString: "+3.12 to Maximum Damage (Per Character Level)",
+        PropertyString: "+3.12 最大傷害 （依角色等級而定）",
         Index: 2
       },
       {
-        PropertyString: "+10 to Maximum Lightning Resist",
+        PropertyString: "電擊抗性上限 +10",
         Index: 0
       },
       {
-        PropertyString: "+20-30 to All Attributes",
+        PropertyString: "+20-30 所有屬性",
         Index: 6
       },
       {
-        PropertyString: "+16% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +16%",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       },
       {
-        PropertyString: "+1% better chance of getting magic item (Per Character Level)",
+        PropertyString: "尋獲魔法物品機率提高 +1% （依角色等級而定）",
         Index: 5
       },
       {
-        PropertyString: "+11 To Required Level",
+        PropertyString: "+11 需求等級",
         Index: 0
       }
     ],
@@ -17651,7 +17651,7 @@ const json = [
         Class: "ass"
       }
     ],
-    Name: "Plague",
+    Name: "瘟疫 (Plague)",
     Index: "Plague",
     Enabled: true,
     Rarity: 0,
@@ -17660,43 +17660,43 @@ const json = [
     Code: "Plague",
     Properties: [
       {
-        PropertyString: "20% Chance to cast level 12 Lower Resist when struck",
+        PropertyString: "被擊中時有 20% 機率施展等級 12 降低抗性",
         Index: 1
       },
       {
-        PropertyString: "25% Chance to cast level 15 Poison Nova on striking",
+        PropertyString: "擊中時有 25% 機率施展等級 15 劇毒新星",
         Index: 2
       },
       {
-        PropertyString: "Level 13-17 Cleansing Aura When Equipped",
+        PropertyString: "裝備時賦予等級 13-17 淨化靈氣",
         Index: 5
       },
       {
-        PropertyString: "+1-2 to All Skills",
+        PropertyString: "+1-2 所有技能",
         Index: 6
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 0
       },
       {
-        PropertyString: "+220-320% Enhanced Damage",
+        PropertyString: "+220-320% 傷害強化",
         Index: 0
       },
       {
-        PropertyString: "-23% to Enemy Poison Resistance",
+        PropertyString: "敵人毒素抗性 -23%",
         Index: 3
       },
       {
-        PropertyString: "+0.38% Deadly Strike (Per Character Level)",
+        PropertyString: "+0.38% 致命打擊 （依角色等級而定）",
         Index: 4
       },
       {
-        PropertyString: "+25% Chance of Open Wounds",
+        PropertyString: "+25% 機率造成開放傷口",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       }
     ],
@@ -17758,7 +17758,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Pride",
+    Name: "驕傲 (Pride)",
     Index: "Pride",
     Enabled: true,
     Rarity: 0,
@@ -17767,47 +17767,47 @@ const json = [
     Code: "Pride",
     Properties: [
       {
-        PropertyString: "25% Chance to cast level 17 Fire Wall when struck",
+        PropertyString: "被擊中時有 25% 機率施展等級 17 火牆術",
         Index: 4
       },
       {
-        PropertyString: "Level 16-20 Concentration Aura When Equipped",
+        PropertyString: "裝備時賦予等級 16-20 專注靈氣",
         Index: 3
       },
       {
-        PropertyString: "+260-300% bonus to Attack Rating",
+        PropertyString: "+260-300% 準確率加成",
         Index: 2
       },
       {
-        PropertyString: "+1% Damage to Demons (Per Character Level)",
+        PropertyString: "+1% 對惡魔的傷害 （依角色等級而定）",
         Index: 0
       },
       {
-        PropertyString: "Adds 50-280 to Lightning Damage",
+        PropertyString: "增加 50-280 電擊傷害",
         Index: 1
       },
       {
-        PropertyString: "+20% Deadly Strike",
+        PropertyString: "+20% 致命打擊",
         Index: 0
       },
       {
-        PropertyString: "Hit blinds target +1",
+        PropertyString: "擊中使目標目盲 +1",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+8 Replenish Life",
+        PropertyString: "生命回復 +8",
         Index: 5
       },
       {
-        PropertyString: "+1.88% extra gold from monsters (Per Character Level)",
+        PropertyString: "+1.88% extra gold from monsters （依角色等級而定）",
         Index: 6
       }
     ],
@@ -17854,7 +17854,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Bark of the Great Oak",
+    Name: "巨橡之樹皮 (Bark of the Great Oak)",
     Index: "Bark of the Great Oak",
     Enabled: true,
     Rarity: 0,
@@ -17863,39 +17863,39 @@ const json = [
     Code: "Bark of the Great Oak",
     Properties: [
       {
-        PropertyString: "Level 18 Defiance Aura When Equipped",
+        PropertyString: "裝備時賦予等級 18 反抗靈氣",
         Index: 0
       },
       {
-        PropertyString: "+2 to Druid Skill Levels",
+        PropertyString: "+2 德魯伊技能等級",
         Index: 1
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 5
       },
       {
-        PropertyString: "+30% Faster Hit Recovery",
+        PropertyString: "+30% 打擊恢復",
         Index: 2
       },
       {
-        PropertyString: "+200-250% Enhanced Defense",
+        PropertyString: "+200-250% 防禦強化",
         Index: 6
       },
       {
-        PropertyString: "+25 to All Attributes",
+        PropertyString: "+25 所有屬性",
         Index: 3
       },
       {
-        PropertyString: "All Resistances +20%",
+        PropertyString: "所有抗性 +20%",
         Index: 4
       },
       {
-        PropertyString: "+16% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +16%",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       }
     ],
@@ -17972,7 +17972,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Valor",
+    Name: "英勇 (Valor)",
     Index: "Valor",
     Enabled: true,
     Rarity: 0,
@@ -17981,55 +17981,55 @@ const json = [
     Code: "Valor",
     Properties: [
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 4
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+100 to Minimum Damage",
+        PropertyString: "+100 最小傷害",
         Index: 1
       },
       {
-        PropertyString: "+2.5 to Maximum Damage (Per Character Level)",
+        PropertyString: "+2.5 最大傷害 （依角色等級而定）",
         Index: 2
       },
       {
-        PropertyString: "+7 Replenish Life",
+        PropertyString: "生命回復 +7",
         Index: 0
       },
       {
-        PropertyString: "+5% Increased Maximum Mana",
+        PropertyString: "法力上限 +5%",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+5% to Experience Gained",
+        PropertyString: "獲得的經驗值 +5%",
         Index: 5
       },
       {
-        PropertyString: "Level 40 Battle Orders (15 Charges)",
+        PropertyString: "等級 40 戰鬥命令（15 次）",
         Index: 6
       },
       {
-        PropertyString: "+10 To Required Level",
+        PropertyString: "+10 需求等級",
         Index: 0
       },
       {
-        PropertyString: "Ethereal (Cannot Be Repaired)",
+        PropertyString: "無形 （無法修復）",
         Index: 3
       }
     ],
@@ -18066,7 +18066,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Wings of Hope",
+    Name: "希望之翼 (Wings of Hope)",
     Index: "Wings of Hope",
     Enabled: true,
     Rarity: 0,
@@ -18075,35 +18075,35 @@ const json = [
     Code: "Wings of Hope",
     Properties: [
       {
-        PropertyString: "25% Chance to cast level 35 Bone Spear on striking",
+        PropertyString: "擊中時有 25% 機率施展等級 35 骨矛",
         Index: 4
       },
       {
-        PropertyString: "Level 3 Salvation Aura When Equipped",
+        PropertyString: "裝備時賦予等級 3 聖護靈氣",
         Index: 3
       },
       {
-        PropertyString: "+1 to Warp",
+        PropertyString: "+1 傳送術（Warp）",
         Index: 2
       },
       {
-        PropertyString: "+60-100 to Minimum Damage",
+        PropertyString: "+60-100 最小傷害",
         Index: 0
       },
       {
-        PropertyString: "+150-200 to Maximum Damage",
+        PropertyString: "+150-200 最大傷害",
         Index: 1
       },
       {
-        PropertyString: "Slain Monsters Rest in Peace",
+        PropertyString: "殺死的怪物就此安息",
         Index: 5
       },
       {
-        PropertyString: "Freezes target +6",
+        PropertyString: "凍結目標 +6",
         Index: 0
       },
       {
-        PropertyString: "+20 to All Attributes",
+        PropertyString: "+20 所有屬性",
         Index: 6
       }
     ],
@@ -18150,7 +18150,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Woe",
+    Name: "悲痛 (Woe)",
     Index: "Woe",
     Enabled: true,
     Rarity: 0,
@@ -18159,43 +18159,43 @@ const json = [
     Code: "Woe",
     Properties: [
       {
-        PropertyString: "25% Chance to cast level 25 Chain Lightning when struck",
+        PropertyString: "被擊中時有 25% 機率施展等級 25 連鎖閃電",
         Index: 1
       },
       {
-        PropertyString: "25% Chance to cast level 25 Fire Ball when struck",
+        PropertyString: "被擊中時有 25% 機率施展等級 25 火球術",
         Index: 2
       },
       {
-        PropertyString: "25% Chance to cast level 25 Blizzard when struck",
+        PropertyString: "被擊中時有 25% 機率施展等級 25 暴風雪",
         Index: 3
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 4
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+25 to All Attributes",
+        PropertyString: "+25 所有屬性",
         Index: 5
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       },
       {
-        PropertyString: "Poison Length Reduced by 80%",
+        PropertyString: "中毒的時效縮短 80%",
         Index: 6
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+7 To Required Level",
+        PropertyString: "+7 需求等級",
         Index: 0
       }
     ],
@@ -18251,15 +18251,15 @@ const json = [
     Code: "Rain Reimagined",
     Properties: [
       {
-        PropertyString: "+16% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +16%",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       },
       {
-        PropertyString: "-1 to Light Radius",
+        PropertyString: "照亮範圍 -1",
         Index: 0
       }
     ],
@@ -18306,7 +18306,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Authority",
+    Name: "權威 (Authority)",
     Index: "Authority",
     Enabled: true,
     Rarity: 0,
@@ -18315,43 +18315,43 @@ const json = [
     Code: "Authority",
     Properties: [
       {
-        PropertyString: "16% Chance to cast level 9 Weaken on striking",
+        PropertyString: "擊中時有 16% 機率施展等級 9 削弱",
         Index: 4
       },
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 0
       },
       {
-        PropertyString: "+2 to All Skills",
+        PropertyString: "+2 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+25% Deadly Strike",
+        PropertyString: "+25% 致命打擊",
         Index: 6
       },
       {
-        PropertyString: "Slows target by 20%",
+        PropertyString: "使目標減慢 20%",
         Index: 5
       },
       {
-        PropertyString: "+160-200% Enhanced Defense",
+        PropertyString: "+160-200% 防禦強化",
         Index: 3
       },
       {
-        PropertyString: "+8% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +8%",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item (Per Character Level)",
+        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
         Index: 2
       },
       {
-        PropertyString: "+12 To Required Level",
+        PropertyString: "+12 需求等級",
         Index: 1
       }
     ],
@@ -18428,7 +18428,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Breath of the Dying",
+    Name: "死亡呼吸 (Breath of the Dying)",
     Index: "Breath of the Dying",
     Enabled: true,
     Rarity: 0,
@@ -18437,55 +18437,55 @@ const json = [
     Code: "Breath of the Dying",
     Properties: [
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 0
       },
       {
-        PropertyString: "+60% Increased Attack Speed",
+        PropertyString: "攻擊速度 +60%",
         Index: 0
       },
       {
-        PropertyString: "+350-400% Enhanced Damage",
+        PropertyString: "+350-400% 傷害強化",
         Index: 4
       },
       {
-        PropertyString: "-25% Target Defense",
+        PropertyString: "-25% 目標防禦",
         Index: 0
       },
       {
-        PropertyString: "+50 to Attack Rating",
+        PropertyString: "+50 準確率",
         Index: 1
       },
       {
-        PropertyString: "+200% Damage to Undead",
+        PropertyString: "+200% 對不死怪物的傷害",
         Index: 1
       },
       {
-        PropertyString: "+50 to Attack Rating against Undead",
+        PropertyString: "+50 對不死怪物的准确率",
         Index: 0
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 0
       },
       {
-        PropertyString: "Adds 12-15% Life stolen per hit",
+        PropertyString: "擊中竊取 12-15% 生命",
         Index: 2
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 3
       },
       {
-        PropertyString: "+30 to All Attributes",
+        PropertyString: "+30 所有屬性",
         Index: 5
       },
       {
-        PropertyString: "+1 to Light Radius",
+        PropertyString: "照亮範圍 +1",
         Index: 0
       },
       {
-        PropertyString: "Requirements -20%",
+        PropertyString: "需求 -20%",
         Index: 0
       }
     ],
@@ -18532,7 +18532,7 @@ const json = [
         Class: "ass"
       }
     ],
-    Name: "Darkness",
+    Name: "黑暗 (Darkness)",
     Index: "Darkness",
     Enabled: true,
     Rarity: 0,
@@ -18541,39 +18541,39 @@ const json = [
     Code: "Darkness",
     Properties: [
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 0
       },
       {
-        PropertyString: "+3 to Assassin Skill Levels",
+        PropertyString: "+3 刺客技能等級",
         Index: 0
       },
       {
-        PropertyString: "Adds 75-150 to Damage",
+        PropertyString: "增加 75-150 傷害",
         Index: 2
       },
       {
-        PropertyString: "+7% Mana stolen per hit",
+        PropertyString: "擊中竊取 +7% 法力",
         Index: 0
       },
       {
-        PropertyString: "+7% Life stolen per hit",
+        PropertyString: "擊中竊取 7% 生命",
         Index: 0
       },
       {
-        PropertyString: "+20-30 to All Attributes",
+        PropertyString: "+20-30 所有屬性",
         Index: 1
       },
       {
-        PropertyString: "All Resistances +20-40%",
+        PropertyString: "所有抗性 +20-40%",
         Index: 3
       },
       {
-        PropertyString: "+15% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +15%",
         Index: 4
       },
       {
-        PropertyString: "+1% better chance of getting magic item (Per Character Level)",
+        PropertyString: "尋獲魔法物品機率提高 +1% （依角色等級而定）",
         Index: 5
       }
     ],
@@ -18630,7 +18630,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Humility",
+    Name: "謙恭 (Humility)",
     Index: "Humility",
     Enabled: true,
     Rarity: 0,
@@ -18639,47 +18639,47 @@ const json = [
     Code: "Humility",
     Properties: [
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 0
       },
       {
-        PropertyString: "Level 3-5 Salvation Aura When Equipped",
+        PropertyString: "裝備時賦予等級 3-5 聖護靈氣",
         Index: 6
       },
       {
-        PropertyString: "+1-4 to Shout",
+        PropertyString: "+1-4 大吼",
         Index: 1
       },
       {
-        PropertyString: "+1-4 to Battle Orders",
+        PropertyString: "+1-4 戰鬥命令",
         Index: 2
       },
       {
-        PropertyString: "+1-4 to Battle Command",
+        PropertyString: "+1-4 戰鬥指揮",
         Index: 3
       },
       {
-        PropertyString: "+1-4 to Shiver Armor",
+        PropertyString: "+1-4 碎冰甲",
         Index: 4
       },
       {
-        PropertyString: "+10-15 to Valkyrie",
+        PropertyString: "+10-15 女武神",
         Index: 5
       },
       {
-        PropertyString: "All Resistances +15%",
+        PropertyString: "所有抗性 +15%",
         Index: 0
       },
       {
-        PropertyString: "Cannot Be Frozen",
+        PropertyString: "無法冰凍",
         Index: 0
       },
       {
-        PropertyString: "+15% Damage Taken Goes To Mana",
+        PropertyString: "+15% 受到的傷害轉為法力",
         Index: 0
       },
       {
-        PropertyString: "+17 To Required Level",
+        PropertyString: "+17 需求等級",
         Index: 0
       }
     ],
@@ -18756,7 +18756,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Morning Dew",
+    Name: "清晨 (Morning Dew)",
     Index: "Morning Dew",
     Enabled: true,
     Rarity: 0,
@@ -18765,55 +18765,55 @@ const json = [
     Code: "Morning Dew",
     Properties: [
       {
-        PropertyString: "100% Chance to cast level 20 Static Field when you Kill an Enemy",
+        PropertyString: "殺死敵人時有 100% 機率施展等級 20 靜電力場",
         Index: 5
       },
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 0
       },
       {
-        PropertyString: "+3 to Druid Skill Levels",
+        PropertyString: "+3 德魯伊技能等級",
         Index: 3
       },
       {
-        PropertyString: "+20 to Melee Mastery",
+        PropertyString: "+20 近戰精通",
         Index: 4
       },
       {
-        PropertyString: "+50% Increased Attack Speed",
+        PropertyString: "攻擊速度 +50%",
         Index: 1
       },
       {
-        PropertyString: "+300-360% Enhanced Damage",
+        PropertyString: "+300-360% 傷害強化",
         Index: 2
       },
       {
-        PropertyString: "+9 to Maximum Damage",
+        PropertyString: "+9 最大傷害",
         Index: 0
       },
       {
-        PropertyString: "+20% Chance of Crushing Blow",
+        PropertyString: "+20% 概率造成粉碎打擊",
         Index: 0
       },
       {
-        PropertyString: "Prevent Monster Heal",
+        PropertyString: "防止怪物自療",
         Index: 0
       },
       {
-        PropertyString: "Freezes target +3",
+        PropertyString: "凍結目標 +3",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +25%",
+        PropertyString: "所有抗性 +25%",
         Index: 6
       },
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       },
       {
-        PropertyString: "+10 To Required Level",
+        PropertyString: "+10 需求等級",
         Index: 0
       }
     ],
@@ -18860,7 +18860,7 @@ const json = [
         Class: "dru"
       }
     ],
-    Name: "Mystery",
+    Name: "神秘 (Mystery)",
     Index: "Mystery",
     Enabled: true,
     Rarity: 0,
@@ -18869,43 +18869,43 @@ const json = [
     Code: "Mystery",
     Properties: [
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 0
       },
       {
-        PropertyString: "Level 6 Concentration Aura When Equipped",
+        PropertyString: "裝備時賦予等級 6 專注靈氣",
         Index: 4
       },
       {
-        PropertyString: "+3 to Druid Skill Levels",
+        PropertyString: "+3 德魯伊技能等級",
         Index: 0
       },
       {
-        PropertyString: "+20% Increased Attack Speed",
+        PropertyString: "攻擊速度 +20%",
         Index: 5
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 0
       },
       {
-        PropertyString: "+15% Increased Maximum Life",
+        PropertyString: "生命上限 +15%",
         Index: 2
       },
       {
-        PropertyString: "+15% Increased Maximum Mana",
+        PropertyString: "法力上限 +15%",
         Index: 1
       },
       {
-        PropertyString: "+5 to Maximum Poison Resist",
+        PropertyString: "毒素抗性上限 ++5",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +30-50%",
+        PropertyString: "所有抗性 +30-50%",
         Index: 3
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 6
       }
     ],
@@ -18982,7 +18982,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Obsession",
+    Name: "執念 (Obsession)",
     Index: "Obsession",
     Enabled: true,
     Rarity: 0,
@@ -18991,55 +18991,55 @@ const json = [
     Code: "Obsession",
     Properties: [
       {
-        PropertyString: "24% Chance to cast level 10 Weaken when struck",
+        PropertyString: "被擊中時有 24% 機率施展等級 10 削弱",
         Index: 1
       },
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 0
       },
       {
-        PropertyString: "+4 to All Skills",
+        PropertyString: "+4 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+65% Faster Cast Rate",
+        PropertyString: "+65% 施法速度",
         Index: 2
       },
       {
-        PropertyString: "+60% Faster Hit Recovery",
+        PropertyString: "+60% 打擊恢復",
         Index: 3
       },
       {
-        PropertyString: "Knockback",
+        PropertyString: "擊退",
         Index: 0
       },
       {
-        PropertyString: "+10 to Vitality",
+        PropertyString: "+10 體能",
         Index: 0
       },
       {
-        PropertyString: "+10 to Energy",
+        PropertyString: "+10 能量",
         Index: 0
       },
       {
-        PropertyString: "+15-25% Increased Maximum Life",
+        PropertyString: "生命上限 +15-25%",
         Index: 5
       },
       {
-        PropertyString: "Regenerate Mana +15%",
+        PropertyString: "法力恢復 15%",
         Index: 6
       },
       {
-        PropertyString: "All Resistances +60-70%",
+        PropertyString: "所有抗性 +60-70%",
         Index: 4
       },
       {
-        PropertyString: "+75% extra gold from monsters",
+        PropertyString: "怪物金幣掉落量提高 +75%",
         Index: 0
       },
       {
-        PropertyString: "+30% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +30%",
         Index: 0
       }
     ],
@@ -19096,7 +19096,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Purity",
+    Name: "純潔 (Purity)",
     Index: "Purity",
     Enabled: true,
     Rarity: 0,
@@ -19105,47 +19105,47 @@ const json = [
     Code: "Purity",
     Properties: [
       {
-        PropertyString: "10% Chance to cast level 19 Bone Armor when struck",
+        PropertyString: "被擊中時有 10% 機率施展等級 19 骸骨護甲",
         Index: 4
       },
       {
-        PropertyString: "35% Chance to cast level 8 Dim Vision on striking",
+        PropertyString: "擊中時有 35% 機率施展等級 8 昏暗視野",
         Index: 5
       },
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 0
       },
       {
-        PropertyString: "+50% Faster Hit Recovery",
+        PropertyString: "+50% 打擊恢復",
         Index: 2
       },
       {
-        PropertyString: "+20% Faster Block Rate",
+        PropertyString: "+20% 格擋速度",
         Index: 0
       },
       {
-        PropertyString: "+55% Increased Chance of Blocking",
+        PropertyString: "格擋機率提高 +55%",
         Index: 0
       },
       {
-        PropertyString: "+4 Defense (Per Character Level)",
+        PropertyString: "+4 防禦 （依角色等級而定）",
         Index: 6
       },
       {
-        PropertyString: "+50 to Life",
+        PropertyString: "+50 生命",
         Index: 0
       },
       {
-        PropertyString: "All Resistances +30-50%",
+        PropertyString: "所有抗性 +30-50%",
         Index: 3
       },
       {
-        PropertyString: "+15 Life after each Kill",
+        PropertyString: "+15 擊殺生命恢復",
         Index: 1
       },
       {
-        PropertyString: "+25% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +25%",
         Index: 0
       }
     ],
@@ -19202,7 +19202,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Reason",
+    Name: "理由 (Reason)",
     Index: "Reason",
     Enabled: true,
     Rarity: 0,
@@ -19211,43 +19211,43 @@ const json = [
     Code: "Reason",
     Properties: [
       {
-        PropertyString: "Indestructible",
+        PropertyString: "無法破壞",
         Index: 0
       },
       {
-        PropertyString: "Level 5 Meditation Aura When Equipped",
+        PropertyString: "裝備時賦予等級 5 冥想靈氣",
         Index: 2
       },
       {
-        PropertyString: "+3 to Sorceress Skill Levels",
+        PropertyString: "+3 魔法使技能等級",
         Index: 0
       },
       {
-        PropertyString: "+50% Faster Cast Rate",
+        PropertyString: "+50% 施法速度",
         Index: 1
       },
       {
-        PropertyString: "+4 to random Sorceress Skill",
+        PropertyString: "+4 魔法使隨機技能等級",
         Index: 6
       },
       {
-        PropertyString: "+20 to Energy",
+        PropertyString: "+20 能量",
         Index: 0
       },
       {
-        PropertyString: "+20% Physical Damage Reduction",
+        PropertyString: "物理傷害降低 +20%",
         Index: 4
       },
       {
-        PropertyString: "+2 to Mana after each Kill",
+        PropertyString: "+2 擊殺法力恢復",
         Index: 0
       },
       {
-        PropertyString: "+3% to Experience Gained",
+        PropertyString: "獲得的經驗值 +3%",
         Index: 3
       },
       {
-        PropertyString: "+20% Damage Taken Goes To Mana",
+        PropertyString: "+20% 受到的傷害轉為法力",
         Index: 5
       }
     ],
@@ -19314,7 +19314,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Starlight",
+    Name: "星光 (Starlight)",
     Index: "Starlight",
     Enabled: true,
     Rarity: 0,
@@ -19323,91 +19323,91 @@ const json = [
     Code: "Starlight",
     Properties: [
       {
-        PropertyString: "+3 to All Skills",
+        PropertyString: "+3 所有技能",
         Index: 0
       },
       {
-        PropertyString: "+20% Faster Hit Recovery",
+        PropertyString: "+20% 打擊恢復",
         Index: 6
       },
       {
-        PropertyString: "Adds 35-140 to Damage",
+        PropertyString: "增加 35-140 傷害",
         Index: 1
       },
       {
-        PropertyString: "+100-200% Enhanced Defense",
+        PropertyString: "+100-200% 防禦強化",
         Index: 2
       },
       {
-        PropertyString: "+150-300% better chance of getting magic item",
+        PropertyString: "尋獲魔法物品機率提高 +150-300%",
         Index: 4
       },
       {
-        PropertyString: "Requirements -80%",
+        PropertyString: "需求 -80%",
         Index: 3
       },
       {
-        PropertyString: "+20 To Required Level",
+        PropertyString: "+20 需求等級",
         Index: 5
       },
       {
-        PropertyString: "+1 to Light Radius (Weapon)",
+        PropertyString: "照亮範圍 +1 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+30% better chance of getting magic item (Weapon)",
+        PropertyString: "尋獲魔法物品機率提高 +30% （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+50 to Attack Rating (Weapon)",
+        PropertyString: "+50 準確率 （只限武器）",
         Index: 1
       },
       {
-        PropertyString: "Indestructible (Weapon)",
+        PropertyString: "無法破壞 （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "Requirements -20% (Weapon)",
+        PropertyString: "需求 -20% （只限武器）",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius (Armor)",
+        PropertyString: "照亮範圍 +1 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+15 Defense (Armor)",
+        PropertyString: "+15 防禦 （只限盔甲）",
         Index: 1
       },
       {
-        PropertyString: "+25% better chance of getting magic item (Armor)",
+        PropertyString: "尋獲魔法物品機率提高 +25% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Indestructible (Armor)",
+        PropertyString: "無法破壞 （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "Requirements -15% (Armor)",
+        PropertyString: "需求 -15% （只限盔甲）",
         Index: 0
       },
       {
-        PropertyString: "+1 to Light Radius (Shield)",
+        PropertyString: "照亮範圍 +1 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "+15 Defense (Shield)",
+        PropertyString: "+15 防禦 （只限盾牌）",
         Index: 1
       },
       {
-        PropertyString: "+25% better chance of getting magic item (Shield)",
+        PropertyString: "尋獲魔法物品機率提高 +25% （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Indestructible (Shield)",
+        PropertyString: "無法破壞 （只限盾牌）",
         Index: 0
       },
       {
-        PropertyString: "Requirements -15% (Shield)",
+        PropertyString: "需求 -15% （只限盾牌）",
         Index: 0
       }
     ],
@@ -19477,34 +19477,34 @@ class Runewords {
     __publicField(this, "types", [
       // Parent types
       { label: "-", value: [] },
-      { label: "Any Armor", value: ["Armor", "Any Armor"] },
-      { label: "Any Helm", value: ["Helm"] },
-      { label: "Any Weapon", value: ["Weapon"] },
-      { label: "Any Melee Weapon", value: ["Melee Weapon", "Weapon"] },
-      { label: "Any Missile Weapon", value: ["Missile Weapon", "Weapon"] },
-      { label: "Any Shield", value: ["Any Shield"] },
+      { label: "任意盔甲", value: ["Armor", "Any Armor"] },
+      { label: "任意頭盔", value: ["Helm"] },
+      { label: "任意武器", value: ["Weapon"] },
+      { label: "任意近戰武器", value: ["Melee Weapon", "Weapon"] },
+      { label: "任意遠程武器", value: ["Missile Weapon", "Weapon"] },
+      { label: "任意盾牌", value: ["Any Shield"] },
       // Specific weapon types
-      { label: "Axe", value: ["Axe", "Melee Weapon", "Weapon"] },
-      { label: "Club", value: ["Club", "Melee Weapon", "Weapon"] },
-      { label: "Hammer", value: ["Hammer", "Melee Weapon", "Weapon"] },
-      { label: "Hand to Hand", value: ["Hand to Hand", "Melee Weapon", "Weapon"] },
-      { label: "Mace", value: ["Mace", "Melee Weapon", "Weapon"] },
-      { label: "Orb", value: ["Orb"] },
-      { label: "Polearm", value: ["Polearm", "Melee Weapon", "Weapon"] },
-      { label: "Scepter", value: ["Scepter", "Melee Weapon", "Weapon"] },
-      { label: "Staff", value: ["Staff", "Melee Weapon", "Weapon"] },
-      { label: "Spear", value: ["Spear", "Melee Weapon", "Weapon"] },
-      { label: "Sword", value: ["Sword", "Melee Weapon", "Weapon"] },
-      { label: "Wand", value: ["Wand", "Melee Weapon", "Weapon"] },
+      { label: "斧頭", value: ["Axe", "Melee Weapon", "Weapon"] },
+      { label: "棍棒", value: ["Club", "Melee Weapon", "Weapon"] },
+      { label: "釘錘", value: ["Hammer", "Melee Weapon", "Weapon"] },
+      { label: "拳刃", value: ["Hand to Hand", "Melee Weapon", "Weapon"] },
+      { label: "连枷", value: ["Mace", "Melee Weapon", "Weapon"] },
+      { label: "法珠", value: ["Orb"] },
+      { label: "長柄武器", value: ["Polearm", "Melee Weapon", "Weapon"] },
+      { label: "權杖", value: ["Scepter", "Melee Weapon", "Weapon"] },
+      { label: "法杖", value: ["Staff", "Melee Weapon", "Weapon"] },
+      { label: "長矛", value: ["Spear", "Melee Weapon", "Weapon"] },
+      { label: "刀劍", value: ["Sword", "Melee Weapon", "Weapon"] },
+      { label: "魔杖", value: ["Wand", "Melee Weapon", "Weapon"] },
       // Specific armor types
-      { label: "Circlet", value: ["Circlet", "Helm"] },
+      { label: "頭環", value: ["Circlet", "Helm"] },
       // Class specific types
-      { label: "Amazon Bow", value: ["Amazon Bow", "Missile Weapon", "Weapon"] },
-      { label: "Amazon Spear", value: ["Amazon Spear", "Spear", "Melee Weapon", "Weapon"] },
-      { label: "Necromancer Shield", value: ["Necromancer Item", "Any Shield"] },
-      { label: "Barbarian Item", value: ["Barbarian Item"] },
-      { label: "Paladin Item", value: ["Paladin Item"] },
-      { label: "Druid Item", value: ["Druid Item"] }
+      { label: "亞馬遜弓", value: ["Amazon Bow", "Missile Weapon", "Weapon"] },
+      { label: "亞馬遜長矛", value: ["Amazon Spear", "Spear", "Melee Weapon", "Weapon"] },
+      { label: "死靈法師盾牌", value: ["Necromancer Item", "Any Shield"] },
+      { label: "野蠻人頭盔", value: ["Barbarian Item"] },
+      { label: "聖騎士盾牌", value: ["Paladin Item"] },
+      { label: "德魯伊頭盔", value: ["Druid Item"] }
     ]);
     __publicField(this, "selectedType");
     __publicField(this, "amounts", [
