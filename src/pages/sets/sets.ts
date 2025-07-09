@@ -66,13 +66,13 @@ export class Sets {
 
     classes = [
         { value: null, label: '-' },
-        { value: 'Amazon', label: 'Amazon' },
-        { value: 'Assassin', label: 'Assassin' },
-        { value: 'Barbarian', label: 'Barbarian' },
-        { value: 'Druid', label: 'Druid' },
-        { value: 'Necromancer', label: 'Necromancer' },
-        { value: 'Paladin', label: 'Paladin' },
-        { value: 'Sorceress', label: 'Sorceress' }
+        { value: '亞馬遜', label: '亞馬遜' },
+        { value: '刺客', label: '刺客' },
+        { value: '野蠻人', label: '野蠻人' },
+        { value: '德魯伊', label: '德魯伊' },
+        { value: '死靈法師', label: '死靈法師' },
+        { value: '聖騎士', label: '聖騎士' },
+        { value: '魔法使', label: '魔法使' }
     ];
 
     classChanged() {
@@ -159,13 +159,13 @@ export class Sets {
     getDamageTypeString(type) {
         switch (type) {
             case 3:
-                return 'Damage: ';
+                return '傷害: ';
             case 2:
-                return 'Throw Damage: ';
+                return '投擲傷害: ';
             case 1:
-                return 'Two-Handed Damage: '
+                return '雙手傷害: '
             default:
-                return 'Damage: ';
+                return '傷害: ';
         }
     }
 }

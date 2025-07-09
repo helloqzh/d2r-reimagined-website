@@ -5,6 +5,49 @@ import json from '../item-jsons/uniques.json';
 
 export class Uniques {
     uniques = json;
+    private typeMap = {
+        "Amazon Bow": "亞馬遜弓",
+        "Amazon Javelin": "亞馬遜標槍",
+        "Amazon Spear": "亞馬遜長矛",
+        "Amulet": "項鍊",
+        "Armor": " 盔甲",
+        "Auric Shields": "聖騎士盾牌",
+        "Axe": "斧頭",
+        "Belt": "腰帶",
+        "Boots": "鞋子",
+        "Bow": "弓",
+        "Circlet": "頭環",
+        "Club": "棍棒",
+        "Crossbow": "弩",
+        "Gloves": "手套",
+        "Hammer": "釘錘",
+        "Hand to Hand": "拳刃（無技能）",
+        "Hand to Hand 2": "拳刃（有技能）",
+        "Helm": "頭盔",
+        "Javelin": "標槍",
+        "Jewel": "珠寶",
+        "Knife": "匕首",
+        "Large Charm": "特大咒符",
+        "Mace": "连枷",
+        "Magic Bow Quiv": "魔法箭筒",
+        "Magic XBow Quiv": "魔法弩盒",
+        "Medium Charm": "大型咒符",
+        "Orb": "法珠",
+        "Pelt": "德鲁伊头盔",
+        "Polearm": "长柄武器",
+        "Primal Helm": "野蛮人头盔",
+        "Ring": "戒指",
+        "Scepter": "权杖",
+        "Shield": "盾牌",
+        "Small Charm": "小型咒符",
+        "Spear": "长矛",
+        "Staff": "法杖",
+        "Sword": "刀剑",
+        "Throwing Axe": "飞斧",
+        "Throwing Knife": "飞刀",
+        "Voodoo Heads": "死灵法师盾牌",
+        "Wand": " 魔杖",
+    };
     private types = [
         // The first element allows resetting the filter
         { label: '-', value: undefined },
@@ -13,7 +56,7 @@ export class Uniques {
             // which is sorted alphabetically
             .sort((a, b) => a.localeCompare(b))
             // and converted into a selection list
-            .map(type => { return { label: type, value: type } })
+            .map(type => { return { label: this.getTypeLabel(type), value: type } })
     ];
 
     @bindable search: string;
@@ -96,14 +139,14 @@ export class Uniques {
     }
 
     classes = [
-        { value: undefined, label: '-' },
-        { value: 'Amazon', label: 'Amazon' },
-        { value: 'Assassin', label: 'Assassin' },
-        { value: 'Barbarian', label: 'Barbarian' },
-        { value: 'Druid', label: 'Druid' },
-        { value: 'Necromancer', label: 'Necromancer' },
-        { value: 'Paladin', label: 'Paladin' },
-        { value: 'Sorceress', label: 'Sorceress' }
+        { value: null, label: '-' },
+        { value: '亞馬遜', label: '亞馬遜' },
+        { value: '刺客', label: '刺客' },
+        { value: '野蠻人', label: '野蠻人' },
+        { value: '德魯伊', label: '德魯伊' },
+        { value: '死靈法師', label: '死靈法師' },
+        { value: '聖騎士', label: '聖騎士' },
+        { value: '魔法使', label: '魔法使' }
     ];
 
 
@@ -133,13 +176,19 @@ export class Uniques {
     getDamageTypeString(type: number) {
         switch (type) {
             case 3:
-                return 'Damage: ';
+                return '傷害: ';
             case 2:
-                return 'Throw Damage: ';
+                return '投擲傷害: ';
             case 1:
-                return 'Two-Handed Damage: '
+                return '雙手傷害: '
             default:
-                return 'Damage: ';
+                return '傷害: ';
         }
+    }
+    private getTypeLabel(type: string) {
+        if (this.typeMap[type]) {
+            return `${type} - ${this.typeMap[type]}`;
+        }
+        return type;
     }
 }

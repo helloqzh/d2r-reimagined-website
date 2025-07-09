@@ -3,6 +3,7 @@ import aurelia from '@aurelia/vite-plugin';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
+    base: '/d2r-reimagined-website/',
     server: {
         port: 9500,
         strictPort: true,
