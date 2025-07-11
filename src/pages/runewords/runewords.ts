@@ -246,6 +246,37 @@ export class Runewords {
     }
 
     transformTypeName(name) {
+        const rwBaseMap = {
+            'Armor':'盔甲',
+            'Any Armor':'盔甲',
+            'Helm':'頭盔',
+            'Weapon':'武器',
+            'Melee Weapon':'近戰武器',
+            'Missile Weapon':'遠程武器',
+            'Any Shield':'盾牌',
+            'Axe':'斧頭',
+            'Club':'棍棒',
+            'Hammer':'釘錘',
+            'Hand to Hand':'拳刃',
+            'Mace':'连枷',
+            'Orb':'法珠',
+            'Polearm':'長柄武器',
+            'Scepter':'權杖',
+            'Staff':'法杖',
+            'Spear':'長矛',
+            'Sword':'刀劍',
+            'Wand':'魔杖',
+            'Circlet':'頭環',
+            'Amazon Bow':'亞馬遜弓',
+            'Amazon Spear':'亞馬遜長矛',
+            'Necromancer Item':'死靈法師盾牌',
+            'Barbarian Item':'野蠻人頭盔',
+            'Paladin Item':'聖騎士盾牌',
+            'Druid Item': '德魯伊頭盔',
+        };
+        if (rwBaseMap[name] !== undefined) {
+            return rwBaseMap[name];
+        }
         switch (name) {
             case 'Merc Equip':
                 return 'Helm'
