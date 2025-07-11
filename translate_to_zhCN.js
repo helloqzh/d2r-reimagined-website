@@ -102,7 +102,9 @@ const skillMap = {
     "Lightning Sentry": "雷光衛哨",
     "Shock Web": "雷電網",
     "Wake of Fire": "焰痕衛哨",
+    "Wake of Fire Sentry": "焰痕衛哨",
     "Wake of Inferno": "獄火衛哨",
+    "Inferno Sentry ": "獄火衛哨",
     "Axe Mastery": "斧術專精",
     "Blade Mastery": "利刃專精",
     "Increased Speed": "提高速度",
@@ -360,7 +362,7 @@ function translateProp(prop) {
         .replace(/(\+\d+(?:-\d+)?|\+\d+\.\d+) Defense/, '$1 防禦')
         .replace(/\+(\d+)% Faster Block Rate/, '+$1% 格擋速度')
         // 傷害
-        .replace(/(\+\d+(?:-\d+)?)% Chance of Crushing Blow/, '$1% 概率造成粉碎打擊')
+        .replace(/(\+\d+(?:-\d+)?(?:\.\d+)?)% Chance of Crushing Blow/, '$1% 概率造成粉碎打擊')
         .replace(/(\+\d+(?:-\d+)?)% Chance of Open Wounds/, '$1% 機率造成開放傷口')
         .replace(/(\+\d+(?:-\d+)?|\+\d+\.\d+)% Deadly Strike/, '$1% 致命打擊')
         .replace(/(\+\d+(?:-\d+)?)% Piercing Attack/, '$1% 穿透攻擊')
@@ -383,8 +385,8 @@ function translateProp(prop) {
         .replace(/(\+\d+(?:-\d+)?|\+\d+\.\d+)% Damage to Undead/, '$1% 對不死怪物的傷害')
         .replace(/\+(\d+) to Attack Rating against Demons/, '+$1 對惡魔的准确率')
         .replace(/(\+\d+(?:-\d+)?|\+\d+\.\d+)% Damage to Demons/, '$1% 對惡魔的傷害')
-        .replace(/(\+\d+(?:-\d+)?)% bonus to Attack Rating/, '$1% 準確率加成')
-        .replace(/(\+\d+(?:-\d+)?) to Attack Rating/, '$1 準確率')
+        .replace(/(\+\d+(?:-\d+)?|\+\d+\.\d+)% bonus to Attack Rating/, '$1% 準確率加成')
+        .replace(/(\+\d+(?:-\d+)?|\+\d+\.\d+) to Attack Rating/, '$1 準確率')
         .replace(/(\+\d+(?:-\d+)?)% Enhanced Damage/, '$1% 傷害強化')
         .replace(/Adds ([+]?\d+(?:-\d+)?) to Damage/, '增加 $1 傷害')
         .replace(/(\+\d+(?:-\d+)?) Kick Damage/, '踢擊傷害 $1')
@@ -396,6 +398,7 @@ function translateProp(prop) {
         .replace(/Repairs ((?:0\.)?\d+) durability per second/, '每 1 秒修復 $1 點耐久度')
         .replace(/Reduces all Vendor Prices (\d+(?:-\d+)?)%/, '所有商人的價格降低 $1%')
         .replace(/Attacker Takes Damage of (\+\d+(?:-\d+)?)/, '攻擊者反傷 $1')
+        .replace(/(\+\d+(?:\.\d+)?) Attacker Takes Damage of/, '攻擊者反傷 $1')
         .replace(/([+-]\d+(?:-\d+)?)% to Experience Gained/, '獲得的經驗值 $1%')
         .replace(/(\+\d+(?:-\d+)?)% Faster Run\/Walk/, '$1% 跑步 / 行走速度')
         .replace(/\+(\d+) Increase Maximum Durability/, '耐久上限增加 $1')
@@ -445,6 +448,7 @@ function translateProp(prop) {
         .replace(/([+-]\d+(?:-\d+)?|[+-]\d+\.\d+) Drain Life/, '吸取生命 $1')
         .replace(/(\+\d+(?:-\d+)?) Replenish Life/, '生命回復 $1')
         .replace(/([+-]\d+(?:-\d+)?|[+-]\d+\.\d+) to Life/, '$1 生命')
+        .replace(/(\+(?:0\.)?\d+) Heal Stamina Plus/, '精力恢復 $1')
 
         // 法力相关
         .replace(/(\+\d+(?:-\d+)?)% Damage Taken Goes To Mana/, '$1% 受到的傷害轉為法力')
@@ -511,7 +515,7 @@ function translateProp(prop) {
         .replace(/Level (\d+) ([\w\s]+) /i, (_match, level, skill) => `等級 ${level} ${translateSkill(skill)}`)
         
         // ＊＊＊＊＊ 常時技能 ＊＊＊＊＊
-        .replace(/\+(\d+) to Melee Mastery/, '+$1 近戰精通')
+        .replace(/\+(\d+(?:-\d+)?) to Melee Mastery/, '+$1 近戰精通')
         .replace(/\+(\d+(?:-\d+)?) to Poison Skills/, '+$1 毒素技能')
         // 魔法使
         .replace(/\+(\d+(?:-\d+)?) to Fire Skills/, '+$1 火焰技能')

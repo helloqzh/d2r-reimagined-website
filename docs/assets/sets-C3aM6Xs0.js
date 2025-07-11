@@ -1,4 +1,4 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-Dpmb3q_R.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-DOZmGxQU.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "sets";
 const template = '<template>\r\n    <h3 class="text-center my-4">\r\n        共 ${sets.length} 套裝\r\n    </h3>\r\n    <div class="container">\r\n        <div class="row align-content-center justify-content-center text-center mb-5">\r\n            <div class="col-12 col-sm-6">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="職業選擇"\r\n                            options.bind="classes"\r\n                            class="standard-betsy-select"\r\n                            value.bind="class"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-sm-6">\r\n                <moo-text-field\r\n                        class="w-100"\r\n                        label="Search Sets"\r\n                        type="text"\r\n                        value.bind="search"\r\n                ></moo-text-field>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="row gy-5 px-5 text-center">\r\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="set of sets">\r\n            <div class="card bg-dark p-2">\r\n                <div class="set-text fs-5 mb-1">\r\n                    ${set.Name}\r\n                </div>\r\n\r\n                <div class="partial-sets set-text" repeat.for="partial of set.PartialProperties">\r\n                    ${partial.PropertyString} (${$index + 2} 件)\r\n                </div>\r\n\r\n                <div class="partial-sets set-text" repeat.for="full of set.FullProperties">\r\n                    ${full.PropertyString} (完整套裝)\r\n                </div>\r\n\r\n                <div class="my-3" repeat.for="setItem of set.SetItems">\r\n                    <div class="set-text mb-1">\r\n                        ${setItem.Name}\r\n                    </div>\r\n\r\n                    <div class="armor mb-1" if.bind="setItem.Equipment.Name">\r\n                        ${setItem.Equipment.Name}\r\n                    </div>\r\n\r\n                    <div class="armor mt-1" if.bind="setItem.Equipment.ArmorString">\r\n                        防禦: ${setItem.Equipment.ArmorString}\r\n                    </div>\r\n\r\n                    <div class="damage" if.bind="setItem.Equipment.DamageTypes"\r\n                         repeat.for="damage of setItem.Equipment.DamageTypes">\r\n                        ${getDamageTypeString(damage.Type)} ${damage.DamageString}\r\n                    </div>\r\n\r\n                    <div class="requirement" if.bind="setItem.RequiredLevel > 0">\r\n                        等級需求：${setItem.RequiredLevel}\r\n                    </div>\r\n\r\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredStrength > 0">\r\n                        力量需求：${setItem.Equipment.RequiredStrength}\r\n                    </div>\r\n\r\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredDexterity > 0">\r\n                        敏捷需求：${setItem.Equipment.RequiredDexterity}\r\n                    </div>\r\n\r\n                    <div class="durability mt-1" if.bind="setItem.Equipment.Durability > 0">\r\n                        耐久度：${setItem.Equipment.Durability}\r\n                    </div>\r\n\r\n                    <div class="enhanced" repeat.for="property of setItem.Properties">\r\n                        ${property.PropertyString}\r\n                    </div>\r\n\r\n                    <div class="set-text" repeat.for="setProperty of setItem.SetPropertiesString">\r\n                        ${setProperty}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n';
@@ -194,7 +194,7 @@ const json = [
         Type: "Boots",
         "Set": "Hsarus' Defense",
         SetPropertiesString: [
-          "+2.5 to Attack Rating （依角色等級而定） （2 件）"
+          "+2.5 準確率 （依角色等級而定） （2 件）"
         ],
         Name: "海沙魯的鐵跟 (Hsarus' Iron Heel)",
         Index: "Hsarus' Iron Heel",
@@ -434,7 +434,7 @@ const json = [
         Type: "Gloves",
         "Set": "Cleglaw's Brace",
         SetPropertiesString: [
-          "+2.5 to Attack Rating （依角色等級而定） （2 件）"
+          "+2.5 準確率 （依角色等級而定） （2 件）"
         ],
         Name: "克雷德勞之鉗 (Cleglaw's Pincers)",
         Index: "Cleglaw's Pincers",
@@ -719,7 +719,7 @@ const json = [
         Type: "Sword",
         "Set": "Isenhart's Armory",
         SetPropertiesString: [
-          "+1.25 to Attack Rating （依角色等級而定） （2 件）"
+          "+1.25 準確率 （依角色等級而定） （2 件）"
         ],
         Name: "依森哈特的光之烙鐵 (Isenhart's Lightbrand)",
         Index: "Isenhart's Lightbrand",
@@ -1703,7 +1703,7 @@ const json = [
             Index: 1
           },
           {
-            PropertyString: "+25 Heal Stamina Plus",
+            PropertyString: "精力恢復 +25",
             Index: 0
           }
         ],
@@ -2179,7 +2179,7 @@ const json = [
         Type: "Wand",
         "Set": "Infernal Tools",
         SetPropertiesString: [
-          "+2.5 to Attack Rating （依角色等級而定） （2 件）"
+          "+2.5 準確率 （依角色等級而定） （2 件）"
         ],
         Name: "煉獄火炬 (Infernal Torch)",
         Index: "Infernal Torch",
@@ -3427,7 +3427,7 @@ const json = [
             Index: 0
           },
           {
-            PropertyString: "+0.25 Heal Stamina Plus （依角色等級而定）",
+            PropertyString: "精力恢復 +0.25 （依角色等級而定）",
             Index: 2
           },
           {
@@ -3729,7 +3729,7 @@ const json = [
             Index: 2
           },
           {
-            PropertyString: "+32 Heal Stamina Plus",
+            PropertyString: "精力恢復 +32",
             Index: 1
           },
           {
@@ -12834,7 +12834,7 @@ const json = [
             Index: 1
           },
           {
-            PropertyString: "+2 Attacker Takes Damage of （依角色等級而定）",
+            PropertyString: "攻擊者反傷 +2 （依角色等級而定）",
             Index: 2
           },
           {
@@ -17093,7 +17093,7 @@ const json = [
           "+313 防禦 （6 件）",
           "魔法抗性 +10% （4 件）",
           "所有抗性 +10% （2 件）",
-          "+1.5 Attacker Takes Damage of （依角色等級而定） （5 件）"
+          "攻擊者反傷 +1.5 （依角色等級而定） （5 件）"
         ],
         Name: "地獄的折磨護脛 (Hell's Torment Greaves)",
         Index: "Hell's Torment Greaves",
@@ -20663,7 +20663,7 @@ const json = [
         Code: "7tr",
         Properties: [
           {
-            PropertyString: "+5-9 to Melee Mastery",
+            PropertyString: "+5-9 近戰精通",
             Index: 3
           },
           {
@@ -21316,7 +21316,7 @@ const json = [
         Code: "uui",
         Properties: [
           {
-            PropertyString: "+4-6 to Melee Mastery",
+            PropertyString: "+4-6 近戰精通",
             Index: 1
           },
           {
@@ -21493,7 +21493,7 @@ const json = [
             Index: 0
           },
           {
-            PropertyString: "+1 Attacker Takes Damage of （依角色等級而定）",
+            PropertyString: "攻擊者反傷 +1 （依角色等級而定）",
             Index: 4
           }
         ],
@@ -21825,7 +21825,7 @@ const json = [
         Code: "uhc",
         Properties: [
           {
-            PropertyString: "+3-5 to Melee Mastery",
+            PropertyString: "+3-5 近戰精通",
             Index: 0
           },
           {
@@ -21883,7 +21883,7 @@ const json = [
             Index: 2
           },
           {
-            PropertyString: "+1-3 to Melee Mastery",
+            PropertyString: "+1-3 近戰精通",
             Index: 1
           },
           {
