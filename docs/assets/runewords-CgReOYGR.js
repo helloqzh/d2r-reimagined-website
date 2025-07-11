@@ -1,4 +1,4 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-BXKrpIMs.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-rZJrTnJD.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "runewords";
 const template = '<template>\r\n    <h3 class="text-center my-4">\r\n        共 ${filteredRunewords.length} 符文之語\r\n    </h3>\r\n    <div class="container">\r\n        <div class="row align-content-center justify-content-center text-center mb-5">\r\n            <div class="col-12 col-md-4 col-lg-3">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="凹槽数量"\r\n                            options.bind="amounts"\r\n                            class="standard-betsy-select"\r\n                            value.bind="selectedAmount"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-4 col-lg-3">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="底材类型"\r\n                            options.bind="types"\r\n                            class="standard-betsy-select"\r\n                            value.bind="selectedType"\r\n                    ></moo-select>\r\n                    <moo-checkbox checked.bind="exclusiveType" id="exclusiveType">Exact type only</moo-checkbox>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-4 col-lg-3">\r\n                <div class="mb-2">\r\n                    <moo-text-field\r\n                            class="w-100"\r\n                            label="Search Runewords"\r\n                            type="text"\r\n                            value.bind="search"\r\n                    ></moo-text-field>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-4 col-lg-3">\r\n                <div class="mb-2">\r\n                    <moo-text-field\r\n                            class="w-100"\r\n                            label="Runes"\r\n                            type="text"\r\n                            value.bind="searchRunes"\r\n                    ></moo-text-field>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class="row gy-5 px-5 text-center">\r\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="runeword of filteredRunewords">\r\n            <div class="card bg-dark p-2">\r\n                <div class="unique-text fs-4 mb-1">\r\n                    ${runeword.Name}\r\n                </div>\r\n                <div class="combo">\r\n                    <span repeat.for="rune of runeword.Runes">\r\n                        ${rune.Name | runeName} ${$index + 1 !== runeword.Runes.length ? \' + \' : \'\'}\r\n                    </span>\r\n                </div>\r\n                <div class="types py-2">\r\n                    <span repeat.for="type of runeword.Types">\r\n                        ${transformTypeName(type.Name)} ${$index + 1 !== runeword.Types.length ? \' or \' : \'\'}\r\n                    </span>\r\n                </div>\r\n                <div class="requirement" if.bind="actualLevelRequirement(runeword) > 0">\r\n                    等級需求：${actualLevelRequirement(runeword)}\r\n                </div>\r\n                <div class="mt-2">\r\n                    <div class="enhanced" repeat.for="property of runeword.Properties">\r\n                        ${property.PropertyString}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n';
@@ -561,7 +561,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "老班的拐杖 (Old Ben's Walking Stick)",
+    Name: "老本的拐杖 (Old Ben's Walking Stick)",
     Index: "Old Ben's Walking Stick",
     Enabled: true,
     Rarity: 0,
@@ -1610,7 +1610,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "年輕 (Youth)",
+    Name: "青春 (Youth)",
     Index: "Youth",
     Enabled: true,
     Rarity: 0,
@@ -2151,7 +2151,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "雪花蓮 (Snowdrop)",
+    Name: "雪落 (Snowdrop)",
     Index: "Snowdrop",
     Enabled: true,
     Rarity: 0,
@@ -4198,7 +4198,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "恐懼 (Dread)",
+    Name: "驚懼 (Dread)",
     Index: "Dread",
     Enabled: true,
     Rarity: 0,
@@ -4544,7 +4544,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "黑錘 (Black)",
+    Name: "黑色 (Black)",
     Index: "Black",
     Enabled: true,
     Rarity: 0,
@@ -9972,7 +9972,7 @@ const json = [
         Class: "nec"
       }
     ],
-    Name: "恐佈 (Terror)",
+    Name: "恐懼 (Terror)",
     Index: "Terror",
     Enabled: true,
     Rarity: 0,
@@ -10264,7 +10264,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "榮譽 (Glory)",
+    Name: "榮光 (Glory)",
     Index: "Glory",
     Enabled: true,
     Rarity: 0,
@@ -10876,7 +10876,7 @@ const json = [
         Class: "ama"
       }
     ],
-    Name: "寂靜之水 (Still Water)",
+    Name: "止水 (Still Water)",
     Index: "Still Water",
     Enabled: true,
     Rarity: 0,
@@ -11795,7 +11795,7 @@ const json = [
         Class: "sor"
       }
     ],
-    Name: "祕法 (Arcane)",
+    Name: "奧術 (Arcane)",
     Index: "Arcane2",
     Enabled: true,
     Rarity: 0,
@@ -11903,7 +11903,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "驚奇 (Wonder)",
+    Name: "奇迹 (Wonder)",
     Index: "Wonder",
     Enabled: true,
     Rarity: 0,
@@ -11991,7 +11991,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "娜塔亞的裹屍布 (Natalya's Shroud)",
+    Name: "娜塔亞的壽衣 (Natalya's Shroud)",
     Index: "Natalya's Shroud",
     Enabled: true,
     Rarity: 0,
@@ -13623,7 +13623,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "賽蓮之歌 (Siren's Song)",
+    Name: "塞壬之歌 (Siren's Song)",
     Index: "Siren's Song",
     Enabled: true,
     Rarity: 0,
@@ -14467,7 +14467,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "騎士守望 (Knight's Vigil)",
+    Name: "騎士之印 (Knight's Vigil)",
     Index: "Knight's Vigil",
     Enabled: true,
     Rarity: 0,
@@ -14579,7 +14579,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "阿斯卡利的信件 (Mail of the Askari)",
+    Name: "阿斯卡利之甲 (Mail of the Askari)",
     Index: "Mail of the Askari",
     Enabled: true,
     Rarity: 0,
@@ -16028,7 +16028,7 @@ const json = [
         Class: "bar"
       }
     ],
-    Name: "勇戰之力 (Prowess in Battle)",
+    Name: "戰鬥造詣 (Prowess in Battle)",
     Index: "Prowess in Battle",
     Enabled: true,
     Rarity: 0,
@@ -16857,7 +16857,7 @@ const json = [
         Class: "ama"
       }
     ],
-    Name: "興高彩烈 (Elation)",
+    Name: "歡欣 (Elation)",
     Index: "Elation",
     Enabled: true,
     Rarity: 0,
@@ -17549,7 +17549,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "危害 (Peril)",
+    Name: "災劫 (Peril)",
     Index: "Peril",
     Enabled: true,
     Rarity: 0,
@@ -17854,7 +17854,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "巨橡之樹皮 (Bark of the Great Oak)",
+    Name: "巨橡樹之皮 (Bark of the Great Oak)",
     Index: "Bark of the Great Oak",
     Enabled: true,
     Rarity: 0,
@@ -18630,7 +18630,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "謙恭 (Humility)",
+    Name: "謙遜 (Humility)",
     Index: "Humility",
     Enabled: true,
     Rarity: 0,
@@ -18756,7 +18756,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "清晨 (Morning Dew)",
+    Name: "晨露 (Morning Dew)",
     Index: "Morning Dew",
     Enabled: true,
     Rarity: 0,

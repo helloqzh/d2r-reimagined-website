@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/cube-recipes-qTsGPjkX.js","assets/debounce-ZwsFz6hU.js","assets/cube-recipes-BJXOl2Zy.css","assets/uniques-BhbSge3Z.js","assets/sets-D5EwCKje.js","assets/runewords-LksroLNI.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/cube-recipes-Cg32bm4e.js","assets/debounce-ZwsFz6hU.js","assets/cube-recipes-BJXOl2Zy.css","assets/uniques-B0mhm6t3.js","assets/sets-BQYnLFXW.js","assets/runewords-CgReOYGR.js"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -25218,7 +25218,9 @@ let y$2 = class y extends HTMLElement {
     const i4 = this.constructor, e2 = i4._$Eh.get(t2);
     if (void 0 !== e2 && this._$Em !== e2) {
       const t3 = i4.getPropertyOptions(e2), h2 = "function" == typeof t3.converter ? { fromAttribute: t3.converter } : void 0 !== t3.converter?.fromAttribute ? t3.converter : u$3;
-      this._$Em = e2, this[e2] = h2.fromAttribute(s2, t3.type) ?? this._$Ej?.get(e2) ?? null, this._$Em = null;
+      this._$Em = e2;
+      const r2 = h2.fromAttribute(s2, t3.type);
+      this[e2] = r2 ?? this._$Ej?.get(e2) ?? r2, this._$Em = null;
     }
   }
   requestUpdate(t2, s2, i4) {
@@ -25292,7 +25294,7 @@ let y$2 = class y extends HTMLElement {
   firstUpdated(t2) {
   }
 };
-y$2.elementStyles = [], y$2.shadowRootOptions = { mode: "open" }, y$2[d$1("elementProperties")] = /* @__PURE__ */ new Map(), y$2[d$1("finalized")] = /* @__PURE__ */ new Map(), p$2?.({ ReactiveElement: y$2 }), (a$2.reactiveElementVersions ??= []).push("2.1.0");
+y$2.elementStyles = [], y$2.shadowRootOptions = { mode: "open" }, y$2[d$1("elementProperties")] = /* @__PURE__ */ new Map(), y$2[d$1("finalized")] = /* @__PURE__ */ new Map(), p$2?.({ ReactiveElement: y$2 }), (a$2.reactiveElementVersions ??= []).push("2.1.1");
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -25545,7 +25547,7 @@ class R {
     e2 < i4.length && (this._$AR(s2 && s2._$AB.nextSibling, e2), i4.length = e2);
   }
   _$AR(t2 = this._$AA.nextSibling, i4) {
-    for (this._$AP?.(false, true, i4); t2 && t2 !== this._$AB; ) {
+    for (this._$AP?.(false, true, i4); t2 !== this._$AB; ) {
       const i5 = t2.nextSibling;
       t2.remove(), t2 = i5;
     }
@@ -25620,7 +25622,7 @@ let z$1 = class z {
   }
 };
 const j$1 = t$1.litHtmlPolyfillSupport;
-j$1?.(N$1, R), (t$1.litHtmlVersions ??= []).push("3.3.0");
+j$1?.(N$1, R), (t$1.litHtmlVersions ??= []).push("3.3.1");
 const B$1 = (t2, i4, s2) => {
   const e2 = s2?.renderBefore ?? i4;
   let h2 = e2._$litPart$;
@@ -25661,7 +25663,7 @@ let i$3 = class i extends y$2 {
 i$3._$litElement$ = true, i$3["finalized"] = true, s.litElementHydrateSupport?.({ LitElement: i$3 });
 const o$2 = s.litElementPolyfillSupport;
 o$2?.({ LitElement: i$3 });
-(s.litElementVersions ??= []).push("4.2.0");
+(s.litElementVersions ??= []).push("4.2.1");
 /**
  * @license
  * Copyright 2022 Google LLC
@@ -40591,27 +40593,27 @@ _App_decorators = [customElement(__au2ViewDef), route({
   routes: [
     {
       path: "",
-      component: __vitePreload(() => import("./home-BLVVO7Je.js"), true ? [] : void 0),
+      component: __vitePreload(() => import("./home-DpNY6Wcb.js"), true ? [] : void 0),
       title: "Home"
     },
     {
       path: "cube-recipes",
-      component: __vitePreload(() => import("./cube-recipes-qTsGPjkX.js"), true ? __vite__mapDeps([0,1,2]) : void 0),
+      component: __vitePreload(() => import("./cube-recipes-Cg32bm4e.js"), true ? __vite__mapDeps([0,1,2]) : void 0),
       title: "Cube Recipes"
     },
     {
       path: "uniques",
-      component: __vitePreload(() => import("./uniques-BhbSge3Z.js"), true ? __vite__mapDeps([3,1]) : void 0),
+      component: __vitePreload(() => import("./uniques-B0mhm6t3.js"), true ? __vite__mapDeps([3,1]) : void 0),
       title: "Uniques"
     },
     {
       path: "sets",
-      component: __vitePreload(() => import("./sets-D5EwCKje.js"), true ? __vite__mapDeps([4,1]) : void 0),
+      component: __vitePreload(() => import("./sets-BQYnLFXW.js"), true ? __vite__mapDeps([4,1]) : void 0),
       title: "Sets"
     },
     {
       path: "runewords",
-      component: __vitePreload(() => import("./runewords-LksroLNI.js"), true ? __vite__mapDeps([5,1]) : void 0),
+      component: __vitePreload(() => import("./runewords-CgReOYGR.js"), true ? __vite__mapDeps([5,1]) : void 0),
       title: "Runewords"
     }
   ]

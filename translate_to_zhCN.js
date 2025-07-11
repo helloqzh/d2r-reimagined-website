@@ -319,6 +319,9 @@ function setNameOrIndexTranslation(srcMap, destMap) {
     const name = srcMap['Name'].trim();
     const index = srcMap['Index'].trim();
     srcMap['Name'] = destMap[name] || destMap[index] || name;
+    if (!/ \(/.test(srcMap['Name'])) {
+        srcMap['Name'] = `${srcMap['Name']} (${name})`;
+    }
 }
 
 /**
@@ -351,10 +354,10 @@ function translateProp(prop) {
         .replace(/-(\d+)% Min \/ -(\d+)% Max Player Damage/, '-$1% 最小 / -$2% 最大 角色傷害')
         // 防禦
         .replace(/(\+\d+(?:-\d+)?)% Increased Chance of Blocking/, '格擋機率提高 $1%')
-        .replace(/(\+\d+(?:-\d+)?)% Increased Attack Speed/, '攻擊速度 $1%')
+        .replace(/([+-]\d+(?:-\d+)?)% Increased Attack Speed/, '攻擊速度 $1%')
         .replace(/(\+\d+(?:-\d+)?) Defense vs\. Melee/, '$1 對近戰防禦')
         .replace(/(\+\d+(?:-\d+)?) Defense vs\. Missile/, '$1 對遠程防禦')
-        .replace(/(\+\d+(?:-\d+)?)% Faster Hit Recovery/, '$1% 打擊恢復')
+        .replace(/([+-]\d+(?:-\d+)?)% Faster Hit Recovery/, '$1% 打擊恢復')
         .replace(/Poison Length Reduced by (\d+)%/, '中毒的時效縮短 $1%')
         .replace(/(\+\d+(?:-\d+)?)% Faster Cast Rate/, '$1% 施法速度')
         .replace(/(\+\d+(?:-\d+)?)% Enhanced Defense/, '$1% 防禦強化')

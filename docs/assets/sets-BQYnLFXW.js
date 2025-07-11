@@ -1,4 +1,4 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-BXKrpIMs.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-rZJrTnJD.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "sets";
 const template = '<template>\r\n    <h3 class="text-center my-4">\r\n        共 ${sets.length} 套裝\r\n    </h3>\r\n    <div class="container">\r\n        <div class="row align-content-center justify-content-center text-center mb-5">\r\n            <div class="col-12 col-sm-6">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="職業選擇"\r\n                            options.bind="classes"\r\n                            class="standard-betsy-select"\r\n                            value.bind="class"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-sm-6">\r\n                <moo-text-field\r\n                        class="w-100"\r\n                        label="Search Sets"\r\n                        type="text"\r\n                        value.bind="search"\r\n                ></moo-text-field>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="row gy-5 px-5 text-center">\r\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="set of sets">\r\n            <div class="card bg-dark p-2">\r\n                <div class="set-text fs-5 mb-1">\r\n                    ${set.Name}\r\n                </div>\r\n\r\n                <div class="partial-sets set-text" repeat.for="partial of set.PartialProperties">\r\n                    ${partial.PropertyString} (${$index + 2} 件)\r\n                </div>\r\n\r\n                <div class="partial-sets set-text" repeat.for="full of set.FullProperties">\r\n                    ${full.PropertyString} (完整套裝)\r\n                </div>\r\n\r\n                <div class="my-3" repeat.for="setItem of set.SetItems">\r\n                    <div class="set-text mb-1">\r\n                        ${setItem.Name}\r\n                    </div>\r\n\r\n                    <div class="armor mb-1" if.bind="setItem.Equipment.Name">\r\n                        ${setItem.Equipment.Name}\r\n                    </div>\r\n\r\n                    <div class="armor mt-1" if.bind="setItem.Equipment.ArmorString">\r\n                        防禦: ${setItem.Equipment.ArmorString}\r\n                    </div>\r\n\r\n                    <div class="damage" if.bind="setItem.Equipment.DamageTypes"\r\n                         repeat.for="damage of setItem.Equipment.DamageTypes">\r\n                        ${getDamageTypeString(damage.Type)} ${damage.DamageString}\r\n                    </div>\r\n\r\n                    <div class="requirement" if.bind="setItem.RequiredLevel > 0">\r\n                        等級需求：${setItem.RequiredLevel}\r\n                    </div>\r\n\r\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredStrength > 0">\r\n                        力量需求：${setItem.Equipment.RequiredStrength}\r\n                    </div>\r\n\r\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredDexterity > 0">\r\n                        敏捷需求：${setItem.Equipment.RequiredDexterity}\r\n                    </div>\r\n\r\n                    <div class="durability mt-1" if.bind="setItem.Equipment.Durability > 0">\r\n                        耐久度：${setItem.Equipment.Durability}\r\n                    </div>\r\n\r\n                    <div class="enhanced" repeat.for="property of setItem.Properties">\r\n                        ${property.PropertyString}\r\n                    </div>\r\n\r\n                    <div class="set-text" repeat.for="setProperty of setItem.SetPropertiesString">\r\n                        ${setProperty}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n';
@@ -12100,7 +12100,7 @@ const json = [
           "+1 魔法使技能等級 （4 件）",
           "+15 力量 （3 件）"
         ],
-        Name: "巫妖的邪惡顱骨 (Lich's Cranium)",
+        Name: "巫妖的邪惡顱骨 (Lich's Evil Grin)",
         Index: "Lich's Cranium",
         Enabled: true,
         Rarity: 7,
@@ -20118,7 +20118,7 @@ const json = [
           "增加 25-75 傷害 （3 件）",
           "堆疊數量提高 100 （2 件）"
         ],
-        Name: "漢尼拔的告別飛行 (Hannibal's Final Flight)",
+        Name: "漢尼拔的告別飛行 (Hanabal's Final Flight)",
         Index: "Hannibal's Final Flight",
         Enabled: true,
         Rarity: 7,
@@ -20183,7 +20183,7 @@ const json = [
         SetPropertiesString: [
           "電擊抗性 +30% （3 件）"
         ],
-        Name: "漢尼拔的模糊視綫 (Hannibal's Blurred Vision)",
+        Name: "漢尼拔的模糊視綫 (Hanabal's Blurred Vision)",
         Index: "Hannibal's Blurred Vision",
         Enabled: true,
         Rarity: 7,
@@ -20234,7 +20234,7 @@ const json = [
           "+20% 跑步 / 行走速度 （2 件）",
           "+100 準確率 （3 件）"
         ],
-        Name: "漢尼拔的屈膝 (Hannibal's Bending Knee)",
+        Name: "漢尼拔的屈膝 (Hanabal's Bending Knee)",
         Index: "Hannibal's Bending Knee",
         Enabled: true,
         Rarity: 7,
@@ -22172,7 +22172,7 @@ const json = [
         SetPropertiesString: [
           "+30% 跑步 / 行走速度 （4 件）"
         ],
-        Name: "達安夫人的慶典脛甲（Lady Daan's Celeritous Jambeau)",
+        Name: "達安夫人的慶典脛甲（Lady Daan's Celeritous Jambeau) (Lady Daan's Celeritous Jambeau)",
         Index: "Lady Daan's Celeritous Jambeau",
         Enabled: true,
         Rarity: 7,
@@ -23893,7 +23893,7 @@ const json = [
             Index: 2
           },
           {
-            PropertyString: "-20% Faster Hit Recovery",
+            PropertyString: "-20% 打擊恢復",
             Index: 4
           },
           {
@@ -25345,7 +25345,7 @@ const json = [
         Type: "Gloves",
         "Set": "Panda's Polar Adventure",
         SetPropertiesString: [],
-        Name: "熊貓的手套 (Panda's Mittens)",
+        Name: "熊貓的手套 (Panda's Mitts)",
         Index: "Panda's Mitts",
         Enabled: true,
         Rarity: 7,
@@ -25397,7 +25397,7 @@ const json = [
         Type: "Armor",
         "Set": "Panda's Polar Adventure",
         SetPropertiesString: [],
-        Name: "熊貓的外袍 (Panda's Jacket)",
+        Name: "熊貓的外袍 (Panda's Coat)",
         Index: "Panda's Coat",
         Enabled: true,
         Rarity: 7,

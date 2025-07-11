@@ -1,4 +1,4 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-BXKrpIMs.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-rZJrTnJD.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "uniques";
 const template = '<template>\r\n    <h3 class="text-center my-4">\r\n        共 ${uniques.length} 暗金裝備\r\n    </h3>\r\n    <div class="container">\r\n        <div class="row align-content-center justify-content-center text-center mb-5">\r\n            <div class="col-12 col-md-5 col-lg-4">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="職業選擇"\r\n                            options.bind="classes"\r\n                            class="standard-betsy-select"\r\n                            value.bind="class"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-5 col-lg-4">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="底材選擇"\r\n                            options.bind="types"\r\n                            class="standard-betsy-select"\r\n                            value.bind="selectedType"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-5 col-lg-4">\r\n                <moo-text-field\r\n                        class="w-100"\r\n                        label="Search Uniques"\r\n                        type="text"\r\n                        value.bind="search"\r\n                ></moo-text-field>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="row gy-5 px-5 text-center">\r\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="unique of uniques">\r\n            <div class="card bg-dark p-2">\r\n                <div class="unique-text fs-5 mb-1">\r\n                    ${unique.Name}\r\n                </div>\r\n                <div class="rarity mb-1" if.bind="unique.Rarity">\r\n                    稀有度: ${unique.Rarity}\r\n                </div>\r\n                <div class="armor mb-1" if.bind="unique.Equipment.Name">\r\n                    ${unique.Equipment.Name}\r\n                </div>\r\n                <div class="armor mb-1" if.bind="unique.Equipment.ArmorString">\r\n                    防禦: ${unique.Equipment.ArmorString}\r\n                </div>\r\n                <div class="damage" if.bind="unique.Equipment.DamageTypes"\r\n                     repeat.for="damage of unique.Equipment.DamageTypes">\r\n                    ${getDamageTypeString(damage.Type)} ${damage.DamageString}\r\n                </div>\r\n                <div class="requirement" if.bind="unique.RequiredLevel > 0">\r\n                    等級需求：${unique.RequiredLevel}\r\n                </div>\r\n                <div class="requirement" if.bind="unique.Equipment.RequiredStrength > 0">\r\n                    力量需求：${unique.Equipment.RequiredStrength}\r\n                </div>\r\n                <div class="requirement" if.bind="unique.Equipment.RequiredDexterity > 0">\r\n                    敏捷需求：${unique.Equipment.RequiredDexterity}\r\n                </div>\r\n                <div class="durability mt-1" if.bind="unique.Equipment.Durability > 0">\r\n                    耐久度：${unique.Equipment.Durability}\r\n                </div>\r\n                <div class="mt-2">\r\n                    <div class="enhanced" repeat.for="property of unique.Properties">\r\n                        ${property.PropertyString}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n';
@@ -23,7 +23,7 @@ const __au2ViewDef = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.define
 const json = [
   {
     Type: "Small Charm",
-    Name: "科林之力【T1】(Collin's Lesser Might)",
+    Name: "科林之力【T1】 (Collin's Lesser Might)",
     Index: "t1 Splash Charm",
     Enabled: true,
     Rarity: 1,
@@ -1038,7 +1038,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "魔鬼杰克 (Deviljack)",
+    Name: "魔鬼傑克 (Deviljack)",
     Index: "Deviljack",
     Enabled: true,
     Rarity: 3,
@@ -1478,7 +1478,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法箭矢 (Magic Arrows)",
+      Name: "魔法箭矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -1517,7 +1517,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法弩矢 (Magic Bolts)",
+      Name: "魔法弩矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -4121,7 +4121,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "炫彩之刃 (Chromablade)",
+    Name: "炫彩之刃 (Chronablade)",
     Index: "Chromablade",
     Enabled: true,
     Rarity: 3,
@@ -4499,7 +4499,7 @@ const json = [
   },
   {
     Type: "Small Charm",
-    Name: "科林的力量【T2】(Collin's Minor Might)",
+    Name: "科林的力量【T2】 (Collin's Minor Might)",
     Index: "t2 Splash Charm",
     Enabled: false,
     Rarity: 1,
@@ -14170,7 +14170,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "尖齒盾 (Fanged Shield)",
+    Name: "尖齒盾 (Fanged Strike)",
     Index: "Fanged Shield",
     Enabled: true,
     Rarity: 1,
@@ -29060,7 +29060,7 @@ const json = [
         }
       ],
       EquipmentType: 1,
-      Name: "短棍 (Cudgel)",
+      Name: "短棍",
       RequiredStrength: 25,
       RequiredDexterity: 0,
       Durability: 250,
@@ -30838,7 +30838,7 @@ const json = [
   },
   {
     Type: "Magic Bow Quiv",
-    Name: "穿刺箭袋 (Quiver of Piercing)",
+    Name: "穿刺箭袋 (Arrows of Piercing)",
     Index: "Quiver of Piercing",
     Enabled: true,
     Rarity: 1,
@@ -30866,7 +30866,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法箭矢 (Magic Arrows)",
+      Name: "魔法箭矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -30942,7 +30942,7 @@ const json = [
   },
   {
     Type: "Magic Xbow Quiv",
-    Name: "穿刺弩盒 (Bolt Case of Piercing)",
+    Name: "穿刺弩盒 (Bolts of Piercing)",
     Index: "Bolt Case of Piercing",
     Enabled: true,
     Rarity: 1,
@@ -30970,7 +30970,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法弩矢 (Magic Bolts)",
+      Name: "魔法弩矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -31527,7 +31527,7 @@ const json = [
         }
       ],
       EquipmentType: 1,
-      Name: "手斧 (Hatchet)",
+      Name: "手斧",
       RequiredStrength: 25,
       RequiredDexterity: 25,
       Durability: 250,
@@ -32456,11 +32456,11 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "-10% Increased Attack Speed",
+        PropertyString: "攻擊速度 -10%",
         Index: 4
       },
       {
-        PropertyString: "-10% Faster Hit Recovery",
+        PropertyString: "-10% 打擊恢復",
         Index: 5
       },
       {
@@ -34201,7 +34201,7 @@ const json = [
         }
       ],
       EquipmentType: 1,
-      Name: "手斧 (Hatchet)",
+      Name: "手斧",
       RequiredStrength: 25,
       RequiredDexterity: 25,
       Durability: 295,
@@ -35095,7 +35095,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Emerald Facet)\n翡玉刻面",
+    Name: "翡玉刻面 (Emerald Facet)",
     Index: "Emerald Facet",
     Enabled: true,
     Rarity: 5,
@@ -36771,7 +36771,7 @@ const json = [
         }
       ],
       EquipmentType: 1,
-      Name: "短棍 (Cudgel)",
+      Name: "短棍",
       RequiredStrength: 25,
       RequiredDexterity: 0,
       Durability: 250,
@@ -37336,7 +37336,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "猎鹰之銳 (Falcon Sharp)",
+    Name: "獵鷹之銳 (Falcon Sharp)",
     Index: "Falcon Sharp",
     Enabled: true,
     Rarity: 3,
@@ -41992,7 +41992,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Quartz Facet)\n石英刻面",
+    Name: "石英刻面 (Quartz Facet)",
     Index: "Quartz Facet",
     Enabled: true,
     Rarity: 5,
@@ -42356,7 +42356,7 @@ const json = [
         }
       ],
       EquipmentType: 1,
-      Name: "手斧 (Hatchet)",
+      Name: "手斧",
       RequiredStrength: 25,
       RequiredDexterity: 25,
       Durability: 250,
@@ -43012,7 +43012,7 @@ const json = [
         }
       ],
       EquipmentType: 1,
-      Name: "鴉嘴鎬 (Crowbill)",
+      Name: "鴉嘴鎬",
       RequiredStrength: 94,
       RequiredDexterity: 70,
       Durability: 250,
@@ -47212,7 +47212,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "头号劲敌 (Arch-Nemesis)",
+    Name: "头号劲敌 (Arch-Nemsis)",
     Index: "Arch-Nemesis",
     Enabled: true,
     Rarity: 1,
@@ -47860,7 +47860,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Spring Facet)\n春之刻面",
+    Name: "春之刻面 (Spring Facet)",
     Index: "Spring Facet",
     Enabled: true,
     Rarity: 1,
@@ -47903,7 +47903,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Winter Facet)\n冬之刻面",
+    Name: "冬之刻面 (Winter Facet)",
     Index: "Winter Facet",
     Enabled: true,
     Rarity: 1,
@@ -47946,7 +47946,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Summer Facet)\n夏之刻面",
+    Name: "夏之刻面 (Summer Facet)",
     Index: "Summer Facet",
     Enabled: true,
     Rarity: 1,
@@ -47989,7 +47989,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Autumn Facet)\n秋之刻面",
+    Name: "秋之刻面 (Autumn Facet)",
     Index: "Autumn Facet",
     Enabled: true,
     Rarity: 1,
@@ -48032,7 +48032,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Thunder Facet)\n雷之刻面",
+    Name: "雷之刻面 (Thunder Facet)",
     Index: "Thunder Facet",
     Enabled: true,
     Rarity: 1,
@@ -48075,7 +48075,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Rime Facet)\n霧凇刻面",
+    Name: "霧凇刻面 (Rime Facet)",
     Index: "Rime Facet",
     Enabled: true,
     Rarity: 1,
@@ -48118,7 +48118,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Burnt Facet)\n灼燒刻面",
+    Name: "灼燒刻面 (Burn Facet)",
     Index: "Burnt Facet",
     Enabled: true,
     Rarity: 1,
@@ -48161,7 +48161,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Toxic Facet)\n劇毒刻面",
+    Name: "劇毒刻面 (Toxic Facet)",
     Index: "Toxic Facet",
     Enabled: true,
     Rarity: 1,
@@ -49395,7 +49395,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Topaz Facet)\n黄玉刻面",
+    Name: "黄玉刻面 (Topaz Facet)",
     Index: "Topaz Facet",
     Enabled: true,
     Rarity: 5,
@@ -52468,7 +52468,7 @@ const json = [
         }
       ],
       EquipmentType: 1,
-      Name: "鴉嘴鎬 (Crowbill)",
+      Name: "鴉嘴鎬",
       RequiredStrength: 94,
       RequiredDexterity: 70,
       Durability: 250,
@@ -53865,7 +53865,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "奧西里斯的祝福(Blessings of Osiris)",
+    Name: "奧西里斯的祝福 (Blessings of Osiris)",
     Index: "Blessings of Osiris",
     Enabled: true,
     Rarity: 3,
@@ -54061,7 +54061,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "孫子兵法 (The Art of War)",
+    Name: "孫子兵法 (Art of War)",
     Index: "The Art of War",
     Enabled: true,
     Rarity: 1,
@@ -54397,7 +54397,7 @@ const json = [
         }
       ],
       EquipmentType: 1,
-      Name: "短棍 (Cudgel)",
+      Name: "短棍",
       RequiredStrength: 25,
       RequiredDexterity: 0,
       Durability: 250,
@@ -57367,7 +57367,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Jade Facet)\n翠玉刻面",
+    Name: "翠玉刻面 (Jade Facet)",
     Index: "Jade Facet",
     Enabled: true,
     Rarity: 5,
@@ -57406,7 +57406,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Sapphire Facet)\n寶藍刻面",
+    Name: "寶藍刻面 (Sapphire Facet)",
     Index: "Sapphire Facet",
     Enabled: true,
     Rarity: 1,
@@ -57453,7 +57453,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Spinel Facet)\n尖晶刻面",
+    Name: "尖晶刻面 (Spinel Facet)",
     Index: "Spinel Facet",
     Enabled: true,
     Rarity: 1,
@@ -58298,7 +58298,7 @@ const json = [
         }
       ],
       EquipmentType: 1,
-      Name: "鴉嘴鎬 (Crowbill)",
+      Name: "鴉嘴鎬",
       RequiredStrength: 94,
       RequiredDexterity: 70,
       Durability: 250,
@@ -62558,7 +62558,7 @@ const json = [
   },
   {
     Type: "Magic Bow Quiv",
-    Name: "杀戮箭袋 (Quiver of Slaying)",
+    Name: "杀戮箭袋 (Arrows of Slaying)",
     Index: "Quiver of Slaying",
     Enabled: true,
     Rarity: 1,
@@ -62590,7 +62590,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法箭矢 (Magic Arrows)",
+      Name: "魔法箭矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -62605,7 +62605,7 @@ const json = [
   },
   {
     Type: "Magic Xbow Quiv",
-    Name: "杀戮弩盒 (Bolt Case of Slaying)",
+    Name: "杀戮弩盒 (Bolts of Slaying)",
     Index: "Bolt Case of Slaying",
     Enabled: true,
     Rarity: 1,
@@ -62637,7 +62637,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法弩矢 (Magic Bolts)",
+      Name: "魔法弩矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -64447,7 +64447,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Diamond Facet)\n钻石刻面",
+    Name: "鑽石刻面 (Diamond Facet)",
     Index: "Diamond Facet",
     Enabled: true,
     Rarity: 1,
@@ -65263,7 +65263,7 @@ const json = [
         Index: 4
       },
       {
-        PropertyString: "-5% Increased Attack Speed",
+        PropertyString: "攻擊速度 -5%",
         Index: 3
       },
       {
@@ -68037,7 +68037,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Adamantine Facet)\n金剛刻面",
+    Name: "金剛刻面 (Adamantine Facet)",
     Index: "Adamantine Facet",
     Enabled: true,
     Rarity: 1,
@@ -70693,7 +70693,7 @@ const json = [
   },
   {
     Type: "Medium Charm",
-    Name: "地獄火炬",
+    Name: "地獄火炬 (Hellfire Torch)",
     Index: "Hellfire Torch",
     Enabled: false,
     Rarity: 1,
@@ -71020,7 +71020,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "冰寒裂縫",
+    Name: "冰寒裂縫 (Cold Rupture)",
     Index: "Cold Rupture",
     Enabled: false,
     Rarity: 1,
@@ -71059,7 +71059,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "火焰裂隙",
+    Name: "火焰裂隙 (Flame Rift)",
     Index: "Flame Rift",
     Enabled: false,
     Rarity: 1,
@@ -71098,7 +71098,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "天堂裂擊",
+    Name: "天堂裂擊 (Crack of the Heavens)",
     Index: "Crack of the Heavens",
     Enabled: false,
     Rarity: 1,
@@ -71137,7 +71137,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "腐敗裂痕",
+    Name: "腐敗裂痕 (Rotting Fissure)",
     Index: "Rotting Fissure",
     Enabled: false,
     Rarity: 1,
@@ -71176,7 +71176,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "分筋裂骨",
+    Name: "分筋裂骨 (Bone Break)",
     Index: "Bone Break",
     Enabled: false,
     Rarity: 1,
@@ -71215,7 +71215,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "漆黑裂口",
+    Name: "漆黑裂口 (Black Cleft)",
     Index: "Black Cleft",
     Enabled: false,
     Rarity: 1,
@@ -71749,7 +71749,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Star Facet)\n星辰刻面",
+    Name: "星辰刻面 (Star Facet)",
     Index: "Star Facet",
     Enabled: true,
     Rarity: 1,
@@ -72149,7 +72149,7 @@ const json = [
   },
   {
     Type: "Scepter",
-    Name: "天怒人怨 (Wrath Of Heaven)",
+    Name: "天怒人怨 (Wrath of Heaven)",
     Index: "Wrath Of Heaven",
     Enabled: true,
     Rarity: 2,
@@ -78100,7 +78100,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "(Queen's Call)\n女王諭令",
+    Name: "女王諭令 (Queen's Call)",
     Index: "Queen's Call",
     Enabled: true,
     Rarity: 1,
@@ -78155,7 +78155,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "(Heaven Facet)\n天堂刻面",
+    Name: "天堂刻面 (Heaven Facet)",
     Index: "Heaven Facet",
     Enabled: true,
     Rarity: 1,
@@ -78230,7 +78230,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法箭矢 (Magic Arrows)",
+      Name: "魔法箭矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -78281,7 +78281,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法箭矢 (Magic Arrows)",
+      Name: "魔法箭矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -78332,7 +78332,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法弩矢 (Magic Bolts)",
+      Name: "魔法弩矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -78383,7 +78383,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法弩矢 (Magic Bolts)",
+      Name: "魔法弩矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -78398,7 +78398,7 @@ const json = [
   },
   {
     Type: "Small Charm",
-    Name: "(Black Soulstone)\n黑色靈魂石",
+    Name: "黑色靈魂石 (Black Soulstone)",
     Index: "Black Soulstone",
     Enabled: false,
     Rarity: 1,
@@ -78453,7 +78453,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "(Obsidian Beacon)\n黑曜石火炬",
+    Name: "黑曜石火炬 (Obsidian Beacon)",
     Index: "Obsidian Beacon",
     Enabled: false,
     Rarity: 1,
@@ -78540,7 +78540,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法箭矢 (Magic Arrows)",
+      Name: "魔法箭矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
@@ -78591,7 +78591,7 @@ const json = [
     DamageArmorEnhanced: false,
     Equipment: {
       EquipmentType: 2,
-      Name: "魔法弩矢 (Magic Bolts)",
+      Name: "魔法弩矢",
       RequiredStrength: 0,
       RequiredDexterity: 0,
       Durability: 0,
