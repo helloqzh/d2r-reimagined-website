@@ -1,4 +1,4 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-DOZmGxQU.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-BXKrpIMs.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "uniques";
 const template = '<template>\r\n    <h3 class="text-center my-4">\r\n        共 ${uniques.length} 暗金裝備\r\n    </h3>\r\n    <div class="container">\r\n        <div class="row align-content-center justify-content-center text-center mb-5">\r\n            <div class="col-12 col-md-5 col-lg-4">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="職業選擇"\r\n                            options.bind="classes"\r\n                            class="standard-betsy-select"\r\n                            value.bind="class"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-5 col-lg-4">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="底材選擇"\r\n                            options.bind="types"\r\n                            class="standard-betsy-select"\r\n                            value.bind="selectedType"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-5 col-lg-4">\r\n                <moo-text-field\r\n                        class="w-100"\r\n                        label="Search Uniques"\r\n                        type="text"\r\n                        value.bind="search"\r\n                ></moo-text-field>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="row gy-5 px-5 text-center">\r\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="unique of uniques">\r\n            <div class="card bg-dark p-2">\r\n                <div class="unique-text fs-5 mb-1">\r\n                    ${unique.Name}\r\n                </div>\r\n                <div class="rarity mb-1" if.bind="unique.Rarity">\r\n                    稀有度: ${unique.Rarity}\r\n                </div>\r\n                <div class="armor mb-1" if.bind="unique.Equipment.Name">\r\n                    ${unique.Equipment.Name}\r\n                </div>\r\n                <div class="armor mb-1" if.bind="unique.Equipment.ArmorString">\r\n                    防禦: ${unique.Equipment.ArmorString}\r\n                </div>\r\n                <div class="damage" if.bind="unique.Equipment.DamageTypes"\r\n                     repeat.for="damage of unique.Equipment.DamageTypes">\r\n                    ${getDamageTypeString(damage.Type)} ${damage.DamageString}\r\n                </div>\r\n                <div class="requirement" if.bind="unique.RequiredLevel > 0">\r\n                    等級需求：${unique.RequiredLevel}\r\n                </div>\r\n                <div class="requirement" if.bind="unique.Equipment.RequiredStrength > 0">\r\n                    力量需求：${unique.Equipment.RequiredStrength}\r\n                </div>\r\n                <div class="requirement" if.bind="unique.Equipment.RequiredDexterity > 0">\r\n                    敏捷需求：${unique.Equipment.RequiredDexterity}\r\n                </div>\r\n                <div class="durability mt-1" if.bind="unique.Equipment.Durability > 0">\r\n                    耐久度：${unique.Equipment.Durability}\r\n                </div>\r\n                <div class="mt-2">\r\n                    <div class="enhanced" repeat.for="property of unique.Properties">\r\n                        ${property.PropertyString}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n';
@@ -1454,7 +1454,7 @@ const json = [
   },
   {
     Type: "Magic Bow Quiv",
-    Name: "自動回復箭袋 (Replenishing Quiver)",
+    Name: "倒刺箭袋 (Barbed Arrows)",
     Index: "Replenishing Quiver",
     Enabled: false,
     Rarity: 1,
@@ -1493,7 +1493,7 @@ const json = [
   },
   {
     Type: "Magic Xbow Quiv",
-    Name: "自動回復弩盒 (Replenishing Bolt Case)",
+    Name: "倒刺弩盒 (Barbed Bolts)",
     Index: "Replenishing Bolt Case",
     Enabled: false,
     Rarity: 1,
@@ -3792,7 +3792,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "海蛇之王 (Serpent Lord)",
+    Name: "巨蛇之王 (Serpent Lord)",
     Index: "Serpent Lord1",
     Enabled: true,
     Rarity: 5,
@@ -34725,7 +34725,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "通往毁灭之路 (Road to Perdition)",
+    Name: "墮獄之路 (Road to Perdition)",
     Index: "Road to Perdition1",
     Enabled: true,
     Rarity: 3,
