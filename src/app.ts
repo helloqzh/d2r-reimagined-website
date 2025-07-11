@@ -9,6 +9,11 @@ import { route } from '@aurelia/router-lite';
             title: 'Home',
         },
         {
+            path: 'home',
+            component: import('./pages/home/home'),
+            title: 'Home',
+        },
+        {
             path: 'cube-recipes',
             component: import('./pages/cube-recipes/cube-recipes'),
             title: 'Cube Recipes',

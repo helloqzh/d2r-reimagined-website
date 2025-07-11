@@ -312,6 +312,13 @@ function pureName(name) {
     return name;
 }
 
+
+function setNameOrIndexTranslation(srcMap, destMap) {
+    const name = srcMap['Name'].trim();
+    const index = srcMap['Index'].trim();
+    srcMap['Name'] = destMap[name] || destMap[index] || name;
+}
+
 /**
  * 暗金/套裝/符文之語的屬性翻譯
  * @param {string} prop 屬性
@@ -382,13 +389,14 @@ function translateProp(prop) {
         .replace(/Adds ([+]?\d+(?:-\d+)?) to Damage/, '增加 $1 傷害')
         .replace(/(\+\d+(?:-\d+)?) Kick Damage/, '踢擊傷害 $1')
         // 雜
-        .replace(/((\+|-)\d+(?:-\d+)?)% better chance of getting magic item/, '尋獲魔法物品機率提高 $1%')
+        .replace('+50% chance for finishing moves to not consume charges', '+50% 機率使終結技不消耗集氣的力量')
+        .replace(/((\+|-)\d+(?:-\d+)?|\+\d+\.\d+)% better chance of getting magic item/, '尋獲魔法物品機率提高 $1%')
         .replace(/((?:\+)?\d+(?:-\d+)?)% Hit Causes Monster To Flee/, '$1% 機率擊中使怪物逃跑')
-        .replace(/((\+|-)\d+(?:-\d+)?)% extra gold from monsters/, '怪物金幣掉落量提高 $1%')
+        .replace(/((\+|-)\d+(?:-\d+)?|\+\d+\.\d+)% extra gold from monsters/, '怪物金幣掉落量提高 $1%')
         .replace(/Repairs ((?:0\.)?\d+) durability per second/, '每 1 秒修復 $1 點耐久度')
         .replace(/Reduces all Vendor Prices (\d+(?:-\d+)?)%/, '所有商人的價格降低 $1%')
         .replace(/Attacker Takes Damage of (\+\d+(?:-\d+)?)/, '攻擊者反傷 $1')
-        .replace(/(\+\d+(?:-\d+)?)% to Experience Gained/, '獲得的經驗值 $1%')
+        .replace(/([+-]\d+(?:-\d+)?)% to Experience Gained/, '獲得的經驗值 $1%')
         .replace(/(\+\d+(?:-\d+)?)% Faster Run\/Walk/, '$1% 跑步 / 行走速度')
         .replace(/\+(\d+) Increase Maximum Durability/, '耐久上限增加 $1')
         .replace(/Fires Explosive Arrows or Bolts/, '射出爆炸的弓矢或弩箭')
@@ -411,9 +419,19 @@ function translateProp(prop) {
         .replace(/Indestructible/, '無法破壞')
         .replace(/Knockback/, '擊退')
         .replace(/Ethereal/, '無形')
+        .replace(/(\d+%(?:-\d+%)?) Reanimate as: Afflicted/, '$1 機率將目標復生為：污染怪')
+        .replace(/(\d+%(?:-\d+%)?) Reanimate as: Returned/, '$1 機率將目標復生為：返世亡靈')
+        .replace(/(\d+%(?:-\d+%)?) Reanimate as: /, '$1 機率將目標復生為：')
+        // 破除免疫
+        .replace('+300 Nearby Enemies are Cold Sunders', '破除怪物的寒冰免疫')
+        .replace('+300 Nearby Enemies are Fire Sundered', '破除怪物的火焰免疫')
+        .replace('+300 Nearby Enemies are Lightning Sundered', '破除怪物的閃電免疫')
+        .replace('+300 Nearby Enemies are Poison Sundered', '破除怪物的毒素免疫')
+        .replace('+300 Nearby Enemies are Physical Sundered', '破除怪物的物理免疫')
+        .replace('+300 Nearby Enemies are Magic Sundered', '破除怪物的魔法免疫')
 
         // 屬性點
-        .replace(/(\+\d+(?:-\d+)?) to All Attributes/, '$1 所有屬性')
+        .replace(/([+-]\d+(?:-\d+)?) to All Attributes/, '$1 所有屬性')
         .replace(/([+-]\d+(?:-\d+)?|\+\d+\.\d+) to Energy/, '$1 能量')
         .replace(/(\+\d+(?:-\d+)?|\+\d+\.\d+) to Vitality/, '$1 體能')
         .replace(/(\+\d+(?:-\d+)?|\+\d+\.\d+) to Strength/, '$1 力量')
@@ -585,10 +603,7 @@ function translateEquipmentName() {
     for(let i = 0; i < uniques.length; i++) {
         const uniquesItem = uniques[i];
         // 裝備名稱
-        const name = uniquesItem['Name'].trim();
-        if (equipmentMap[name]) {
-            uniquesItem['Name'] = equipmentMap[name];
-        }
+        setNameOrIndexTranslation(uniquesItem, equipmentMap);
 
         // 底材名稱
         const baseName = uniquesItem['Equipment']['Name'].trim();
@@ -611,19 +626,13 @@ function translateEquipmentName() {
         const setItem = sets[i];
 
         // 套裝名稱
-        const setName = setItem['Name'].trim();
-        if (equipmentMap[setName]) {
-            setItem['Name'] = equipmentMap[setName];
-        }
+        setNameOrIndexTranslation(setItem, equipmentMap);
 
         for(let j = 0; j < setItem['SetItems'].length; j++) {
             const item = setItem['SetItems'][j];
 
             // 裝備名稱
-            const name = item['Name'].trim();
-            if (equipmentMap[name]) {
-                item['Name'] = equipmentMap[name];
-            }
+            setNameOrIndexTranslation(item, equipmentMap);
 
             // 底材名稱
             const baseName = item['Equipment']['Name'].trim();
@@ -643,17 +652,13 @@ function translateEquipmentName() {
         const zhTW = pureName(item['zhTW']);
         rwMap[enUS] = zhTW;
     }
-    rwMap['Fortitude (Helm Removed)'] = '剛毅（頭盔 已移除）';
+    rwMap['Fortitude (Helm Removed)'] = '剛毅（頭盔 已移除）| Fortitude (Helm Removed)';
+    rwMap['Rain Reimagined'] = '重構之雨（已移除）| Rain Reimagined (Removed)';
     const runewords = jsoncParser.parse(fs.readFileSync(`${jsonFolder}/runewords.json`, 'utf-8'));
     for(let i = 0; i < runewords.length; i++) {
         const rw = runewords[i];
-        // 套裝名稱
-        const rwName = rw['Name'].trim();
-        if (rwMap[rwName]) {
-            rw['Name'] = rwMap[rwName];
-        } else {
-            console.warn(rwName);
-        }
+        // 符文之语名稱
+        setNameOrIndexTranslation(rw, rwMap);
     }
     writeFileWithBOM(`${jsonFolder}/runewords.json`, JSON.stringify(runewords, null, 4));
 
