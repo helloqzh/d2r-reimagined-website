@@ -16,7 +16,7 @@ void Aurelia
     .register(
         RouterConfiguration.customize({
             //title: "Betsy Bot Admin Panel",
-            useUrlFragmentHash: false,
+            useUrlFragmentHash: true,
         }),
     )
     .register(BetsyWebComponentsPlugin)
