@@ -1,7 +1,7 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-Fs0eH6wK.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-CmODfqph.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "runewords";
-const template = '<template>\n    <h3 class="text-center my-4">\n        共 ${filteredRunewords.length} 符文之語\n    </h3>\n    <div class="container">\n        <div class="row align-content-center justify-content-center text-center mb-5">\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="凹槽数量"\n                            options.bind="amounts"\n                            class="standard-betsy-select"\n                            value.bind="selectedAmount"\n                    ></moo-select>\n                </div>\n            </div>\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="底材类型"\n                            options.bind="types"\n                            class="standard-betsy-select"\n                            value.bind="selectedType"\n                    ></moo-select>\n                    <moo-checkbox checked.bind="exclusiveType" id="exclusiveType">Exact type only</moo-checkbox>\n                </div>\n            </div>\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="mb-2">\n                    <moo-text-field\n                            class="w-100"\n                            label="Search Runewords"\n                            type="text"\n                            value.bind="search"\n                    ></moo-text-field>\n                </div>\n            </div>\n            <div class="col-12 col-md-4 col-lg-3">\n                <div class="mb-2">\n                    <moo-text-field\n                            class="w-100"\n                            label="Runes"\n                            type="text"\n                            value.bind="searchRunes"\n                    ></moo-text-field>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class="row gy-5 px-5 text-center">\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="runeword of filteredRunewords">\n            <div class="card bg-dark p-2">\n                <div class="unique-text fs-4 mb-1">\n                    ${runeword.Name}\n                </div>\n                <div class="combo">\n                    <span repeat.for="rune of runeword.Runes">\n                        ${rune.Name | runeName} ${$index + 1 !== runeword.Runes.length ? \' + \' : \'\'}\n                    </span>\n                </div>\n                <div class="types py-2">\n                    <span repeat.for="type of runeword.Types">\n                        ${transformTypeName(type.Name)} ${$index + 1 !== runeword.Types.length ? \' or \' : \'\'}\n                    </span>\n                </div>\n                <div class="requirement" if.bind="actualLevelRequirement(runeword) > 0">\n                    等級需求：${actualLevelRequirement(runeword)}\n                </div>\n                <div class="mt-2">\n                    <div class="enhanced" repeat.for="property of runeword.Properties">\n                        ${property.PropertyString}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</template>\n';
+const template = '<template>\r\n    <h3 class="text-center my-4">\r\n        共 ${filteredRunewords.length} 符文之語\r\n    </h3>\r\n    <div class="container">\r\n        <div class="row align-content-center justify-content-center text-center mb-5">\r\n            <div class="col-12 col-md-4 col-lg-3">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="凹槽数量"\r\n                            options.bind="amounts"\r\n                            class="standard-betsy-select"\r\n                            value.bind="selectedAmount"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-4 col-lg-3">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="底材类型"\r\n                            options.bind="types"\r\n                            class="standard-betsy-select"\r\n                            value.bind="selectedType"\r\n                    ></moo-select>\r\n                    <moo-checkbox checked.bind="exclusiveType" id="exclusiveType">Exact type only</moo-checkbox>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-4 col-lg-3">\r\n                <div class="mb-2">\r\n                    <moo-text-field\r\n                            class="w-100"\r\n                            label="Search Runewords"\r\n                            type="text"\r\n                            value.bind="search"\r\n                    ></moo-text-field>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-4 col-lg-3">\r\n                <div class="mb-2">\r\n                    <moo-text-field\r\n                            class="w-100"\r\n                            label="Runes"\r\n                            type="text"\r\n                            value.bind="searchRunes"\r\n                    ></moo-text-field>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class="row gy-5 px-5 text-center">\r\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="runeword of filteredRunewords">\r\n            <div class="card bg-dark p-2">\r\n                <div class="unique-text fs-4 mb-1">\r\n                    ${runeword.Name}\r\n                </div>\r\n                <div class="combo">\r\n                    <span repeat.for="rune of runeword.Runes">\r\n                        ${rune.Name | runeName} ${$index + 1 !== runeword.Runes.length ? \' + \' : \'\'}\r\n                    </span>\r\n                </div>\r\n                <div class="types py-2">\r\n                    <span repeat.for="type of runeword.Types">\r\n                        ${transformTypeName(type.Name)} ${$index + 1 !== runeword.Types.length ? \' or \' : \'\'}\r\n                    </span>\r\n                </div>\r\n                <div class="requirement" if.bind="actualLevelRequirement(runeword) > 0">\r\n                    等級需求：${actualLevelRequirement(runeword)}\r\n                </div>\r\n                <div class="mt-2">\r\n                    <div class="enhanced" repeat.for="property of runeword.Properties">\r\n                        ${property.PropertyString}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n';
 const dependencies = [];
 const bindables = {};
 let _e;
@@ -1565,7 +1565,7 @@ const json = [
         Index: 0
       },
       {
-        PropertyString: "-10 to All Attributes",
+        PropertyString: "-10 所有屬性",
         Index: 3
       },
       {
@@ -2272,7 +2272,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "-3% to Experience Gained",
+        PropertyString: "獲得的經驗值 -3%",
         Index: 1
       },
       {
@@ -4413,7 +4413,7 @@ const json = [
         Index: 6
       },
       {
-        PropertyString: "-2% to Experience Gained",
+        PropertyString: "獲得的經驗值 -2%",
         Index: 3
       }
     ],
@@ -6364,7 +6364,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +1.5% （依角色等級而定）",
         Index: 0
       }
     ],
@@ -10672,7 +10672,7 @@ const json = [
     Code: "Mosaic",
     Properties: [
       {
-        PropertyString: "+50% chance for finishing moves to not consume charges",
+        PropertyString: "+50% 機率使終結技不消耗集氣的力量",
         Index: 1
       },
       {
@@ -11529,7 +11529,7 @@ const json = [
         Index: 5
       },
       {
-        PropertyString: "-3% to Experience Gained",
+        PropertyString: "獲得的經驗值 -3%",
         Index: 6
       },
       {
@@ -12881,7 +12881,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "剛毅（頭盔 已移除）",
+    Name: "剛毅（頭盔 已移除）| Fortitude (Helm Removed)",
     Index: "Fortitude (Dummy)",
     Enabled: true,
     Rarity: 0,
@@ -15437,7 +15437,7 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "10% Reanimate as: Returned",
+        PropertyString: "10% 機率將目標復生為：返世亡靈",
         Index: 5
       },
       {
@@ -15760,7 +15760,7 @@ const json = [
         Index: 0
       },
       {
-        PropertyString: "+3.12% extra gold from monsters （依角色等級而定）",
+        PropertyString: "怪物金幣掉落量提高 +3.12% （依角色等級而定）",
         Index: 6
       }
     ],
@@ -16530,7 +16530,7 @@ const json = [
         Index: 0
       },
       {
-        PropertyString: "-5% to Experience Gained",
+        PropertyString: "獲得的經驗值 -5%",
         Index: 3
       },
       {
@@ -17807,7 +17807,7 @@ const json = [
         Index: 5
       },
       {
-        PropertyString: "+1.88% extra gold from monsters （依角色等級而定）",
+        PropertyString: "怪物金幣掉落量提高 +1.88% （依角色等級而定）",
         Index: 6
       }
     ],
@@ -18242,7 +18242,7 @@ const json = [
         Class: ""
       }
     ],
-    Name: "Rain Reimagined",
+    Name: "重構之雨（已移除）| Rain Reimagined (Removed)",
     Index: "Rain Reimagined",
     Enabled: true,
     Rarity: 0,
@@ -18347,7 +18347,7 @@ const json = [
         Index: 0
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +1.5% （依角色等級而定）",
         Index: 2
       },
       {

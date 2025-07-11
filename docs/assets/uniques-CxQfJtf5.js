@@ -1,7 +1,7 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-Fs0eH6wK.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-CmODfqph.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "uniques";
-const template = '<template>\n    <h3 class="text-center my-4">\n        共 ${uniques.length} 暗金裝備\n    </h3>\n    <div class="container">\n        <div class="row align-content-center justify-content-center text-center mb-5">\n            <div class="col-12 col-md-5 col-lg-4">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="職業選擇"\n                            options.bind="classes"\n                            class="standard-betsy-select"\n                            value.bind="class"\n                    ></moo-select>\n                </div>\n            </div>\n            <div class="col-12 col-md-5 col-lg-4">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="底材選擇"\n                            options.bind="types"\n                            class="standard-betsy-select"\n                            value.bind="selectedType"\n                    ></moo-select>\n                </div>\n            </div>\n            <div class="col-12 col-md-5 col-lg-4">\n                <moo-text-field\n                        class="w-100"\n                        label="Search Uniques"\n                        type="text"\n                        value.bind="search"\n                ></moo-text-field>\n            </div>\n        </div>\n    </div>\n\n    <div class="row gy-5 px-5 text-center">\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="unique of uniques">\n            <div class="card bg-dark p-2">\n                <div class="unique-text fs-5 mb-1">\n                    ${unique.Name}\n                </div>\n                <div class="rarity mb-1" if.bind="unique.Rarity">\n                    稀有度: ${unique.Rarity}\n                </div>\n                <div class="armor mb-1" if.bind="unique.Equipment.Name">\n                    ${unique.Equipment.Name}\n                </div>\n                <div class="armor mb-1" if.bind="unique.Equipment.ArmorString">\n                    防禦: ${unique.Equipment.ArmorString}\n                </div>\n                <div class="damage" if.bind="unique.Equipment.DamageTypes"\n                     repeat.for="damage of unique.Equipment.DamageTypes">\n                    ${getDamageTypeString(damage.Type)} ${damage.DamageString}\n                </div>\n                <div class="requirement" if.bind="unique.RequiredLevel > 0">\n                    等級需求：${unique.RequiredLevel}\n                </div>\n                <div class="requirement" if.bind="unique.Equipment.RequiredStrength > 0">\n                    力量需求：${unique.Equipment.RequiredStrength}\n                </div>\n                <div class="requirement" if.bind="unique.Equipment.RequiredDexterity > 0">\n                    敏捷需求：${unique.Equipment.RequiredDexterity}\n                </div>\n                <div class="durability mt-1" if.bind="unique.Equipment.Durability > 0">\n                    耐久度：${unique.Equipment.Durability}\n                </div>\n                <div class="mt-2">\n                    <div class="enhanced" repeat.for="property of unique.Properties">\n                        ${property.PropertyString}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</template>\n';
+const template = '<template>\r\n    <h3 class="text-center my-4">\r\n        共 ${uniques.length} 暗金裝備\r\n    </h3>\r\n    <div class="container">\r\n        <div class="row align-content-center justify-content-center text-center mb-5">\r\n            <div class="col-12 col-md-5 col-lg-4">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="職業選擇"\r\n                            options.bind="classes"\r\n                            class="standard-betsy-select"\r\n                            value.bind="class"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-5 col-lg-4">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="底材選擇"\r\n                            options.bind="types"\r\n                            class="standard-betsy-select"\r\n                            value.bind="selectedType"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-md-5 col-lg-4">\r\n                <moo-text-field\r\n                        class="w-100"\r\n                        label="Search Uniques"\r\n                        type="text"\r\n                        value.bind="search"\r\n                ></moo-text-field>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="row gy-5 px-5 text-center">\r\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="unique of uniques">\r\n            <div class="card bg-dark p-2">\r\n                <div class="unique-text fs-5 mb-1">\r\n                    ${unique.Name}\r\n                </div>\r\n                <div class="rarity mb-1" if.bind="unique.Rarity">\r\n                    稀有度: ${unique.Rarity}\r\n                </div>\r\n                <div class="armor mb-1" if.bind="unique.Equipment.Name">\r\n                    ${unique.Equipment.Name}\r\n                </div>\r\n                <div class="armor mb-1" if.bind="unique.Equipment.ArmorString">\r\n                    防禦: ${unique.Equipment.ArmorString}\r\n                </div>\r\n                <div class="damage" if.bind="unique.Equipment.DamageTypes"\r\n                     repeat.for="damage of unique.Equipment.DamageTypes">\r\n                    ${getDamageTypeString(damage.Type)} ${damage.DamageString}\r\n                </div>\r\n                <div class="requirement" if.bind="unique.RequiredLevel > 0">\r\n                    等級需求：${unique.RequiredLevel}\r\n                </div>\r\n                <div class="requirement" if.bind="unique.Equipment.RequiredStrength > 0">\r\n                    力量需求：${unique.Equipment.RequiredStrength}\r\n                </div>\r\n                <div class="requirement" if.bind="unique.Equipment.RequiredDexterity > 0">\r\n                    敏捷需求：${unique.Equipment.RequiredDexterity}\r\n                </div>\r\n                <div class="durability mt-1" if.bind="unique.Equipment.Durability > 0">\r\n                    耐久度：${unique.Equipment.Durability}\r\n                </div>\r\n                <div class="mt-2">\r\n                    <div class="enhanced" repeat.for="property of unique.Properties">\r\n                        ${property.PropertyString}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n';
 const dependencies = [];
 const bindables = {};
 let _e;
@@ -345,7 +345,7 @@ const json = [
   },
   {
     Type: "Ring",
-    Name: "订婚戒指 (Ring of Engagement)",
+    Name: "訂婚之戒 (Ring of Engagement)",
     Index: "Ring of Engagement",
     Enabled: true,
     Rarity: 9,
@@ -1141,7 +1141,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "叛徒的印记 (Traitor's Mark)",
+    Name: "叛徒的印記 (Traitor's Mark)",
     Index: "Traitor's Mark",
     Enabled: true,
     Rarity: 3,
@@ -1348,7 +1348,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "暗黑破坏者 (Darkflayer)",
+    Name: "黑暗剝皮者 (Darkflayer)",
     Index: "Darkflayer",
     Enabled: true,
     Rarity: 3,
@@ -2341,7 +2341,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "马拉松拖鞋 (Marathon Slipper)",
+    Name: "馬拉松的拖鞋 (Marathon Slipper)",
     Index: "Marathon Slipper",
     Enabled: true,
     Rarity: 3,
@@ -2395,7 +2395,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "隐藏的死亡 (Hidden Death)",
+    Name: "隱秘死亡 (Hidden Death)",
     Index: "Hidden Death",
     Enabled: true,
     Rarity: 3,
@@ -3394,7 +3394,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "蛇王 (Serpent Lord)",
+    Name: "巨蛇之王 (Serpent Lord)",
     Index: "Serpent Lord",
     Enabled: true,
     Rarity: 1,
@@ -3792,7 +3792,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "蛇王 (Serpent Lord)",
+    Name: "巨蛇之王 (Serpent Lord)",
     Index: "Serpent Lord1",
     Enabled: true,
     Rarity: 5,
@@ -4121,7 +4121,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "Chronablade",
+    Name: "炫彩之刃 (Chromablade)",
     Index: "Chromablade",
     Enabled: true,
     Rarity: 3,
@@ -4395,7 +4395,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "猎豹速度 (Cheetah Speed)",
+    Name: "獵豹之速 (Cheetah Speed)",
     Index: "Cheetah Speed",
     Enabled: true,
     Rarity: 1,
@@ -4445,7 +4445,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "高竿之握 (Grip of the Gorgon)",
+    Name: "戈爾貢之握 (Grip of the Gorgon)",
     Index: "Grip of the Gorgon",
     Enabled: true,
     Rarity: 3,
@@ -4714,7 +4714,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "欺骗之绺 (Skein of Deceit)",
+    Name: "欺騙之綹 (Skein of Deceit)",
     Index: "Skein of Deceit",
     Enabled: true,
     Rarity: 3,
@@ -4990,7 +4990,7 @@ const json = [
   },
   {
     Type: "Ring",
-    Name: "无名之恐惧 (Nameless Fear)",
+    Name: "無可名狀的驚懼 (Nameless Fear)",
     Index: "Nameless Fear",
     Enabled: true,
     Rarity: 9,
@@ -5430,7 +5430,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "双子座大衣 (Gemini Coat)",
+    Name: "双子座外袍 (Gemini Coat)",
     Index: "Gemini Coat",
     Enabled: true,
     Rarity: 3,
@@ -5892,7 +5892,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "早晨之后 (Morning After)",
+    Name: "晨午之間 (Morning After)",
     Index: "Morning After",
     Enabled: true,
     Rarity: 1,
@@ -6375,7 +6375,7 @@ const json = [
   },
   {
     Type: "Mace",
-    Name: "痛苦的教训 (Lesson in Pain)",
+    Name: "痛苦的教訓 (Lesson in Pain)",
     Index: "Lesson in Pain",
     Enabled: true,
     Rarity: 3,
@@ -6428,7 +6428,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "奥格登的裹尸布 (Ogden's Shroud)",
+    Name: "奧格登的壽衣 (Ogden's Shroud)",
     Index: "Ogden's Shroud",
     Enabled: true,
     Rarity: 1,
@@ -6586,7 +6586,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "春天的风暴 (Storms of Spring)",
+    Name: "春雷隆隆 (Storms of Spring)",
     Index: "Storms of Spring",
     Enabled: true,
     Rarity: 3,
@@ -7192,7 +7192,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "钢铁之躯 (Steelflesh)",
+    Name: "鋼鐵之軀 (Steelflesh)",
     Index: "Steelflesh",
     Enabled: true,
     Rarity: 3,
@@ -7242,7 +7242,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "戈尔戈梅尔之盾 (Golgomere's Shield)",
+    Name: "格爾戈梅爾之盾 (Golgomere's Shield)",
     Index: "Golgomere's Shield",
     Enabled: true,
     Rarity: 1,
@@ -7358,7 +7358,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "银皮 (Silverskin)",
+    Name: "銀皮 (Silverskin)",
     Index: "Silverskin",
     Enabled: true,
     Rarity: 3,
@@ -8045,7 +8045,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "Gloomform",
+    Name: "憂鬱形態 (Gloomform)",
     Index: "Gloomform",
     Enabled: true,
     Rarity: 1,
@@ -8099,7 +8099,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "鼠人的绳子 (Ratman's Rope)",
+    Name: "鼠人繩索 (Ratman's Rope)",
     Index: "Ratman's Rope",
     Enabled: true,
     Rarity: 1,
@@ -8268,7 +8268,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "钢铁的秘密 (Secret of Steel)",
+    Name: "鋼鐵之秘 (Secret of Steel)",
     Index: "Secret of Steel",
     Enabled: true,
     Rarity: 3,
@@ -8867,7 +8867,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "斯威夫特体面 (Swift Decent)",
+    Name: "迅捷得體之盔 (Swift Decent)",
     Index: "Swift Decent",
     Enabled: true,
     Rarity: 1,
@@ -8921,7 +8921,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "赫库芭的发饰 (Hecuba's Tresses)",
+    Name: "赫庫芭的長髮 (Hecuba's Tresses)",
     Index: "Hecuba's Tresses",
     Enabled: true,
     Rarity: 1,
@@ -8963,7 +8963,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "冬天的寒冷 (Cold of Winter)",
+    Name: "冬寒瑟瑟 (Cold of Winter)",
     Index: "Cold of Winter",
     Enabled: true,
     Rarity: 3,
@@ -9585,7 +9585,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "保护刀疤 (Scarab of Protection)",
+    Name: "防衛聖甲蟲 (Scarab of Protection)",
     Index: "Scarab of Protection",
     Enabled: true,
     Rarity: 1,
@@ -9639,7 +9639,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "快脚斜线 (Swiftfoot Slash)",
+    Name: "快行斜擋 (Swiftfoot Slash)",
     Index: "Swiftfoot Slash",
     Enabled: true,
     Rarity: 1,
@@ -9930,7 +9930,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "Sleepthorn",
+    Name: "致眠之刺 (Sleepthorn)",
     Index: "Sleepthorn",
     Enabled: true,
     Rarity: 1,
@@ -10094,7 +10094,7 @@ const json = [
   },
   {
     Type: "Circlet",
-    Name: "卡戎令牌 (Charon's Token)",
+    Name: "喀戎令牌 (Charon's Token)",
     Index: "Charon's Token",
     Enabled: true,
     Rarity: 5,
@@ -10156,7 +10156,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "債務終結者 (Debt Finisher)",
+    Name: "還債者 (Debt Finisher)",
     Index: "Debt Finisher",
     Enabled: true,
     Rarity: 3,
@@ -10218,7 +10218,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "治愈之触 (Healing Touch)",
+    Name: "治愈之觸 (Healing Touch)",
     Index: "Healing Touch",
     Enabled: true,
     Rarity: 1,
@@ -10440,7 +10440,7 @@ const json = [
   },
   {
     Type: "Ring",
-    Name: "精灵心带 (Elven Heartband)",
+    Name: "精靈心带 (Elven Heartband)",
     Index: "Elven Heartband",
     Enabled: true,
     Rarity: 8,
@@ -10814,7 +10814,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "阿斯塔罗斯之怒 (Ire of Astaroth)",
+    Name: "阿斯塔羅斯之怒 (Ire of Astaroth)",
     Index: "Ire of Astaroth",
     Enabled: true,
     Rarity: 3,
@@ -10940,7 +10940,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "阴影之人 (The Shadowed One)",
+    Name: "暗影天尊 (The Shadowed One)",
     Index: "The Shadowed One",
     Enabled: true,
     Rarity: 1,
@@ -11056,7 +11056,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "号角协会头冠 (Crest of the Horned Society)",
+    Name: "號角協會头冠 (Crest of the Horned Society)",
     Index: "Crest of the Horned Society",
     Enabled: true,
     Rarity: 1,
@@ -11275,7 +11275,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "死亡战士 (Death Mauler)",
+    Name: "死亡戰士 (Death Mauler)",
     Index: "Death Mauler",
     Enabled: true,
     Rarity: 1,
@@ -11383,7 +11383,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "Razorspine",
+    Name: "脊柱剃刀 (Razorspine)",
     Index: "Razorspine",
     Enabled: true,
     Rarity: 1,
@@ -11823,7 +11823,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "隐形兽 (Cloaker Beast)",
+    Name: "隱形野獸 (Cloaker Beast)",
     Index: "Cloaker Beast",
     Enabled: true,
     Rarity: 1,
@@ -11937,7 +11937,7 @@ const json = [
   },
   {
     Type: "Mace",
-    Name: "无尽的睡眠 (Endless Sleep)",
+    Name: "無盡之眠 (Endless Sleep)",
     Index: "Endless Sleep",
     Enabled: true,
     Rarity: 3,
@@ -12104,7 +12104,7 @@ const json = [
   },
   {
     Type: "Throwing Axe",
-    Name: "光谱杀手 (Spectral Slayer)",
+    Name: "幽靈殺手 (Spectral Slayer)",
     Index: "Spectral Slayer",
     Enabled: true,
     Rarity: 1,
@@ -12277,7 +12277,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "骑士手套 (Horseman's Gloves)",
+    Name: "騎手手套 (Horseman's Gloves)",
     Index: "Horseman's Gloves",
     Enabled: true,
     Rarity: 3,
@@ -12400,7 +12400,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "阴险的微笑 (Sinister Smile)",
+    Name: "邪惡的微笑 (Sinister Smile)",
     Index: "Sinister Smile",
     Enabled: true,
     Rarity: 3,
@@ -12458,7 +12458,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "希望堡垒 (Bastion of Hope)",
+    Name: "希望堡壘 (Bastion of Hope)",
     Index: "Bastion of Hope",
     Enabled: true,
     Rarity: 3,
@@ -12520,7 +12520,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "Androsphinx",
+    Name: "老斯芬克斯 (Androsphinx)",
     Index: "Androsphinx",
     Enabled: true,
     Rarity: 3,
@@ -12888,7 +12888,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "光痉 (Light Phasm)",
+    Name: "光之相位 (Light Phasm)",
     Index: "Light Phasm",
     Enabled: true,
     Rarity: 1,
@@ -13006,7 +13006,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "河马之翼 (Hippogriff Wing)",
+    Name: "半鷹马之翼 (Hippogriff Wing)",
     Index: "Hippogriff Wing",
     Enabled: true,
     Rarity: 1,
@@ -13132,7 +13132,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "红龙鳞片 (Red Dragon Scales)",
+    Name: "紅龍鱗甲 (Red Dragon Scales)",
     Index: "Red Dragon Scales",
     Enabled: true,
     Rarity: 1,
@@ -13356,7 +13356,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "山田令牌 (Yamanda's Token)",
+    Name: "亞曼達的信物 (Yamanda's Token)",
     Index: "Yamanda's Token",
     Enabled: true,
     Rarity: 1,
@@ -13974,7 +13974,7 @@ const json = [
   },
   {
     Type: "Throwing Knife",
-    Name: "谢拉的刀 (Sheera's Knives)",
+    Name: "謝拉之刃 (Sheera's Knives)",
     Index: "Sheera's Knives",
     Enabled: true,
     Rarity: 1,
@@ -14170,7 +14170,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "Fanged Strike",
+    Name: "尖齒盾 (Fanged Shield)",
     Index: "Fanged Shield",
     Enabled: true,
     Rarity: 1,
@@ -14339,7 +14339,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "菲利克斯的支架 (Felix's Brace)",
+    Name: "菲利克斯支架 (Felix's Brace)",
     Index: "Felix's Brace",
     Enabled: true,
     Rarity: 1,
@@ -14745,7 +14745,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "夜鹰 (Night Hag)",
+    Name: "暗夜妖婆 (Night Hag)",
     Index: "Night Hag",
     Enabled: true,
     Rarity: 1,
@@ -14859,7 +14859,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "马科的皮尔斯 (Mako's Pierce)",
+    Name: "馬科的穿刺 (Mako's Pierce)",
     Index: "Mako's Pierce",
     Enabled: true,
     Rarity: 1,
@@ -14920,7 +14920,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "Simpering Edge",
+    Name: "造作之刃 (Simpering Edge)",
     Index: "Simpering Edge",
     Enabled: true,
     Rarity: 1,
@@ -14977,7 +14977,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "奇怪的炼金术 (Strange Alchemy)",
+    Name: "奇異煉金術 (Strange Alchemy)",
     Index: "Strange Alchemy",
     Enabled: true,
     Rarity: 3,
@@ -15038,7 +15038,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "亚马逊之吻 (Amazon's Kiss)",
+    Name: "亞馬遜之吻 (Amazon's Kiss)",
     Index: "Amazon's Kiss",
     Enabled: true,
     Rarity: 1,
@@ -15168,7 +15168,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "幽灵链甲 (Ghostly Chainmail)",
+    Name: "幽靈鏈甲 (Ghostly Chainmail)",
     Index: "Ghostly Chainmail",
     Enabled: true,
     Rarity: 1,
@@ -15222,7 +15222,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "哈比的呼唤 (Harpy's Call)",
+    Name: "哈比的呼喚 (Harpy's Call)",
     Index: "Harpy's Call",
     Enabled: true,
     Rarity: 1,
@@ -15276,7 +15276,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "背叛的诱惑 (Treachery's Allure)",
+    Name: "背叛的誘惑 (Treachery's Allure)",
     Index: "Treachery's Allure",
     Enabled: true,
     Rarity: 3,
@@ -15330,7 +15330,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "佩潘的恩典 (Pepin's Grace)",
+    Name: "佩潘的優雅 (Pepin's Grace)",
     Index: "Pepin's Grace",
     Enabled: true,
     Rarity: 1,
@@ -15445,7 +15445,7 @@ const json = [
   },
   {
     Type: "Primal Helm",
-    Name: "凯格拉冈 (Kygragond)",
+    Name: "凱拉岡德 (Kygragond)",
     Index: "Kygragond",
     Enabled: true,
     Rarity: 1,
@@ -15503,7 +15503,7 @@ const json = [
   },
   {
     Type: "Ring",
-    Name: "足底启蒙 (Plantar Enlightenment)",
+    Name: "原初啓蒙 (Plantar Enlightenment)",
     Index: "Plantar Enlightenment",
     Enabled: true,
     Rarity: 2,
@@ -15611,7 +15611,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "速度重剑 (Epee of Speed)",
+    Name: "極速重劍 (Epee of Speed)",
     Index: "Epee of Speed",
     Enabled: true,
     Rarity: 1,
@@ -15729,7 +15729,7 @@ const json = [
   },
   {
     Type: "Club",
-    Name: "树莓橡树 (Bramble Oak)",
+    Name: "黑莓橡樹 (Bramble Oak)",
     Index: "Bramble Oak",
     Enabled: true,
     Rarity: 1,
@@ -15839,7 +15839,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "土地分割器 (Landsplitter)",
+    Name: "土地分離者 (Landsplitter)",
     Index: "Landsplitter",
     Enabled: true,
     Rarity: 3,
@@ -16199,7 +16199,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "阿瓦隆峰顶 (Crest of Avalon)",
+    Name: "阿瓦隆尖峰 (Crest of Avalon)",
     Index: "Crest of Avalon",
     Enabled: true,
     Rarity: 1,
@@ -16310,7 +16310,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "钢铁象鼻虫 (Steel Weevil)",
+    Name: "鋼鐵象甲蟲 (Steel Weevil)",
     Index: "Steel Weevil",
     Enabled: true,
     Rarity: 1,
@@ -16368,7 +16368,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "沃尔塔之羽 (Voltar's Feather)",
+    Name: "沃爾塔之羽 (Voltar's Feather)",
     Index: "Voltar's Feather",
     Enabled: true,
     Rarity: 1,
@@ -16422,7 +16422,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "Lynx Talon",
+    Name: "猞猁之爪 (Lynx Talon)",
     Index: "Lynx Talon",
     Enabled: true,
     Rarity: 3,
@@ -16530,7 +16530,7 @@ const json = [
   },
   {
     Type: "Medium Charm",
-    Name: "Valknut",
+    Name: "瓦爾-諾特 (Valknut)",
     Index: "Valknut",
     Enabled: true,
     Rarity: 1,
@@ -17016,7 +17016,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "眨眼狗 (Blink Dog)",
+    Name: "閃爍獵犬 (Blink Dog)",
     Index: "Blink Dog",
     Enabled: true,
     Rarity: 1,
@@ -17240,7 +17240,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "水银之矛 (Spear of Hydragoon)",
+    Name: "九頭龍之矛 (Spear of Hydragoon)",
     Index: "Spear of Hydragoon",
     Enabled: true,
     Rarity: 1,
@@ -17293,7 +17293,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "圣徒魔杖 (Acolyte's Wand)",
+    Name: "聖徒魔杖 (Acolyte's Wand)",
     Index: "Acolyte's Wand",
     Enabled: true,
     Rarity: 1,
@@ -17350,7 +17350,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "自由飞翔 (Freedom's Flight)",
+    Name: "自由飛翔 (Freedom's Flight)",
     Index: "Freedom's Flight",
     Enabled: true,
     Rarity: 1,
@@ -17403,7 +17403,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "Rethral Bolt",
+    Name: "瑞瑟爾弩矢 (Rethral Bolt)",
     Index: "Rethral Bolt",
     Enabled: true,
     Rarity: 1,
@@ -17568,7 +17568,7 @@ const json = [
   },
   {
     Type: "Circlet",
-    Name: "混乱的思绪 (Muddled Thoughts)",
+    Name: "混亂思緒 (Muddled Thoughts)",
     Index: "Muddled Thoughts",
     Enabled: true,
     Rarity: 3,
@@ -17626,7 +17626,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "比格比的粉碎拳 (Bigby's Crushing Fist)",
+    Name: "比格比粉碎之拳 (Bigby's Crushing Fist)",
     Index: "Bigby's Crushing Fist",
     Enabled: true,
     Rarity: 3,
@@ -17676,7 +17676,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "绿神手镯 (Green God's Bracers)",
+    Name: "綠神護腕 (Green God's Bracers)",
     Index: "Green God's Bracers",
     Enabled: true,
     Rarity: 1,
@@ -17730,7 +17730,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "邪恶腰带 (Belt of Evil)",
+    Name: "邪惡腰帶 (Belt of Evil)",
     Index: "Belt of Evil",
     Enabled: true,
     Rarity: 1,
@@ -17751,7 +17751,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "-2% to Experience Gained",
+        PropertyString: "獲得的經驗值 -2%",
         Index: 2
       },
       {
@@ -17845,7 +17845,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "国王卫队 (King's Guard)",
+    Name: "國王的守護 (King's Guard)",
     Index: "King's Guard",
     Enabled: true,
     Rarity: 3,
@@ -18014,7 +18014,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "灵鹰 (Spirit Hawk)",
+    Name: "靈鷹 (Spirit Hawk)",
     Index: "Spirit Hawk",
     Enabled: true,
     Rarity: 1,
@@ -18389,7 +18389,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "阿纳德克之剑 (Anadek's Sword)",
+    Name: "阿納德克之剑 (Anadek's Sword)",
     Index: "Anadek's Sword",
     Enabled: true,
     Rarity: 1,
@@ -18507,7 +18507,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "田野杀手 (Slayer of Fields)",
+    Name: "田野殺手 (Slayer of Fields)",
     Index: "Slayer of Fields",
     Enabled: true,
     Rarity: 1,
@@ -18564,7 +18564,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "儿童的笑声 (Child's Laughter)",
+    Name: "孩童的笑聲 (Child's Laughter)",
     Index: "Child's Laughter",
     Enabled: true,
     Rarity: 3,
@@ -18625,7 +18625,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "半人马的弧线 (Centaur's Arc)",
+    Name: "半人馬之弧 (Centaur's Arc)",
     Index: "Centaur's Arc",
     Enabled: true,
     Rarity: 1,
@@ -18939,7 +18939,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "莉莉丝的高跟鞋 (Lilith's Heels)",
+    Name: "莉莉絲的高跟鞋 (Lilith's Heels)",
     Index: "Lilith's Heels",
     Enabled: true,
     Rarity: 3,
@@ -18997,7 +18997,7 @@ const json = [
   },
   {
     Type: "Amazon Bow",
-    Name: "毁灭少女 (Damsel of Destruction)",
+    Name: "毀滅少女 (Damsel of Destruction)",
     Index: "Damsel of Destruction",
     Enabled: true,
     Rarity: 1,
@@ -19181,7 +19181,7 @@ const json = [
   },
   {
     Type: "Primal Helm",
-    Name: "奇美拉的混乱 (Chimera's Chaos)",
+    Name: "奇美拉的混亂 (Chimera's Chaos)",
     Index: "Chimera's Chaos",
     Enabled: true,
     Rarity: 3,
@@ -19696,7 +19696,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "杜亚顿精灵弓 (Elven Bow of Duadon)",
+    Name: "杜亞頓精靈弓 (Elven Bow of Duadon)",
     Index: "Elven Bow of Duadon",
     Enabled: true,
     Rarity: 1,
@@ -19887,7 +19887,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "萨提尔的演讲 (Satyr's Speech)",
+    Name: "薩提爾的演講 (Satyr's Speech)",
     Index: "Satyr's Speech",
     Enabled: true,
     Rarity: 1,
@@ -19945,7 +19945,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "痛苦之绺 (Skein of Pain)",
+    Name: "痛苦之綹 (Skein of Pain)",
     Index: "Skein of Pain",
     Enabled: true,
     Rarity: 3,
@@ -20125,7 +20125,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "地狱的唠叨 (Hellchatter)",
+    Name: "地獄的嘮叨 (Hellchatter)",
     Index: "Hellchatter",
     Enabled: true,
     Rarity: 1,
@@ -20179,7 +20179,7 @@ const json = [
   },
   {
     Type: "Primal Helm",
-    Name: "入侵者的欢乐 (Invader's Glee)",
+    Name: "入侵者的歡樂 (Invader's Glee)",
     Index: "Invader's Glee",
     Enabled: true,
     Rarity: 1,
@@ -21121,7 +21121,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "Sajorn Jinx",
+    Name: "撒炅厄運 (Sajorn Jinx)",
     Index: "Sajorn Jinx",
     Enabled: true,
     Rarity: 1,
@@ -21239,7 +21239,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "银橡树弓 (Silver Oak Bow)",
+    Name: "銀橡樹弓 (Silver Oak Bow)",
     Index: "Silver Oak Bow",
     Enabled: true,
     Rarity: 1,
@@ -21300,7 +21300,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "穿刺螺栓 (Piercing Bolt)",
+    Name: "穿刺弩矢 (Piercing Bolt)",
     Index: "Piercing Bolt",
     Enabled: true,
     Rarity: 1,
@@ -21534,7 +21534,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "清晨的眼泪 (Morning's Tears)",
+    Name: "清晨之淚 (Morning's Tears)",
     Index: "Morning's Tears",
     Enabled: true,
     Rarity: 3,
@@ -21712,7 +21712,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "海盗的信仰 (Pirate's Faith)",
+    Name: "海盜的信仰 (Pirate's Faith)",
     Index: "Pirate's Faith",
     Enabled: true,
     Rarity: 3,
@@ -21770,7 +21770,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "萨曼莎的拳头 (Samantha's Fist)",
+    Name: "薩曼莎之拳 (Samantha's Fist)",
     Index: "Samantha's Fist",
     Enabled: true,
     Rarity: 1,
@@ -21823,7 +21823,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "疯人院的钥匙 (Key to the Madhouse)",
+    Name: "瘋人院之鑰 (Key to the Madhouse)",
     Index: "Key to the Madhouse",
     Enabled: true,
     Rarity: 3,
@@ -22811,7 +22811,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "Ettercap",
+    Name: "埃特爾卡普 (Ettercap)",
     Index: "Ettercap",
     Enabled: true,
     Rarity: 1,
@@ -22933,7 +22933,7 @@ const json = [
   },
   {
     Type: "Mace",
-    Name: "黎明之雾 (Dawn's Mist)",
+    Name: "黎明迷霧 (Dawn's Mist)",
     Index: "Dawn's Mist",
     Enabled: true,
     Rarity: 1,
@@ -23112,7 +23112,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "龙爪 (Dragon Talon)",
+    Name: "龍爪 (Dragon Talon)",
     Index: "Dragon Talon",
     Enabled: true,
     Rarity: 1,
@@ -23234,7 +23234,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "瑟瑟丹之斧 (Axe of Sytherdan)",
+    Name: "希瑟丹之斧 (Axe of Sytherdan)",
     Index: "Axe of Sytherdan",
     Enabled: true,
     Rarity: 1,
@@ -23295,7 +23295,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "触摸邪恶 (Touch of Evil)",
+    Name: "邪惡之觸 (Touch of Evil)",
     Index: "Touch of Evil",
     Enabled: true,
     Rarity: 1,
@@ -23417,7 +23417,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "夏伊拉的飞行 (Shayira's Flight)",
+    Name: "夏伊拉的飛行 (Shayira's Flight)",
     Index: "Shayira's Flight",
     Enabled: true,
     Rarity: 1,
@@ -23600,7 +23600,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "梦境 (Dreamscape)",
+    Name: "夢境 (Dreamscape)",
     Index: "Dreamscape",
     Enabled: true,
     Rarity: 1,
@@ -23654,7 +23654,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "骑士的黎明 (Knight's Dawn)",
+    Name: "騎士的黎明 (Knight's Dawn)",
     Index: "Knight's Dawn",
     Enabled: true,
     Rarity: 1,
@@ -23716,7 +23716,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "奥西里斯之盾 (Shield of Osiris)",
+    Name: "奧西里斯之盾 (Shield of Osiris)",
     Index: "Shield of Osiris",
     Enabled: true,
     Rarity: 3,
@@ -23843,7 +23843,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "杰纳斯之脸 (Janus' Face)",
+    Name: "傑納斯之面 (Janus' Face)",
     Index: "Janus' Face",
     Enabled: true,
     Rarity: 3,
@@ -23996,7 +23996,7 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "10% Reanimate as: Ghoul",
+        PropertyString: "10% 機率將目標復生為：Ghoul",
         Index: 6
       }
     ],
@@ -24085,7 +24085,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "破碎的地球 (Broken Earth)",
+    Name: "破碎的大地 (Broken Earth)",
     Index: "Broken Earth",
     Enabled: true,
     Rarity: 1,
@@ -24203,7 +24203,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "齐卡达尔的笑声 (Qikadar's Laughter)",
+    Name: "齊卡達爾的笑聲 (Qikadar's Laughter)",
     Index: "Qikadar's Laughter",
     Enabled: true,
     Rarity: 1,
@@ -24260,7 +24260,7 @@ const json = [
   },
   {
     Type: "Club",
-    Name: "巨怪的指甲 (Troll's Nail)",
+    Name: "食人妖指甲 (Troll's Nail)",
     Index: "Troll's Nail",
     Enabled: true,
     Rarity: 1,
@@ -24374,7 +24374,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "拉德丽娜的魅力 (Ladrina's Enchantment)",
+    Name: "拉德麗娜的强化 (Ladrina's Enchantment)",
     Index: "Ladrina's Enchantment",
     Enabled: true,
     Rarity: 1,
@@ -24508,7 +24508,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "骑士的故事 (A Knight's Tale)",
+    Name: "騎士傳説 (A Knight's Tale)",
     Index: "A Knight's Tale",
     Enabled: true,
     Rarity: 1,
@@ -24658,7 +24658,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "愚人峰 (Fool's Crest)",
+    Name: "愚者之冠 (Fool's Crest)",
     Index: "Fool's Crest",
     Enabled: true,
     Rarity: 1,
@@ -24716,7 +24716,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "外传的损失 (Gaiden's Loss)",
+    Name: "蓋登之損 (Gaiden's Loss)",
     Index: "Gaiden's Loss",
     Enabled: true,
     Rarity: 3,
@@ -24774,7 +24774,7 @@ const json = [
   },
   {
     Type: "Circlet",
-    Name: "吉莉安的头饰 (Gillian's Tiara)",
+    Name: "吉莉安的頭飾 (Gillian's Tiara)",
     Index: "Gillian's Tiara",
     Enabled: true,
     Rarity: 1,
@@ -24828,7 +24828,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "棱镜臂铠 (Prismatic Gauntlets)",
+    Name: "棱鏡臂鎧 (Prismatic Gauntlets)",
     Index: "Prismatic Gauntlets",
     Enabled: true,
     Rarity: 1,
@@ -24882,7 +24882,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "Dawn Scion",
+    Name: "黎明貴族 (Dawn Scion)",
     Index: "Dawn Scion",
     Enabled: true,
     Rarity: 1,
@@ -24940,7 +24940,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "鳄鱼皮包裹 (Crocodile Wrap)",
+    Name: "鰐魚裹腰 (Crocodile Wrap)",
     Index: "Crocodile Wrap",
     Enabled: true,
     Rarity: 1,
@@ -25060,7 +25060,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "亡灵看守者 (Undead Beholder)",
+    Name: "不死旁观者 (Undead Beholder)",
     Index: "Undead Beholder",
     Enabled: true,
     Rarity: 1,
@@ -25238,7 +25238,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "狮子的骄傲 (Lion's Pride)",
+    Name: "獅子的驕傲 (Lion's Pride)",
     Index: "Lion's Pride",
     Enabled: true,
     Rarity: 1,
@@ -25361,7 +25361,7 @@ const json = [
   },
   {
     Type: "Amulet",
-    Name: "季节顺序 (Sequence of Seasons)",
+    Name: "四季變換 (Sequence of Seasons)",
     Index: "Sequence of Seasons",
     Enabled: true,
     Rarity: 6,
@@ -25910,7 +25910,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "兽人杀手 (Orc Slayer)",
+    Name: "獸人殺手 (Orc Slayer)",
     Index: "Orc Slayer",
     Enabled: true,
     Rarity: 3,
@@ -26028,7 +26028,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "最后的飞行 (Final Flight)",
+    Name: "告別飛行 (Final Flight)",
     Index: "Final Flight",
     Enabled: true,
     Rarity: 3,
@@ -26154,7 +26154,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "开拓者 (Pathfinder)",
+    Name: "開拓者 (Pathfinder)",
     Index: "Pathfinder",
     Enabled: true,
     Rarity: 1,
@@ -26681,7 +26681,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "全能闪击 (Omni-Slash)",
+    Name: "全能閃擊 (Omni-Slash)",
     Index: "Omni-Slash",
     Enabled: true,
     Rarity: 1,
@@ -26738,7 +26738,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "北极边缘 (Arctic Edge)",
+    Name: "北極邊緣 (Arctic Edge)",
     Index: "Arctic Edge",
     Enabled: true,
     Rarity: 3,
@@ -26856,7 +26856,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "龙龟 (Dragon Turtle)",
+    Name: "龍龜 (Dragon Turtle)",
     Index: "Dragon Turtle",
     Enabled: true,
     Rarity: 1,
@@ -26913,7 +26913,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "杀手的债务 (Slayer's Debt)",
+    Name: "屠夫的債務 (Slayer's Debt)",
     Index: "Slayer's Debt",
     Enabled: true,
     Rarity: 3,
@@ -26974,7 +26974,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "巫师规则 (Wizard's Rule)",
+    Name: "巫師法則 (Wizard's Rule)",
     Index: "Wizard's Rule",
     Enabled: true,
     Rarity: 1,
@@ -27096,7 +27096,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "基尔罢工 (Kirre Strike)",
+    Name: "基爾的襲擊 (Kirre Strike)",
     Index: "Kirre Strike",
     Enabled: true,
     Rarity: 1,
@@ -27279,7 +27279,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "卡兹的战甲 (Kaz's Battle Armor)",
+    Name: "卡兹的戰甲 (Kaz's Battle Armor)",
     Index: "Kaz's Battle Armor",
     Enabled: true,
     Rarity: 1,
@@ -27445,7 +27445,7 @@ const json = [
   },
   {
     Type: "Circlet",
-    Name: "天气晴好 (Fair Weather)",
+    Name: "天氣晴好 (Fair Weather)",
     Index: "Fair Weather",
     Enabled: true,
     Rarity: 1,
@@ -27733,7 +27733,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "噩梦剃须刀 (Nightmare Razors)",
+    Name: "噩夢剃刀 (Nightmare Razors)",
     Index: "Nightmare Razors",
     Enabled: true,
     Rarity: 1,
@@ -27863,7 +27863,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "Triskelion",
+    Name: "三聯一體 (Triskelion)",
     Index: "Triskelion",
     Enabled: true,
     Rarity: 1,
@@ -28322,7 +28322,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "骷髅之爪 (Skeleton's Claw)",
+    Name: "骷髏之爪 (Skeleton's Claw)",
     Index: "Skeleton's Claw",
     Enabled: true,
     Rarity: 1,
@@ -28387,7 +28387,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "Cadin'Sor",
+    Name: "卡丁瑟 (Cadin'Sor)",
     Index: "Cadin'Sor",
     Enabled: true,
     Rarity: 1,
@@ -28514,7 +28514,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "Viridian 手套 (Viridian Gloves)",
+    Name: "鉻綠手套 (Viridian Gloves)",
     Index: "Viridian Gloves",
     Enabled: true,
     Rarity: 1,
@@ -28837,7 +28837,7 @@ const json = [
   },
   {
     Type: "Primal Helm",
-    Name: "赌徒的荣耀 (Gambler's Glory)",
+    Name: "賭徒的榮耀 (Gambler's Glory)",
     Index: "Gambler's Glory",
     Enabled: true,
     Rarity: 3,
@@ -28953,7 +28953,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "戒严 (Martial Law)",
+    Name: "戰爭法則 (Martial Law)",
     Index: "Martial Law",
     Enabled: true,
     Rarity: 3,
@@ -29075,7 +29075,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "仪仗队 (Honor Guard)",
+    Name: "榮耀守護 (Honor Guard)",
     Index: "Honor Guard",
     Enabled: true,
     Rarity: 1,
@@ -29136,7 +29136,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "诅咒破坏者 (Cursebreaker)",
+    Name: "破咒者 (Cursebreaker)",
     Index: "Cursebreaker",
     Enabled: true,
     Rarity: 3,
@@ -29323,7 +29323,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "灰鹰龙 (Greyhawk Dragon)",
+    Name: "灰鷹巨龍 (Greyhawk Dragon)",
     Index: "Greyhawk Dragon",
     Enabled: true,
     Rarity: 1,
@@ -29377,7 +29377,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "清道夫的甲壳 (Scavanger's Carapace)",
+    Name: "清道夫的甲殼 (Scavanger's Carapace)",
     Index: "Scavanger's Carapace",
     Enabled: true,
     Rarity: 3,
@@ -29435,7 +29435,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "蒙古信托基金 (Mongolian Trust)",
+    Name: "蒙古之證 (Mongolian Trust)",
     Index: "Mongolian Trust",
     Enabled: true,
     Rarity: 3,
@@ -29497,7 +29497,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "掠夺者之爪 (Marauder's Claw)",
+    Name: "掠奪者之爪 (Marauder's Claw)",
     Index: "Marauder's Claw",
     Enabled: true,
     Rarity: 3,
@@ -29605,7 +29605,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "黑暗法师 (Dark Familiar)",
+    Name: "黑暗密友 (Dark Familiar)",
     Index: "Dark Familiar",
     Enabled: true,
     Rarity: 1,
@@ -29968,7 +29968,7 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "+2.5% extra gold from monsters （依角色等級而定）",
+        PropertyString: "怪物金幣掉落量提高 +2.5% （依角色等級而定）",
         Index: 1
       },
       {
@@ -30354,7 +30354,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "沙达扎尔的回答 (Shadazar's Answer)",
+    Name: "沙達扎爾的回答 (Shadazar's Answer)",
     Index: "Shadazar's Answer",
     Enabled: true,
     Rarity: 1,
@@ -30411,7 +30411,7 @@ const json = [
   },
   {
     Type: "Hammer",
-    Name: "蜚蠊叮咬 (Gnat Sting)",
+    Name: "蠓蟲之刺 (Gnat Sting)",
     Index: "Gnat Sting",
     Enabled: true,
     Rarity: 1,
@@ -30472,7 +30472,7 @@ const json = [
   },
   {
     Type: "Scepter",
-    Name: "复仇者荣誉 (Avenger's Honor)",
+    Name: "復仇者的榮譽 (Avenger's Honor)",
     Index: "Avenger's Honor",
     Enabled: true,
     Rarity: 1,
@@ -30594,7 +30594,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "曼德拉 (Mandrake)",
+    Name: "曼德雷克 (Mandrake)",
     Index: "Mandrake",
     Enabled: true,
     Rarity: 3,
@@ -30655,7 +30655,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "夏日锋芒 (Sommerstrike Edge)",
+    Name: "唯擊之刃 (Sommerstrike Edge)",
     Index: "Sommerstrike Edge",
     Enabled: true,
     Rarity: 1,
@@ -30716,7 +30716,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "希尔凡战弓 (Sylvan Battle Bow)",
+    Name: "希爾凡戰弓 (Sylvan Battle Bow)",
     Index: "Sylvan Battle Bow",
     Enabled: true,
     Rarity: 1,
@@ -30838,7 +30838,7 @@ const json = [
   },
   {
     Type: "Magic Bow Quiv",
-    Name: "Arrows of Piercing",
+    Name: "穿刺箭袋 (Quiver of Piercing)",
     Index: "Quiver of Piercing",
     Enabled: true,
     Rarity: 1,
@@ -30881,7 +30881,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "Synthalus",
+    Name: "辛薩魯斯 (Synthalus)",
     Index: "Synthalus",
     Enabled: true,
     Rarity: 1,
@@ -30942,7 +30942,7 @@ const json = [
   },
   {
     Type: "Magic Xbow Quiv",
-    Name: "Bolts of Piercing",
+    Name: "穿刺弩盒 (Bolt Case of Piercing)",
     Index: "Bolt Case of Piercing",
     Enabled: true,
     Rarity: 1,
@@ -31050,7 +31050,7 @@ const json = [
   },
   {
     Type: "Throwing Axe",
-    Name: "橡树翎 (Oakplume)",
+    Name: "橡樹之綹 (Oakplume)",
     Index: "Oakplume",
     Enabled: true,
     Rarity: 1,
@@ -31123,7 +31123,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "亡灵战斧 (Undead Buckler)",
+    Name: "不死者圓盾 (Undead Buckler)",
     Index: "Undead Buckler",
     Enabled: true,
     Rarity: 3,
@@ -31300,7 +31300,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "图坦王 (King Tut)",
+    Name: "圖坦王 (King Tut)",
     Index: "King Tut",
     Enabled: true,
     Rarity: 1,
@@ -31362,7 +31362,7 @@ const json = [
   },
   {
     Type: "Primal Helm",
-    Name: "赫尔姆斯深渊 (Helms Deep)",
+    Name: "深淵之盔 (Helms Deep)",
     Index: "Helms Deep",
     Enabled: true,
     Rarity: 1,
@@ -32009,7 +32009,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "死亡之蹄 (Deathfoe)",
+    Name: "亡者之敵 (Deathfoe)",
     Index: "Deathfoe",
     Enabled: true,
     Rarity: 3,
@@ -32074,7 +32074,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "加尔巴德的哭泣 (Gharbad's Cry)",
+    Name: "加爾巴德的哭泣 (Gharbad's Cry)",
     Index: "Gharbad's Cry",
     Enabled: true,
     Rarity: 1,
@@ -32139,7 +32139,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "大魔导师之杖 (Staff of the Arch-Magus)",
+    Name: "大魔導師之杖 (Staff of the Arch-Magus)",
     Index: "Staff of the Arch-Magus",
     Enabled: true,
     Rarity: 1,
@@ -32204,7 +32204,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "阴影之杖 (Staff of Shadows)",
+    Name: "陰影之杖 (Staff of Shadows)",
     Index: "Staff of Shadows",
     Enabled: true,
     Rarity: 3,
@@ -32265,7 +32265,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "失重的优雅 (Weightless Grace)",
+    Name: "失重的優雅 (Weightless Grace)",
     Index: "Weightless Grace",
     Enabled: true,
     Rarity: 1,
@@ -32323,7 +32323,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "玷污者的肉体 (The Defiler's Flesh)",
+    Name: "褻瀆者的血肉 (The Defiler's Flesh)",
     Index: "The Defiler's Flesh",
     Enabled: true,
     Rarity: 3,
@@ -32724,7 +32724,7 @@ const json = [
   },
   {
     Type: "Primal Helm",
-    Name: "杀手的欢乐 (Slayer's Glee)",
+    Name: "屠夫的歡樂 (Slayer's Glee)",
     Index: "Slayer's Glee",
     Enabled: true,
     Rarity: 3,
@@ -33076,7 +33076,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "任务负责人的诅咒 (Taskmaster's Curse)",
+    Name: "監工的詛咒 (Taskmaster's Curse)",
     Index: "Taskmaster's Curse",
     Enabled: true,
     Rarity: 1,
@@ -33206,7 +33206,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "泰莱娜战弓 (Telena's War Bow)",
+    Name: "泰萊娜戰弓 (Telena's War Bow)",
     Index: "Telena's War Bow",
     Enabled: true,
     Rarity: 1,
@@ -33401,7 +33401,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "吟游诗人之韵 (Rhyme of the Bard)",
+    Name: "吟游詩人之韵 (Rhyme of the Bard)",
     Index: "Rhyme of the Bard",
     Enabled: true,
     Rarity: 3,
@@ -33466,7 +33466,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "耶米斯塔卫士 (Yemista's Defender)",
+    Name: "耶米斯塔衛盾 (Yemista's Defender)",
     Index: "Yemista's Defender",
     Enabled: true,
     Rarity: 1,
@@ -33686,7 +33686,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "灵魂之死 (Death to the Soul)",
+    Name: "魂消魄散 (Death to the Soul)",
     Index: "Death to the Soul",
     Enabled: true,
     Rarity: 1,
@@ -33748,7 +33748,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "半人马的视力 (Centaur's Sight)",
+    Name: "半人马的視綫 (Centaur's Sight)",
     Index: "Centaur's Sight",
     Enabled: true,
     Rarity: 3,
@@ -33806,7 +33806,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "风暴恶魔的眩光 (Storm Demon's Glare)",
+    Name: "風暴惡魔的怒視 (Storm Demon's Glare)",
     Index: "Storm Demon's Glare",
     Enabled: true,
     Rarity: 3,
@@ -34159,7 +34159,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "纯粹的愤怒 (Pure Rancor)",
+    Name: "純粹的怨恨 (Pure Rancor)",
     Index: "Pure Rancor",
     Enabled: true,
     Rarity: 3,
@@ -34216,7 +34216,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "千刀万剐 (Death of a Thousand Cuts)",
+    Name: "千刀萬剮 (Death of a Thousand Cuts)",
     Index: "Death of a Thousand Cuts",
     Enabled: true,
     Rarity: 3,
@@ -34281,7 +34281,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "拆除者 (Demolisher)",
+    Name: "粉碎者 (Demolisher)",
     Index: "Demolisher",
     Enabled: true,
     Rarity: 1,
@@ -34407,7 +34407,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "脚夫栅栏 (Footman's Picket)",
+    Name: "侍者的尖樁 (Footman's Picket)",
     Index: "Footman's Picket",
     Enabled: true,
     Rarity: 1,
@@ -34533,7 +34533,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "Garlana Firebolt",
+    Name: "蓋爾拉娜火弩 (Garlana Firebolt)",
     Index: "Garlana Firebolt",
     Enabled: true,
     Rarity: 3,
@@ -34783,7 +34783,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "鹰的聚会 (Gathering of Hawks)",
+    Name: "鷹聚 (Gathering of Hawks)",
     Index: "Gathering of Hawks",
     Enabled: true,
     Rarity: 1,
@@ -34845,7 +34845,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "黑暗德谟斯涅 (Dark Demesne)",
+    Name: "黑暗地域 (Dark Demesne)",
     Index: "Dark Demesne",
     Enabled: true,
     Rarity: 1,
@@ -35044,7 +35044,7 @@ const json = [
   },
   {
     Type: "Amulet",
-    Name: "鼠王的诅咒 (Rat Lord's Curse)",
+    Name: "鼠王詛咒 (Rat Lord's Curse)",
     Index: "Rat Lord's Curse",
     Enabled: true,
     Rarity: 6,
@@ -35561,7 +35561,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "痛苦之桥 (Bridge of Pain)",
+    Name: "痛苦之橋 (Bridge of Pain)",
     Index: "Bridge of Pain",
     Enabled: true,
     Rarity: 1,
@@ -35622,7 +35622,7 @@ const json = [
   },
   {
     Type: "Hammer",
-    Name: "法莫瑞俱乐部 (Famorian's Club)",
+    Name: "法莫瑞俱樂部 (Famorian's Club)",
     Index: "Famorian's Club",
     Enabled: true,
     Rarity: 1,
@@ -35874,7 +35874,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "天启之火 (Apocalypse Fire)",
+    Name: "天啓之火 (Apocalypse Fire)",
     Index: "Apocalypse Fire",
     Enabled: true,
     Rarity: 3,
@@ -36179,7 +36179,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "盗贼阴谋 (Conspiracy of Thieves)",
+    Name: "盜賊的密謀 (Conspiracy of Thieves)",
     Index: "Conspiracy of Thieves",
     Enabled: true,
     Rarity: 3,
@@ -36237,7 +36237,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "Warriv 的蛇皮 (Warriv's Snakeskin)",
+    Name: "瓦瑞夫的蛇皮腰帶 (Warriv's Snakeskin)",
     Index: "Warriv's Snakeskin",
     Enabled: true,
     Rarity: 1,
@@ -36291,7 +36291,7 @@ const json = [
   },
   {
     Type: "Amazon Bow",
-    Name: "卡西亚的反驳 (Kashya's Retort)",
+    Name: "卡西亚的反駁 (Kashya's Retort)",
     Index: "Kashya's Retort",
     Enabled: true,
     Rarity: 1,
@@ -36603,7 +36603,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "风暴威胁 (Threat of Storms)",
+    Name: "風暴威脅 (Threat of Storms)",
     Index: "Threat of Storms",
     Enabled: true,
     Rarity: 3,
@@ -36664,7 +36664,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "Fleshbleeder",
+    Name: "放血者 (Fleshbleeder)",
     Index: "Fleshbleeder",
     Enabled: true,
     Rarity: 3,
@@ -36725,7 +36725,7 @@ const json = [
   },
   {
     Type: "Club",
-    Name: "角斗士出击 (Gladiator's Strike)",
+    Name: "角鬥士的突襲 (Gladiator's Strike)",
     Index: "Gladiator's Strike",
     Enabled: true,
     Rarity: 3,
@@ -36786,7 +36786,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "灰烬的温暖 (Warmth of Ash)",
+    Name: "灰燼餘溫 (Warmth of Ash)",
     Index: "Warmth of Ash",
     Enabled: true,
     Rarity: 1,
@@ -36880,7 +36880,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "10% Reanimate as: Returned",
+        PropertyString: "10% 機率將目標復生為：返世亡靈",
         Index: 1
       }
     ],
@@ -36908,7 +36908,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "新生儿沙拉 (Neonate's Sallet)",
+    Name: "尼爾涅特便盔 (Neonate's Sallet)",
     Index: "Neonate's Sallet",
     Enabled: true,
     Rarity: 1,
@@ -37086,7 +37086,7 @@ const json = [
   },
   {
     Type: "Amazon Spear",
-    Name: "卑鄙的诱惑者 (Vile Temptress)",
+    Name: "卑劣蕩婦 (Vile Temptress)",
     Index: "Vile Temptress",
     Enabled: true,
     Rarity: 2,
@@ -37151,7 +37151,7 @@ const json = [
   },
   {
     Type: "Orb",
-    Name: "Drehya's Globe",
+    Name: "瑞雅的法球 (Drehya's Globe)",
     Index: "Drehya's Globe",
     Enabled: true,
     Rarity: 1,
@@ -38202,7 +38202,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "黑暗圣像 (Darkkon)",
+    Name: "黑暗聖像 (Darkkon)",
     Index: "Darkkon",
     Enabled: true,
     Rarity: 1,
@@ -38324,7 +38324,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "戰爭育種者 (Warbreeder)",
+    Name: "戰爭販子 (Warbreeder)",
     Index: "Warbreeder",
     Enabled: true,
     Rarity: 5,
@@ -38513,7 +38513,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "雷蛇偏转器 (Razorbite Deflector)",
+    Name: "剃咬偏轉之盾 (Razorbite Deflector)",
     Index: "Razorbite Deflector",
     Enabled: true,
     Rarity: 3,
@@ -38571,7 +38571,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "Megaladon 包裹 (Megaladon Wrap)",
+    Name: "巨齒鯊裹腰 (Megaladon Wrap)",
     Index: "Megaladon Wrap",
     Enabled: true,
     Rarity: 1,
@@ -38629,7 +38629,7 @@ const json = [
   },
   {
     Type: "Amazon Bow",
-    Name: "深渊折磨 (Abyssal Torment)",
+    Name: "深淵折磨 (Abyssal Torment)",
     Index: "Abyssal Torment",
     Enabled: true,
     Rarity: 3,
@@ -38690,7 +38690,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "骑士圣徽 (Knight's Holy Sigil)",
+    Name: "騎士聖徽 (Knight's Holy Sigil)",
     Index: "Knight's Holy Sigil",
     Enabled: true,
     Rarity: 1,
@@ -39277,7 +39277,7 @@ const json = [
         Index: 4
       },
       {
-        PropertyString: "+1.25% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +1.25% （依角色等級而定）",
         Index: 1
       },
       {
@@ -40219,7 +40219,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "雷光 (Sunderblight)",
+    Name: "雷光枯萎 (Sunderblight)",
     Index: "Sunderblight",
     Enabled: true,
     Rarity: 3,
@@ -40280,7 +40280,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "红宝石黎明 (Ruby Dawn)",
+    Name: "深紅黎明 (Ruby Dawn)",
     Index: "Ruby Dawn",
     Enabled: true,
     Rarity: 3,
@@ -40345,7 +40345,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "Huclavee's Flinch",
+    Name: "哈克拉維的退縮 (Huclavee's Flinch)",
     Index: "Huclavee's Flinch",
     Enabled: true,
     Rarity: 3,
@@ -40406,7 +40406,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "游侠之路 (Ranger's Path)",
+    Name: "游俠之路 (Ranger's Path)",
     Index: "Ranger's Path",
     Enabled: true,
     Rarity: 3,
@@ -40467,7 +40467,7 @@ const json = [
   },
   {
     Type: "Throwing Knife",
-    Name: "淤泥转轮 (Silt Runner)",
+    Name: "淤泥轉輪 (Silt Runner)",
     Index: "Silt Runner",
     Enabled: true,
     Rarity: 3,
@@ -40536,7 +40536,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "巨蟒皮肤 (Anaconda Skin)",
+    Name: "巨蚺之皮 (Anaconda Skin)",
     Index: "Anaconda Skin",
     Enabled: true,
     Rarity: 1,
@@ -40594,7 +40594,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "Savant Sin",
+    Name: "學者的罪惡 (Savant Sin)",
     Index: "Savant Sin",
     Enabled: true,
     Rarity: 1,
@@ -40973,7 +40973,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "Locathah",
+    Name: "洛克薩 (Locathah)",
     Index: "Locathah",
     Enabled: true,
     Rarity: 1,
@@ -41095,7 +41095,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "乌鸦之谜 (Raven Myst)",
+    Name: "烏鴉之謎 (Raven Myst)",
     Index: "Raven Myst",
     Enabled: true,
     Rarity: 3,
@@ -41156,7 +41156,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "门前哭泣 (Weeping at the Gate)",
+    Name: "門前哭泣 (Weeping at the Gate)",
     Index: "Weeping at the Gate",
     Enabled: true,
     Rarity: 3,
@@ -41221,7 +41221,7 @@ const json = [
   },
   {
     Type: "Throwing Axe",
-    Name: "卑劣的行为 (Despicable Behavior)",
+    Name: "卑劣行徑 (Despicable Behavior)",
     Index: "Despicable Behavior",
     Enabled: true,
     Rarity: 3,
@@ -41290,7 +41290,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "撕裂的灵魂之肉 (Torn Flesh of Souls)",
+    Name: "靈肉分離 (Torn Flesh of Souls)",
     Index: "Torn Flesh of Souls",
     Enabled: true,
     Rarity: 1,
@@ -41348,7 +41348,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "烦恼的思绪 (Troubled Thoughts)",
+    Name: "煩惱的思緒 (Troubled Thoughts)",
     Index: "Troubled Thoughts",
     Enabled: true,
     Rarity: 1,
@@ -41410,7 +41410,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "骑士纹章 (Knight's Crest)",
+    Name: "騎士之冠 (Knight's Crest)",
     Index: "Knight's Crest",
     Enabled: true,
     Rarity: 3,
@@ -41468,7 +41468,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "阿斯卡里亚握把 (Askarian Grips)",
+    Name: "阿斯卡裏安之握 (Askarian Grips)",
     Index: "Askarian Grips",
     Enabled: true,
     Rarity: 1,
@@ -41695,7 +41695,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "堕落英雄的耻辱 (Fallen Hero's Disgrace)",
+    Name: "墮落英雄的恥辱 (Fallen Hero's Disgrace)",
     Index: "Fallen Hero's Disgrace",
     Enabled: true,
     Rarity: 1,
@@ -42314,7 +42314,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "带血的头皮 (Bloody Scalp)",
+    Name: "帶血的頭皮 (Bloody Scalp)",
     Index: "Bloody Scalp",
     Enabled: true,
     Rarity: 1,
@@ -42371,7 +42371,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "宏伟梦想 (Grandiose Dreams)",
+    Name: "浮誇之夢 (Grandiose Dreams)",
     Index: "Grandiose Dreams",
     Enabled: true,
     Rarity: 3,
@@ -42497,7 +42497,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "恐惧与厌恶 (Fear and Loathing)",
+    Name: "驚懼與憎恨 (Fear and Loathing)",
     Index: "Fear and Loathing",
     Enabled: true,
     Rarity: 3,
@@ -42558,7 +42558,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "基德兰伯爵之斧 (Count Kidran's Axe)",
+    Name: "基德蘭伯爵之斧 (Count Kidran's Axe)",
     Index: "Count Kidran's Axe",
     Enabled: true,
     Rarity: 1,
@@ -42619,7 +42619,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "特尔迪西亚之刺 (Teldicia's Sting)",
+    Name: "特爾迪西亞之刺 (Teldicia's Sting)",
     Index: "Teldicia's Sting",
     Enabled: true,
     Rarity: 1,
@@ -42738,7 +42738,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "乌鸦网 (Drow Mesh)",
+    Name: "卓爾精靈之網 (Drow Mesh)",
     Index: "Drow Mesh",
     Enabled: true,
     Rarity: 3,
@@ -43512,7 +43512,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "特伦特杀手 (Slayer of Trents)",
+    Name: "特倫茨屠夫 (Slayer of Trents)",
     Index: "Slayer of Trents",
     Enabled: true,
     Rarity: 3,
@@ -43634,7 +43634,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "被诅咒者之歌 (Song of the Damned)",
+    Name: "墮獄者之歌 (Song of the Damned)",
     Index: "Song of the Damned",
     Enabled: true,
     Rarity: 1,
@@ -43825,7 +43825,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "北极寒霜 (Arctic Frost)",
+    Name: "北極寒霜 (Arctic Frost)",
     Index: "Arctic Frost",
     Enabled: true,
     Rarity: 1,
@@ -43939,7 +43939,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "骄傲的悖论 (Pride's Paradox)",
+    Name: "驕傲的悖論 (Pride's Paradox)",
     Index: "Pride's Paradox",
     Enabled: true,
     Rarity: 3,
@@ -44250,7 +44250,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "梅西夫的线圈 (Meshif's Coil)",
+    Name: "梅西夫腰帶 (Meshif's Coil)",
     Index: "Meshif's Coil",
     Enabled: true,
     Rarity: 1,
@@ -44308,7 +44308,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "清白的捍卫者 (Defender of Innocence)",
+    Name: "無辜捍衛者 (Defender of Innocence)",
     Index: "Defender of Innocence",
     Enabled: true,
     Rarity: 1,
@@ -44436,7 +44436,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +1.5% （依角色等級而定）",
         Index: 1
       },
       {
@@ -44588,7 +44588,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "突然的顿悟 (Sudden Epiphany)",
+    Name: "突然的頓悟 (Sudden Epiphany)",
     Index: "Sudden Epiphany",
     Enabled: true,
     Rarity: 3,
@@ -44718,7 +44718,7 @@ const json = [
   },
   {
     Type: "Hammer",
-    Name: "Konnan's Maul",
+    Name: "科南的巨錘 (Konnan's Maul)",
     Index: "Konnan's Maul",
     Enabled: true,
     Rarity: 1,
@@ -44763,7 +44763,7 @@ const json = [
   },
   {
     Type: "Scepter",
-    Name: "天界骑士 (Celestial Knight)",
+    Name: "天界騎士 (Celestial Knight)",
     Index: "Celestial Knight",
     Enabled: true,
     Rarity: 1,
@@ -44824,7 +44824,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "巴斯里斯克之触 (Basilisk's Touch)",
+    Name: "巴斯裏斯克之觸 (Basilisk's Touch)",
     Index: "Basilisk's Touch",
     Enabled: true,
     Rarity: 3,
@@ -44889,7 +44889,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "火焰虫 (Flametongue)",
+    Name: "火舌 (Flametongue)",
     Index: "Flametongue",
     Enabled: true,
     Rarity: 1,
@@ -44950,7 +44950,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "萨迪拉 (Sadira)",
+    Name: "薩迪拉 (Sadira)",
     Index: "Sadira",
     Enabled: true,
     Rarity: 1,
@@ -45255,7 +45255,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "财富的傻瓜 (Fortune's Fool)",
+    Name: "財富的愚弄 (Fortune's Fool)",
     Index: "Fortune's Fool",
     Enabled: true,
     Rarity: 3,
@@ -45288,7 +45288,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+0.75% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +0.75% （依角色等級而定）",
         Index: 3
       }
     ],
@@ -45371,7 +45371,7 @@ const json = [
   },
   {
     Type: "Primal Helm",
-    Name: "汉尼拔的王冠 (Hannibal's Crown)",
+    Name: "漢尼拔的王冠 (Hannibal's Crown)",
     Index: "Hannibal's Crown",
     Enabled: true,
     Rarity: 1,
@@ -45487,7 +45487,7 @@ const json = [
   },
   {
     Type: "Hand to Hand 2",
-    Name: "智击 (Chi Strike)",
+    Name: "智擊 (Chi Strike)",
     Index: "Chi Strike",
     Enabled: true,
     Rarity: 3,
@@ -45773,7 +45773,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "拉维德之咬 (Ravid's Bite)",
+    Name: "拉維德之咬 (Ravid's Bite)",
     Index: "Ravid's Bite",
     Enabled: true,
     Rarity: 3,
@@ -45838,7 +45838,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "伪龙 (Pseudodragon)",
+    Name: "僞龍 (Pseudodragon)",
     Index: "Pseudodragon",
     Enabled: true,
     Rarity: 1,
@@ -45903,7 +45903,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "众神之祸 (Bane of All Gods)",
+    Name: "衆神之禍 (Bane of All Gods)",
     Index: "Bane of All Gods",
     Enabled: true,
     Rarity: 3,
@@ -45968,7 +45968,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "青色血刃 (Cyan Bloodbane)",
+    Name: "青色血禍 (Cyan Bloodbane)",
     Index: "Cyan Bloodbane",
     Enabled: true,
     Rarity: 1,
@@ -46029,7 +46029,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "帝国之梦 (Dreams of Empire)",
+    Name: "帝國之梦 (Dreams of Empire)",
     Index: "Dreams of Empire",
     Enabled: true,
     Rarity: 3,
@@ -46094,7 +46094,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "悲伤催生之触 (Griefspawn Touch)",
+    Name: "催悲之觸 (Griefspawn Touch)",
     Index: "Griefspawn Touch",
     Enabled: true,
     Rarity: 1,
@@ -46224,7 +46224,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "森美特螺栓铸件 (Senmet's Boltcaster)",
+    Name: "森美特連弩 (Senmet's Boltcaster)",
     Index: "Senmet's Boltcaster",
     Enabled: true,
     Rarity: 3,
@@ -46285,7 +46285,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "被诅咒者 (Cursed One)",
+    Name: "被詛咒者 (Cursed One)",
     Index: "Cursed One",
     Enabled: true,
     Rarity: 3,
@@ -46415,7 +46415,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "最紧密的联系 (The Strongest Link)",
+    Name: "至强之鏈 (The Strongest Link)",
     Index: "The Strongest Link",
     Enabled: true,
     Rarity: 2,
@@ -46473,7 +46473,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "特斯拉的铠甲 (Tesla's Cuirass)",
+    Name: "特斯拉胸甲 (Tesla's Cuirass)",
     Index: "Tesla's Cuirass",
     Enabled: true,
     Rarity: 3,
@@ -46527,7 +46527,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "复仇誓言 (Vow of Revenge)",
+    Name: "復仇誓言 (Vow of Revenge)",
     Index: "Vow of Revenge",
     Enabled: true,
     Rarity: 1,
@@ -47025,7 +47025,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "猎鹰利爪 (Falcon Talon)",
+    Name: "獵鷹利爪 (Falcon Talon)",
     Index: "Falcon Talon",
     Enabled: true,
     Rarity: 3,
@@ -47090,7 +47090,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "深红十字军 (Crimson Crusade)",
+    Name: "緋紅聖教军 (Crimson Crusade)",
     Index: "Crimson Crusade",
     Enabled: true,
     Rarity: 3,
@@ -47151,7 +47151,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "Kyuss 的十字弓 (Kyuss' Crossbow)",
+    Name: "凱沃斯的十字弓 (Kyuss' Crossbow)",
     Index: "Kyuss' Crossbow",
     Enabled: true,
     Rarity: 1,
@@ -47212,7 +47212,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "Arch-Nemsis",
+    Name: "头号劲敌 (Arch-Nemesis)",
     Index: "Arch-Nemesis",
     Enabled: true,
     Rarity: 1,
@@ -47274,7 +47274,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "龙翼之下 (Under Dragon's Wing)",
+    Name: "龍翼之下 (Under Dragon's Wing)",
     Index: "Under Dragon's Wing",
     Enabled: true,
     Rarity: 1,
@@ -47361,7 +47361,7 @@ const json = [
         Index: 6
       },
       {
-        PropertyString: "10-15% Reanimate as: Afflicted",
+        PropertyString: "10-15% 機率將目標復生為：污染怪",
         Index: 1
       },
       {
@@ -47394,7 +47394,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "尖鳍手镯 (Spikefiend Bracers)",
+    Name: "刺魔護腕 (Spikefiend Bracers)",
     Index: "Spikefiend Bracers",
     Enabled: true,
     Rarity: 1,
@@ -47448,7 +47448,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "旋转的苦行僧 (Whirling Dervish)",
+    Name: "恍惚的苦行僧 (Whirling Dervish)",
     Index: "Whirling Dervish",
     Enabled: true,
     Rarity: 1,
@@ -47506,7 +47506,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "刺客藤 (Assassin Vine)",
+    Name: "藤曼刺客 (Assassin Vine)",
     Index: "Assassin Vine",
     Enabled: true,
     Rarity: 1,
@@ -48118,7 +48118,7 @@ const json = [
   },
   {
     Type: "Jewel",
-    Name: "Burn Facet",
+    Name: "(Burnt Facet)\n灼燒刻面",
     Index: "Burnt Facet",
     Enabled: true,
     Rarity: 1,
@@ -48204,7 +48204,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "永远的边缘 (Edge of Forever)",
+    Name: "永恆邊緣 (Edge of Forever)",
     Index: "Edge of Forever",
     Enabled: true,
     Rarity: 1,
@@ -48326,7 +48326,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "黑暗后裔 (Dark Descent)",
+    Name: "黑暗血統 (Dark Descent)",
     Index: "Dark Descent",
     Enabled: true,
     Rarity: 3,
@@ -48452,7 +48452,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "莽汉 (The Mangler)",
+    Name: "莽漢 (The Mangler)",
     Index: "The Mangler",
     Enabled: true,
     Rarity: 3,
@@ -48513,7 +48513,7 @@ const json = [
   },
   {
     Type: "Mace",
-    Name: "热那亚的信任 (Genoa's Trust)",
+    Name: "吉諾雅的信任 (Genoa's Trust)",
     Index: "Genoa's Trust",
     Enabled: true,
     Rarity: 3,
@@ -48574,7 +48574,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "响尾蛇咬伤 (Rattlesnake Bite)",
+    Name: "響尾蛇之咬 (Rattlesnake Bite)",
     Index: "Rattlesnake Bite",
     Enabled: true,
     Rarity: 1,
@@ -48639,7 +48639,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "龙骨 (Dragoon's Shank)",
+    Name: "巨龍脛骨 (Dragoon's Shank)",
     Index: "Dragoon's Shank",
     Enabled: true,
     Rarity: 1,
@@ -48696,7 +48696,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "烈火考验 (Trial by Fire)",
+    Name: "烈火試煉 (Trial by Fire)",
     Index: "Trial by Fire",
     Enabled: true,
     Rarity: 3,
@@ -48822,7 +48822,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "庇护所病房 (Asylum's Ward)",
+    Name: "精神庇護 (Asylum's Ward)",
     Index: "Asylum's Ward",
     Enabled: true,
     Rarity: 1,
@@ -48883,7 +48883,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "掘墓人联盟 (Gravedancer's Union)",
+    Name: "墓上舞者联盟 (Gravedancer's Union)",
     Index: "Gravedancer's Union",
     Enabled: true,
     Rarity: 3,
@@ -48948,7 +48948,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "拉文克劳 (Ravenclaw)",
+    Name: "烏鴉之爪 (Ravenclaw)",
     Index: "Ravenclaw",
     Enabled: true,
     Rarity: 1,
@@ -49013,7 +49013,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "不同的路径 (Disparate Paths)",
+    Name: "不同的路徑 (Disparate Paths)",
     Index: "Disparate Paths",
     Enabled: true,
     Rarity: 1,
@@ -49071,7 +49071,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "菲斯坦提鲁斯的头骨 (Skull of Fistandantilus)",
+    Name: "菲斯坦提魯斯之顱 (Skull of Fistandantilus)",
     Index: "Skull of Fistandantilus",
     Enabled: true,
     Rarity: 1,
@@ -49133,7 +49133,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "盾牌女郎的帕维斯 (Shieldmaiden's Pavise)",
+    Name: "女戰士大盾 (Shieldmaiden's Pavise)",
     Index: "Shieldmaiden's Pavise",
     Enabled: true,
     Rarity: 3,
@@ -49199,7 +49199,7 @@ const json = [
   },
   {
     Type: "Amazon Javelin",
-    Name: "太阳之妹 (Sister of the Sun)",
+    Name: "太阳的姊妹 (Sister of the Sun)",
     Index: "Sister of the Sun",
     Enabled: true,
     Rarity: 3,
@@ -49543,7 +49543,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "灵魂的收获 (Harvest of Souls)",
+    Name: "靈魂收割 (Harvest of Souls)",
     Index: "Harvest of Souls",
     Enabled: true,
     Rarity: 3,
@@ -49787,7 +49787,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "船长的胜利 (Harbormaster's Victory)",
+    Name: "港監的勝利 (Harbormaster's Victory)",
     Index: "Harbormaster's Victory",
     Enabled: true,
     Rarity: 1,
@@ -49844,7 +49844,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "特安格尔 (Ter'Angreal)",
+    Name: "特安格爾 (Ter'Angreal)",
     Index: "Ter'Angreal",
     Enabled: true,
     Rarity: 1,
@@ -49901,7 +49901,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "幸存者奏鸣曲 (Survivor's Sonata)",
+    Name: "幸存者奏鳴曲 (Survivor's Sonata)",
     Index: "Survivor's Sonata",
     Enabled: true,
     Rarity: 3,
@@ -49938,7 +49938,7 @@ const json = [
         Index: 6
       },
       {
-        PropertyString: "+1.25% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +1.25% （依角色等級而定）",
         Index: 7
       }
     ],
@@ -50031,7 +50031,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "Remorhaz",
+    Name: "冰蠕蟲 (Remorhaz)",
     Index: "Remorhaz",
     Enabled: true,
     Rarity: 3,
@@ -50096,7 +50096,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "有福之人 (Blessed One)",
+    Name: "被祝福者 (Blessed One)",
     Index: "Blessed One",
     Enabled: true,
     Rarity: 3,
@@ -50234,7 +50234,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "硫磺炉 (Brimstone Hearth)",
+    Name: "硫磺爐 (Brimstone Hearth)",
     Index: "Brimstone Hearth",
     Enabled: true,
     Rarity: 3,
@@ -50288,7 +50288,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "获得 (Gotterdamerung)",
+    Name: "黃昏終結 (Gotterdamerung)",
     Index: "Gotterdamerung",
     Enabled: true,
     Rarity: 3,
@@ -50346,7 +50346,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "麒麟爪 (Gryphon's Claw)",
+    Name: "鷹頭獅之爪 (Gryphon's Claw)",
     Index: "Gryphon's Claw",
     Enabled: true,
     Rarity: 3,
@@ -50404,7 +50404,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "破碎的梦想 (Shattered Dreams)",
+    Name: "破碎的夢想 (Shattered Dreams)",
     Index: "Shattered Dreams",
     Enabled: true,
     Rarity: 3,
@@ -50523,7 +50523,7 @@ const json = [
   },
   {
     Type: "Amazon Javelin",
-    Name: "盾女的抛掷 (Shieldmaiden's Toss)",
+    Name: "女戰士之擲 (Shieldmaiden's Toss)",
     Index: "Shieldmaiden's Toss",
     Enabled: true,
     Rarity: 1,
@@ -50592,7 +50592,7 @@ const json = [
   },
   {
     Type: "Amazon Spear",
-    Name: "谋杀者的情妇 (Murder's Mistress)",
+    Name: "謀殺者的情婦 (Murder's Mistress)",
     Index: "Murder's Mistress",
     Enabled: true,
     Rarity: 2,
@@ -50661,7 +50661,7 @@ const json = [
   },
   {
     Type: "Orb",
-    Name: "亵渎徽章 (Desecration Sigil)",
+    Name: "褻瀆徽章 (Desecration Sigil)",
     Index: "Desecration Sigil",
     Enabled: true,
     Rarity: 3,
@@ -50726,7 +50726,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "十字军的意志 (Crusader's Will)",
+    Name: "聖教軍的意志 (Crusader's Will)",
     Index: "Crusader's Will",
     Enabled: true,
     Rarity: 1,
@@ -50850,7 +50850,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "领导者 (Leader of the Pack)",
+    Name: "獸群領袖 (Leader of the Pack)",
     Index: "Leader of the Pack",
     Enabled: true,
     Rarity: 1,
@@ -50916,7 +50916,7 @@ const json = [
   },
   {
     Type: "Hand to Hand 2",
-    Name: "金刚剃刀 (Adamantine Razors)",
+    Name: "金剛剃刀 (Adamantine Razors)",
     Index: "Adamantine Razors",
     Enabled: true,
     Rarity: 3,
@@ -50981,7 +50981,7 @@ const json = [
   },
   {
     Type: "Ring",
-    Name: "盗梦者 (Thief of Dreams)",
+    Name: "盜夢者 (Thief of Dreams)",
     Index: "Thief of Dreams",
     Enabled: true,
     Rarity: 5,
@@ -51237,7 +51237,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "矮人荣誉 (Dwarven Honor)",
+    Name: "矮人榮譽 (Dwarven Honor)",
     Index: "Dwarven Honor",
     Enabled: true,
     Rarity: 1,
@@ -51363,7 +51363,7 @@ const json = [
   },
   {
     Type: "Scepter",
-    Name: "Runestar",
+    Name: "符文之星 (Runestar)",
     Index: "Runestar",
     Enabled: true,
     Rarity: 1,
@@ -51424,7 +51424,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "Kritchan's Ire",
+    Name: "奎特陳的憤怒 (Kritchan's Ire)",
     Index: "Kritchan's Ire",
     Enabled: true,
     Rarity: 3,
@@ -51485,7 +51485,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "拉丽莎的目标 (Larissa's Aim)",
+    Name: "拉麗莎的目標 (Larissa's Aim)",
     Index: "Larissa's Aim",
     Enabled: true,
     Rarity: 1,
@@ -51607,7 +51607,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "母亲的乳汁 (Mother's Milk)",
+    Name: "母親的乳汁 (Mother's Milk)",
     Index: "Mother's Milk",
     Enabled: true,
     Rarity: 1,
@@ -51796,7 +51796,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "食人魔的气息 (Ogre's Breath)",
+    Name: "食人魔的呼吸 (Ogre's Breath)",
     Index: "Ogre's Breath",
     Enabled: true,
     Rarity: 3,
@@ -51861,7 +51861,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "蛙人 (Troglodyte)",
+    Name: "穴居人 (Troglodyte)",
     Index: "Troglodyte",
     Enabled: true,
     Rarity: 1,
@@ -51922,7 +51922,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "城立 (Shirotachi)",
+    Name: "矗立城堡 (Shirotachi)",
     Index: "Shirotachi",
     Enabled: true,
     Rarity: 1,
@@ -51987,7 +51987,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "冰雹 (Hailstrike)",
+    Name: "冰雹打擊 (Hailstrike)",
     Index: "Hailstrike",
     Enabled: true,
     Rarity: 1,
@@ -52044,7 +52044,7 @@ const json = [
   },
   {
     Type: "Throwing Knife",
-    Name: "乌鸦星 (Ravenstar)",
+    Name: "烏鴉之星 (Ravenstar)",
     Index: "Ravenstar",
     Enabled: true,
     Rarity: 3,
@@ -52113,7 +52113,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "多汁的罪恶 (Succulent Sin)",
+    Name: "甜美的罪惡 (Succulent Sin)",
     Index: "Succulent Sin",
     Enabled: true,
     Rarity: 3,
@@ -52171,7 +52171,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "巴尔之翼 (Baal's Wing)",
+    Name: "巴爾之翼 (Baal's Wing)",
     Index: "Baal's Wing",
     Enabled: true,
     Rarity: 1,
@@ -52233,7 +52233,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "腐臭的诽谤者 (Putrid Defiler)",
+    Name: "腐臭褻瀆者 (Putrid Defiler)",
     Index: "Putrid Defiler",
     Enabled: true,
     Rarity: 1,
@@ -52299,7 +52299,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "通往地狱的钥匙 (Key to Hell)",
+    Name: "地獄之鑰 (Key to Hell)",
     Index: "Key to Hell",
     Enabled: true,
     Rarity: 1,
@@ -52483,7 +52483,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "林地野兽 (Woodland Beast)",
+    Name: "林地野獸 (Woodland Beast)",
     Index: "Woodland Beast",
     Enabled: true,
     Rarity: 2,
@@ -52544,7 +52544,7 @@ const json = [
   },
   {
     Type: "Mace",
-    Name: "疯狂的苦恼 (Frantic Distress)",
+    Name: "瘋狂的痛苦 (Frantic Distress)",
     Index: "Frantic Distress",
     Enabled: true,
     Rarity: 3,
@@ -52674,7 +52674,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "月光边缘 (Moonlight Edge)",
+    Name: "月光之刃 (Moonlight Edge)",
     Index: "Moonlight Edge",
     Enabled: true,
     Rarity: 1,
@@ -52739,7 +52739,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "死亡黎明 (Dawn of the Dead)",
+    Name: "亡者黎明 (Dawn of the Dead)",
     Index: "Dawn of the Dead",
     Enabled: true,
     Rarity: 3,
@@ -52800,7 +52800,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "食人魔酋长法则 (Ogre Chieftain's Law)",
+    Name: "巨魔酋長的鐵律 (Ogre Chieftain's Law)",
     Index: "Ogre Chieftain's Law",
     Enabled: true,
     Rarity: 2,
@@ -52987,7 +52987,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "巨型毛发弩 (Giant Hair Crossbow)",
+    Name: "巨型毛髮弩 (Giant Hair Crossbow)",
     Index: "Giant Hair Crossbow",
     Enabled: true,
     Rarity: 1,
@@ -53048,7 +53048,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "拥抱孤独 (Embracing Solitude)",
+    Name: "擁抱孤獨 (Embracing Solitude)",
     Index: "Embracing Solitude",
     Enabled: true,
     Rarity: 1,
@@ -53110,7 +53110,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "篡夺者的野心 (Usurper's Ambition)",
+    Name: "篡奪者的野心 (Usurper's Ambition)",
     Index: "Usurper's Ambition",
     Enabled: true,
     Rarity: 3,
@@ -53160,7 +53160,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "金刚盾 (Adamantine Shield)",
+    Name: "金剛不壞之盾 (Adamantine Shield)",
     Index: "Adamantine Shield",
     Enabled: true,
     Rarity: 1,
@@ -53288,7 +53288,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "精神娜迦 (Spirit Naga)",
+    Name: "靈體娜迦 (Spirit Naga)",
     Index: "Spirit Naga",
     Enabled: true,
     Rarity: 1,
@@ -53353,7 +53353,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "萨瓦金 (Sahuagin)",
+    Name: "薩瓦金 (Sahuagin)",
     Index: "Sahuagin",
     Enabled: true,
     Rarity: 1,
@@ -53418,7 +53418,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "要求伸张正义 (Demand for Justice)",
+    Name: "正義之訴 (Demand for Justice)",
     Index: "Demand for Justice",
     Enabled: true,
     Rarity: 3,
@@ -53552,7 +53552,7 @@ const json = [
   },
   {
     Type: "Scepter",
-    Name: "谜语之王 (Lord of Riddles)",
+    Name: "謎語之王 (Lord of Riddles)",
     Index: "Lord of Riddles",
     Enabled: true,
     Rarity: 3,
@@ -53617,7 +53617,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "龙魂 (Dragon Soul)",
+    Name: "龍魂 (Dragon Soul)",
     Index: "Dragon Soul",
     Enabled: true,
     Rarity: 1,
@@ -53739,7 +53739,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "寡妇的回旋曲 (Widow's Refrain)",
+    Name: "寡婦的抱怨 (Widow's Refrain)",
     Index: "Widow's Refrain",
     Enabled: true,
     Rarity: 3,
@@ -53800,7 +53800,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "艾尔标枪 (Aiel Javelins)",
+    Name: "艾爾標槍 (Aiel Javelins)",
     Index: "Aiel Javelins",
     Enabled: true,
     Rarity: 1,
@@ -53865,7 +53865,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "奥西里斯的祝福 (Blessings of Osiris)",
+    Name: "奧西里斯的祝福(Blessings of Osiris)",
     Index: "Blessings of Osiris",
     Enabled: true,
     Rarity: 3,
@@ -54003,7 +54003,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "术士之触 (Warlock's Touch)",
+    Name: "術士之觸 (Warlock's Touch)",
     Index: "Warlock's Touch",
     Enabled: true,
     Rarity: 1,
@@ -54061,7 +54061,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "Art of War",
+    Name: "孫子兵法 (The Art of War)",
     Index: "The Art of War",
     Enabled: true,
     Rarity: 1,
@@ -54119,7 +54119,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "大审判官 (Grand Inquisitor)",
+    Name: "大審判官 (Grand Inquisitor)",
     Index: "Grand Inquisitor",
     Enabled: true,
     Rarity: 1,
@@ -54181,7 +54181,7 @@ const json = [
   },
   {
     Type: "Hand to Hand 2",
-    Name: "可怕的谣言 (Fearsome Rumors)",
+    Name: "可怕的謠言 (Fearsome Rumors)",
     Index: "Fearsome Rumors",
     Enabled: true,
     Rarity: 3,
@@ -54412,7 +54412,7 @@ const json = [
   },
   {
     Type: "Hammer",
-    Name: "燃烧的欲望 (Burning Desire)",
+    Name: "燃燒的欲望 (Burning Desire)",
     Index: "Burning Desire",
     Enabled: true,
     Rarity: 3,
@@ -54477,7 +54477,7 @@ const json = [
   },
   {
     Type: "Mace",
-    Name: "猫尾巴 (Cat Tail)",
+    Name: "貓尾 (Cat Tail)",
     Index: "Cat Tail",
     Enabled: true,
     Rarity: 1,
@@ -54843,7 +54843,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "先辈的伤痕 (Scars of the Forefathers)",
+    Name: "先輩的傷痕 (Scars of the Forefathers)",
     Index: "Scars of the Forefathers",
     Enabled: true,
     Rarity: 1,
@@ -55005,7 +55005,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "恐惧墙 (Dreadwall)",
+    Name: "恐懼之墻 (Dreadwall)",
     Index: "Dreadwall",
     Enabled: true,
     Rarity: 3,
@@ -55154,7 +55154,7 @@ const json = [
         Index: 4
       },
       {
-        PropertyString: "-3% to Experience Gained",
+        PropertyString: "獲得的經驗值 -3%",
         Index: 3
       },
       {
@@ -55183,7 +55183,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "毒液领主的面容 (Venomlord's Visage)",
+    Name: "毒液領主的面容 (Venomlord's Visage)",
     Index: "Venomlord's Visage",
     Enabled: true,
     Rarity: 1,
@@ -55344,7 +55344,7 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "+0.62% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +0.62% （依角色等級而定）",
         Index: 2
       }
     ],
@@ -55372,7 +55372,7 @@ const json = [
   },
   {
     Type: "Medium Charm",
-    Name: "生命与死亡 (Life & Death)",
+    Name: "生命與死亡 (Life & Death)",
     Index: "Life & Death",
     Enabled: true,
     Rarity: 3,
@@ -55419,7 +55419,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "冷冻水 (Cryohydra)",
+    Name: "寒冰九頭蛇 (Cryohydra)",
     Index: "Cryohydra",
     Enabled: true,
     Rarity: 1,
@@ -55480,7 +55480,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "敏捷与死亡 (The Quick and the Dead)",
+    Name: "敏捷與死亡 (The Quick and the Dead)",
     Index: "The Quick and the Dead",
     Enabled: true,
     Rarity: 3,
@@ -55537,7 +55537,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "小偷的开锁匠 (Thief's Lockpicker)",
+    Name: "盜賊的开锁器 (Thief's Lockpicker)",
     Index: "Thief's Lockpicker",
     Enabled: true,
     Rarity: 1,
@@ -55602,7 +55602,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "瓦莱工作人员 (Staff of Valere)",
+    Name: "瓦萊雇員 (Staff of Valere)",
     Index: "Staff of Valere",
     Enabled: true,
     Rarity: 1,
@@ -55667,7 +55667,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "沙丘转轮 (Dune Runner)",
+    Name: "沙丘轉輪 (Dune Runner)",
     Index: "Dune Runner",
     Enabled: true,
     Rarity: 1,
@@ -55728,7 +55728,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "怀特雄鹿 (Whyte Stag)",
+    Name: "懷特獵鹿弩 (Whyte Stag)",
     Index: "Whyte Stag",
     Enabled: true,
     Rarity: 1,
@@ -55789,7 +55789,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "夜行者 (Nightcrawler)",
+    Name: "暗夜爬行者 (Nightcrawler)",
     Index: "Nightcrawler",
     Enabled: true,
     Rarity: 3,
@@ -55901,7 +55901,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "哈尔布的礼物 (Halbu's Gift)",
+    Name: "哈爾布的禮物 (Halbu's Gift)",
     Index: "Halbu's Gift",
     Enabled: true,
     Rarity: 2,
@@ -55959,7 +55959,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "眼镜蛇之舞 (Dance of the Cobra)",
+    Name: "眼鏡蛇之舞 (Dance of the Cobra)",
     Index: "Dance of the Cobra",
     Enabled: true,
     Rarity: 2,
@@ -56017,7 +56017,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "剑齿虎 (Sabertooth)",
+    Name: "劍齒虎 (Sabertooth)",
     Index: "Sabertooth",
     Enabled: true,
     Rarity: 1,
@@ -56086,7 +56086,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "Web of Wyrd",
+    Name: "命運之網 (Web of Wyrd)",
     Index: "Web of Wyrd",
     Enabled: true,
     Rarity: 1,
@@ -56198,7 +56198,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "小丑的滑稽表演 (Antics of the Jester)",
+    Name: "小丑的滑稽戲 (Antics of the Jester)",
     Index: "Antics of the Jester",
     Enabled: true,
     Rarity: 3,
@@ -56320,7 +56320,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "帝国龙骑士 (Imperial Dragonlance)",
+    Name: "帝國龍槍 (Imperial Dragonlance)",
     Index: "Imperial Dragonlance",
     Enabled: true,
     Rarity: 1,
@@ -56381,7 +56381,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "国父 (Father of Nations)",
+    Name: "國父 (Father of Nations)",
     Index: "Father of Nations",
     Enabled: true,
     Rarity: 1,
@@ -56446,7 +56446,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "恶魔矛外套 (Demonspike Coat)",
+    Name: "魔刺外袍 (Demonspike Coat)",
     Index: "Demonspike Coat",
     Enabled: true,
     Rarity: 1,
@@ -56500,7 +56500,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "晚霞 (Evening Sky)",
+    Name: "夜空 (Evening Sky)",
     Index: "Evening Sky",
     Enabled: true,
     Rarity: 1,
@@ -56902,7 +56902,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "神话杀手 (Mythslayer)",
+    Name: "神話殺手 (Mythslayer)",
     Index: "Mythslayer",
     Enabled: true,
     Rarity: 1,
@@ -56967,7 +56967,7 @@ const json = [
   },
   {
     Type: "Scepter",
-    Name: "特里亚塔伦喷泉 (Trianthalon's Sprinkler)",
+    Name: "特里亞塔倫噴泉 (Trianthalon's Sprinkler)",
     Index: "Trianthalon's Sprinkler",
     Enabled: true,
     Rarity: 1,
@@ -57089,7 +57089,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "地精课程 (Gnomebane)",
+    Name: "地精禍根 (Gnomebane)",
     Index: "Gnomebane",
     Enabled: true,
     Rarity: 1,
@@ -57270,7 +57270,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "冬天的寒意 (Chill of Winter)",
+    Name: "冬日之寒意 (Chill of Winter)",
     Index: "Chill of Winter",
     Enabled: true,
     Rarity: 1,
@@ -57492,7 +57492,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "脆脆快 (Brittlequick)",
+    Name: "易碎的迅捷 (Brittlequick)",
     Index: "Brittlequick",
     Enabled: true,
     Rarity: 1,
@@ -57553,7 +57553,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "纳-克鲁尔的力量 (Na-Krul's Power)",
+    Name: "納-克魯爾之力 (Na-Krul's Power)",
     Index: "Na-Krul's Power",
     Enabled: true,
     Rarity: 1,
@@ -57622,7 +57622,7 @@ const json = [
   },
   {
     Type: "Club",
-    Name: "乌姆巴尔的蝙蝠 (Umbral's Bat)",
+    Name: "烏姆巴爾的蝙蝠 (Umbral's Bat)",
     Index: "Umbral's Bat",
     Enabled: true,
     Rarity: 1,
@@ -57687,7 +57687,7 @@ const json = [
   },
   {
     Type: "Hammer",
-    Name: "山丘巨人之锤 (Hill Giant's Bludgeon)",
+    Name: "山丘巨人的重錘 (Hill Giant's Bludgeon)",
     Index: "Hill Giant's Bludgeon",
     Enabled: true,
     Rarity: 1,
@@ -57752,7 +57752,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "幽灵坐骑 (Ghost Mount)",
+    Name: "幽靈坐騎 (Ghost Mount)",
     Index: "Ghost Mount",
     Enabled: true,
     Rarity: 1,
@@ -57937,7 +57937,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "十字军墙 (Crusader's Wall)",
+    Name: "聖教軍之墙 (Crusader's Wall)",
     Index: "Crusader's Wall",
     Enabled: true,
     Rarity: 1,
@@ -58313,7 +58313,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "天狮 (Celestial Lion)",
+    Name: "天獅 (Celestial Lion)",
     Index: "Celestial Lion",
     Enabled: true,
     Rarity: 1,
@@ -58431,7 +58431,7 @@ const json = [
   },
   {
     Type: "Hammer",
-    Name: "乔姆之锤 (Hammer of Jholm)",
+    Name: "喬姆之錘 (Hammer of Jholm)",
     Index: "Hammer of Jholm",
     Enabled: true,
     Rarity: 1,
@@ -58553,7 +58553,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "冰雪梅菲特 (Ice Mephit)",
+    Name: "冰霜梅菲特 (Ice Mephit)",
     Index: "Ice Mephit",
     Enabled: true,
     Rarity: 1,
@@ -58610,7 +58610,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "杀手的欢乐 (Killer's Glee)",
+    Name: "殺手的得意 (Killer's Glee)",
     Index: "Killer's Glee",
     Enabled: true,
     Rarity: 1,
@@ -58728,7 +58728,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "骑士先知 (Knight's Prophet)",
+    Name: "騎士先知 (Knight's Prophet)",
     Index: "Knight's Prophet",
     Enabled: true,
     Rarity: 1,
@@ -58981,7 +58981,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "阿佛洛狄忒的腰带 (Aphrodite's Girdle)",
+    Name: "阿佛洛狄忒的腰帶 (Aphrodite's Girdle)",
     Index: "Aphrodite's Girdle",
     Enabled: true,
     Rarity: 2,
@@ -59043,7 +59043,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "燃烧的灵魂 (Burning Soul)",
+    Name: "燃燒之魂 (Burning Soul)",
     Index: "Burning Soul",
     Enabled: true,
     Rarity: 1,
@@ -59097,7 +59097,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "河流潜行者 (River Stalker)",
+    Name: "河流潛行者 (River Stalker)",
     Index: "River Stalker",
     Enabled: true,
     Rarity: 1,
@@ -59213,7 +59213,7 @@ const json = [
   },
   {
     Type: "Amazon Bow",
-    Name: "遥远的雷声 (Distant Thunder)",
+    Name: "遠方之雷 (Distant Thunder)",
     Index: "Distant Thunder",
     Enabled: true,
     Rarity: 1,
@@ -59282,7 +59282,7 @@ const json = [
   },
   {
     Type: "Orb",
-    Name: "伯利恒之星 (Star of Bethlehem)",
+    Name: "伯利恆之星 (Star of Bethlehem)",
     Index: "Star of Bethlehem",
     Enabled: true,
     Rarity: 1,
@@ -59343,7 +59343,7 @@ const json = [
   },
   {
     Type: "Hand to Hand",
-    Name: "剃刀指关节 (Razor Knuckle)",
+    Name: "剃刀指虎 (Razor Knuckle)",
     Index: "Razor Knuckle",
     Enabled: true,
     Rarity: 1,
@@ -59907,7 +59907,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "阿希拉的眩晕光束 (Ashira's Stunbeam)",
+    Name: "阿希拉的眩暈光束 (Ashira's Stunbeam)",
     Index: "Ashira's Stunbeam",
     Enabled: true,
     Rarity: 1,
@@ -59968,7 +59968,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "阿耳忒弥斯的刺球 (Artemis's Spiculum)",
+    Name: "阿爾忒弥斯的闊矛 (Artemis's Spiculum)",
     Index: "Artemis's Spiculum",
     Enabled: true,
     Rarity: 1,
@@ -60106,7 +60106,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "晃动的土丘 (Shambling Mound)",
+    Name: "蹣跚之丘 (Shambling Mound)",
     Index: "Shambling Mound",
     Enabled: true,
     Rarity: 2,
@@ -60467,7 +60467,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "扎卡鲁姆的意志 (Will of the Zakarum)",
+    Name: "撒卡蘭姆的意志 (Will of the Zakarum)",
     Index: "Will of the Zakarum",
     Enabled: true,
     Rarity: 1,
@@ -60747,7 +60747,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "Fistandantilus 板",
+    Name: "費斯坦丹提洛思之甲 (Plate of Fistandantilus)",
     Index: "Plate of Fistandantilus",
     Enabled: true,
     Rarity: 1,
@@ -61276,7 +61276,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "獾之咬 (Badger's Bite)",
+    Name: "獾咬 (Badger's Bite)",
     Index: "Badger's Bite",
     Enabled: true,
     Rarity: 1,
@@ -61628,7 +61628,7 @@ const json = [
   },
   {
     Type: "Hand to Hand 2",
-    Name: "若桥 (Wakazashi)",
+    Name: "若橋 (Wakazashi)",
     Index: "Wakazashi",
     Enabled: true,
     Rarity: 1,
@@ -61685,7 +61685,7 @@ const json = [
   },
   {
     Type: "Ring",
-    Name: "豺狼的笑声 (Jackal's Laughter)",
+    Name: "豺狼的笑聲 (Jackal's Laughter)",
     Index: "Jackal's Laughter",
     Enabled: true,
     Rarity: 3,
@@ -62172,7 +62172,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "Couatl",
+    Name: "羽蛇 (Couatl)",
     Index: "Couatl",
     Enabled: true,
     Rarity: 1,
@@ -62302,7 +62302,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "雷电呼叫 (Thundercall)",
+    Name: "雷電呼喚 (Thundercall)",
     Index: "Thundercall",
     Enabled: true,
     Rarity: 1,
@@ -62375,7 +62375,7 @@ const json = [
   },
   {
     Type: "Hammer",
-    Name: "末日头像 (Doom Avatar)",
+    Name: "末日化身 (Doom Avatar)",
     Index: "Doom Avatar",
     Enabled: true,
     Rarity: 1,
@@ -62436,7 +62436,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "奥术保护 (Arcane Protection)",
+    Name: "奧術防護 (Arcane Protection)",
     Index: "Arcane Protection",
     Enabled: true,
     Rarity: 1,
@@ -62497,7 +62497,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "蛛形纲动物的撕咬 (Arachnid's Bite)",
+    Name: "巨蛛之撕咬 (Arachnid's Bite)",
     Index: "Arachnid's Bite",
     Enabled: true,
     Rarity: 1,
@@ -62558,7 +62558,7 @@ const json = [
   },
   {
     Type: "Magic Bow Quiv",
-    Name: "Arrows of Slaying",
+    Name: "杀戮箭袋 (Quiver of Slaying)",
     Index: "Quiver of Slaying",
     Enabled: true,
     Rarity: 1,
@@ -62605,7 +62605,7 @@ const json = [
   },
   {
     Type: "Magic Xbow Quiv",
-    Name: "Bolts of Slaying",
+    Name: "杀戮弩盒 (Bolt Case of Slaying)",
     Index: "Bolt Case of Slaying",
     Enabled: true,
     Rarity: 1,
@@ -62652,7 +62652,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "混乱的飞行 (Flight of Confusion)",
+    Name: "混亂飛行 (Flight of Confusion)",
     Index: "Flight of Confusion",
     Enabled: true,
     Rarity: 1,
@@ -62725,7 +62725,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "星毯 (Blanket of Stars)",
+    Name: "群星之氈 (Blanket of Stars)",
     Index: "Blanket of Stars",
     Enabled: true,
     Rarity: 1,
@@ -63021,7 +63021,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "鹰眼 (Eagle Eyes)",
+    Name: "鷹眼 (Eagle Eyes)",
     Index: "Eagle Eyes",
     Enabled: true,
     Rarity: 1,
@@ -63083,7 +63083,7 @@ const json = [
   },
   {
     Type: "Hand to Hand 2",
-    Name: "怀特爪 (Wight Claw)",
+    Name: "幽靈爪 (Wight Claw)",
     Index: "Wight Claw",
     Enabled: true,
     Rarity: 1,
@@ -63512,7 +63512,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "犹大之吻 (Judas Kiss)",
+    Name: "猶大之吻 (Judas Kiss)",
     Index: "Judas Kiss",
     Enabled: true,
     Rarity: 2,
@@ -63628,7 +63628,7 @@ const json = [
   },
   {
     Type: "Primal Helm",
-    Name: "死亡骑士的面具 (Death Knight's Mask)",
+    Name: "死亡騎士的面具 (Death Knight's Mask)",
     Index: "Death Knight's Mask",
     Enabled: true,
     Rarity: 1,
@@ -64150,7 +64150,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "石匠 (Stoneblaster)",
+    Name: "爆石者 (Stoneblaster)",
     Index: "Stoneblaster",
     Enabled: true,
     Rarity: 1,
@@ -64207,7 +64207,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "古龙 (Ancient Dragon)",
+    Name: "上古巨龍 (Ancient Dragon)",
     Index: "Ancient Dragon",
     Enabled: true,
     Rarity: 1,
@@ -64298,7 +64298,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +1.5% （依角色等級而定）",
         Index: 2
       }
     ],
@@ -64323,7 +64323,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "日食 (Solar Eclipse)",
+    Name: "日蝕 (Solar Eclipse)",
     Index: "Solar Eclipse",
     Enabled: true,
     Rarity: 1,
@@ -64945,7 +64945,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "Marilith Edge",
+    Name: "六臂蛇魔之緣 (Marilith Edge)",
     Index: "Marilith Edge",
     Enabled: true,
     Rarity: 1,
@@ -65006,7 +65006,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "龙之裂口 (Dragon's Breach)",
+    Name: "巨龍裂隙 (Dragon's Breach)",
     Index: "Dragon's Breach",
     Enabled: true,
     Rarity: 1,
@@ -65071,7 +65071,7 @@ const json = [
   },
   {
     Type: "Scepter",
-    Name: "十字军之怒 (Crusader's Wrath)",
+    Name: "聖教軍之怒 (Crusader's Wrath)",
     Index: "Crusader's Wrath",
     Enabled: true,
     Rarity: 1,
@@ -65128,7 +65128,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "理性之声 (Voice of Reason)",
+    Name: "理性之聲 (Voice of Reason)",
     Index: "Voice of Reason",
     Enabled: true,
     Rarity: 1,
@@ -65189,7 +65189,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "狐火叶 (Foxfire Leaf)",
+    Name: "火狐之葉 (Foxfire Leaf)",
     Index: "Foxfire Leaf",
     Enabled: true,
     Rarity: 1,
@@ -65250,7 +65250,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "深渊之链 (Chains of the Abyss)",
+    Name: "深淵之鏈 (Chains of the Abyss)",
     Index: "Chains of the Abyss",
     Enabled: true,
     Rarity: 2,
@@ -65366,7 +65366,7 @@ const json = [
   },
   {
     Type: "Orb",
-    Name: "塔纳里之魂 (Soul Of The Tanar'Ri)",
+    Name: "塔納里之魂 (Soul Of The Tanar'Ri)",
     Index: "Soul Of The Tanar'Ri",
     Enabled: true,
     Rarity: 3,
@@ -65497,7 +65497,7 @@ const json = [
   },
   {
     Type: "Hand to Hand 2",
-    Name: "黑暗复仇女神 (Dark Nemesis)",
+    Name: "黑暗復仇女神 (Dark Nemesis)",
     Index: "Dark Nemesis",
     Enabled: true,
     Rarity: 1,
@@ -65914,7 +65914,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "变形金刚 (Shapeshifter)",
+    Name: "變形者 (Shapeshifter)",
     Index: "Shapeshifter",
     Enabled: true,
     Rarity: 1,
@@ -65971,7 +65971,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "怀特之触 (Wight's Touch)",
+    Name: "懷特之觸 (Wight's Touch)",
     Index: "Wight's Touch",
     Enabled: true,
     Rarity: 1,
@@ -66032,7 +66032,7 @@ const json = [
   },
   {
     Type: "Amazon Javelin",
-    Name: "郭涛的瘟疫 (Kuo-Toa's Plague)",
+    Name: "闊托的瘟疫 (Kuo-Toa's Plague)",
     Index: "Kuo-Toa's Plague",
     Enabled: true,
     Rarity: 2,
@@ -66093,7 +66093,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "奥格登的智慧 (Ogden's Wisdom)",
+    Name: "奧格登的智慧 (Ogden's Wisdom)",
     Index: "Ogden's Wisdom",
     Enabled: true,
     Rarity: 1,
@@ -66162,7 +66162,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "银尖鱼叉 (Silver-Tipped Harpoons)",
+    Name: "銀尖魚叉 (Silver-Tipped Harpoons)",
     Index: "Silver-Tipped Harpoons",
     Enabled: true,
     Rarity: 1,
@@ -66239,7 +66239,7 @@ const json = [
   },
   {
     Type: "Throwing Knife",
-    Name: "常美飞镖 (Darts of Evermeet)",
+    Name: "永聚之飛鏢 (Darts of Evermeet)",
     Index: "Darts of Evermeet",
     Enabled: true,
     Rarity: 1,
@@ -66312,7 +66312,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "扎拉坦隐藏 (Zaratan Hide)",
+    Name: "扎拉坦的隱藏 (Zaratan Hide)",
     Index: "Zaratan Hide",
     Enabled: true,
     Rarity: 1,
@@ -66836,7 +66836,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "死亡之友 (Deathfriend)",
+    Name: "亡者之友 (Deathfriend)",
     Index: "Deathfriend",
     Enabled: true,
     Rarity: 2,
@@ -66897,7 +66897,7 @@ const json = [
   },
   {
     Type: "Club",
-    Name: "Stirgi's 俱乐部 (Stirgi's Club)",
+    Name: "斯戴吉俱樂部 (Stirgi's Club)",
     Index: "Stirgi's Club",
     Enabled: true,
     Rarity: 1,
@@ -67019,7 +67019,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "禁忌仪式 (Forbidden Rites)",
+    Name: "禁忌儀式 (Forbidden Rites)",
     Index: "Forbidden Rites",
     Enabled: true,
     Rarity: 1,
@@ -67157,7 +67157,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "雷神之锤 (Thor's Bolt)",
+    Name: "索爾之弩 (Thor's Bolt)",
     Index: "Thor's Bolt",
     Enabled: true,
     Rarity: 1,
@@ -67279,7 +67279,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "天上独角兽 (Celestial Unicorn)",
+    Name: "星空獨角獸 (Celestial Unicorn)",
     Index: "Celestial Unicorn",
     Enabled: true,
     Rarity: 2,
@@ -67304,7 +67304,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+2.62% extra gold from monsters （依角色等級而定）",
+        PropertyString: "怪物金幣掉落量提高 +2.62% （依角色等級而定）",
         Index: 5
       },
       {
@@ -67333,7 +67333,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "神话之盾 (Shield of Myth)",
+    Name: "神話之盾 (Shield of Myth)",
     Index: "Shield of Myth",
     Enabled: true,
     Rarity: 1,
@@ -67914,7 +67914,7 @@ const json = [
   },
   {
     Type: "Voodoo Heads",
-    Name: "尼赫拉萨克精神 (Nihlathak's Spirit)",
+    Name: "尼拉塞克之魂 (Nihlathak's Spirit)",
     Index: "Nihlathak's Spirit",
     Enabled: true,
     Rarity: 1,
@@ -68427,7 +68427,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "戈尔戈梅尔 (Golgomere)",
+    Name: "戈爾戈梅爾 (Golgomere)",
     Index: "Golgomere",
     Enabled: true,
     Rarity: 1,
@@ -68488,7 +68488,7 @@ const json = [
   },
   {
     Type: "Orb",
-    Name: "大卫之星 (Star of David)",
+    Name: "大衛之星 (Star of David)",
     Index: "Star of David",
     Enabled: true,
     Rarity: 1,
@@ -68553,7 +68553,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "教士的斥责 (Cleric's Rebuke)",
+    Name: "教士的斥責 (Cleric's Rebuke)",
     Index: "Cleric's Rebuke",
     Enabled: true,
     Rarity: 1,
@@ -68615,7 +68615,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "土地精神 (Spirit of the Land)",
+    Name: "大地之魂 (Spirit of the Land)",
     Index: "Spirit of the Land",
     Enabled: true,
     Rarity: 1,
@@ -68915,7 +68915,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "戴尔前夕 (Dyer's Eve)",
+    Name: "戴爾前夜 (Dyer's Eve)",
     Index: "Dyer's Eve",
     Enabled: true,
     Rarity: 1,
@@ -69102,7 +69102,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "被诅咒者合唱团 (Chorus of the Cursed)",
+    Name: "被詛咒者的合鳴 (Chorus of the Cursed)",
     Index: "Chorus of the Cursed",
     Enabled: true,
     Rarity: 1,
@@ -69163,7 +69163,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "金刚弓 (Adamantine Bow)",
+    Name: "金剛弓 (Adamantine Bow)",
     Index: "Adamantine Bow",
     Enabled: true,
     Rarity: 1,
@@ -69228,7 +69228,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "巫妖轨道 (Wyrmbane)",
+    Name: "巨龍剋星 (Wyrmbane)",
     Index: "Wyrmbane",
     Enabled: true,
     Rarity: 1,
@@ -69398,7 +69398,7 @@ const json = [
   },
   {
     Type: "Amazon Bow",
-    Name: "劳拉娜的精灵弓 (Laurana's Elven Bow)",
+    Name: "劳拉娜精靈弓 (Laurana's Elven Bow)",
     Index: "Laurana's Elven Bow",
     Enabled: true,
     Rarity: 1,
@@ -69459,7 +69459,7 @@ const json = [
   },
   {
     Type: "Amazon Spear",
-    Name: "女武神的召唤 (Valkyrie's Calling)",
+    Name: "女武神的召喚 (Valkyrie's Calling)",
     Index: "Valkyrie's Calling",
     Enabled: true,
     Rarity: 1,
@@ -69871,7 +69871,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "精灵秘境 (Elven Mystral)",
+    Name: "精靈秘境 (Elven Mystral)",
     Index: "Elven Mystral",
     Enabled: true,
     Rarity: 1,
@@ -69924,7 +69924,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "帝国激情 (Imperial Passion)",
+    Name: "帝國激情 (Imperial Passion)",
     Index: "Imperial Passion",
     Enabled: true,
     Rarity: 1,
@@ -69981,7 +69981,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "拉達孟之噬 (Radament's Bite)",
+    Name: "拉達孟特之噬咬 (Radament's Bite)",
     Index: "Radament's Bite",
     Enabled: true,
     Rarity: 1,
@@ -70046,7 +70046,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "Wightslayer",
+    Name: "幽靈屠夫 (Wightslayer)",
     Index: "Wightslayer",
     Enabled: true,
     Rarity: 1,
@@ -70079,7 +70079,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "5-10% Reanimate as: Wight",
+        PropertyString: "5-10% 機率將目標復生為：Wight",
         Index: 6
       }
     ],
@@ -70107,7 +70107,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "Will-O'-Wisp",
+    Name: "鬼火 (Will-O'-Wisp)",
     Index: "Will-O'-Wisp",
     Enabled: true,
     Rarity: 1,
@@ -70169,7 +70169,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "沮丧的海螺 (Conch of Dismay)",
+    Name: "驚愕之螺 (Conch of Dismay)",
     Index: "Conch of Dismay",
     Enabled: true,
     Rarity: 1,
@@ -70227,7 +70227,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "通往天堂的阶梯 (Stairway to Heaven)",
+    Name: "天堂階梯 (Stairway to Heaven)",
     Index: "Stairway to Heaven",
     Enabled: true,
     Rarity: 2,
@@ -70289,7 +70289,7 @@ const json = [
   },
   {
     Type: "Primal Helm",
-    Name: "荒原面貌 (Wasteland Visage)",
+    Name: "荒原面甲 (Wasteland Visage)",
     Index: "Wasteland Visage",
     Enabled: true,
     Rarity: 1,
@@ -70740,7 +70740,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "集装箱 (Beholder)",
+    Name: "旁观者 (Beholder)",
     Index: "Beholder",
     Enabled: true,
     Rarity: 1,
@@ -71033,7 +71033,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+300 Nearby Enemies are Cold Sunders",
+        PropertyString: "破除怪物的寒冰免疫",
         Index: 0
       },
       {
@@ -71072,7 +71072,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+300 Nearby Enemies are Fire Sundered",
+        PropertyString: "破除怪物的火焰免疫",
         Index: 0
       },
       {
@@ -71111,7 +71111,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+300 Nearby Enemies are Lightning Sundered",
+        PropertyString: "破除怪物的閃電免疫",
         Index: 0
       },
       {
@@ -71150,7 +71150,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+300 Nearby Enemies are Poison Sundered",
+        PropertyString: "破除怪物的毒素免疫",
         Index: 0
       },
       {
@@ -71189,7 +71189,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+300 Nearby Enemies are Physical Sundered",
+        PropertyString: "破除怪物的物理免疫",
         Index: 0
       },
       {
@@ -71228,7 +71228,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+300 Nearby Enemies are Physical Sundered",
+        PropertyString: "破除怪物的物理免疫",
         Index: 0
       },
       {
@@ -71334,7 +71334,7 @@ const json = [
         Index: 3
       },
       {
-        PropertyString: "5% Reanimate as: Imp2",
+        PropertyString: "5% 機率將目標復生為：Imp2",
         Index: 4
       }
     ],
@@ -71950,7 +71950,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "分裂头骨 (Splitting Skulls)",
+    Name: "裂顱 (Splitting Skulls)",
     Index: "Splitting Skulls",
     Enabled: true,
     Rarity: 1,
@@ -72149,7 +72149,7 @@ const json = [
   },
   {
     Type: "Scepter",
-    Name: "Wrath of Heaven",
+    Name: "天怒人怨 (Wrath Of Heaven)",
     Index: "Wrath Of Heaven",
     Enabled: true,
     Rarity: 2,
@@ -72210,7 +72210,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "深度恐懼 (Dreadfear)",
+    Name: "深度驚懼 (Dreadfear)",
     Index: "Dreadfear",
     Enabled: true,
     Rarity: 2,
@@ -72320,7 +72320,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "发条恐怖 (Clockwork Horror)",
+    Name: "機械恐懼 (Clockwork Horror)",
     Index: "Clockwork Horror",
     Enabled: true,
     Rarity: 1,
@@ -72389,7 +72389,7 @@ const json = [
   },
   {
     Type: "Throwing Axe",
-    Name: "有翼之蛇 (Winged Serpent)",
+    Name: "飛翼巨蛇 (Winged Serpent)",
     Index: "Winged Serpent",
     Enabled: true,
     Rarity: 1,
@@ -72500,7 +72500,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "莉莉丝之冠 (Lilith's Crest)",
+    Name: "莉莉絲之冠 (Lilith's Crest)",
     Index: "Lilith's Crest",
     Enabled: true,
     Rarity: 1,
@@ -72677,7 +72677,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "暗黑破坏神的天平 (Diablo's Scale)",
+    Name: "迪亞布羅之鱗 (Diablo's Scale)",
     Index: "Diablo's Scale",
     Enabled: true,
     Rarity: 1,
@@ -72743,7 +72743,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "孤独堡垒 (Fortress of Solitude)",
+    Name: "孤獨堡壘 (Fortress of Solitude)",
     Index: "Fortress of Solitude",
     Enabled: true,
     Rarity: 1,
@@ -72805,7 +72805,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "智慧包装 (Wisdom's Wrap)",
+    Name: "智慧裹腰 (Wisdom's Wrap)",
     Index: "Wisdom's Wrap",
     Enabled: true,
     Rarity: 1,
@@ -73183,7 +73183,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "欢迎英雄 (Heroes Welcome)",
+    Name: "歡迎英雄 (Heroes Welcome)",
     Index: "Heroes Welcome",
     Enabled: true,
     Rarity: 1,
@@ -73309,7 +73309,7 @@ const json = [
   },
   {
     Type: "Spear",
-    Name: "拉赫达纳精神 (Spirit of Lachdanan)",
+    Name: "拉赫達納之魂 (Spirit of Lachdanan)",
     Index: "Spirit of Lachdanan",
     Enabled: true,
     Rarity: 1,
@@ -73431,7 +73431,7 @@ const json = [
   },
   {
     Type: "Staff",
-    Name: "召唤师的风险 (Summoner's Risk)",
+    Name: "召喚師的風險 (Summoner's Risk)",
     Index: "Summoner's Risk",
     Enabled: true,
     Rarity: 1,
@@ -73492,7 +73492,7 @@ const json = [
   },
   {
     Type: "Wand",
-    Name: "蒙冤者的复仇 (Vengeance of the Wronged)",
+    Name: "蒙冤者的復仇 (Vengeance of the Wronged)",
     Index: "Vengeance of the Wronged",
     Enabled: true,
     Rarity: 1,
@@ -73618,7 +73618,7 @@ const json = [
   },
   {
     Type: "Crossbow",
-    Name: "蓝胡子 (Bluebeard)",
+    Name: "藍鬍子 (Bluebeard)",
     Index: "Bluebeard",
     Enabled: true,
     Rarity: 1,
@@ -73683,7 +73683,7 @@ const json = [
   },
   {
     Type: "Hand to Hand 2",
-    Name: "火焰拳 (Flaming Fist)",
+    Name: "火焰拳刃 (Flaming Fist)",
     Index: "Flaming Fist",
     Enabled: true,
     Rarity: 1,
@@ -73921,7 +73921,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "Tojanida 长老 (Elder Tojanida)",
+    Name: "托蘭尼達長老 (Elder Tojanida)",
     Index: "Elder Tojanida",
     Enabled: true,
     Rarity: 1,
@@ -74051,7 +74051,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "致命猎手 (Deadly Hunter)",
+    Name: "致命獵手 (Deadly Hunter)",
     Index: "Deadly Hunter",
     Enabled: true,
     Rarity: 1,
@@ -74177,7 +74177,7 @@ const json = [
   },
   {
     Type: "Throwing Knife",
-    Name: "屠夫之削皮刀 (Butcher's Paring Knives)",
+    Name: "屠夫的削皮刀 (Butcher's Paring Knives)",
     Index: "Butcher's Paring Knives",
     Enabled: true,
     Rarity: 1,
@@ -74246,7 +74246,7 @@ const json = [
   },
   {
     Type: "Throwing Knife",
-    Name: "蜂拥而至的刀片 (Swarming Blades)",
+    Name: "蜂群之刃 (Swarming Blades)",
     Index: "Swarming Blades",
     Enabled: true,
     Rarity: 1,
@@ -74323,7 +74323,7 @@ const json = [
   },
   {
     Type: "Throwing Knife",
-    Name: "陨落的荣耀 (Fallen Glory)",
+    Name: "隕落的榮耀 (Fallen Glory)",
     Index: "Fallen Glory",
     Enabled: true,
     Rarity: 1,
@@ -74392,7 +74392,7 @@ const json = [
   },
   {
     Type: "Throwing Knife",
-    Name: "冻伤碎片 (Frostbite Shard)",
+    Name: "霜咬碎片 (Frostbite Shard)",
     Index: "Frostbite Shard",
     Enabled: true,
     Rarity: 1,
@@ -74573,7 +74573,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "可怜人的哭泣 (Cry of the Wretched)",
+    Name: "可憐人的哭泣 (Cry of the Wretched)",
     Index: "Cry of the Wretched",
     Enabled: true,
     Rarity: 1,
@@ -74639,7 +74639,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "拉赫达南的臂铠 (Lachdanan's Bracers)",
+    Name: "拉赫達南的護腕 (Lachdanan's Bracers)",
     Index: "Lachdanan's Bracers",
     Enabled: true,
     Rarity: 1,
@@ -74878,7 +74878,7 @@ const json = [
   },
   {
     Type: "Amazon Spear",
-    Name: "阿曼达的观点 (Amanda's Point)",
+    Name: "阿曼達的觀點 (Amanda's Point)",
     Index: "Amanda's Point",
     Enabled: true,
     Rarity: 1,
@@ -74978,7 +74978,7 @@ const json = [
   },
   {
     Type: "Large Charm",
-    Name: "元素会议 (Conclave of Elements)",
+    Name: "元素密會 (Conclave of Elements)",
     Index: "Conclave of Elements",
     Enabled: true,
     Rarity: 1,
@@ -75190,7 +75190,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "雷鸣 (Thunderclap)",
+    Name: "雷鳴 (Thunderclap)",
     Index: "Thunderclap",
     Enabled: true,
     Rarity: 2,
@@ -75324,7 +75324,7 @@ const json = [
   },
   {
     Type: "Javelin",
-    Name: "隐形跟踪者 (Invisible Stalker)",
+    Name: "隱形跟蹤者 (Invisible Stalker)",
     Index: "Invisible Stalker",
     Enabled: true,
     Rarity: 1,
@@ -75513,7 +75513,7 @@ const json = [
   },
   {
     Type: "Boots",
-    Name: "零效应 (Zero Effect)",
+    Name: "零點效應 (Zero Effect)",
     Index: "Zero Effect",
     Enabled: true,
     Rarity: 2,
@@ -75744,7 +75744,7 @@ const json = [
   },
   {
     Type: "Pelt",
-    Name: "野性的呼唤 (Call of the Wild)",
+    Name: "野性的呼喚 (Call of the Wild)",
     Index: "Call of the Wild",
     Enabled: true,
     Rarity: 1,
@@ -75857,7 +75857,7 @@ const json = [
   },
   {
     Type: "Medium Charm",
-    Name: "权力王座 (Throne of Power)",
+    Name: "權力王座 (Throne of Power)",
     Index: "Throne of Power",
     Enabled: true,
     Rarity: 1,
@@ -76100,7 +76100,7 @@ const json = [
   },
   {
     Type: "Bow",
-    Name: "变态的守护神 (Patron of Perversity)",
+    Name: "邪惡代言人 (Patron of Perversity)",
     Index: "Patron of Perversity",
     Enabled: true,
     Rarity: 1,
@@ -76223,7 +76223,7 @@ const json = [
   },
   {
     Type: "Shield",
-    Name: "拉赫达南卫队 (Lachdanan's Guard)",
+    Name: "拉赫達南的衛盾 (Lachdanan's Guard)",
     Index: "Lachdanan's Guard",
     Enabled: true,
     Rarity: 1,
@@ -76342,7 +76342,7 @@ const json = [
   },
   {
     Type: "Ring",
-    Name: "精灵戒指 (Faerie Ring)",
+    Name: "精靈指環 (Faerie Ring)",
     Index: "Faerie Ring",
     Enabled: true,
     Rarity: 1,
@@ -76471,7 +76471,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "犀牛的力量 (Rhinoceros Strength)",
+    Name: "犀牛之力 (Rhinoceros Strength)",
     Index: "Rhinoceros Strength",
     Enabled: true,
     Rarity: 1,
@@ -76528,7 +76528,7 @@ const json = [
   },
   {
     Type: "Polearm",
-    Name: "云巨人之斧 (Cloud Giant's Axe)",
+    Name: "雲端巨人之斧 (Cloud Giant's Axe)",
     Index: "Cloud Giant's Axe",
     Enabled: true,
     Rarity: 1,
@@ -76585,7 +76585,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "拉赫达南之心 (Lachdanan's Heart)",
+    Name: "拉赫達南之心 (Lachdanan's Heart)",
     Index: "Lachdanan's Heart",
     Enabled: true,
     Rarity: 1,
@@ -76643,7 +76643,7 @@ const json = [
   },
   {
     Type: "Circlet",
-    Name: "皇家徽章 (Royal Diadem)",
+    Name: "皇家權冠 (Royal Diadem)",
     Index: "Royal Diadem",
     Enabled: true,
     Rarity: 3,
@@ -76795,7 +76795,7 @@ const json = [
         Index: 5
       },
       {
-        PropertyString: "10% Reanimate as: Returned",
+        PropertyString: "10% 機率將目標復生為：返世亡靈",
         Index: 7
       },
       {
@@ -76917,7 +76917,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "冰霜巫妖 (Frost Wyrm)",
+    Name: "冰霜飛龍 (Frost Wyrm)",
     Index: "Frost Wyrm",
     Enabled: true,
     Rarity: 1,
@@ -76982,7 +76982,7 @@ const json = [
   },
   {
     Type: "Axe",
-    Name: "无名恐怖 (Nameless Horror)",
+    Name: "無可名狀的恐怖 (Nameless Horror)",
     Index: "Nameless Horror",
     Enabled: true,
     Rarity: 1,
@@ -77186,7 +77186,7 @@ const json = [
   },
   {
     Type: "Helm",
-    Name: "柯南国王的统治 (King Conan's Rule)",
+    Name: "柯南王之律 (King Conan's Rule)",
     Index: "King Conan's Rule",
     Enabled: true,
     Rarity: 1,
@@ -77248,7 +77248,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "信徒之握 (Grip of the Faithful)",
+    Name: "信仰之握 (Grip of the Faithful)",
     Index: "Grip of the Faithful",
     Enabled: true,
     Rarity: 1,
@@ -77548,7 +77548,7 @@ const json = [
   },
   {
     Type: "Knife",
-    Name: "卡拉提尔匕首 (Dagger of Kara'Tir)",
+    Name: "卡拉提爾匕首 (Dagger of Kara'Tir)",
     Index: "Dagger of Kara'Tir",
     Enabled: true,
     Rarity: 1,
@@ -77666,7 +77666,7 @@ const json = [
   },
   {
     Type: "Throwing Axe",
-    Name: "Golden Wyndlass",
+    Name: "金色絞盤 (Golden Wyndlass)",
     Index: "Golden Wyndlass",
     Enabled: true,
     Rarity: 1,
@@ -77805,7 +77805,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "卡西亚病房 (Kashya's Ward)",
+    Name: "卡西亞的防衛 (Kashya's Ward)",
     Index: "Kashya's Ward",
     Enabled: true,
     Rarity: 1,
@@ -77863,7 +77863,7 @@ const json = [
   },
   {
     Type: "Belt",
-    Name: "拉赫达南的包裹 (Lachdanan's Wrap)",
+    Name: "拉赫達南的裹腰 (Lachdanan's Wrap)",
     Index: "Lachdanan's Wrap",
     Enabled: true,
     Rarity: 1,
@@ -77925,7 +77925,7 @@ const json = [
   },
   {
     Type: "Amazon Javelin",
-    Name: "飞马翼 (Pegasus Wing)",
+    Name: "飛馬之翼 (Pegasus Wing)",
     Index: "Pegasus Wing",
     Enabled: true,
     Rarity: 1,
@@ -78606,7 +78606,7 @@ const json = [
   },
   {
     Type: "Scepter",
-    Name: "撒拉弗之怒 (Wrath of the Seraphim)",
+    Name: "六翼天使之怒 (Wrath of the Seraphim)",
     Index: "Wrath of the Seraphim",
     Enabled: true,
     Rarity: 1,
@@ -79353,7 +79353,7 @@ const json = [
   },
   {
     Type: "Sword",
-    Name: "猫头鹰之怒 (Fury of the Owlbear)",
+    Name: "鴞熊之怒 (Fury of the Owlbear)",
     Index: "Fury of the Owlbear",
     Enabled: true,
     Rarity: 1,
@@ -79491,7 +79491,7 @@ const json = [
   },
   {
     Type: "Hammer",
-    Name: "星际无畏舰 (Astral Dreadnought)",
+    Name: "星空無畏艦 (Astral Dreadnought)",
     Index: "Astral Dreadnought",
     Enabled: true,
     Rarity: 1,
@@ -79556,7 +79556,7 @@ const json = [
   },
   {
     Type: "Armor",
-    Name: "天堂的宝藏 (Heaven's Treasure)",
+    Name: "天堂的寶藏 (Heaven's Treasure)",
     Index: "Heaven's Treasure",
     Enabled: true,
     Rarity: 3,
@@ -79602,7 +79602,7 @@ const json = [
   },
   {
     Type: "Gloves",
-    Name: "黑莲 (Black Lotus)",
+    Name: "黑蓮 (Black Lotus)",
     Index: "Black Lotus",
     Enabled: true,
     Rarity: 1,
@@ -79787,7 +79787,7 @@ const json = [
   },
   {
     Type: "Auric Shields",
-    Name: "莫斐斯要塞 (Fortress of Morpheus)",
+    Name: "墨菲斯要塞 (Fortress of Morpheus)",
     Index: "Fortress of Morpheus",
     Enabled: true,
     Rarity: 1,
@@ -79854,7 +79854,7 @@ const json = [
     Code: "7tw",
     Properties: [
       {
-        PropertyString: "+50% chance for finishing moves to not consume charges",
+        PropertyString: "+50% 機率使終結技不消耗集氣的力量",
         Index: 9
       },
       {

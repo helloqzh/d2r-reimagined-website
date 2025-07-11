@@ -1,7 +1,7 @@
-import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-Fs0eH6wK.js";
+import { C as CustomElement, w as watch, c as customElement, b as bindable } from "./index-CmODfqph.js";
 import { d as debounce } from "./debounce-ZwsFz6hU.js";
 const name = "sets";
-const template = '<template>\n    <h3 class="text-center my-4">\n        共 ${sets.length} 套裝\n    </h3>\n    <div class="container">\n        <div class="row align-content-center justify-content-center text-center mb-5">\n            <div class="col-12 col-sm-6">\n                <div class="au-select mb-2">\n                    <moo-select\n                            class="w-100"\n                            label="職業選擇"\n                            options.bind="classes"\n                            class="standard-betsy-select"\n                            value.bind="class"\n                    ></moo-select>\n                </div>\n            </div>\n            <div class="col-12 col-sm-6">\n                <moo-text-field\n                        class="w-100"\n                        label="Search Sets"\n                        type="text"\n                        value.bind="search"\n                ></moo-text-field>\n            </div>\n        </div>\n    </div>\n\n    <div class="row gy-5 px-5 text-center">\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="set of sets">\n            <div class="card bg-dark p-2">\n                <div class="set-text fs-5 mb-1">\n                    ${set.Name}\n                </div>\n\n                <div class="partial-sets set-text" repeat.for="partial of set.PartialProperties">\n                    ${partial.PropertyString} (${$index + 2} 件)\n                </div>\n\n                <div class="partial-sets set-text" repeat.for="full of set.FullProperties">\n                    ${full.PropertyString} (完整套裝)\n                </div>\n\n                <div class="my-3" repeat.for="setItem of set.SetItems">\n                    <div class="set-text mb-1">\n                        ${setItem.Name}\n                    </div>\n\n                    <div class="armor mb-1" if.bind="setItem.Equipment.Name">\n                        ${setItem.Equipment.Name}\n                    </div>\n\n                    <div class="armor mt-1" if.bind="setItem.Equipment.ArmorString">\n                        防禦: ${setItem.Equipment.ArmorString}\n                    </div>\n\n                    <div class="damage" if.bind="setItem.Equipment.DamageTypes"\n                         repeat.for="damage of setItem.Equipment.DamageTypes">\n                        ${getDamageTypeString(damage.Type)} ${damage.DamageString}\n                    </div>\n\n                    <div class="requirement" if.bind="setItem.RequiredLevel > 0">\n                        等級需求：${setItem.RequiredLevel}\n                    </div>\n\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredStrength > 0">\n                        力量需求：${setItem.Equipment.RequiredStrength}\n                    </div>\n\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredDexterity > 0">\n                        敏捷需求：${setItem.Equipment.RequiredDexterity}\n                    </div>\n\n                    <div class="durability mt-1" if.bind="setItem.Equipment.Durability > 0">\n                        耐久度：${setItem.Equipment.Durability}\n                    </div>\n\n                    <div class="enhanced" repeat.for="property of setItem.Properties">\n                        ${property.PropertyString}\n                    </div>\n\n                    <div class="set-text" repeat.for="setProperty of setItem.SetPropertiesString">\n                        ${setProperty}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</template>\n';
+const template = '<template>\r\n    <h3 class="text-center my-4">\r\n        共 ${sets.length} 套裝\r\n    </h3>\r\n    <div class="container">\r\n        <div class="row align-content-center justify-content-center text-center mb-5">\r\n            <div class="col-12 col-sm-6">\r\n                <div class="au-select mb-2">\r\n                    <moo-select\r\n                            class="w-100"\r\n                            label="職業選擇"\r\n                            options.bind="classes"\r\n                            class="standard-betsy-select"\r\n                            value.bind="class"\r\n                    ></moo-select>\r\n                </div>\r\n            </div>\r\n            <div class="col-12 col-sm-6">\r\n                <moo-text-field\r\n                        class="w-100"\r\n                        label="Search Sets"\r\n                        type="text"\r\n                        value.bind="search"\r\n                ></moo-text-field>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="row gy-5 px-5 text-center">\r\n        <div class="col-12 col-md-6 col-xxl-4" repeat.for="set of sets">\r\n            <div class="card bg-dark p-2">\r\n                <div class="set-text fs-5 mb-1">\r\n                    ${set.Name}\r\n                </div>\r\n\r\n                <div class="partial-sets set-text" repeat.for="partial of set.PartialProperties">\r\n                    ${partial.PropertyString} (${$index + 2} 件)\r\n                </div>\r\n\r\n                <div class="partial-sets set-text" repeat.for="full of set.FullProperties">\r\n                    ${full.PropertyString} (完整套裝)\r\n                </div>\r\n\r\n                <div class="my-3" repeat.for="setItem of set.SetItems">\r\n                    <div class="set-text mb-1">\r\n                        ${setItem.Name}\r\n                    </div>\r\n\r\n                    <div class="armor mb-1" if.bind="setItem.Equipment.Name">\r\n                        ${setItem.Equipment.Name}\r\n                    </div>\r\n\r\n                    <div class="armor mt-1" if.bind="setItem.Equipment.ArmorString">\r\n                        防禦: ${setItem.Equipment.ArmorString}\r\n                    </div>\r\n\r\n                    <div class="damage" if.bind="setItem.Equipment.DamageTypes"\r\n                         repeat.for="damage of setItem.Equipment.DamageTypes">\r\n                        ${getDamageTypeString(damage.Type)} ${damage.DamageString}\r\n                    </div>\r\n\r\n                    <div class="requirement" if.bind="setItem.RequiredLevel > 0">\r\n                        等級需求：${setItem.RequiredLevel}\r\n                    </div>\r\n\r\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredStrength > 0">\r\n                        力量需求：${setItem.Equipment.RequiredStrength}\r\n                    </div>\r\n\r\n                    <div class="requirement" if.bind="setItem.Equipment.RequiredDexterity > 0">\r\n                        敏捷需求：${setItem.Equipment.RequiredDexterity}\r\n                    </div>\r\n\r\n                    <div class="durability mt-1" if.bind="setItem.Equipment.Durability > 0">\r\n                        耐久度：${setItem.Equipment.Durability}\r\n                    </div>\r\n\r\n                    <div class="enhanced" repeat.for="property of setItem.Properties">\r\n                        ${property.PropertyString}\r\n                    </div>\r\n\r\n                    <div class="set-text" repeat.for="setProperty of setItem.SetPropertiesString">\r\n                        ${setProperty}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n';
 const dependencies = [];
 const bindables = {};
 let _e;
@@ -7199,7 +7199,7 @@ const json = [
         Index: 0
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +1.5% （依角色等級而定）",
         Index: 1
       }
     ],
@@ -8722,7 +8722,7 @@ const json = [
   },
   {
     Index: "Greyhawk's Mantle",
-    Name: "灰鹰的衣钵 (Greyhawk's Mantle)",
+    Name: "灰鷹的衣鉢 (Greyhawk's Mantle)",
     SetItems: [
       {
         Type: "Armor",
@@ -8730,7 +8730,7 @@ const json = [
         SetPropertiesString: [
           "生命回復 +3 （4 件）"
         ],
-        Name: "灰鹰之翼 (Greyhawk's Wing)",
+        Name: "灰鷹之翼 (Greyhawk's Wing)",
         Index: "Greyhawk's Wing",
         Enabled: true,
         Rarity: 7,
@@ -8772,7 +8772,7 @@ const json = [
         SetPropertiesString: [
           "被擊中時有 15% 機率施展等級 3 冰封甲 （3 件）"
         ],
-        Name: "灰鹰的冰标 (Greyhawk's Icebrand)",
+        Name: "灰鷹的寒冰烙印 (Greyhawk's Icebrand)",
         Index: "Greyhawk's Icebrand",
         Enabled: true,
         Rarity: 7,
@@ -8817,7 +8817,7 @@ const json = [
         SetPropertiesString: [
           "+25% 格擋速度 （3 件）"
         ],
-        Name: "灰鹰的偏转器 (Greyhawk's Deflector)",
+        Name: "灰鷹的偏轉護盾 (Greyhawk's Deflector)",
         Index: "Greyhawk's Deflector",
         Enabled: true,
         Rarity: 7,
@@ -8859,7 +8859,7 @@ const json = [
         SetPropertiesString: [
           "+20 生命 （3 件）"
         ],
-        Name: "灰鹰的维瑟 (Greyhawk's Viser)",
+        Name: "灰鷹的面甲 (Greyhawk's Viser)",
         Index: "Greyhawk's Viser",
         Enabled: true,
         Rarity: 7,
@@ -8928,7 +8928,7 @@ const json = [
   },
   {
     Index: "Silent Runnings",
-    Name: "无声的奔跑 (Silent Runnings)",
+    Name: "無聲狂奔 (Silent Runnings)",
     SetItems: [
       {
         Type: "Shield",
@@ -8936,7 +8936,7 @@ const json = [
         SetPropertiesString: [
           "格擋機率提高 +20% （2 件）"
         ],
-        Name: "龙之侧翼 (Dragon's Flank)",
+        Name: "巨龍側翼 (Dragon's Flank)",
         Index: "Dragon's Flank",
         Enabled: true,
         Rarity: 7,
@@ -8978,7 +8978,7 @@ const json = [
         SetPropertiesString: [
           "尋獲魔法物品機率提高 +25% （3 件）"
         ],
-        Name: "费里特的爪子 (Ferrit's Paw)",
+        Name: "費利特之爪 (Ferrit's Paw)",
         Index: "Ferrit's Paw",
         Enabled: true,
         Rarity: 7,
@@ -9020,7 +9020,7 @@ const json = [
         SetPropertiesString: [
           "物理傷害降低 +8% （3 件）"
         ],
-        Name: "龟壳 (Turtle's Shell)",
+        Name: "龜殼 (Turtle's Shell)",
         Index: "Turtle's Shell",
         Enabled: true,
         Rarity: 7,
@@ -9062,7 +9062,7 @@ const json = [
         SetPropertiesString: [
           "+20 防禦 （3 件）"
         ],
-        Name: "狼皮 (Wolf Pelt)",
+        Name: "野狼獸皮 (Wolf Pelt)",
         Index: "Wolf Pelt",
         Enabled: true,
         Rarity: 7,
@@ -9102,7 +9102,7 @@ const json = [
         Type: "Helm",
         "Set": "Silent Runnings",
         SetPropertiesString: [],
-        Name: "野兽项圈 (Beast Collar)",
+        Name: "猛獸項圈 (Beast Collar)",
         Index: "Beast Collar",
         Enabled: true,
         Rarity: 7,
@@ -9179,7 +9179,7 @@ const json = [
   },
   {
     Index: "Snowmane's Jewelry",
-    Name: "雪人珠宝 (Snowmane's Jewelry)",
+    Name: "斯羅曼尼的首飾盒 (Snowmane's Jewelry)",
     SetItems: [
       {
         Type: "Circlet",
@@ -9188,7 +9188,7 @@ const json = [
           "+15% 打擊恢復 （3 件）",
           "+20 生命 （2 件）"
         ],
-        Name: "宝石圆环 (Jeweled Circlet)",
+        Name: "珠玉頭環 (Jeweled Circlet)",
         Index: "Jeweled Circlet",
         Enabled: true,
         Rarity: 7,
@@ -9230,7 +9230,7 @@ const json = [
         SetPropertiesString: [
           "物理傷害降低 +10% （4 件）"
         ],
-        Name: "珠宝腰带 (Jeweled Belt)",
+        Name: "寶石腰帶 (Jeweled Belt)",
         Index: "Jeweled Belt",
         Enabled: true,
         Rarity: 7,
@@ -9273,7 +9273,7 @@ const json = [
           "+30 生命 （3 件）",
           "尋獲魔法物品機率提高 +15% （4 件）"
         ],
-        Name: "红宝石戒指 (Ruby Ring)",
+        Name: "紅寶指環 (Ruby Ring)",
         Index: "Ruby Ring",
         Enabled: true,
         Rarity: 4,
@@ -9312,7 +9312,7 @@ const json = [
         SetPropertiesString: [
           "+1 所有技能 （3 件）"
         ],
-        Name: "钻石项链 (Diamond Necklace)",
+        Name: "鑽石項鏈 (Diamond Necklace)",
         Index: "Diamond Necklace",
         Enabled: true,
         Rarity: 4,
@@ -9378,7 +9378,7 @@ const json = [
   },
   {
     Index: "Four Seasons",
-    Name: "四季酒店 (Four Seasons)",
+    Name: "四季 (Four Seasons)",
     SetItems: [
       {
         Type: "Armor",
@@ -9388,7 +9388,7 @@ const json = [
           "寒冰吸引 +10% （2 件）",
           "無法冰凍 （4 件）"
         ],
-        Name: "冬日之心 (Winter's Heart)",
+        Name: "凜冬之心 (Winter's Heart)",
         Index: "Winter's Heart",
         Enabled: true,
         Rarity: 7,
@@ -9431,7 +9431,7 @@ const json = [
           "電擊抗性上限 +10 （3 件）",
           "電擊吸引 +10% （2 件）"
         ],
-        Name: "春晓 (Spring Dawning)",
+        Name: "早春破曉 (Spring Dawning)",
         Index: "Spring Dawning",
         Enabled: true,
         Rarity: 7,
@@ -9474,7 +9474,7 @@ const json = [
           "火焰抗性上限 +10 （3 件）",
           "火焰吸引 +10% （2 件）"
         ],
-        Name: "夏日火焰 (Summer Flame)",
+        Name: "盛夏之焰 (Summer Flame)",
         Index: "Summer Flame",
         Enabled: true,
         Rarity: 7,
@@ -9518,7 +9518,7 @@ const json = [
           "魔法抗性 +10% （2 件）",
           "中毒的時效縮短 75% （4 件）"
         ],
-        Name: "秋天的衰败 (Autumn's Decay)",
+        Name: "晚秋之朽 (Autumn's Decay)",
         Index: "Autumn's Decay",
         Enabled: true,
         Rarity: 7,
@@ -9591,7 +9591,7 @@ const json = [
   },
   {
     Index: "Forgotten Treasures",
-    Name: "被遗忘的宝藏 (Forgotten Treasures)",
+    Name: "被遺忘的寶藏 (Forgotten Treasures)",
     SetItems: [
       {
         Type: "Armor",
@@ -9686,7 +9686,7 @@ const json = [
           "擊中竊取 +5% 法力 （4 件）",
           "+50 生命 （3 件）"
         ],
-        Name: "路德的绳索 (Luther's Cord)",
+        Name: "盧瑟的腰繩 (Luther's Cord)",
         Index: "Luther's Cord",
         Enabled: true,
         Rarity: 7,
@@ -9729,7 +9729,7 @@ const json = [
           "擊中竊取 5% 生命 （4 件）",
           "+10 力量 （6 件）"
         ],
-        Name: "杰尼斯的手套 (Janis' Gloves)",
+        Name: "傑尼斯的手套 (Janis' Gloves)",
         Index: "Janis' Gloves",
         Enabled: true,
         Rarity: 7,
@@ -9772,7 +9772,7 @@ const json = [
           "+20% 打擊恢復 （3 件）",
           "+10 敏捷 （5 件）"
         ],
-        Name: "澤維爾的護脛 (Xavier's Greaves)",
+        Name: "謝維爾的護脛 (Xavier's Greaves)",
         Index: "Xavier's Greaves",
         Enabled: true,
         Rarity: 7,
@@ -9815,7 +9815,7 @@ const json = [
           "+25% 格擋速度 （2 件）",
           "格擋機率提高 +20% （4 件）"
         ],
-        Name: "昆西之盾 (Quincy's Shield)",
+        Name: "昆西的刺盾 (Quincy's Shield)",
         Index: "Quincy's Shield",
         Enabled: true,
         Rarity: 7,
@@ -10107,7 +10107,7 @@ const json = [
           "被擊中時有 6% 機率施展等級 2 戰爭狂嘯 （4 件）",
           "生命回復 +3 （5 件）"
         ],
-        Name: "拉兹兄弟的信念 (Brother Laz' Faith)",
+        Name: "拉兹兄弟的信仰 (Brother Laz' Faith)",
         Index: "Brother Laz' Faith",
         Enabled: true,
         Rarity: 7,
@@ -10196,7 +10196,7 @@ const json = [
   },
   {
     Index: "Hades' Underworld",
-    Name: "哈迪斯的地下世界 (Hades' Underworld)",
+    Name: "黑帝斯的地下世界 (Hades' Underworld)",
     SetItems: [
       {
         Type: "Armor",
@@ -10204,7 +10204,7 @@ const json = [
         SetPropertiesString: [
           "+50 法力 （4 件）"
         ],
-        Name: "来世 (Afterlife)",
+        Name: "轉生 (Afterlife)",
         Index: "Afterlife",
         Enabled: true,
         Rarity: 7,
@@ -10294,7 +10294,7 @@ const json = [
         Type: "Ring",
         "Set": "Hades' Underworld",
         SetPropertiesString: [],
-        Name: "吸血鬼的十字军东征 (Vampire's Crusade)",
+        Name: "吸血鬼的聖教軍 (Vampire's Crusade)",
         Index: "Vampire's Crusade",
         Enabled: true,
         Rarity: 5,
@@ -10341,7 +10341,7 @@ const json = [
         SetPropertiesString: [
           "無法冰凍 （5 件）"
         ],
-        Name: "斯蒂克斯河 (The River Stix)",
+        Name: "斯蒂克斯之河 (The River Stix)",
         Index: "The River Stix",
         Enabled: true,
         Rarity: 7,
@@ -10388,7 +10388,7 @@ const json = [
           "怪物金幣掉落量提高 +100% （3 件）",
           "尋獲魔法物品機率提高 +35% （4 件）"
         ],
-        Name: "哈迪斯王座 (Lord Hades' Throne)",
+        Name: "黑帝斯王座 (Lord Hades' Throne)",
         Index: "Lord Hades' Throne",
         Enabled: true,
         Rarity: 7,
@@ -10469,7 +10469,7 @@ const json = [
   },
   {
     Index: "Darque's Cabal",
-    Name: "达尔克阴谋集团 (Darque's Cabal)",
+    Name: "達爾凱的陰謀 (Darque's Cabal)",
     SetItems: [
       {
         Type: "Primal Helm",
@@ -10478,7 +10478,7 @@ const json = [
           "攻擊速度 +15% （4 件）",
           "+15 最大傷害 （2 件）"
         ],
-        Name: "秘社 (Secret Society)",
+        Name: "祕社 (Secret Society)",
         Index: "Secret Society",
         Enabled: true,
         Rarity: 7,
@@ -10528,7 +10528,7 @@ const json = [
         SetPropertiesString: [
           "+100% 對惡魔的傷害 （2 件）"
         ],
-        Name: "堕落天使 (Fallen Angels)",
+        Name: "墮落天使 (Fallen Angels)",
         Index: "Fallen Angels",
         Enabled: true,
         Rarity: 7,
@@ -10576,7 +10576,7 @@ const json = [
           "增加 50-125 傷害 （3 件）",
           "防止怪物自療 （4 件）"
         ],
-        Name: "Savant Fury",
+        Name: "學者之怒 (Savant Fury)",
         Index: "Savant Fury",
         Enabled: true,
         Rarity: 7,
@@ -10625,7 +10625,7 @@ const json = [
         SetPropertiesString: [
           "+20% 格擋速度 （3 件）"
         ],
-        Name: "黎明的祝福 (Dawn's Blessing)",
+        Name: "黎明祝福 (Dawn's Blessing)",
         Index: "Dawn's Blessing",
         Enabled: true,
         Rarity: 7,
@@ -10702,7 +10702,7 @@ const json = [
   },
   {
     Index: "Red Havoc's Challenge",
-    Name: "红色浩劫的挑战 (Red Havoc's Challenge)",
+    Name: "赤劫之挑戰 (Red Havoc's Challenge)",
     SetItems: [
       {
         Type: "Armor",
@@ -10710,7 +10710,7 @@ const json = [
         SetPropertiesString: [
           "+1 最大傷害 （依角色等級而定） （3 件）"
         ],
-        Name: "狼来了 (Cry of the Wolf)",
+        Name: "惡狼之嚎 (Cry of the Wolf)",
         Index: "Cry of the Wolf",
         Enabled: true,
         Rarity: 7,
@@ -10756,7 +10756,7 @@ const json = [
         SetPropertiesString: [
           "尋獲魔法物品機率提高 +25% （2 件）"
         ],
-        Name: "满月狂潮 (Full Moon Frenzy)",
+        Name: "滿月狂潮 (Full Moon Frenzy)",
         Index: "Full Moon Frenzy",
         Enabled: true,
         Rarity: 7,
@@ -10806,7 +10806,7 @@ const json = [
         SetPropertiesString: [
           "所有抗性 +35% （3 件）"
         ],
-        Name: "纯真的折磨 (Torment of Innocence)",
+        Name: "無辜之折磨 (Torment of Innocence)",
         Index: "Torment of Innocence",
         Enabled: true,
         Rarity: 7,
@@ -10859,7 +10859,7 @@ const json = [
         SetPropertiesString: [
           "+50 法力 （4 件）"
         ],
-        Name: "引出野兽 (Drawing Out the Beast)",
+        Name: "獸引腰帶 (Drawing Out the Beast)",
         Index: "Drawing Out the Beast",
         Enabled: true,
         Rarity: 7,
@@ -11957,11 +11957,11 @@ const json = [
     ],
     PartialProperties: [
       {
-        PropertyString: "-3% to Experience Gained",
+        PropertyString: "獲得的經驗值 -3%",
         Index: 0
       },
       {
-        PropertyString: "-5% to Experience Gained",
+        PropertyString: "獲得的經驗值 -5%",
         Index: 2
       }
     ],
@@ -11983,7 +11983,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "-7% to Experience Gained",
+        PropertyString: "獲得的經驗值 -7%",
         Index: 2
       }
     ],
@@ -12100,7 +12100,7 @@ const json = [
           "+1 魔法使技能等級 （4 件）",
           "+15 力量 （3 件）"
         ],
-        Name: "Lich's Evil Grin",
+        Name: "巫妖的邪惡顱骨 (Lich's Cranium)",
         Index: "Lich's Cranium",
         Enabled: true,
         Rarity: 7,
@@ -12405,7 +12405,7 @@ const json = [
   },
   {
     Index: "Salander's Tirade",
-    Name: "萨兰德的咆哮 (Salander's Tirade)",
+    Name: "薩蘭德的咆哮 (Salander's Tirade)",
     SetItems: [
       {
         Type: "Polearm",
@@ -12413,7 +12413,7 @@ const json = [
         SetPropertiesString: [
           "增加 75-120 火焰傷害 （2 件）"
         ],
-        Name: "蓝瑟之域 (Lancer's Reach)",
+        Name: "藍瑟之域 (Lancer's Reach)",
         Index: "Lancer's Reach",
         Enabled: true,
         Rarity: 7,
@@ -12512,7 +12512,7 @@ const json = [
         SetPropertiesString: [
           "+35 法力 （2 件）"
         ],
-        Name: "萨兰德的面罩 (Salander's Visor)",
+        Name: "薩蘭德的護面 (Salander's Visor)",
         Index: "Salander's Visor",
         Enabled: true,
         Rarity: 7,
@@ -12585,7 +12585,7 @@ const json = [
   },
   {
     Index: "Jerik's Dragon Armor",
-    Name: "杰里克的龙铠 (Jerik's Dragon Armor)",
+    Name: "傑里克的巨龍防具 (Jerik's Dragon Armor)",
     SetItems: [
       {
         Type: "Armor",
@@ -12593,7 +12593,7 @@ const json = [
         SetPropertiesString: [
           "+40% 火焰技能傷害 （2 件）"
         ],
-        Name: "红龙鳞甲 (Red Dragon Scale Mail)",
+        Name: "赤龍鱗甲 (Red Dragon Scale Mail)",
         Index: "Red Dragon Scale Mail",
         Enabled: true,
         Rarity: 7,
@@ -12636,7 +12636,7 @@ const json = [
           "+30% 格擋速度 （3 件）",
           "格擋機率提高 +20% （2 件）"
         ],
-        Name: "黑龙皮盾 (Black Dragon Hide Shield)",
+        Name: "黑龍隱盾 (Black Dragon Hide Shield)",
         Index: "Black Dragon Hide Shield",
         Enabled: true,
         Rarity: 7,
@@ -12678,7 +12678,7 @@ const json = [
         SetPropertiesString: [
           "魔法傷害降低 20 （3 件）"
         ],
-        Name: "青龙面具 (Green Dragon Mask)",
+        Name: "青龍面具 (Green Dragon Mask)",
         Index: "Green Dragon Mask",
         Enabled: true,
         Rarity: 7,
@@ -12755,7 +12755,7 @@ const json = [
   },
   {
     Index: "Onyx's Primal Rage",
-    Name: "玛瑙的原始狂暴 (Onyx's Primal Rage)",
+    Name: "黑瑪瑙的原始狂暴 (Onyx's Primal Rage)",
     SetItems: [
       {
         Type: "Boots",
@@ -12765,7 +12765,7 @@ const json = [
           "物理傷害降低 15 （2 件）",
           "魔法傷害降低 15 （3 件）"
         ],
-        Name: "玛瑙陨星 (Onyx's Fallen Star)",
+        Name: "黑瑪瑙的隕星 (Onyx's Fallen Star)",
         Index: "Onyx's Fallen Star",
         Enabled: true,
         Rarity: 7,
@@ -12817,7 +12817,7 @@ const json = [
           "擊中竊取 +7% 法力 （2 件）",
           "擊中竊取 12% 生命 （3 件）"
         ],
-        Name: "玛瑙的太阳能光彩 (Onyx's Solar Flair)",
+        Name: "黑玛瑙的太陽耀斑 (Onyx's Solar Flair)",
         Index: "Onyx's Solar Flair",
         Enabled: true,
         Rarity: 7,
@@ -12875,7 +12875,7 @@ const json = [
           "擊中時有 12% 機率施展等級 19 閃電新星 （2 件）",
           "+50 生命 （3 件）"
         ],
-        Name: "黑玛瑙的超级新星 (Onyx's Super Nova)",
+        Name: "黑瑪瑙的超新星 (Onyx's Super Nova)",
         Index: "Onyx's Super Nova",
         Enabled: true,
         Rarity: 7,
@@ -12933,7 +12933,7 @@ const json = [
           "被擊中時有 15% 機率施展等級 7 隕石術 （3 件）",
           "+1 野蠻人技能等級 （2 件）"
         ],
-        Name: "玛瑙流星雨 (Onyx's Meteor Shower)",
+        Name: "黑瑪瑙的流星雨 (Onyx's Meteor Shower)",
         Index: "Onyx's Meteor Shower",
         Enabled: true,
         Rarity: 7,
@@ -12985,7 +12985,7 @@ const json = [
           "+4 準確率 （依角色等級而定） （4 件）",
           "獲得的經驗值 +3% （2 件）"
         ],
-        Name: "玛瑙的天怒 (Onyx's Celestial Rage)",
+        Name: "黑瑪瑙的天體狂暴 (Onyx's Celestial Rage)",
         Index: "Onyx's Celestial Rage",
         Enabled: true,
         Rarity: 7,
@@ -13120,7 +13120,7 @@ const json = [
           "殺死的怪物就此安息 （3 件）",
           "物理傷害降低 +15% （4 件）"
         ],
-        Name: "神圣光环 (Holy Aura)",
+        Name: "神聖光環 (Holy Aura)",
         Index: "Holy Aura",
         Enabled: true,
         Rarity: 7,
@@ -13172,7 +13172,7 @@ const json = [
           "+33 最大傷害 （2 件）",
           "魔法抗性 +25% （4 件）"
         ],
-        Name: "报应 (Retribution)",
+        Name: "報應 (Retribution)",
         Index: "Retribution",
         Enabled: true,
         Rarity: 7,
@@ -13228,7 +13228,7 @@ const json = [
           "所有抗性 +15% （3 件）",
           "尋獲魔法物品機率提高 +50% （4 件）"
         ],
-        Name: "救赎的荣耀 (Glory of Salvation)",
+        Name: "救贖的榮耀 (Glory of Salvation)",
         Index: "Glory of Salvation",
         Enabled: true,
         Rarity: 7,
@@ -13279,7 +13279,7 @@ const json = [
           "擊中時有 20% 機率施展等級 8 冰霜新星 （3 件）",
           "+25 敏捷 （2 件）"
         ],
-        Name: "天使之触 (Angel's Touch)",
+        Name: "天使之觸 (Angel's Touch)",
         Index: "Angel's Touch",
         Enabled: true,
         Rarity: 7,
@@ -13363,7 +13363,7 @@ const json = [
   },
   {
     Index: "The Mysterious Spin",
-    Name: "神秘的旋转 (The Mysterious Spin)",
+    Name: "神秘螺旋 (The Mysterious Spin)",
     SetItems: [
       {
         Type: "Circlet",
@@ -13377,7 +13377,7 @@ const json = [
           "怪物金幣掉落量提高 +100% （4 件）",
           "尋獲魔法物品機率提高 +25% （4 件）"
         ],
-        Name: "旋转之谜 (Spin's Enigma)",
+        Name: "螺旋之謎 (Spin's Enigma)",
         Index: "Spin's Enigma",
         Enabled: true,
         Rarity: 7,
@@ -13420,7 +13420,7 @@ const json = [
           "所有抗性 +15% （4 件）",
           "物理傷害降低 +15% （2 件）"
         ],
-        Name: "自旋悖论 (Spin's Paradox)",
+        Name: "螺旋悖論 (Spin's Paradox)",
         Index: "Spin's Paradox",
         Enabled: true,
         Rarity: 7,
@@ -13463,7 +13463,7 @@ const json = [
           "中毒的時效縮短 50% （5 件）",
           "尋獲魔法物品機率提高 +25% （4 件）"
         ],
-        Name: "旋转之谜 (Spin's Mystery)",
+        Name: "螺旋之秘 (Spin's Mystery)",
         Index: "Spin's Mystery",
         Enabled: true,
         Rarity: 7,
@@ -13506,7 +13506,7 @@ const json = [
           "法力恢復 75% （4 件）",
           "物理傷害降低 +15% （5 件）"
         ],
-        Name: "旋转的难题 (Spin's Conundrum)",
+        Name: "螺旋難題 (Spin's Conundrum)",
         Index: "Spin's Conundrum",
         Enabled: true,
         Rarity: 7,
@@ -13549,7 +13549,7 @@ const json = [
           "電擊抗性 +25% （4 件）",
           "火焰抗性 +25% （2 件）"
         ],
-        Name: "旋转的谜题 (Spin's Perplexing Puzzle)",
+        Name: "螺旋謎題 (Spin's Perplexing Puzzle)",
         Index: "Spin's Perplexing Puzzle",
         Enabled: true,
         Rarity: 7,
@@ -13621,7 +13621,7 @@ const json = [
   },
   {
     Index: "Darkmage's Astral Projection",
-    Name: "黑暗法师的星界投影 (Darkmage's Astral Projection)",
+    Name: "黑暗法師的星界投影 (Darkmage's Astral Projection)",
     SetItems: [
       {
         Type: "Armor",
@@ -13630,7 +13630,7 @@ const json = [
           "所有抗性 +15% （4 件）",
           "物理傷害降低 +15% （2 件）"
         ],
-        Name: "黑暗法师的陨星 (Darkmage's Falling Star)",
+        Name: "黑暗法師的隕星 (Darkmage's Falling Star)",
         Index: "Darkmage's Falling Star",
         Enabled: true,
         Rarity: 7,
@@ -13682,7 +13682,7 @@ const json = [
           "+25 力量 （4 件）",
           "+25 敏捷 （3 件）"
         ],
-        Name: "黑暗法师的太阳能天赋 (Darkmage's Solar Flair)",
+        Name: "黑暗法師的太陽耀斑 (Darkmage's Solar Flair)",
         Index: "Darkmage's Solar Flair",
         Enabled: true,
         Rarity: 7,
@@ -13734,7 +13734,7 @@ const json = [
           "擊中竊取 +6% 法力 （4 件）",
           "擊中竊取 6% 生命 （2 件）"
         ],
-        Name: "黑暗法师的超级新星 (Darkmage's Super Nova)",
+        Name: "黑暗法師的超新星 (Darkmage's Super Nova)",
         Index: "Darkmage's Super Nova",
         Enabled: true,
         Rarity: 7,
@@ -13786,7 +13786,7 @@ const json = [
           "+1 所有技能 （3 件）",
           "+25% 概率造成粉碎打擊 （5 件）"
         ],
-        Name: "黑暗法师的流星雨 (Darkmage's Meteor Shower)",
+        Name: "黑暗法師的流星雨 (Darkmage's Meteor Shower)",
         Index: "Darkmage's Meteor Shower",
         Enabled: true,
         Rarity: 7,
@@ -13841,7 +13841,7 @@ const json = [
           "+135 生命 （4 件）",
           "+75 法力 （5 件）"
         ],
-        Name: "黑暗法师的天怒 (Darkmage's Celestial Fury)",
+        Name: "黑暗法師的天體狂暴 (Darkmage's Celestial Fury)",
         Index: "Darkmage's Celestial Fury",
         Enabled: true,
         Rarity: 7,
@@ -13922,7 +13922,7 @@ const json = [
   },
   {
     Index: "Phrozen Heart's Mysticism",
-    Name: "冰封之心的神秘主义 (Phrozen Heart's Mysticism)",
+    Name: "冰封之心的神秘主義 (Phrozen Heart's Mysticism)",
     SetItems: [
       {
         Type: "Hand to Hand 2",
@@ -13932,7 +13932,7 @@ const json = [
           "+20% 致命打擊 （2 件）",
           "獲得的經驗值 +2% （4 件）"
         ],
-        Name: "隐爪 (Cryptic Claws)",
+        Name: "絕秘之爪 (Cryptic Claws)",
         Index: "Cryptic Claws",
         Enabled: true,
         Rarity: 7,
@@ -13983,7 +13983,7 @@ const json = [
           "無法冰凍 （4 件）",
           "中毒的時效縮短 50% （3 件）"
         ],
-        Name: "阴影之道 (Way of the Shadow)",
+        Name: "陰影之道 (Way of the Shadow)",
         Index: "Way of the Shadow",
         Enabled: true,
         Rarity: 7,
@@ -14032,7 +14032,7 @@ const json = [
           "+15 力量 （5 件）",
           "+15 敏捷 （4 件）"
         ],
-        Name: "黎明之雾 (Dawns Mist)",
+        Name: "黎明迷霧 (Dawns Mist)",
         Index: "Dawns Mist",
         Enabled: true,
         Rarity: 7,
@@ -14081,7 +14081,7 @@ const json = [
           "+3 傳送術（4 件）",
           "踢擊傷害 +15 （5 件）"
         ],
-        Name: "羽毛脚 (Featherfoot)",
+        Name: "足下生羽 (Featherfoot)",
         Index: "Featherfoot",
         Enabled: true,
         Rarity: 7,
@@ -14129,7 +14129,7 @@ const json = [
           "物理傷害降低 +15% （4 件）",
           "尋獲魔法物品機率提高 +50% （2 件）"
         ],
-        Name: "冬天的不和谐 (Winter's Discord)",
+        Name: "冬日的紛爭 (Winter's Discord)",
         Index: "Winter's Discord",
         Enabled: true,
         Rarity: 7,
@@ -14210,7 +14210,7 @@ const json = [
   },
   {
     Index: "Chaos Energy",
-    Name: "混沌能源 (Chaos Energy)",
+    Name: "渾沌能量 (Chaos Energy)",
     SetItems: [
       {
         Type: "Amulet",
@@ -14219,7 +14219,7 @@ const json = [
           "所有抗性 +23% （3 件）",
           "尋獲魔法物品機率提高 +35% （4 件）"
         ],
-        Name: "力量灵魂石 (Soulstone of Power)",
+        Name: "力之靈魂石 (Soulstone of Power)",
         Index: "Soulstone of Power",
         Enabled: true,
         Rarity: 2,
@@ -14267,7 +14267,7 @@ const json = [
           "+50 法力 （2 件）",
           "+22% 受到的傷害轉為法力 （5 件）"
         ],
-        Name: "指导重点 (Guiding Focus)",
+        Name: "引導焦點 (Guiding Focus)",
         Index: "Guiding Focus",
         Enabled: true,
         Rarity: 7,
@@ -14318,7 +14318,7 @@ const json = [
           "+55 法力 （5 件）",
           "所有抗性 +22% （3 件）"
         ],
-        Name: "混沌护盾 (Chaotic Shield)",
+        Name: "渾沌護盾 (Chaotic Shield)",
         Index: "Chaotic Shield",
         Enabled: true,
         Rarity: 7,
@@ -14370,7 +14370,7 @@ const json = [
           "攻擊速度 +20% （4 件）",
           "尋獲魔法物品機率提高 +25% （3 件）"
         ],
-        Name: "能量踏板 (Treads of Energy)",
+        Name: "能量踐踏 (Treads of Energy)",
         Index: "Treads of Energy",
         Enabled: true,
         Rarity: 7,
@@ -14422,7 +14422,7 @@ const json = [
           "+77 法力 （4 件）",
           "魔法抗性 +20% （5 件）"
         ],
-        Name: "神秘乐队 (Band of Mysticism)",
+        Name: "神秘頻帶 (Band of Mysticism)",
         Index: "Band of Mysticism",
         Enabled: true,
         Rarity: 7,
@@ -14507,7 +14507,7 @@ const json = [
   },
   {
     Index: "Aiel Shieldmaiden",
-    Name: "艾尔盾女 (Aiel Shieldmaiden)",
+    Name: "艾爾女戰士 (Aiel Shieldmaiden)",
     SetItems: [
       {
         Type: "Amazon Javelin",
@@ -14516,7 +14516,7 @@ const json = [
           "+2 亞馬遜技能等級 （3 件）",
           "攻擊速度 +20% （2 件）"
         ],
-        Name: "恰德长矛 (Chiad's Lances)",
+        Name: "奇亞德的長槍 (Chiad's Lances)",
         Index: "Chiad's Lances",
         Enabled: true,
         Rarity: 7,
@@ -14629,7 +14629,7 @@ const json = [
           "+75 生命 （4 件）",
           "+75 法力 （5 件）"
         ],
-        Name: "基亚德的心脏 (Chiad's Heartbane)",
+        Name: "奇亞德的心脏 (Chiad's Heartbane)",
         Index: "Chiad's Heartbane",
         Enabled: true,
         Rarity: 7,
@@ -14680,7 +14680,7 @@ const json = [
           "+35 生命 （3 件）",
           "尋獲魔法物品機率提高 +20% （2 件）"
         ],
-        Name: "奇亚德的光环 (Chiad's Halo)",
+        Name: "奇亞德的光晕 (Chiad's Halo)",
         Index: "Chiad's Halo",
         Enabled: true,
         Rarity: 2,
@@ -14728,7 +14728,7 @@ const json = [
           "+25% 閃電技能傷害 （3 件）",
           "+15 擊殺生命恢復 （4 件）"
         ],
-        Name: "基亚德的勇气 (Chiad's Valor)",
+        Name: "奇亞德的勇气 (Chiad's Valor)",
         Index: "Chiad's Valor",
         Enabled: true,
         Rarity: 7,
@@ -14813,13 +14813,13 @@ const json = [
   },
   {
     Index: "Myhrginoc's Warbreeder",
-    Name: "米尔金诺克的战争饲养员 (Myhrginoc's Warbreeder)",
+    Name: "米爾金諾的戰爭販子 (Myhrginoc's Warbreeder)",
     SetItems: [
       {
         Type: "Axe",
         "Set": "Myhrginoc's Warbreeder",
         SetPropertiesString: [],
-        Name: "米尔金诺克的猎头人 (Myhrginoc's Headhunter)",
+        Name: "米爾金諾的獵頭者 (Myhrginoc's Headhunter)",
         Index: "Myhrginoc's Headhunter",
         Enabled: true,
         Rarity: 7,
@@ -14874,7 +14874,7 @@ const json = [
         Type: "Armor",
         "Set": "Myhrginoc's Warbreeder",
         SetPropertiesString: [],
-        Name: "迈尔吉诺克的黑雨 (Myhrginoc's Black Rain)",
+        Name: "米爾金諾的黑雨 (Myhrginoc's Black Rain)",
         Index: "Myhrginoc's Black Rain",
         Enabled: true,
         Rarity: 7,
@@ -14926,7 +14926,7 @@ const json = [
         Type: "Helm",
         "Set": "Myhrginoc's Warbreeder",
         SetPropertiesString: [],
-        Name: "米尔金诺克的深红十字军 (Myhrginoc's Crimson Crusader)",
+        Name: "米爾金諾的緋紅聖教军 (Myhrginoc's Crimson Crusader)",
         Index: "Myhrginoc's Crimson Crusader",
         Enabled: true,
         Rarity: 7,
@@ -14977,7 +14977,7 @@ const json = [
           "+22% 概率造成粉碎打擊 （2 件）",
           "+16% 致命打擊 （3 件）"
         ],
-        Name: "米尔金诺克的死亡商贩 (Myhrginoc's Deathmonger)",
+        Name: "米爾金諾的死亡商販 (Myhrginoc's Deathmonger)",
         Index: "Myhrginoc's Deathmonger",
         Enabled: true,
         Rarity: 7,
@@ -15058,7 +15058,7 @@ const json = [
   },
   {
     Index: "Nefarious Ways",
-    Name: "邪恶的方式 (Nefarious Ways)",
+    Name: "邪惡之路 (Nefarious Ways)",
     SetItems: [
       {
         Type: "Polearm",
@@ -15067,7 +15067,7 @@ const json = [
           "怪物金幣掉落量提高 +4% （依角色等級而定） （3 件）",
           "尋獲魔法物品機率提高 +2% （依角色等級而定） （2 件）"
         ],
-        Name: "罪恶与贪婪 (Sin and Greed)",
+        Name: "罪與貪 (Sin and Greed)",
         Index: "Sin and Greed",
         Enabled: true,
         Rarity: 7,
@@ -15118,7 +15118,7 @@ const json = [
         Type: "Armor",
         "Set": "Nefarious Ways",
         SetPropertiesString: [],
-        Name: "邪恶的冲动 (Wicked Impulse)",
+        Name: "邪惡衝動 (Wicked Impulse)",
         Index: "wicked Impulse",
         Enabled: true,
         Rarity: 7,
@@ -15168,7 +15168,7 @@ const json = [
         SetPropertiesString: [
           "尋獲魔法物品機率提高 +30% （3 件）"
         ],
-        Name: "邪恶声誉 (Evil Reputation)",
+        Name: "惡名在外 (Evil Reputation)",
         Index: "Evil Reputation",
         Enabled: true,
         Rarity: 7,
@@ -15218,7 +15218,7 @@ const json = [
         SetPropertiesString: [
           "+7 擊殺法力恢復 （2 件）"
         ],
-        Name: "恶毒的低语 (Noxious Whispers)",
+        Name: "惡毒低語 (Noxious Whispers)",
         Index: "Noxious Whispers",
         Enabled: true,
         Rarity: 7,
@@ -15269,7 +15269,7 @@ const json = [
         Index: 0
       },
       {
-        PropertyString: "-10% to Experience Gained",
+        PropertyString: "獲得的經驗值 -10%",
         Index: 2
       }
     ],
@@ -15299,7 +15299,7 @@ const json = [
   },
   {
     Index: "Kraj's Memorial",
-    Name: "克拉伊纪念馆 (Kraj's Memorial)",
+    Name: "克拉伊的紀念館 (Kraj's Memorial)",
     SetItems: [
       {
         Type: "Amulet",
@@ -15308,7 +15308,7 @@ const json = [
           "所有抗性 +18% （2 件）",
           "冰凍時間減半 （3 件）"
         ],
-        Name: "永恒的睡眠 (Eternal Sleep)",
+        Name: "永恒安眠 (Eternal Sleep)",
         Index: "Eternal Sleep",
         Enabled: true,
         Rarity: 2,
@@ -15357,7 +15357,7 @@ const json = [
           "+25% 打擊恢復 （3 件）",
           "格擋機率提高 +35% （2 件）"
         ],
-        Name: "平静安宁 (Calming Peace)",
+        Name: "平靜寧和 (Calming Peace)",
         Index: "Calming Peace",
         Enabled: true,
         Rarity: 7,
@@ -15407,7 +15407,7 @@ const json = [
         SetPropertiesString: [
           "+70 生命 （3 件）"
         ],
-        Name: "丝绸壽衣 (Silk Shroud)",
+        Name: "絲綢壽衣 (Silk Shroud)",
         Index: "Silk Shroud",
         Enabled: true,
         Rarity: 7,
@@ -15459,7 +15459,7 @@ const json = [
           "+18 擊殺生命恢復 （3 件）",
           "+3 擊殺法力恢復 （4 件）"
         ],
-        Name: "寺庙守护者 (Temple Guardian)",
+        Name: "神廟守衛 (Temple Guardian)",
         Index: "Temple Guardian",
         Enabled: true,
         Rarity: 7,
@@ -15543,7 +15543,7 @@ const json = [
   },
   {
     Index: "The Darkest Weaves",
-    Name: "最黑暗的编织 (The Darkest Weaves)",
+    Name: "至暗編制 (The Darkest Weaves)",
     SetItems: [
       {
         Type: "Armor",
@@ -15551,7 +15551,7 @@ const json = [
         SetPropertiesString: [
           "+50% 打擊恢復 （2 件）"
         ],
-        Name: "Sundered Heart",
+        Name: "碎裂之心 (Sundered Heart)",
         Index: "Sundered Heart",
         Enabled: true,
         Rarity: 7,
@@ -15593,7 +15593,7 @@ const json = [
         SetPropertiesString: [
           "+1 最大傷害 （依角色等級而定） （2 件）"
         ],
-        Name: "Soulreaver",
+        Name: "掠魂者 (Soulreaver)",
         Index: "Soulreaver",
         Enabled: true,
         Rarity: 7,
@@ -15638,7 +15638,7 @@ const json = [
         SetPropertiesString: [
           "+50% 格擋速度 （2 件）"
         ],
-        Name: "仇恨的投掷 (Throws of Hatred)",
+        Name: "憎恨投擲 (Throws of Hatred)",
         Index: "Throws of Hatred",
         Enabled: true,
         Rarity: 7,
@@ -15711,7 +15711,7 @@ const json = [
   },
   {
     Index: "Blood Raven's Despair",
-    Name: "血鸦的绝望 (Blood Raven's Despair)",
+    Name: "血鴉的絕望 (Blood Raven's Despair)",
     SetItems: [
       {
         Type: "Helm",
@@ -15719,7 +15719,7 @@ const json = [
         SetPropertiesString: [
           "+10 所有屬性 （2 件）"
         ],
-        Name: "血鸦之痛 (Blood Raven's Pain)",
+        Name: "血鴉的痛苦 (Blood Raven's Pain)",
         Index: "Blood Raven's Pain",
         Enabled: true,
         Rarity: 7,
@@ -15769,7 +15769,7 @@ const json = [
         SetPropertiesString: [
           "擊中竊取 +6% 法力 （2 件）"
         ],
-        Name: "血鸦的诅咒 (Blood Raven's Curse)",
+        Name: "血鴉的诅咒 (Blood Raven's Curse)",
         Index: "Blood Raven's Curse",
         Enabled: true,
         Rarity: 7,
@@ -15819,7 +15819,7 @@ const json = [
         SetPropertiesString: [
           "+10 熾炎箭（2 件）"
         ],
-        Name: "血鸦的救赎 (Blood Raven's Redemption)",
+        Name: "血鴉的救赎 (Blood Raven's Redemption)",
         Index: "Blood Raven's Redemption",
         Enabled: true,
         Rarity: 7,
@@ -15891,7 +15891,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "8-12% Reanimate as: PlagueBearer",
+        PropertyString: "8-12% 機率將目標復生為：PlagueBearer",
         Index: 3
       }
     ],
@@ -15899,7 +15899,7 @@ const json = [
   },
   {
     Index: "Narrow Path Between Light and Darkness",
-    Name: "光明与黑暗之间的窄路 (Narrow Path Between Light and Darkness)",
+    Name: "光黯狹隙 (Narrow Path Between Light and Darkness)",
     SetItems: [
       {
         Type: "Helm",
@@ -15908,7 +15908,7 @@ const json = [
           "被擊中時有 25% 機率施展等級 1 冰霜新星 （3 件）",
           "攻擊速度 +15% （2 件）"
         ],
-        Name: "查尔的死亡表情 (Char's Grimace of Death)",
+        Name: "查爾的死亡鬼臉 (Char's Grimace of Death)",
         Index: "Char's Grimace of Death",
         Enabled: true,
         Rarity: 7,
@@ -15960,7 +15960,7 @@ const json = [
           "法力恢復 10% （4 件）",
           "魔法傷害降低 10 （3 件）"
         ],
-        Name: "查尔的模糊环 (Char's Annulus of Obscurity)",
+        Name: "查爾的晦澀空環 (Char's Annulus of Obscurity)",
         Index: "Char's Annulus of Obscurity",
         Enabled: true,
         Rarity: 3,
@@ -16004,7 +16004,7 @@ const json = [
           "+45 生命 （2 件）",
           "物理傷害降低 10 （3 件）"
         ],
-        Name: "夏尔的幸福反思 (Char's Blessed Reflection)",
+        Name: "查爾的幸運反射 (Char's Blessed Reflection)",
         Index: "Char's Blessed Reflection",
         Enabled: true,
         Rarity: 3,
@@ -16049,7 +16049,7 @@ const json = [
           "增加 1-50 電擊傷害 （2 件）",
           "火焰抗性 +15% （4 件）"
         ],
-        Name: "查尔的祝福之光之手 (Char's Hand of Blessed Light)",
+        Name: "查爾的福光之手 (Char's Hand of Blessed Light)",
         Index: "Char's Hand of Blessed Light",
         Enabled: true,
         Rarity: 7,
@@ -16106,7 +16106,7 @@ const json = [
         SetPropertiesString: [
           "+1 所有技能 （3 件）"
         ],
-        Name: "查尔的甲壳 (Char's Carapace)",
+        Name: "查爾的殼甲 (Char's Carapace)",
         Index: "Char's Carapace",
         Enabled: true,
         Rarity: 7,
@@ -16179,13 +16179,13 @@ const json = [
   },
   {
     Index: "Treasure Hunter",
-    Name: "宝藏猎人 (Treasure Hunter)",
+    Name: "寶藏獵人 (Treasure Hunter)",
     SetItems: [
       {
         Type: "Belt",
         "Set": "Treasure Hunter",
         SetPropertiesString: [],
-        Name: "王者之肩 (Kingpin's Wrap)",
+        Name: "王者裹腰 (Kingpin's Wrap)",
         Index: "Kingpin's Wrap",
         Enabled: true,
         Rarity: 7,
@@ -16325,7 +16325,7 @@ const json = [
             Index: 4
           },
           {
-            PropertyString: "+1.25% better chance of getting magic item （依角色等級而定）",
+            PropertyString: "尋獲魔法物品機率提高 +1.25% （依角色等級而定）",
             Index: 1
           },
           {
@@ -16462,7 +16462,7 @@ const json = [
         SetPropertiesString: [
           "增加 50-120 傷害 （6 件）"
         ],
-        Name: "王者之刃 (Kingpin's Blade)",
+        Name: "領袖之刃 (Kingpin's Blade)",
         Index: "Kingpin's Blade",
         Enabled: true,
         Rarity: 7,
@@ -16483,7 +16483,7 @@ const json = [
             Index: 3
           },
           {
-            PropertyString: "+2.5% extra gold from monsters （依角色等級而定）",
+            PropertyString: "怪物金幣掉落量提高 +2.5% （依角色等級而定）",
             Index: 1
           },
           {
@@ -16560,7 +16560,7 @@ const json = [
         Type: "Helm",
         "Set": "Yohann's Savant",
         SetPropertiesString: [],
-        Name: "怀斯曼帽子 (Wiseman's Cap)",
+        Name: "睿者之帽 (Wiseman's Cap)",
         Index: "Wiseman's Cap",
         Enabled: true,
         Rarity: 7,
@@ -16610,7 +16610,7 @@ const json = [
         SetPropertiesString: [
           "生命回復 +5 （4 件）"
         ],
-        Name: "圣人皮革 (Sage's Leather)",
+        Name: "聖者皮甲 (Sage's Leather)",
         Index: "Sage's Leather",
         Enabled: true,
         Rarity: 7,
@@ -16660,7 +16660,7 @@ const json = [
         SetPropertiesString: [
           "尋獲魔法物品機率提高 +35% （3 件）"
         ],
-        Name: "知识手套 (Gloves of Knowledge)",
+        Name: "知識手套 (Gloves of Knowledge)",
         Index: "Gloves of Knowledge",
         Enabled: true,
         Rarity: 7,
@@ -16711,7 +16711,7 @@ const json = [
           "+1 旋風斬（4 件）",
           "擊中竊取 +5% 法力 （3 件）"
         ],
-        Name: "奥术战杖 (Arcane Battlestaff)",
+        Name: "奧術戰杖 (Arcane Battlestaff)",
         Index: "Arcane Battlestaff",
         Enabled: true,
         Rarity: 7,
@@ -16795,7 +16795,7 @@ const json = [
   },
   {
     Index: "Zhoulomcrist's Dread",
-    Name: "周洛姆克里斯特的恐惧 (Zhoulomcrist's Dread)",
+    Name: "周洛姆·克里斯特的恐惧 (Zhoulomcrist's Dread)",
     SetItems: [
       {
         Type: "Helm",
@@ -16805,7 +16805,7 @@ const json = [
           "+1 暖流（5 件）",
           "增加 25-35 寒冰傷害 （3 件）"
         ],
-        Name: "邪恶的欲望 (Unholy Desires)",
+        Name: "邪惡之欲 (Unholy Desires)",
         Index: "Unholy Desires",
         Enabled: true,
         Rarity: 7,
@@ -16851,7 +16851,7 @@ const json = [
         SetPropertiesString: [
           "殺死敵人時有 20% 機率施展等級 15 偷取生命 （4 件）"
         ],
-        Name: "最黑暗的愿望 (Darkest Wishes)",
+        Name: "至暗之願 (Darkest Wishes)",
         Index: "Darkest Wishes",
         Enabled: true,
         Rarity: 7,
@@ -16909,7 +16909,7 @@ const json = [
           "物理傷害降低 20 （3 件）",
           "魔法傷害降低 25 （4 件）"
         ],
-        Name: "阴影板 (Shadowed Plate)",
+        Name: "附影之甲 (Shadowed Plate)",
         Index: "Shadowed Plate",
         Enabled: true,
         Rarity: 7,
@@ -16959,7 +16959,7 @@ const json = [
         SetPropertiesString: [
           "凍結目標 +2 （4 件）"
         ],
-        Name: "德拉文线圈 (Draven Coil)",
+        Name: "德雷文指環 (Draven Coil)",
         Index: "Draven Coil",
         Enabled: true,
         Rarity: 3,
@@ -18873,7 +18873,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "+3.12% extra gold from monsters （依角色等級而定）",
+        PropertyString: "怪物金幣掉落量提高 +3.12% （依角色等級而定）",
         Index: 0
       }
     ],
@@ -19339,7 +19339,7 @@ const json = [
         Index: 5
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +1.5% （依角色等級而定）",
         Index: 1
       }
     ],
@@ -19347,7 +19347,7 @@ const json = [
   },
   {
     Index: "Haunted Asylum",
-    Name: "闹鬼的精神病院 (Haunted Asylum)",
+    Name: "靈異病院 (Haunted Asylum)",
     SetItems: [
       {
         Type: "Armor",
@@ -19356,7 +19356,7 @@ const json = [
           "+200 防禦 （4 件）",
           "尋獲魔法物品機率提高 +50% （5 件）"
         ],
-        Name: "星体 (Astral Body)",
+        Name: "星空之體 (Astral Body)",
         Index: "Astral Body",
         Enabled: true,
         Rarity: 7,
@@ -19410,7 +19410,7 @@ const json = [
         SetPropertiesString: [
           "增加 25-75 傷害 （4 件）"
         ],
-        Name: "恶意的显现 (Apparition of Malice)",
+        Name: "鬼魂之怨 (Apparition of Malice)",
         Index: "Apparition of Malice",
         Enabled: true,
         Rarity: 7,
@@ -19463,7 +19463,7 @@ const json = [
         SetPropertiesString: [
           "所有抗性 +25% （5 件）"
         ],
-        Name: "恐怖幻影 (Phantasm of Horror)",
+        Name: "恐懼之影 (Phantasm of Horror)",
         Index: "Phantasm of Horror",
         Enabled: true,
         Rarity: 7,
@@ -19511,7 +19511,7 @@ const json = [
         Type: "Helm",
         "Set": "Haunted Asylum",
         SetPropertiesString: [],
-        Name: "闹鬼的智慧 (Haunted Wisdom)",
+        Name: "靈異之智 (Haunted Wisdom)",
         Index: "Haunted Wisdom",
         Enabled: true,
         Rarity: 7,
@@ -19567,7 +19567,7 @@ const json = [
         Type: "Gloves",
         "Set": "Haunted Asylum",
         SetPropertiesString: [],
-        Name: "亡灵之爪 (Revenant's Claw)",
+        Name: "復生者之爪 (Revenant's Claw)",
         Index: "Revenant's Claw",
         Enabled: true,
         Rarity: 7,
@@ -19636,7 +19636,7 @@ const json = [
         Index: 2
       },
       {
-        PropertyString: "+2.5% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +2.5% （依角色等級而定）",
         Index: 1
       }
     ],
@@ -20118,7 +20118,7 @@ const json = [
           "增加 25-75 傷害 （3 件）",
           "堆疊數量提高 100 （2 件）"
         ],
-        Name: "Hanabal's Final Flight",
+        Name: "漢尼拔的告別飛行 (Hannibal's Final Flight)",
         Index: "Hannibal's Final Flight",
         Enabled: true,
         Rarity: 7,
@@ -20183,7 +20183,7 @@ const json = [
         SetPropertiesString: [
           "電擊抗性 +30% （3 件）"
         ],
-        Name: "Hanabal's Blurred Vision",
+        Name: "漢尼拔的模糊視綫 (Hannibal's Blurred Vision)",
         Index: "Hannibal's Blurred Vision",
         Enabled: true,
         Rarity: 7,
@@ -20234,7 +20234,7 @@ const json = [
           "+20% 跑步 / 行走速度 （2 件）",
           "+100 準確率 （3 件）"
         ],
-        Name: "Hanabal's Bending Knee",
+        Name: "漢尼拔的屈膝 (Hannibal's Bending Knee)",
         Index: "Hannibal's Bending Knee",
         Enabled: true,
         Rarity: 7,
@@ -20596,13 +20596,13 @@ const json = [
   },
   {
     Index: "Servitude or Rebellion",
-    Name: "奴役还是反抗 (Servitude or Rebellion)",
+    Name: "奴役與抗爭 (Servitude or Rebellion)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Servitude or Rebellion",
         SetPropertiesString: [],
-        Name: "无政府主义的奴隶 (Slave to Anarchy)",
+        Name: "混亂之奴隸 (Slave to Anarchy)",
         Index: "Slave to Anarchy",
         Enabled: true,
         Rarity: 7,
@@ -20654,7 +20654,7 @@ const json = [
         Type: "Spear",
         "Set": "Servitude or Rebellion",
         SetPropertiesString: [],
-        Name: "被荣誉束缚 (Bound by Honor)",
+        Name: "榮譽之束縛 (Bound by Honor)",
         Index: "Bound by Honor",
         Enabled: true,
         Rarity: 7,
@@ -20966,7 +20966,7 @@ const json = [
         Type: "Belt",
         "Set": "Kaldorn's Majesty",
         SetPropertiesString: [],
-        Name: "德司達的裹肩 (Daystar Wrap)",
+        Name: "德司達的裹腰 (Daystar Wrap)",
         Index: "Daystar Wrap",
         Enabled: true,
         Rarity: 7,
@@ -21043,7 +21043,7 @@ const json = [
   },
   {
     Index: "Warlock's Exploration",
-    Name: "术士的探索 (Warlock's Exploration)",
+    Name: "術士的探索 (Warlock's Exploration)",
     SetItems: [
       {
         Type: "Armor",
@@ -21647,13 +21647,13 @@ const json = [
   },
   {
     Index: "Tika's Request",
-    Name: "蒂卡的请求 (Tika's Request)",
+    Name: "蒂卡的請求 (Tika's Request)",
     SetItems: [
       {
         Type: "Armor",
         "Set": "Tika's Request",
         SetPropertiesString: [],
-        Name: "霜雪隐藏 (Frostwyrm Hide)",
+        Name: "冰霜巨龍之隱 (Frostwyrm Hide)",
         Index: "Frostwyrm Hide",
         Enabled: true,
         Rarity: 7,
@@ -21707,7 +21707,7 @@ const json = [
         SetPropertiesString: [
           "+2.5 最大傷害 （依角色等級而定） （4 件）"
         ],
-        Name: "神圣的救赎主 (Hallowed Redeemer)",
+        Name: "神聖救世主 (Hallowed Redeemer)",
         Index: "Hallowed Redeemer",
         Enabled: true,
         Rarity: 7,
@@ -21764,7 +21764,7 @@ const json = [
         SetPropertiesString: [
           "尋獲魔法物品機率提高 +25% （3 件）"
         ],
-        Name: "龙人面具 (Draconian Mask)",
+        Name: "龍人面具 (Draconian Mask)",
         Index: "Draconian Mask",
         Enabled: true,
         Rarity: 7,
@@ -21816,7 +21816,7 @@ const json = [
         Type: "Belt",
         "Set": "Tika's Request",
         SetPropertiesString: [],
-        Name: "基特西斯腰带 (Girdle of Kitthix)",
+        Name: "基特西斯腰帶 (Girdle of Kitthix)",
         Index: "Girdle of Kitthix",
         Enabled: true,
         Rarity: 7,
@@ -21870,7 +21870,7 @@ const json = [
         SetPropertiesString: [
           "+45 生命 （4 件）"
         ],
-        Name: "安静之铠 (Gauntlets of Quietus)",
+        Name: "寂滅護手 (Gauntlets of Quietus)",
         Index: "Gauntlets of Quietus",
         Enabled: true,
         Rarity: 7,
@@ -21951,7 +21951,7 @@ const json = [
         Index: 1
       },
       {
-        PropertyString: "+1.5% better chance of getting magic item （依角色等級而定）",
+        PropertyString: "尋獲魔法物品機率提高 +1.5% （依角色等級而定）",
         Index: 2
       }
     ],
@@ -22122,7 +22122,7 @@ const json = [
         SetPropertiesString: [
           "攻擊速度 +20% （3 件）"
         ],
-        Name: "格瓦王子的臂鎧 (Prince Gwar's Bracers)",
+        Name: "格瓦王子的護腕 (Prince Gwar's Bracers)",
         Index: "Prince Gwar's Bracers",
         Enabled: true,
         Rarity: 7,
@@ -22830,7 +22830,7 @@ const json = [
             Index: 4
           },
           {
-            PropertyString: "+1.25% better chance of getting magic item （依角色等級而定）",
+            PropertyString: "尋獲魔法物品機率提高 +1.25% （依角色等級而定）",
             Index: 2
           },
           {
@@ -23730,7 +23730,7 @@ const json = [
             Index: 1
           },
           {
-            PropertyString: "+1.12% better chance of getting magic item （依角色等級而定）",
+            PropertyString: "尋獲魔法物品機率提高 +1.12% （依角色等級而定）",
             Index: 3
           },
           {
@@ -24454,7 +24454,7 @@ const json = [
         Index: 0
       },
       {
-        PropertyString: "-40% to Experience Gained",
+        PropertyString: "獲得的經驗值 -40%",
         Index: 1
       },
       {
@@ -24466,7 +24466,7 @@ const json = [
   },
   {
     Index: "Maadi's Paradox",
-    Name: "马迪悖论 (Maadi's Paradox)",
+    Name: "馬迪的悖論 (Maadi's Paradox)",
     SetItems: [
       {
         Type: "Gloves",
@@ -24475,7 +24475,7 @@ const json = [
           "+5 骨矛（只限死靈法師） （3 件）",
           "+30 能量 （2 件）"
         ],
-        Name: "马迪的沉默 (Maadi's Silence)",
+        Name: "馬迪的沉默 (Maadi's Silence)",
         Index: "Maadi's Silence",
         Enabled: true,
         Rarity: 7,
@@ -24526,7 +24526,7 @@ const json = [
           "+15-20% 跑步 / 行走速度 （2 件）",
           "+15% 施法速度 （3 件）"
         ],
-        Name: "马迪的愿景 (Maadi's Vision)",
+        Name: "馬迪的願景 (Maadi's Vision)",
         Index: "Maadi's Vision",
         Enabled: true,
         Rarity: 7,
@@ -24583,7 +24583,7 @@ const json = [
           "魔法吸引 +10% （4 件）",
           "魔法傷害降低 10 （5 件）"
         ],
-        Name: "马迪的精神 (Maadi's Spirit)",
+        Name: "馬迪的精神 (Maadi's Spirit)",
         Index: "Maadi's Spirit",
         Enabled: true,
         Rarity: 7,
@@ -24638,7 +24638,7 @@ const json = [
           "+25% 施法速度 （2 件）",
           "所有抗性 +20% （3 件）"
         ],
-        Name: "马迪的火炬 (Maadi's Torch)",
+        Name: "馬迪的火炬 (Maadi's Torch)",
         Index: "Maadi's Torch",
         Enabled: true,
         Rarity: 7,
@@ -25115,7 +25115,7 @@ const json = [
   },
   {
     Index: "Tools of Vindication",
-    Name: "平反工具 (Tools of Vindication)",
+    Name: "復仇的工具 (Tools of Vindication)",
     SetItems: [
       {
         Type: "Hammer",
@@ -25123,7 +25123,7 @@ const json = [
         SetPropertiesString: [
           "攻擊速度 +40% （2 件）"
         ],
-        Name: "复仇者之手 (Hand of the Vindicator)",
+        Name: "復仇者之手 (Hand of the Vindicator)",
         Index: "Hand of the Vindicator",
         Enabled: true,
         Rarity: 7,
@@ -25174,7 +25174,7 @@ const json = [
           "冰寒抗性 +30% （2 件）",
           "物理傷害降低 +15% （3 件）"
         ],
-        Name: "复仇者堡垒 (Bulwark of the Vindicator)",
+        Name: "復仇者堡壘 (Bulwark of the Vindicator)",
         Index: "Bulwark of the Vindicator",
         Enabled: true,
         Rarity: 7,
@@ -25226,7 +25226,7 @@ const json = [
           "電擊抗性 +30% （3 件）",
           "火焰抗性 +30% （2 件）"
         ],
-        Name: "复仇者腰带 (Belt of the Vindicator)",
+        Name: "復仇者腰帶 (Belt of the Vindicator)",
         Index: "Belt of the Vindicator",
         Enabled: true,
         Rarity: 7,
@@ -25293,7 +25293,7 @@ const json = [
         Type: "Pelt",
         "Set": "Panda's Polar Adventure",
         SetPropertiesString: [],
-        Name: "熊貓的毛皮 (Panda's Pelt)",
+        Name: "熊貓的皮帽 (Panda's Pelt)",
         Index: "Panda's Pelt",
         Enabled: true,
         Rarity: 7,
@@ -25397,7 +25397,7 @@ const json = [
         Type: "Armor",
         "Set": "Panda's Polar Adventure",
         SetPropertiesString: [],
-        Name: "熊貓的外套 (Panda's Jacket)",
+        Name: "熊貓的外袍 (Panda's Jacket)",
         Index: "Panda's Coat",
         Enabled: true,
         Rarity: 7,
